@@ -65,7 +65,7 @@ def push_deal(deal):
         msg_lines.append(f"🏪 来源: {source}")
 
     if url:
-        msg_lines.append(f"🔗 {url}")
+        msg_lines.append(f"🔗 [点击购买]({url})")
 
     msg_lines.append(f"⏰ {datetime.now().strftime('%H:%M')}")
 
