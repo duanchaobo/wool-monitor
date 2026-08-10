@@ -42,9 +42,9 @@ jobs:
         run: |
           python main.py
         env:
-          # 如果以后配置了京东联盟，密钥也传进来
           JD_APP_KEY: ${{ secrets.JD_APP_KEY }}
           JD_APP_SECRET: ${{ secrets.JD_APP_SECRET }}
+          JD_PID: ${{ secrets.JD_PID }}
 
       - name: 上传缓存（用于去重）
         uses: actions/upload-artifact@v5

@@ -222,19 +222,25 @@ def collect_all():
     print(f"开始采集优惠信息... {datetime.now().strftime('%H:%M:%S')}")
     print("=" * 50)
 
-    # 1. 自定义推广商品（最优先）
+    # 0. 京东联盟 API（真实优惠券数据，最优先）
+    from jd_api import collect_jd_coupon_search
+    jd_deals = collect_jd_coupon_search()
+    all_deals.extend(jd_deals)
+    print(f"京东联盟: {len(jd_deals)} 条")
+
+    # 1. 自定义推广商品
     promoted = load_promoted_deals()
     all_deals.extend(promoted)
     print(f"自定义推广: {len(promoted)} 条")
 
-    # 2. 如果自定义商品不够5条，用模板补足
-    needed = max(0, 5 - len(promoted))
+    # 2. 如果总数不够5条，用模板补足
+    needed = max(0, 5 - len(all_deals))
     if needed > 0:
         fallback = get_fallback_deals()
         all_deals.extend(fallback[:needed])
         print(f"预置模板（补充）: {min(needed, len(fallback))} 条")
     else:
-        print("预置模板: 跳过（自定义商品已满）")
+        print("预置模板: 跳过（数据已满）")
 
     # 3. 什么值得买（能爬到就追加，不超过总条数）
     smzdm = collect_smzdm_deals()
