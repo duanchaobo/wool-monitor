@@ -1,14 +1,13 @@
 """
-jd_api.py - 京东联盟优惠券采集
+jd_api.py - 京东联盟京粉精选采集
 
-API 文档: https://union.jd.com/openplatform
+使用 jd.union.open.goods.jingfen.query 接口
+导购媒体 AppKey 可用此接口获取高佣优惠券商品
 
 所需凭证:
-  JD_APP_KEY     - AppKey（从联盟后台"我的API"获取）
-  JD_APP_SECRET  - AppSecret（同上）
-  JD_PID         - 推广位ID（从"推广位管理"获取）
-
-环境变量读取，或在 .env 文件中配置
+  JD_APP_KEY     - AppKey
+  JD_APP_SECRET  - AppSecret
+  JD_PID         - 推广位ID（可选）
 """
 
 import os
@@ -17,7 +16,6 @@ import time
 import hashlib
 import requests
 from datetime import datetime
-from urllib.parse import urlencode
 
 # 加载 .env 文件
 _env_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
@@ -34,8 +32,29 @@ JD_APP_KEY = os.environ.get("JD_APP_KEY", "")
 JD_APP_SECRET = os.environ.get("JD_APP_SECRET", "")
 JD_PID = os.environ.get("JD_PID", "")
 
-# 京东联盟 API 网关地址
 API_GATEWAY = "https://router.jd.com/api"
+
+# 京粉精选频道ID
+ELITE_IDS = {
+    1: "好券商品",
+    2: "精选卖场",
+    3: "9.9专区",
+    5: "京东配送",
+    35: "数码家电",
+    36: "超市",
+    37: "母婴玩具",
+    38: "家具日用",
+    39: "美妆穿搭",
+    40: "医药保健",
+    41: "图书文具",
+    42: "户外运动",
+    43: "生鲜美食",
+    45: "京东秒杀",
+    52: "充值中心",
+    53: "机票酒店",
+    54: "虚拟商品",
+    55: "工业品",
+}
 
 
 def _make_sign(params, secret):
@@ -49,13 +68,12 @@ def _make_sign(params, secret):
 
 
 def _call_jd_api(method, biz_params):
-    """调用京东联盟 API 通用方法"""
+    """调用京东联盟 API"""
     if not JD_APP_KEY or not JD_APP_SECRET:
         print("[京东联盟] 未配置 AppKey/AppSecret，跳过")
         return None
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     params = {
         "app_key": JD_APP_KEY,
         "method": method,
@@ -69,81 +87,96 @@ def _call_jd_api(method, biz_params):
 
     try:
         resp = requests.get(API_GATEWAY, params=params, timeout=15)
-        data = resp.json()
-        return data
+        return resp.json()
     except Exception as e:
         print(f"[京东联盟] API 调用失败: {e}")
         return None
 
 
-def collect_jd_coupon_deals(keyword="", page=1, page_size=10):
+def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
     """
-    采集京东优惠券商品
-
-    使用京粉精选接口或优惠券查询接口
+    采集京粉精选商品（导购媒体可用）
     """
-    if not JD_APP_KEY:
-        return []
-
     deals = []
 
-    # 方式1: 通过"京粉精选"接口获取高佣商品
     biz_params = {
         "goodsReq": {
-            "keyword": keyword if keyword else "优惠券",
-            "pageSize": page_size,
+            "eliteId": elite_id,
             "pageIndex": page,
-            "pid": JD_PID,
-            "eliteId": 1,  # 好券商品: 1
+            "pageSize": page_size,
+            "sortName": "inOrderComm30Days",
+            "sort": "desc",
         }
     }
+    if JD_PID:
+        biz_params["goodsReq"]["pid"] = JD_PID
 
-    result = _call_jd_api("jd.union.open.goods.query", biz_params)
-
+    result = _call_jd_api("jd.union.open.goods.jingfen.query", biz_params)
     if not result:
         return deals
 
-    # 解析返回数据
+    # 解析响应
     try:
-        data_list = result.get("jd_union_open_goods_query_response", {}).get("data", [])
-        if isinstance(data_list, str):
-            data_list = json.loads(data_list) if data_list else []
+        resp_key = "jd_union_open_goods_jingfen_query_response"
+        inner = result.get(resp_key, {})
+        result_str = inner.get("result", "")
+
+        if isinstance(result_str, str):
+            result_obj = json.loads(result_str) if result_str else {}
+        else:
+            result_obj = result_str
+
+        if result_obj.get("code") != 200:
+            print(f"[京东联盟] 接口错误: {result_obj.get('message', 'unknown')}")
+            return deals
+
+        data_list = result_obj.get("data", [])
 
         for item in data_list:
-            sku = item.get("skuId", "")
-            title = item.get("skuName", item.get("goodsName", ""))
-            price_info = item.get("priceInfo", {})
-            commission_info = item.get("commissionInfo", {})
-            coupon_info = item.get("couponInfo", {})
+            title = item.get("skuName", "") or item.get("goodsName", "")
+            if not title:
+                continue
 
-            price = price_info.get("price", 0)
-            lowest_price = price_info.get("lowestPrice", 0)
-            original_price = price_info.get("originalPrice", lowest_price)
+            # 价格信息
+            price_info = item.get("priceInfo", {})
+            price = price_info.get("price", 0) or 0
 
             # 优惠券信息
+            coupon_info = item.get("couponInfo", {})
             coupon_list = coupon_info.get("couponList", [])
             coupon_str = ""
+            coupon_link = ""
             if coupon_list:
-                c = coupon_list[0]
-                discount = c.get("discount", 0)
-                quota = c.get("quota", 0)
-                coupon_str = f"满{quota}减{int(discount)}"
+                best = coupon_list[0]
+                discount = best.get("discount", 0)
+                quota = best.get("quota", 0)
+                coupon_str = f"满{int(quota)}减{int(discount)}"
+                coupon_link = best.get("link", "")
 
             # 佣金
+            commission_info = item.get("commissionInfo", {})
             commission_share = commission_info.get("commissionShare", 0)
 
-            if not title or not price:
-                continue
+            # 品类
+            category = item.get("categoryInfo", {})
+            cat_name = category.get("cid2Name", "") or category.get("cid1Name", "")
+
+            # 图片
+            image_info = item.get("imageInfo", {})
+            image_list = image_info.get("imageList", [])
+            img_url = image_list[0].get("url", "") if image_list else ""
+            if img_url and not img_url.startswith("http"):
+                img_url = "https:" + img_url
 
             deal = {
                 "source": "京东",
                 "title": title[:60],
-                "price": f"¥{lowest_price}",
-                "old_price": f"¥{original_price}",
-                "discount": round(1 - lowest_price / original_price, 2) if original_price > 0 else 0,
-                "url": f"https://item.jd.com/{sku}.html" if sku else "",
-                "tag": coupon_str if coupon_str else "京粉精选",
-                "img_url": item.get("imageInfo", {}).get("imageList", [{}])[0].get("url", "") if item.get("imageInfo") else "",
+                "price": f"¥{price}" if price else "",
+                "old_price": "",
+                "discount": 0,
+                "url": coupon_link if coupon_link else "",
+                "tag": coupon_str if coupon_str else ELITE_IDS.get(elite_id, "京粉精选"),
+                "img_url": img_url,
                 "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
             }
             deals.append(deal)
@@ -151,30 +184,30 @@ def collect_jd_coupon_deals(keyword="", page=1, page_size=10):
     except Exception as e:
         print(f"[京东联盟] 解析失败: {e}")
 
-    print(f"[京东联盟] 采集到 {len(deals)} 条优惠券商品")
     return deals
 
 
-def collect_jd_coupon_search(keywords=None):
+def collect_jd_all_channels():
     """
-    按关键词批量采集京东优惠券商品
+    采集多个频道的精选商品
     """
-    if keywords is None:
-        keywords = ["手机", "电脑", "家电", "零食", "日用品"]
-
+    # 采集好券商品 + 京东配送 + 生鲜美食
+    target_channels = [1, 5, 43]
     all_deals = []
-    for kw in keywords:
-        deals = collect_jd_coupon_deals(keyword=kw, page_size=5)
-        all_deals.extend(deals)
-        time.sleep(0.5)  # 避免频率限制
 
+    for elite_id in target_channels:
+        deals = collect_jingfen_deals(elite_id=elite_id, page_size=10)
+        all_deals.extend(deals)
+        time.sleep(0.5)
+
+    print(f"[京东联盟] 总计采集 {len(all_deals)} 条优惠券商品")
     return all_deals
 
 
 if __name__ == "__main__":
-    print("测试京东联盟 API...")
+    print("测试京东联盟京粉精选 API...")
     print(f"AppKey: {JD_APP_KEY[:10]}..." if JD_APP_KEY else "AppKey: 未配置")
 
-    deals = collect_jd_coupon_deals(keyword="手机", page_size=3)
+    deals = collect_jingfen_deals(elite_id=1, page_size=5)
     for d in deals:
-        print(f"  [{d['tag']}] {d['title'][:40]} - {d['price']} (原价{d['old_price']})")
+        print(f"  [{d['tag']}] {d['title'][:40]} - {d['price']}")

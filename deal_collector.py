@@ -223,8 +223,8 @@ def collect_all():
     print("=" * 50)
 
     # 0. 京东联盟 API（真实优惠券数据，最优先）
-    from jd_api import collect_jd_coupon_search
-    jd_deals = collect_jd_coupon_search()
+    from jd_api import collect_jd_all_channels
+    jd_deals = collect_jd_all_channels()
     all_deals.extend(jd_deals)
     print(f"京东联盟: {len(jd_deals)} 条")
 
