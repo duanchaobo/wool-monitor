@@ -19,10 +19,10 @@ jobs:
     
     steps:
       - name: 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 设置 Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -47,7 +47,7 @@ jobs:
           JD_APP_SECRET: ${{ secrets.JD_APP_SECRET }}
 
       - name: 上传缓存（用于去重）
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: push-cache
           path: push_cache.json
@@ -55,7 +55,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: 保活缓存（下载上次的去重缓存）
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: push-cache
           path: .
