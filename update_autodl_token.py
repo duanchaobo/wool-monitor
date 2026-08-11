@@ -171,45 +171,29 @@ def verify_token(token):
 
 
 def update_github_secret(token):
-    """更新 GitHub Secret: AUTODL_SESSION_TOKEN"""
-    logger.info("🔄 更新 GitHub Secret: AUTODL_SESSION_TOKEN...")
+    """更新 GitHub Secret: AUTODL_SESSION_TOKEN 到所有相关仓库"""
+    repos = ["duanchaobo/wool-monitor", "duanchaobo/autodl_keep_alive"]
+    logger.info(f"🔄 更新 GitHub Secret 到 {len(repos)} 个仓库...")
 
-    # 获取仓库信息
-    try:
-        result = subprocess.run(
-            ["gh", "repo", "view", "--json", "nameWithOwner"],
-            capture_output=True, text=True, timeout=10,
-            cwd=PROJECT_DIR
-        )
-        if result.returncode != 0:
-            logger.error(f"获取仓库信息失败: {result.stderr}")
-            return False
+    all_ok = True
+    for repo in repos:
+        try:
+            proc = subprocess.run(
+                ["gh", "secret", "set", "AUTODL_SESSION_TOKEN",
+                 "--repo", repo],
+                input=token,
+                capture_output=True, text=True, timeout=15,
+            )
+            if proc.returncode == 0:
+                logger.info(f"   ✅ {repo}")
+            else:
+                logger.error(f"   ❌ {repo}: {proc.stderr.strip()}")
+                all_ok = False
+        except Exception as e:
+            logger.error(f"   ❌ {repo}: {e}")
+            all_ok = False
 
-        repo_info = json.loads(result.stdout)
-        repo_name = repo_info["nameWithOwner"]
-        logger.info(f"目标仓库: {repo_name}")
-    except Exception as e:
-        logger.error(f"获取仓库信息失败: {e}")
-        return False
-
-    # 更新 secret
-    try:
-        proc = subprocess.run(
-            ["gh", "secret", "set", "AUTODL_SESSION_TOKEN",
-             "--repo", repo_name],
-            input=token,
-            capture_output=True, text=True, timeout=15,
-            cwd=PROJECT_DIR
-        )
-        if proc.returncode == 0:
-            logger.info("✅ GitHub Secret AUTODL_SESSION_TOKEN 已更新")
-            return True
-        else:
-            logger.error(f"更新失败: {proc.stderr}")
-            return False
-    except Exception as e:
-        logger.error(f"更新失败: {e}")
-        return False
+    return all_ok
 
 
 def main():
