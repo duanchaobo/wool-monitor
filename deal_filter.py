@@ -159,6 +159,17 @@ def filter_deals(deals):
             print(f"  [无券] 跳过: {deal.get('title', '')[:30]}")
             continue
 
+        # 2.1 过滤券门槛远高于商品价格的无效券（如满868减180但商品才179）
+        import re
+        from deal_collector import extract_number
+        quota_match = re.search(r'满(\d+)', tag)
+        if quota_match:
+            quota = float(quota_match.group(1))
+            price_num = extract_number(str(deal.get("price", "0")))
+            if price_num > 0 and quota > price_num * 1.5:
+                print(f"  [券门槛过高] 跳过: {deal.get('title', '')[:20]} (商品¥{price_num}, 券需满¥{quota:.0f})")
+                continue
+
         # 3. 品类过滤：只推母婴和日用品
         category = deal.get("category", "")
         if category and not any(cat in category for cat in ALLOWED_CATEGORIES):
