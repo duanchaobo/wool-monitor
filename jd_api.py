@@ -189,6 +189,7 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
                 "discount": discount,
                 "url": product_url,
                 "coupon_url": coupon_link,
+                "coupon_quota": coupon_list[0].get("quota", 0) if coupon_list else 0,
                 "tag": coupon_str if coupon_str else ELITE_IDS.get(elite_id, "京粉精选"),
                 "category": cat_name,
                 "img_url": img_url,
