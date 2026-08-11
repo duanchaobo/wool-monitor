@@ -61,8 +61,7 @@ def main():
 
     if normal_deals:
         print("\n📢 推送普通信息...")
-        # 普通信息最多推5条，避免刷屏
-        push_batch(normal_deals[:5])
+        push_batch(normal_deals)
 
     # Step 4: 总结
     print(f"\n{'='*50}")

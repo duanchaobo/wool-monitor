@@ -15,10 +15,10 @@ from datetime import datetime, timedelta
 
 # ============ 配置 ============
 
-MIN_DISCOUNT = 0.5      # 最小折扣（5折）
-MIN_PRICE = 20.0        # 最低价格
+MIN_DISCOUNT = 0.0      # 不限折扣
+MIN_PRICE = 0.0         # 不限价格
 CACHE_FILE = "push_cache.json"  # 去重缓存
-CACHE_EXPIRE_MIN = 30   # 缓存有效期（分钟）
+CACHE_EXPIRE_MIN = 0    # 0 = 永久去重，不再推送历史已推过的优惠
 
 # 品牌关键词（可扩展）
 BRAND_KEYWORDS = [
@@ -51,18 +51,19 @@ def load_cache():
 def save_cache(cache):
     """保存推送缓存"""
     try:
-        # 清理过期缓存
-        now = datetime.now()
-        expired = []
-        for key, val in cache.items():
-            t = datetime.fromisoformat(val["time"])
-            if (now - t).total_seconds() > CACHE_EXPIRE_MIN * 60:
-                expired.append(key)
-        for k in expired:
-            del cache[k]
+        # CACHE_EXPIRE_MIN=0 时永久保存，不清理
+        if CACHE_EXPIRE_MIN > 0:
+            now = datetime.now()
+            expired = []
+            for key, val in cache.items():
+                t = datetime.fromisoformat(val["time"])
+                if (now - t).total_seconds() > CACHE_EXPIRE_MIN * 60:
+                    expired.append(key)
+            for k in expired:
+                del cache[k]
 
         with open(CACHE_FILE, "w") as f:
-            json.dump(cache, f)
+            json.dump(cache, f, ensure_ascii=False, indent=2)
     except Exception as e:
         print(f"[缓存保存失败] {e}")
 
