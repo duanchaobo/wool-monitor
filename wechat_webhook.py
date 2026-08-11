@@ -64,8 +64,14 @@ def push_deal(deal):
     if source:
         msg_lines.append(f"🏪 来源: {source}")
 
+    # 优惠券信息
+    coupon_url = deal.get("coupon_url", "")
+    if coupon_url:
+        msg_lines.append(f"🎫 [点击领券]({coupon_url})")
+
+    # 商品购买链接
     if url:
-        msg_lines.append(f"🔗 [点击购买]({url})")
+        msg_lines.append(f"🛒 [购买链接]({url})")
 
     msg_lines.append(f"⏰ {datetime.now().strftime('%H:%M')}")
 

@@ -233,16 +233,7 @@ def collect_all():
     all_deals.extend(promoted)
     print(f"自定义推广: {len(promoted)} 条")
 
-    # 2. 如果总数不够5条，用模板补足
-    needed = max(0, 5 - len(all_deals))
-    if needed > 0:
-        fallback = get_fallback_deals()
-        all_deals.extend(fallback[:needed])
-        print(f"预置模板（补充）: {min(needed, len(fallback))} 条")
-    else:
-        print("预置模板: 跳过（数据已满）")
-
-    # 3. 什么值得买（能爬到就追加，不超过总条数）
+    # 2. 什么值得买（能爬到就追加，不超过总条数）
     smzdm = collect_smzdm_deals()
     if smzdm and len(all_deals) < 8:
         all_deals.extend(smzdm[:8 - len(all_deals)])
