@@ -22,15 +22,14 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v5
 
-      # ========== Step 1: 获取实例信息 + 开机 ==========
-      - name: 获取 SSH 信息并开机（无卡模式）
+      # ========== Step 1: 开机 ==========
+      - name: 调用 AutoDL API 开机（无卡模式）
         id: power_on
         run: |
           python3 << 'PYEOF'
           import requests
           import json
           import sys
-          import os
 
           SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
           INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
@@ -45,44 +44,8 @@ jobs:
               "User-Agent": "Mozilla/5.0 (GitHub-Actions)"
           }
 
-          # 获取实例详情（含 SSH 连接信息）
-          print("📋 获取实例详情...")
-          resp_detail = requests.post(
-              "https://www.autodl.com/api/v1/instance/detail",
-              json={"instance_uuid": INSTANCE_UUID},
-              headers=headers, timeout=30
-          )
-          detail_result = resp_detail.json()
-          print(f"详情响应: {json.dumps(detail_result, ensure_ascii=False)[:500]}")
-
-          ssh_host = ""
-          ssh_port = ""
-          if detail_result.get("code") == "Success":
-              d = detail_result.get("data", {})
-              # 尝试多种可能的字段名
-              ssh_host = d.get("ssh_host") or d.get("proxy_host") or d.get("host") or d.get("hostname") or d.get("ip") or ""
-              ssh_port = str(d.get("ssh_port") or d.get("proxy_port") or d.get("port") or "22")
-              print(f"SSH 信息: {ssh_host}:{ssh_port}")
-              print(f"详情字段: {list(d.keys())}")
-          else:
-              print(f"⚠️ 获取详情失败，使用预设 SSH 信息")
-
-          # 如果 API 没返回 SSH 信息，使用预设值
-          if not ssh_host:
-              ssh_host = "${{ secrets.AUTODL_SSH_HOST }}"
-              ssh_port = "${{ secrets.AUTODL_SSH_PORT }}"
-              print(f"使用预设 SSH: {ssh_host}:{ssh_port}")
-
-          # 输出给后续步骤
-          # GitHub Actions 环境文件方式
-          github_output = os.environ.get("GITHUB_OUTPUT", "")
-          if github_output:
-              with open(github_output, "a") as f:
-                  f.write(f"ssh_host={ssh_host}\n")
-                  f.write(f"ssh_port={ssh_port}\n")
-
           # 开机（无卡模式）
-          print("\n🔌 发送开机指令...")
+          print("🔌 发送开机指令...")
           resp = requests.post(
               "https://www.autodl.com/api/v1/instance/power_on",
               json={"instance_uuid": INSTANCE_UUID, "payload": "non_gpu"},
