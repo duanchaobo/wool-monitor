@@ -120,7 +120,7 @@ def get_fallback_deals():
         d["discount"] = round(1 - extract_number(d["price"]) / extract_number(d["old_price"]), 2)
         d["img_url"] = ""
         d["time"] = now_str
-        d["url"] = f"https://search.jd.com/Search?keyword={d['title'][:10]}"
+        d["url"] = ""
         result.append(d)
 
     print(f"[模板] 加载 {len(result)} 条当日轮换优惠（星期{weekday+1}）")

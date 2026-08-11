@@ -153,6 +153,13 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
                 coupon_str = f"满{int(quota)}减{int(discount)}"
                 coupon_link = best.get("link", "")
 
+            # 商品详情链接（优先 materialUrl，其次 coupon_link）
+            material_url = item.get("materialUrl", "")
+            if material_url:
+                product_url = "https://" + material_url if not material_url.startswith("http") else material_url
+            else:
+                product_url = coupon_link
+
             # 佣金
             commission_info = item.get("commissionInfo", {})
             commission_share = commission_info.get("commissionShare", 0)
@@ -174,7 +181,7 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
                 "price": f"¥{price}" if price else "",
                 "old_price": "",
                 "discount": 0,
-                "url": coupon_link if coupon_link else "",
+                "url": product_url,
                 "tag": coupon_str if coupon_str else ELITE_IDS.get(elite_id, "京粉精选"),
                 "img_url": img_url,
                 "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
