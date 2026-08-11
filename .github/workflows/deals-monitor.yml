@@ -1,62 +1,180 @@
-# GitHub Actions Workflow - 优惠信息采集
-# 每30分钟自动运行一次，采集优惠信息推送到微信群
+# GitHub Actions Workflow - AutoDL 远程采集优惠信息
+# 每2小时：开机(国内) → SSH跑脚本 → 关机
+# 解决 GitHub 服务器在海外无法调用京东 API 的问题
 
-name: 优惠信息巡检
+name: 优惠信息巡检（AutoDL远程）
 
 on:
   schedule:
-    # 每30分钟运行一次（cron表达式）
-    # 格式: 分钟 小时 日 月 星期
-    - cron: '*/30 * * * *'
-  
-  # 也支持手动触发（方便测试）
+    # 每2小时运行一次
+    - cron: '0 */2 * * *'
+
+  # 支持手动触发（方便测试）
   workflow_dispatch:
 
 jobs:
-  collect-deals:
-    name: 采集并推送优惠信息
+  collect-via-autodl:
+    name: AutoDL远程采集
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 15
+
     steps:
       - name: 检出代码
         uses: actions/checkout@v5
 
-      - name: 设置 Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: 安装依赖
+      # ========== Step 1: 获取实例信息 + 开机 ==========
+      - name: 获取 SSH 信息并开机（无卡模式）
+        id: power_on
         run: |
-          pip install -r requirements.txt
+          python3 << 'PYEOF'
+          import requests
+          import json
+          import sys
+          import os
 
-      - name: 配置环境变量
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+
+          if not SESSION_TOKEN or not INSTANCE_UUID:
+              print("❌ 缺少 AUTODL_SESSION_TOKEN 或 AUTODL_INSTANCE_UUID")
+              sys.exit(1)
+
+          headers = {
+              "Authorization": SESSION_TOKEN,
+              "Content-Type": "application/json;charset=UTF-8",
+              "User-Agent": "Mozilla/5.0 (GitHub-Actions)"
+          }
+
+          # 获取实例详情（含 SSH 连接信息）
+          print("📋 获取实例详情...")
+          resp_detail = requests.post(
+              "https://www.autodl.com/api/v1/instance/detail",
+              json={"instance_uuid": INSTANCE_UUID},
+              headers=headers, timeout=30
+          )
+          detail_result = resp_detail.json()
+          print(f"详情响应: {json.dumps(detail_result, ensure_ascii=False)[:500]}")
+
+          ssh_host = ""
+          ssh_port = ""
+          if detail_result.get("code") == "Success":
+              d = detail_result.get("data", {})
+              # 尝试多种可能的字段名
+              ssh_host = d.get("ssh_host") or d.get("proxy_host") or d.get("host") or d.get("hostname") or d.get("ip") or ""
+              ssh_port = str(d.get("ssh_port") or d.get("proxy_port") or d.get("port") or "22")
+              print(f"SSH 信息: {ssh_host}:{ssh_port}")
+              print(f"详情字段: {list(d.keys())}")
+          else:
+              print(f"⚠️ 获取详情失败，使用预设 SSH 信息")
+
+          # 如果 API 没返回 SSH 信息，使用预设值
+          if not ssh_host:
+              ssh_host = "${{ secrets.AUTODL_SSH_HOST }}"
+              ssh_port = "${{ secrets.AUTODL_SSH_PORT }}"
+              print(f"使用预设 SSH: {ssh_host}:{ssh_port}")
+
+          # 输出给后续步骤
+          # GitHub Actions 环境文件方式
+          github_output = os.environ.get("GITHUB_OUTPUT", "")
+          if github_output:
+              with open(github_output, "a") as f:
+                  f.write(f"ssh_host={ssh_host}\n")
+                  f.write(f"ssh_port={ssh_port}\n")
+
+          # 开机（无卡模式）
+          print("\n🔌 发送开机指令...")
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance/power_on",
+              json={"instance_uuid": INSTANCE_UUID, "payload": "non_gpu"},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
+          print(f"开机响应: {json.dumps(result, ensure_ascii=False)}")
+
+          if result.get("code") == "Success":
+              print("✅ 开机指令已发送")
+          else:
+              msg = str(result)
+              if "running" in msg.lower() or "已" in msg:
+                  print("实例可能已在运行中，继续执行")
+              elif "AuthorizeFailed" in msg:
+                  print("❌ Session Token 已过期！请运行 update_autodl_token.py 更新")
+                  sys.exit(1)
+              else:
+                  print(f"⚠️ 开机异常: {result.get('msg', 'unknown')}")
+                  sys.exit(1)
+          PYEOF
+
+      # ========== Step 2: 等待实例启动 ==========
+      - name: 等待 AutoDL 实例启动
         run: |
-          # 企业微信群机器人 Webhook 地址
-          # 在 GitHub Settings → Secrets and variables → Actions 中设置
-          # 变量名: WECHAT_WEBHOOK_URL
-          echo "WECHAT_WEBHOOK_URL=${{ secrets.WECHAT_WEBHOOK_URL }}" > .env
+          echo "⏳ 等待实例启动（约90秒）..."
+          sleep 90
+          echo "✅ 等待完成"
 
-      - name: 运行采集脚本
+      # ========== Step 3: SSH 执行采集脚本 ==========
+      - name: SSH 到 AutoDL 执行采集
+        id: ssh_run
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.AUTODL_SSH_HOST }}
+          port: ${{ secrets.AUTODL_SSH_PORT }}
+          username: ${{ secrets.AUTODL_SSH_USER }}
+          key: ${{ secrets.AUTODL_SSH_KEY }}
+          timeout: 60s
+          command_timeout: 300s
+          script: |
+            echo "===== 开始执行优惠信息采集 ====="
+            cd /root
+
+            if [ -d "wool-monitor" ]; then
+              cd wool-monitor
+              git pull
+            else
+              git clone https://github.com/duanchaobo/wool-monitor.git
+              cd wool-monitor
+            fi
+
+            pip install -r requirements.txt -q
+
+            cat > .env << ENVEOF
+            WECHAT_WEBHOOK_URL=${{ secrets.WECHAT_WEBHOOK_URL }}
+            JD_APP_KEY=${{ secrets.JD_APP_KEY }}
+            JD_APP_SECRET=${{ secrets.JD_APP_SECRET }}
+            JD_PID=${{ secrets.JD_PID }}
+            ENVEOF
+
+            python main.py
+            echo "===== 采集执行完毕 ====="
+
+      # ========== Step 4: 无论成功失败，关机 ==========
+      - name: 调用 AutoDL API 关机
+        if: always()
         run: |
-          python main.py
-        env:
-          JD_APP_KEY: ${{ secrets.JD_APP_KEY }}
-          JD_APP_SECRET: ${{ secrets.JD_APP_SECRET }}
-          JD_PID: ${{ secrets.JD_PID }}
+          python3 << 'PYEOF'
+          import requests
+          import json
 
-      - name: 上传缓存（用于去重）
-        uses: actions/upload-artifact@v5
-        with:
-          name: push-cache
-          path: push_cache.json
-          retention-days: 1
-          if-no-files-found: ignore
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
 
-      - name: 保活缓存（下载上次的去重缓存）
-        uses: actions/download-artifact@v5
-        with:
-          name: push-cache
-          path: .
-        continue-on-error: true
+          headers = {
+              "Authorization": SESSION_TOKEN,
+              "Content-Type": "application/json;charset=UTF-8",
+              "User-Agent": "Mozilla/5.0 (GitHub-Actions)"
+          }
+
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance/power_off",
+              json={"instance_uuid": INSTANCE_UUID},
+              headers=headers,
+              timeout=30
+          )
+          result = resp.json()
+          print(f"关机响应: {json.dumps(result, ensure_ascii=False)}")
+
+          if result.get("code") == "Success":
+              print("✅ 关机指令已发送")
+          else:
+              print(f"⚠️ 关机响应: {result.get('msg', 'unknown')}")
+          PYEOF
