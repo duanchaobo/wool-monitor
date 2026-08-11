@@ -164,6 +164,12 @@ def filter_deals(deals):
             print(f"  [券门槛过高] 跳过: {deal.get('title', '')[:20]} (商品¥{price_num}, 券需满¥{float(quota):.0f})")
             continue
 
+        # 2.2 过滤优惠力度低于10%的商品
+        discount_pct = deal.get("discount", 0)
+        if discount_pct < 0.1:
+            print(f"  [优惠力度低] 跳过: {deal.get('title', '')[:20]} ({discount_pct*100:.0f}%OFF)")
+            continue
+
         # 3. 品类过滤：只推母婴和日用品
         category = deal.get("category", "")
         if category and not any(cat in category for cat in ALLOWED_CATEGORIES):
