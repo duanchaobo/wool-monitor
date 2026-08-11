@@ -165,6 +165,9 @@ jobs:
               python3 -m ensurepip --upgrade 2>/dev/null || apt-get install -y -qq python3-pip
             fi
 
+            # 开启学术加速（解决 GitHub 访问超时）
+            source /etc/network_turbo 2>/dev/null || true
+
             # 检查项目是否已存在
             if [ -d "wool-monitor/.git" ]; then
               echo "📁 项目已存在，跳过克隆"
