@@ -20,6 +20,16 @@ MIN_PRICE = 0.0         # 不限价格
 CACHE_FILE = "push_cache.json"  # 去重缓存
 CACHE_EXPIRE_MIN = 0    # 0 = 永久去重，不再推送历史已推过的优惠
 
+# 品类过滤：只推这些品类的商品（京东二级品类名）
+ALLOWED_CATEGORIES = [
+    # 母婴
+    "母婴", "婴儿", "奶粉", "尿裤", "湿巾", "婴儿洗护", "孕产妇", "童车童床",
+    # 日用品
+    "家庭清洁", "纸品", "衣物护理", "家居清洁", "清洁工具",
+    "个人洗护", "洗发", "沐浴", "口腔护理", "彩妆", "护肤",
+    "宠物", "猫狗日用", "宠物食品",
+]
+
 # 品牌关键词（可扩展）
 BRAND_KEYWORDS = [
     "苹果", "华为", "小米", "OPPO", "vivo", "三星", "联想", "戴尔",
@@ -141,7 +151,21 @@ def filter_deals(deals):
             print(f"  [去重] 跳过: {deal.get('title', '')[:30]}")
             continue
 
-        # 2. 提取价格
+        # 2. 只推送有优惠券的商品（有 coupon_url 且有券标签）
+        coupon_url = deal.get("coupon_url", "")
+        tag = deal.get("tag", "")
+        has_coupon = bool(coupon_url) and ("减" in tag or "券" in tag or "满" in tag)
+        if not has_coupon:
+            print(f"  [无券] 跳过: {deal.get('title', '')[:30]}")
+            continue
+
+        # 3. 品类过滤：只推母婴和日用品
+        category = deal.get("category", "")
+        if category and not any(cat in category for cat in ALLOWED_CATEGORIES):
+            print(f"  [品类不符] 跳过: {deal.get('title', '')[:25]} ({category})")
+            continue
+
+        # 4. 提取价格
         price = 0
         try:
             from deal_collector import extract_number
@@ -151,22 +175,22 @@ def filter_deals(deals):
             nums = re.findall(r"(\d+\.?\d*)", str(deal.get("price", "0")))
             price = float(nums[0]) if nums else 0
 
-        # 3. 最低价格过滤
+        # 4. 最低价格过滤
         if price < MIN_PRICE and price > 0:
             print(f"  [价格过低] 跳过: {deal.get('title', '')[:30]} (¥{price})")
             continue
 
-        # 4. 计算优先级
+        # 5. 计算优先级
         priority = get_priority(deal)
         deal["priority"] = priority
 
-        # 5. 放入对应列表
+        # 6. 放入对应列表
         if priority >= 30:
             urgent_list.append(deal)
         else:
             normal_list.append(deal)
 
-        # 6. 缓存该条
+        # 7. 缓存该条
         key = make_cache_key(deal)
         cache[key] = {
             "time": datetime.now().isoformat(),
