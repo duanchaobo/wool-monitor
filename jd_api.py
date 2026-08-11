@@ -139,7 +139,8 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
 
             # 价格信息
             price_info = item.get("priceInfo", {})
-            price = price_info.get("price", 0) or 0
+            price = price_info.get("lowestCouponPrice", 0) or price_info.get("price", 0) or 0
+            original_price = price_info.get("price", 0) or 0
 
             # 优惠券信息
             coupon_info = item.get("couponInfo", {})
@@ -175,12 +176,17 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
             if img_url and not img_url.startswith("http"):
                 img_url = "https:" + img_url
 
+            # 计算折扣
+            discount = 0
+            if original_price > 0 and price > 0 and original_price > price:
+                discount = round(1 - price / original_price, 2)
+
             deal = {
                 "source": "京东",
                 "title": title[:60],
                 "price": f"¥{price}" if price else "",
-                "old_price": "",
-                "discount": 0,
+                "old_price": f"¥{original_price}" if original_price and original_price != price else "",
+                "discount": discount,
                 "url": product_url,
                 "coupon_url": coupon_link,
                 "tag": coupon_str if coupon_str else ELITE_IDS.get(elite_id, "京粉精选"),
