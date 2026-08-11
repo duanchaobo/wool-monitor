@@ -93,24 +93,41 @@ def push_deal(deal):
         result = resp.json()
         if result.get("errcode") == 0:
             print(f"[✅ 推送成功] {title[:30]}...")
+            return True
         else:
             print(f"[❌ 推送失败] {result}")
+            return False
     except Exception as e:
         print(f"[❌ 推送异常] {e}")
+        return False
 
 
 def push_batch(deals):
-    """批量推送"""
+    """批量推送，自动限速（企微限制每分钟20条）"""
     if not deals:
         print("[推送] 无数据可推")
         return
 
+    import time
     print(f"\n推送 {len(deals)} 条信息到微信群...")
-    for deal in deals:
-        push_deal(deal)
-        # 每条间隔0.5秒，避免频率限制
-        import time
-        time.sleep(0.5)
+    success = 0
+    fail = 0
+
+    for i, deal in enumerate(deals):
+        # 每推 15 条暂停 60 秒，避免频率限制
+        if i > 0 and i % 15 == 0:
+            print(f"  ⏸ 已推 {i} 条，暂停 60 秒...")
+            time.sleep(60)
+
+        result = push_deal(deal)
+        if result:
+            success += 1
+        else:
+            fail += 1
+
+        time.sleep(3)  # 每条间隔 3 秒
+
+    print(f"\n推送完成: 成功 {success} 条, 失败 {fail} 条")
 
 
 def icon_to_name(icon):

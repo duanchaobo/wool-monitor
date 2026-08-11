@@ -201,18 +201,22 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
     return deals
 
 
-def collect_jd_all_channels():
+def collect_jd_all_channels(max_pages=3):
     """
-    采集多个频道的精选商品
+    采集多个频道的精选商品，支持翻页
+    max_pages: 每个频道最多翻几页（每页30条）
     """
-    # 采集好券商品 + 京东配送 + 生鲜美食
-    target_channels = [1, 5, 43]
+    # 可用的频道：1=好券, 2=精选卖场, 40=医药保健, 41=图书文具
+    target_channels = [1, 2, 40, 41]
     all_deals = []
 
     for elite_id in target_channels:
-        deals = collect_jingfen_deals(elite_id=elite_id, page_size=10)
-        all_deals.extend(deals)
-        time.sleep(0.5)
+        for page in range(1, max_pages + 1):
+            deals = collect_jingfen_deals(elite_id=elite_id, page=page, page_size=30)
+            if not deals:
+                break  # 没有更多数据，跳到下一个频道
+            all_deals.extend(deals)
+            time.sleep(0.3)
 
     print(f"[京东联盟] 总计采集 {len(all_deals)} 条优惠券商品")
     return all_deals
