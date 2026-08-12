@@ -223,10 +223,21 @@ def collect_all():
     print("=" * 50)
 
     # 0. 京东联盟 API（真实优惠券数据，最优先）
-    from jd_api import collect_jd_all_channels
+    from jd_api import collect_jd_all_channels, collect_jd_activity_deals
     jd_deals = collect_jd_all_channels()
     all_deals.extend(jd_deals)
-    print(f"京东联盟: {len(jd_deals)} 条")
+    print(f"京东联盟精选: {len(jd_deals)} 条")
+
+    # 0.1 京东联盟活动页（秒杀/生鲜/超市/数码/美妆）
+    activity_deals = collect_jd_activity_deals()
+    all_deals.extend(activity_deals)
+    print(f"京东联盟活动页: {len(activity_deals)} 条")
+
+    # 0.2 淘宝联盟（物料精选 - 多品类高佣优惠券）
+    from tb_api import collect_tb_all
+    tb_deals = collect_tb_all()
+    all_deals.extend(tb_deals)
+    print(f"淘宝联盟: {len(tb_deals)} 条")
 
     # 1. 自定义推广商品
     promoted = load_promoted_deals()
