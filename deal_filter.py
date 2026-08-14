@@ -20,11 +20,13 @@ MIN_PRICE = 0.0         # 不限价格
 CACHE_FILE = "push_cache.json"  # 去重缓存
 CACHE_EXPIRE_MIN = 0    # 0 = 永久去重，不再推送历史已推过的优惠
 
-# 品类过滤：只推母婴用品和日用品
-ALLOWED_CATEGORIES = [
-    "母婴", "婴儿", "奶粉", "尿裤", "湿巾", "婴儿洗护", "孕产妇", "童车童床", "婴童洗护",
-    "家庭清洁", "纸品", "衣物护理", "家居清洁", "清洁工具", "清洁用品", "一次性用品",
-    "个人洗护", "洗发", "沐浴", "口腔护理", "卫生巾", "纸巾", "抽纸", "湿巾",
+# 品类过滤：黑名单（不推的品类）
+BLOCKED_CATEGORIES = [
+    "汽车用品", "汽车零部件", "汽车装潢", "摩托车",
+    "医疗器械", "中药材", "药品",
+    "房产", "装修材料", "五金电工",
+    "成人用品", "情趣内衣",
+    "棋牌麻将", "烟草',
 ]
 
 # 品牌关键词（可扩展）
@@ -155,22 +157,24 @@ def filter_deals(deals):
         predict_price = deal.get("predict_price", "")
         url = deal.get("url", "")
 
-        # 判断是否有券/促销：旧API看coupon_url，新API看tag含"搜:"或predict_price或tags含促销信息
+        # 判断是否有券/促销
         has_coupon_old = bool(coupon_url) and ("减" in tag or "券" in tag or "满" in tag)
-        has_coupon_new = "搜:" in tag or "推荐" in tag  # 新API物料搜索/推荐，has_coupon=true已筛选
-        has_promotion = predict_price or "直降" in tags or "减" in tags or "元" in tags
+        # 新API数据特征：tag含"搜:"或"物料推荐"，且has_coupon=true已筛选，不依赖coupon_url
+        is_new_api = "搜:" in tag or "物料推荐" in tag
+        has_coupon_new = is_new_api and bool(url)
 
         if not (has_coupon_old or has_coupon_new):
             print(f"  [无券] 跳过: {deal.get('title', '')[:30]}")
             continue
 
-        # 2.1 过滤券门槛超过商品价格的无效券（门槛必须≤商品价格，单件就能用）
-        from deal_collector import extract_number
-        quota = deal.get("coupon_quota", 0)
-        price_num = extract_number(str(deal.get("price", "0")))
-        if quota and price_num > 0 and float(quota) > price_num:
-            print(f"  [券门槛过高] 跳过: {deal.get('title', '')[:20]} (商品¥{price_num}, 券需满¥{float(quota):.0f})")
-            continue
+        # 2.1 券门槛检查（仅对旧API数据，新API不检查此项）
+        if not is_new_api:
+            from deal_collector import extract_number
+            quota = deal.get("coupon_quota", 0)
+            price_num = extract_number(str(deal.get("price", "0")))
+            if quota and price_num > 0 and float(quota) > price_num:
+                print(f"  [券门槛过高] 跳过: {deal.get('title', '')[:20]} (商品¥{price_num}, 券需满¥{float(quota):.0f})")
+                continue
 
         # 2.2 过滤优惠力度低于10%的商品（新API数据从价格计算折扣）
         discount_pct = deal.get("discount", 0)
@@ -186,10 +190,10 @@ def filter_deals(deals):
             print(f"  [优惠力度低] 跳过: {deal.get('title', '')[:20]} ({discount_pct*100:.0f}%OFF)")
             continue
 
-        # 3. 品类过滤：只推母婴和日用品
+        # 3. 品类过滤：黑名单制（不在黑名单即通过）
         category = deal.get("category", "")
-        if category and not any(cat in category for cat in ALLOWED_CATEGORIES):
-            print(f"  [品类不符] 跳过: {deal.get('title', '')[:25]} ({category})")
+        if category and any(blocked in category for blocked in BLOCKED_CATEGORIES):
+            print(f"  [品类屏蔽] 跳过: {deal.get('title', '')[:25]} ({category})")
             continue
 
         # 4. 提取价格
