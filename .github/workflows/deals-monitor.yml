@@ -170,8 +170,9 @@ jobs:
 
             # 检查项目是否已存在
             if [ -d "wool-monitor/.git" ]; then
-              echo "📁 项目已存在，跳过克隆"
+              echo "📁 项目已存在，拉取最新代码"
               cd wool-monitor
+              git pull --rebase origin main
             else
               echo "📥 克隆项目..."
               rm -rf wool-monitor
@@ -188,6 +189,9 @@ jobs:
             JD_APP_KEY=${{ secrets.JD_APP_KEY }}
             JD_APP_SECRET=${{ secrets.JD_APP_SECRET }}
             JD_PID=${{ secrets.JD_PID }}
+            TB_APP_KEY=${{ secrets.TB_APP_KEY }}
+            TB_APP_SECRET=${{ secrets.TB_APP_SECRET }}
+            TB_ADZONE_ID=${{ secrets.TB_ADZONE_ID }}
             ENVEOF
 
             # 执行采集
