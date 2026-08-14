@@ -11,6 +11,10 @@ Webhook 地址从环境变量读取：
 """
 
 import os
+import re
+import time
+import base64
+import hashlib
 import requests
 import json
 from datetime import datetime
@@ -65,8 +69,24 @@ def push_deal(deal):
     sales = deal.get("sales", "")
     tags = deal.get("tags", "")
 
-    if old_price:
-        # price/old_price 可能已带 ¥ 前缀
+    # 价格显示（区分淘宝/京东）
+    if source == "淘宝":
+        # 淘宝：现价(zk) → 到手(促销价) + 优惠力度
+        p = price.replace("¥", "").replace("￥", "")
+        final = predict_price.replace("¥", "").replace("￥", "") if predict_price else ""
+        # 计算优惠力度
+        cur_f = float(p) if p else 0
+        final_f = float(final) if final else 0
+        off_str = ""
+        if cur_f > 0 and final_f > 0 and cur_f > final_f:
+            off_pct = int(round((1 - final_f / cur_f) * 100))
+            off_str = f"  [{off_pct}%OFF]"
+        if final and final != p:
+            msg_lines.append(f"💰 ¥{p} → ¥{final}{off_str}")
+        else:
+            msg_lines.append(f"💰 ¥{p}")
+    elif old_price:
+        # 京东：原价 → 现价
         p = price.replace("¥", "").replace("￥", "")
         op = old_price.replace("¥", "").replace("￥", "")
         type_hint = f"（{price_type}价）" if price_type else ""
@@ -75,6 +95,7 @@ def push_deal(deal):
         else:
             msg_lines.append(f"💰 {op} → ¥{p}{type_hint}{discount_str}")
     else:
+        # 无原价，只显示现价
         p = price.replace("¥", "").replace("￥", "")
         price_parts = [f"¥{p}"]
         if predict_price:
@@ -151,6 +172,8 @@ def push_deal(deal):
         result = resp.json()
         if result.get("errcode") == 0:
             print(f"[✅ 推送成功] {title[:30]}...")
+            # 推送成功后，紧跟发送商品图片（叠加优惠信息）
+            push_image(webhook_url, deal.get("img_url", ""), deal=deal)
             return True
         else:
             print(f"[❌ 推送失败] {result}")
@@ -186,6 +209,146 @@ def push_batch(deals):
         time.sleep(3)  # 每条间隔 3 秒
 
     print(f"\n推送完成: 成功 {success} 条, 失败 {fail} 条")
+
+
+def _load_font(size):
+    """加载中文字体（兼容 macOS/Linux）"""
+    from PIL import ImageFont
+    font_paths = [
+        "/System/Library/Fonts/Hiragino Sans GB.ttc",
+        "/System/Library/Fonts/STHeiti Medium.ttc",
+        "/System/Library/Fonts/PingFang.ttc",
+        "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
+        "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
+    ]
+    for path in font_paths:
+        if os.path.exists(path):
+            try:
+                return ImageFont.truetype(path, size)
+            except:
+                continue
+    return ImageFont.load_default()
+
+
+def _draw_text_stroke(draw, pos, text, font, fill, stroke_color, stroke_width=3):
+    """绘制描边文字（先画白色边框，再画红色主体）"""
+    x, y = pos
+    # 描边：向8个方向偏移绘制白色边框
+    for dx in range(-stroke_width, stroke_width + 1):
+        for dy in range(-stroke_width, stroke_width + 1):
+            if dx != 0 or dy != 0:
+                draw.text((x + dx, y + dy), text, font=font, fill=stroke_color)
+    # 主体文字
+    draw.text(pos, text, font=font, fill=fill)
+
+
+def _add_text_overlay(img, deal):
+    """在图片上叠加三行居中信息：现价、到手价、优惠力度"""
+    from PIL import Image, ImageDraw
+
+    w, h = img.size
+    # 字体大小按图片宽度自适应
+    font_size = max(24, int(w * 0.065))
+    line_h = font_size + 12
+    total_lines = 3
+    bar_h = line_h * total_lines + 20
+
+    # 半透明黑色底色条（覆盖底部）
+    img = img.convert("RGBA")
+    overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    draw_ov = ImageDraw.Draw(overlay)
+    draw_ov.rectangle([(0, h - bar_h), (w, h)], fill=(0, 0, 0, 180))
+    img = Image.alpha_composite(img, overlay).convert("RGB")
+    draw = ImageDraw.Draw(img)
+
+    font = _load_font(font_size)
+
+    # 解析价格：现价=price(zk_final)，到手=predict_price(促销价)
+    current = str(deal.get("price", "")).replace("¥", "").replace("￥", "")
+    final = str(deal.get("predict_price", "")).replace("¥", "").replace("￥", "")
+
+    # 计算优惠力度（现价→到手价）
+    cur_f = float(current) if current else 0
+    final_f = float(final) if final else 0
+    if cur_f > 0 and final_f > 0 and cur_f > final_f:
+        off_pct = int(round((1 - final_f / cur_f) * 100))
+    else:
+        off_pct = 0
+
+    # 三行文字（居中）
+    lines = [
+        (f"现价 ¥{current}", (255, 255, 255)),       # 白色
+        (f"到手 ¥{final}", (255, 60, 60)),            # 红色
+    ]
+    if off_pct > 0:
+        lines.append((f"优惠 {off_pct}%OFF", (255, 230, 0)))  # 黄色
+
+    start_y = h - bar_h + 10
+    for i, (text, color) in enumerate(lines):
+        bbox = draw.textbbox((0, 0), text, font=font)
+        tw = bbox[2] - bbox[0]
+        x = (w - tw) // 2  # 居中
+        y = start_y + i * line_h
+        _draw_text_stroke(draw, (x, y), text, font, fill=color, stroke_color=(0, 0, 0), stroke_width=3)
+
+    return img
+
+
+def push_image(webhook_url, img_url, deal=None):
+    """
+    推送一条图片消息（紧跟在优惠消息后）
+    下载图片 → 叠加优惠信息文字 → 转 PNG → base64 发送
+    """
+    if not img_url:
+        return
+
+    try:
+        # 下载图片
+        resp = requests.get(
+            img_url, timeout=15,
+            headers={
+                "User-Agent": "Mozilla/5.0",
+                "Referer": "https://s.click.taobao.com/"
+            }
+        )
+        if resp.status_code != 200 or len(resp.content) < 500:
+            return
+
+        from io import BytesIO
+        from PIL import Image
+
+        img = Image.open(BytesIO(resp.content)).convert("RGB")
+
+        # 叠加优惠信息文字
+        if deal:
+            img = _add_text_overlay(img, deal)
+
+        # 转 PNG
+        buf = BytesIO()
+        img.save(buf, format="PNG")
+        img_bytes = buf.getvalue()
+
+        img_base64 = base64.b64encode(img_bytes).decode()
+        md5_hash = hashlib.md5(img_bytes).hexdigest()
+
+        payload = {
+            "msgtype": "image",
+            "image": {
+                "base64": img_base64,
+                "md5": md5_hash
+            }
+        }
+
+        resp = requests.post(webhook_url, json=payload, timeout=15)
+        result = resp.json()
+        if result.get("errcode") == 0:
+            print(f"  [📷 图片发送成功]")
+        else:
+            print(f"  [📷 图片发送失败] {result.get('errmsg', '')}")
+    except Exception as e:
+        print(f"  [📷 图片异常] {e}")
 
 
 def icon_to_name(icon):

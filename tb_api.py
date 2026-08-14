@@ -320,14 +320,23 @@ def collect_tb_material_recommend(material_id, page_size=20):
             if not title:
                 continue
 
-            # 价格
+            # 价格（淘宝四层价格体系，对应页面显示）
+            # reserve_price       = 划线价（页面显示删除线，仅参考）
+            # zk_final_price      = 优惠前价格（页面显示"优惠前¥xx"）
+            # final_promotion_price = 促销价/秒杀价（页面显示的当前售价）
+            # predict_rounding_up_price = 券后价（叠加额外券后的价格）
             reserve_price = price_info.get("reserve_price", "")
             zk_price = price_info.get("zk_final_price", "")
             final_price = price_info.get("final_promotion_price", "")
             predict_price = price_info.get("predict_rounding_up_price", "")
 
-            display_price = final_price or zk_price or reserve_price
-            original_price = reserve_price if reserve_price != display_price else ""
+            # 映射到页面显示：
+            #   现价 = zk_final_price（页面"优惠前"）
+            #   到手 = final_promotion_price（页面当前售价，实际要付的钱）
+            #   券后 = predict_rounding_up_price（有券时额外显示）
+            show_price = zk_price or final_price or reserve_price       # 现价
+            pay_price = final_price or zk_price or reserve_price         # 到手价
+            coupon_price = predict_price if predict_price and predict_price != final_price else ""  # 券后价
 
             # 图片
             pict_url = basic.get("pict_url", "")
@@ -362,9 +371,10 @@ def collect_tb_material_recommend(material_id, page_size=20):
             deal = {
                 "source": "淘宝",
                 "title": title[:60],
-                "price": f"¥{display_price}" if display_price else "",
-                "old_price": f"¥{original_price}" if original_price and original_price != display_price else "",
-                "predict_price": f"¥{predict_price}" if predict_price else "",
+                "price": f"¥{show_price}" if show_price else "",          # 现价（页面"优惠前"）
+                "old_price": f"¥{reserve_price}" if reserve_price and reserve_price != show_price else "",  # 划线价
+                "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（页面当前售价）
+                "coupon_price": f"¥{coupon_price}" if coupon_price else "",  # 券后价
                 "discount": 0,
                 "url": click_url,
                 "coupon_url": "",
@@ -430,14 +440,23 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
             if not title:
                 continue
 
-            # 价格
+            # 价格（淘宝四层价格体系，对应页面显示）
+            # reserve_price       = 划线价（页面显示删除线，仅参考）
+            # zk_final_price      = 优惠前价格（页面显示"优惠前¥xx"）
+            # final_promotion_price = 促销价/秒杀价（页面显示的当前售价）
+            # predict_rounding_up_price = 券后价（叠加额外券后的价格）
             reserve_price = price_info.get("reserve_price", "")
             zk_price = price_info.get("zk_final_price", "")
             final_price = price_info.get("final_promotion_price", "")
             predict_price = price_info.get("predict_rounding_up_price", "")
 
-            display_price = final_price or zk_price or reserve_price
-            original_price = reserve_price if reserve_price != display_price else ""
+            # 映射到页面显示：
+            #   现价 = zk_final_price（页面"优惠前"）
+            #   到手 = final_promotion_price（页面当前售价，实际要付的钱）
+            #   券后 = predict_rounding_up_price（有券时额外显示）
+            show_price = zk_price or final_price or reserve_price       # 现价
+            pay_price = final_price or zk_price or reserve_price         # 到手价
+            coupon_price = predict_price if predict_price and predict_price != final_price else ""  # 券后价
 
             # 图片
             pict_url = basic.get("pict_url", "")
@@ -471,9 +490,10 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
             deal = {
                 "source": "淘宝",
                 "title": title[:60],
-                "price": f"¥{display_price}" if display_price else "",
-                "old_price": f"¥{original_price}" if original_price and original_price != display_price else "",
-                "predict_price": f"¥{predict_price}" if predict_price else "",
+                "price": f"¥{show_price}" if show_price else "",          # 现价（页面"优惠前"）
+                "old_price": f"¥{reserve_price}" if reserve_price and reserve_price != show_price else "",  # 划线价
+                "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（页面当前售价）
+                "coupon_price": f"¥{coupon_price}" if coupon_price else "",  # 券后价
                 "discount": 0,
                 "url": click_url,
                 "coupon_url": "",
@@ -524,21 +544,21 @@ def collect_tb_all(max_pages=3):
             time.sleep(0.5)
     print(f"[权益物料精选] {promotion_count} 条")
 
-    # 2. 物料推荐 - 先获取物料ID，再按ID推荐商品
+    # 2. 物料推荐 - 筛选适合母婴+日用品的物料ID
+    # 117935(直播闪降) 92182(天猫品牌团) 87578(品牌团精选)
+    # 87579(母婴团精选) 87575(美妆物料精选) 91356(快消精选)
+    TARGET_MATERIAL_IDS = [117935, 92182, 87578, 87579, 87575, 91356]
     recommend_count = 0
-    material_ids = get_tb_material_ids(subject=1, material_type=1, page_size=10)
-    if material_ids:
-        print(f"[物料ID] 获取到 {len(material_ids)} 个物料: {[m['name'] for m in material_ids[:5]]}")
-        for m in material_ids[:5]:  # 取前5个物料ID
-            deals = collect_tb_material_recommend(material_id=m["material_id"], page_size=5)
-            if deals:
-                all_deals.extend(deals)
-                recommend_count += len(deals)
-            time.sleep(0.5)
+    for mid in TARGET_MATERIAL_IDS:
+        deals = collect_tb_material_recommend(material_id=mid, page_size=5)
+        if deals:
+            all_deals.extend(deals)
+            recommend_count += len(deals)
+        time.sleep(0.5)
     print(f"[物料推荐] {recommend_count} 条")
 
-    # 3. 关键词搜索 - 热门品类（有券商品）
-    search_keywords = ["纸巾", "奶粉", "洗衣液", "面膜", "零食", "洗发水"]
+    # 3. 关键词搜索 - 母婴+日用品（有券商品）
+    search_keywords = ["纸尿裤", "奶粉", "纸巾", "洗衣液", "洗发水", "儿童面霜"]
     search_count = 0
     for kw in search_keywords:
         deals = collect_tb_material_search(q=kw, has_coupon=True, page_size=5)

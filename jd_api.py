@@ -141,21 +141,21 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
             # lowestPriceType(1=普通/2=拼购/3=秒杀), lowestCouponPrice=券后理论最低价
             # 注意：京东有多层优惠叠加，API 无法返回完整优惠信息，以页面为准
             price_info = item.get("priceInfo", {})
-            jd_price = price_info.get("price", 0) or 0
-            lowest_price = price_info.get("lowestPrice", 0) or 0
+            jd_price = float(price_info.get("price", 0) or 0)
+            lowest_price = float(price_info.get("lowestPrice", 0) or 0)
             lowest_price_type = price_info.get("lowestPriceType", 0)
-            lowest_coupon_price = price_info.get("lowestCouponPrice", 0) or 0
+            lowest_coupon_price = float(price_info.get("lowestCouponPrice", 0) or 0)
 
             # 优惠券信息
             coupon_info = item.get("couponInfo", {})
             coupon_list = coupon_info.get("couponList", [])
             coupon_str = ""
             coupon_link = ""
-            coupon_discount = 0
+            coupon_discount = 0.0
             if coupon_list:
                 best = coupon_list[0]
-                coupon_discount = best.get("discount", 0)
-                quota = best.get("quota", 0)
+                coupon_discount = float(best.get("discount", 0) or 0)
+                quota = float(best.get("quota", 0) or 0)
                 coupon_str = f"满{int(quota)}减{int(coupon_discount)}"
                 coupon_link = best.get("link", "")
 

@@ -20,13 +20,22 @@ MIN_PRICE = 0.0         # 不限价格
 CACHE_FILE = "push_cache.json"  # 去重缓存
 CACHE_EXPIRE_MIN = 0    # 0 = 永久去重，不再推送历史已推过的优惠
 
-# 品类过滤：黑名单（不推的品类）
-BLOCKED_CATEGORIES = [
-    "汽车用品", "汽车零部件", "汽车装潢", "摩托车",
-    "医疗器械", "中药材", "药品",
-    "房产", "装修材料", "五金电工",
-    "成人用品", "情趣内衣",
-    "棋牌麻将", "烟草',
+# 品类过滤：白名单（只推这些品类）
+ALLOWED_CATEGORIES = [
+    # 母婴
+    "母婴", "奶粉", "纸尿裤", "婴儿", "宝宝", "儿童", "童装", "孕产",
+    "奶瓶", "推车", "安全座椅", "玩具", "早教",
+    # 日用品
+    "日用", "家居", "纸巾", "卫生纸", "洗衣", "洗洁精", "洗发水",
+    "沐浴露", "牙膏", "牙刷", "毛巾", "清洁", "收纳", "厨房",
+    # 食品饮料
+    "食品", "饮料", "零食", "牛奶", "茶叶", "粮油", "调味品",
+    # 美妆个护
+    "美妆", "护肤", "面膜", "口红", "香水", "护发",
+    # 服饰
+    "服饰", "内衣", "袜子", "家纺",
+    # 宠物
+    "宠物", "猫粮", "狗粮",
 ]
 
 # 品牌关键词（可扩展）
@@ -190,10 +199,10 @@ def filter_deals(deals):
             print(f"  [优惠力度低] 跳过: {deal.get('title', '')[:20]} ({discount_pct*100:.0f}%OFF)")
             continue
 
-        # 3. 品类过滤：黑名单制（不在黑名单即通过）
+        # 3. 品类过滤：白名单制（只推指定品类）
         category = deal.get("category", "")
-        if category and any(blocked in category for blocked in BLOCKED_CATEGORIES):
-            print(f"  [品类屏蔽] 跳过: {deal.get('title', '')[:25]} ({category})")
+        if category and not any(allowed in category for allowed in ALLOWED_CATEGORIES):
+            print(f"  [品类不符] 跳过: {deal.get('title', '')[:25]} ({category})")
             continue
 
         # 4. 提取价格
