@@ -110,8 +110,25 @@ def push_deal(deal):
     if source == "京东" and price != old_price:
         msg_lines.append("_⚠️ 京东商品有隐藏优惠，实际到手价以页面为准_")
 
-    # 商品购买链接
-    if url:
+    # 淘宝商品：生成淘口令（解决企微无法跳转s.click.taobao.com的问题）
+    taokouling = deal.get("taokouling", "")
+    if source == "淘宝" and not taokouling:
+        # 尝试实时生成淘口令
+        try:
+            from tb_api import generate_taokouling
+            taokouling = generate_taokouling(title, url)
+        except:
+            pass
+
+    if taokouling:
+        # 淘口令格式：'18￥ CZ028 xxxx￥ https://m.tb.cn/...  商品标题'
+        # 提取纯淘口令（￥xxxx￥部分）
+        import re
+        tk_match = re.search(r'(￥\s*\S+?\s*￥)', taokouling)
+        tk_code = tk_match.group(1).strip() if tk_match else taokouling
+        msg_lines.append(f"🔑 淘口令：`{tk_code}`")
+        msg_lines.append(f"_复制本条消息，打开淘宝App自动跳转_")
+    elif url:
         msg_lines.append(f"🛒 [购买链接]({url})")
 
     msg_lines.append(f"⏰ {datetime.now().strftime('%H:%M')}")
