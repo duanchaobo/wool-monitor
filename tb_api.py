@@ -243,17 +243,273 @@ def generate_taokouling(title, url):
         return ""
 
 
+def get_tb_material_ids(subject=1, material_type=1, page_size=20):
+    """
+    获取物料ID列表
+    使用 taobao.tbk.optimus.tou.material.ids.get API
+
+    Args:
+        subject: 物料主题 (1=综合)
+        material_type: 物料类型 (1=通用物料)
+        page_size: 每页条数
+    """
+    material_ids = []
+
+    biz_params = {
+        "adzone_id": int(TB_ADZONE_ID),
+        "material_query": json.dumps({
+            "subject": subject,
+            "material_type": material_type,
+            "page_no": 1,
+            "page_size": page_size,
+        }),
+    }
+
+    result = _call_tb_api("taobao.tbk.optimus.tou.material.ids.get", **biz_params)
+    if not result:
+        return material_ids
+
+    try:
+        data = result.get("tbk_optimus_tou_material_ids_get_response", {}).get("data", {})
+        materials = data.get("tou_materials", [])
+        for m in materials:
+            mid = m.get("material_id", "")
+            name = m.get("material_name", "")
+            if mid:
+                material_ids.append({"material_id": mid, "name": name})
+    except Exception as e:
+        print(f"[物料ID获取] 解析失败: {e}")
+
+    return material_ids
+
+
+def collect_tb_material_recommend(material_id, page_size=20):
+    """
+    淘宝客物料推荐 - 根据物料ID获取推荐商品
+    使用 taobao.tbk.dg.material.recommend API
+
+    Args:
+        material_id: 物料ID (从 optimus.tou.material.ids.get 获取，如 117935)
+        page_size: 每页条数（最大100）
+    """
+    deals = []
+
+    biz_params = {
+        "adzone_id": int(TB_ADZONE_ID),
+        "material_id": int(material_id),
+        "page_no": 1,
+        "page_size": min(page_size, 100),
+    }
+
+    result = _call_tb_api("taobao.tbk.dg.material.recommend", **biz_params)
+    if not result:
+        return deals
+
+    try:
+        resp_key = "tbk_dg_material_recommend_response"
+        inner = result.get(resp_key, {})
+        result_list = inner.get("result_list", {})
+        items = result_list.get("map_data", [])
+
+        for item in items:
+            basic = item.get("item_basic_info", {})
+            price_info = item.get("price_promotion_info", {})
+            publish_info = item.get("publish_info", {})
+
+            title = basic.get("title", "") or basic.get("short_title", "")
+            if not title:
+                continue
+
+            # 价格
+            reserve_price = price_info.get("reserve_price", "")
+            zk_price = price_info.get("zk_final_price", "")
+            final_price = price_info.get("final_promotion_price", "")
+            predict_price = price_info.get("predict_rounding_up_price", "")
+
+            display_price = final_price or zk_price or reserve_price
+            original_price = reserve_price if reserve_price != display_price else ""
+
+            # 图片
+            pict_url = basic.get("pict_url", "")
+            if pict_url and not pict_url.startswith("http"):
+                pict_url = "https:" + pict_url
+
+            # 店铺
+            shop_title = basic.get("shop_title", "")
+
+            # 销量
+            annual_vol = basic.get("annual_vol", "")
+            tk_sales = basic.get("tk_total_sales", "")
+
+            # 推广链接
+            click_url = publish_info.get("click_url", "")
+            if click_url and click_url.startswith("//"):
+                click_url = "https:" + click_url
+
+            # 佣金（原始值需除以100，如180=1.8%）
+            income_info = publish_info.get("income_info", {})
+            commission_rate_raw = income_info.get("commission_rate", "")
+            if commission_rate_raw:
+                commission_rate = f"{float(commission_rate_raw)/100:.1f}%"
+            else:
+                commission_rate = ""
+
+            # 促销标签
+            promo_tags = price_info.get("promotion_tag_list", {})
+            tag_list = promo_tags.get("promotion_tag_map_data", [])
+            tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
+
+            deal = {
+                "source": "淘宝",
+                "title": title[:60],
+                "price": f"¥{display_price}" if display_price else "",
+                "old_price": f"¥{original_price}" if original_price and original_price != display_price else "",
+                "predict_price": f"¥{predict_price}" if predict_price else "",
+                "discount": 0,
+                "url": click_url,
+                "coupon_url": "",
+                "coupon_quota": 0,
+                "coupon_discount": 0,
+                "tag": f"物料推荐",
+                "category": "淘宝",
+                "img_url": pict_url,
+                "shop": shop_title,
+                "sales": annual_vol or tk_sales,
+                "commission_rate": commission_rate,
+                "tags": ", ".join(tags),
+                "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            }
+            deals.append(deal)
+
+    except Exception as e:
+        print(f"[物料推荐] 解析失败: {e}")
+        import traceback
+        traceback.print_exc()
+
+    return deals
+
+
+def collect_tb_material_search(q, has_coupon=True, page_size=20):
+    """
+    淘宝客物料搜索升级版 - 关键词搜索商品
+    使用 taobao.tbk.dg.material.optional.upgrade API
+
+    Args:
+        q: 搜索关键词
+        has_coupon: 是否只查有券商品
+        page_size: 每页条数
+    """
+    deals = []
+
+    biz_params = {
+        "adzone_id": int(TB_ADZONE_ID),
+        "q": q,
+        "page_no": 1,
+        "page_size": min(page_size, 100),
+        "platform": 2,
+    }
+    if has_coupon:
+        biz_params["has_coupon"] = "true"
+
+    result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
+    if not result:
+        return deals
+
+    try:
+        resp_key = "tbk_dg_material_optional_upgrade_response"
+        inner = result.get(resp_key, {})
+        result_list = inner.get("result_list", {})
+        items = result_list.get("map_data", [])
+
+        for item in items:
+            basic = item.get("item_basic_info", {})
+            price_info = item.get("price_promotion_info", {})
+            publish_info = item.get("publish_info", {})
+
+            title = basic.get("title", "") or basic.get("short_title", "")
+            if not title:
+                continue
+
+            # 价格
+            reserve_price = price_info.get("reserve_price", "")
+            zk_price = price_info.get("zk_final_price", "")
+            final_price = price_info.get("final_promotion_price", "")
+            predict_price = price_info.get("predict_rounding_up_price", "")
+
+            display_price = final_price or zk_price or reserve_price
+            original_price = reserve_price if reserve_price != display_price else ""
+
+            # 图片
+            pict_url = basic.get("pict_url", "")
+            if pict_url and not pict_url.startswith("http"):
+                pict_url = "https:" + pict_url
+
+            # 店铺
+            shop_title = basic.get("shop_title", "")
+
+            # 销量
+            annual_vol = basic.get("annual_vol", "")
+
+            # 推广链接
+            click_url = publish_info.get("click_url", "")
+            if click_url and click_url.startswith("//"):
+                click_url = "https:" + click_url
+
+            # 佣金（原始值需除以100，如180=1.8%）
+            income_info = publish_info.get("income_info", {})
+            commission_rate_raw = income_info.get("commission_rate", "")
+            if commission_rate_raw:
+                commission_rate = f"{float(commission_rate_raw)/100:.1f}%"
+            else:
+                commission_rate = ""
+
+            # 促销标签
+            promo_tags = price_info.get("promotion_tag_list", {})
+            tag_list = promo_tags.get("promotion_tag_map_data", [])
+            tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
+
+            deal = {
+                "source": "淘宝",
+                "title": title[:60],
+                "price": f"¥{display_price}" if display_price else "",
+                "old_price": f"¥{original_price}" if original_price and original_price != display_price else "",
+                "predict_price": f"¥{predict_price}" if predict_price else "",
+                "discount": 0,
+                "url": click_url,
+                "coupon_url": "",
+                "coupon_quota": 0,
+                "coupon_discount": 0,
+                "tag": f"搜:{q}",
+                "category": basic.get("level_one_category_name", ""),
+                "img_url": pict_url,
+                "shop": shop_title,
+                "sales": annual_vol,
+                "commission_rate": commission_rate,
+                "tags": ", ".join(tags),
+                "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            }
+            deals.append(deal)
+
+    except Exception as e:
+        print(f"[物料搜索] 解析失败: {e}")
+        import traceback
+        traceback.print_exc()
+
+    return deals
+
+
 def collect_tb_all(max_pages=3):
     """
-    淘宝联盟全量采集 - 多种优惠券类型
+    淘宝联盟全量采集 - 多种优惠券类型 + 物料推荐 + 关键词搜索
 
     Args:
         max_pages: 每种优惠券最多翻几页
     """
-    # 可用的权益物料（大额店铺券和天猫店铺券有数据）
-    target_promotions = [37116, 62191, 37104, 61809]
     all_deals = []
 
+    # 1. 权益物料精选（店铺券）
+    target_promotions = [37116, 62191, 37104, 61809]
+    promotion_count = 0
     for promotion_id in target_promotions:
         for page in range(1, max_pages + 1):
             deals = collect_tb_promotion_deals(
@@ -264,7 +520,33 @@ def collect_tb_all(max_pages=3):
             if not deals:
                 break
             all_deals.extend(deals)
+            promotion_count += len(deals)
             time.sleep(0.5)
+    print(f"[权益物料精选] {promotion_count} 条")
+
+    # 2. 物料推荐 - 先获取物料ID，再按ID推荐商品
+    recommend_count = 0
+    material_ids = get_tb_material_ids(subject=1, material_type=1, page_size=10)
+    if material_ids:
+        print(f"[物料ID] 获取到 {len(material_ids)} 个物料: {[m['name'] for m in material_ids[:5]]}")
+        for m in material_ids[:5]:  # 取前5个物料ID
+            deals = collect_tb_material_recommend(material_id=m["material_id"], page_size=5)
+            if deals:
+                all_deals.extend(deals)
+                recommend_count += len(deals)
+            time.sleep(0.5)
+    print(f"[物料推荐] {recommend_count} 条")
+
+    # 3. 关键词搜索 - 热门品类（有券商品）
+    search_keywords = ["纸巾", "奶粉", "洗衣液", "面膜", "零食", "洗发水"]
+    search_count = 0
+    for kw in search_keywords:
+        deals = collect_tb_material_search(q=kw, has_coupon=True, page_size=5)
+        if deals:
+            all_deals.extend(deals)
+            search_count += len(deals)
+        time.sleep(0.5)
+    print(f"[关键词搜索] {search_count} 条")
 
     print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条优惠券商品")
     return all_deals

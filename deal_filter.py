@@ -148,11 +148,19 @@ def filter_deals(deals):
             print(f"  [去重] 跳过: {deal.get('title', '')[:30]}")
             continue
 
-        # 2. 只推送有优惠券的商品（有 coupon_url 且有券标签）
+        # 2. 只推送有优惠券或促销的商品
         coupon_url = deal.get("coupon_url", "")
         tag = deal.get("tag", "")
-        has_coupon = bool(coupon_url) and ("减" in tag or "券" in tag or "满" in tag)
-        if not has_coupon:
+        tags = deal.get("tags", "")
+        predict_price = deal.get("predict_price", "")
+        url = deal.get("url", "")
+
+        # 判断是否有券/促销：旧API看coupon_url，新API看tag含"搜:"或predict_price或tags含促销信息
+        has_coupon_old = bool(coupon_url) and ("减" in tag or "券" in tag or "满" in tag)
+        has_coupon_new = "搜:" in tag or "推荐" in tag  # 新API物料搜索/推荐，has_coupon=true已筛选
+        has_promotion = predict_price or "直降" in tags or "减" in tags or "元" in tags
+
+        if not (has_coupon_old or has_coupon_new):
             print(f"  [无券] 跳过: {deal.get('title', '')[:30]}")
             continue
 
@@ -164,8 +172,16 @@ def filter_deals(deals):
             print(f"  [券门槛过高] 跳过: {deal.get('title', '')[:20]} (商品¥{price_num}, 券需满¥{float(quota):.0f})")
             continue
 
-        # 2.2 过滤优惠力度低于10%的商品
+        # 2.2 过滤优惠力度低于10%的商品（新API数据从价格计算折扣）
         discount_pct = deal.get("discount", 0)
+        if discount_pct == 0:
+            # 尝试从 price/old_price 计算折扣
+            from deal_collector import extract_number
+            p = extract_number(str(deal.get("price", "0")))
+            op = extract_number(str(deal.get("old_price", "0")))
+            if op > 0 and p > 0 and op > p:
+                discount_pct = round(1 - p / op, 2)
+                deal["discount"] = discount_pct
         if discount_pct < 0.1:
             print(f"  [优惠力度低] 跳过: {deal.get('title', '')[:20]} ({discount_pct*100:.0f}%OFF)")
             continue

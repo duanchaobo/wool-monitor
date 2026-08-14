@@ -44,6 +44,10 @@ def push_deal(deal):
         icon = "🔴"
     elif "限时" in tag or "秒杀" in tag:
         icon = "🟠"
+    elif "大额" in tag or "店铺券" in tag:
+        icon = "🟠"
+    elif "搜:" in tag or "推荐" in tag:
+        icon = "🔵"
     elif "bug" in tag.lower() or "漏洞" in tag:
         pass
 
@@ -52,22 +56,59 @@ def push_deal(deal):
         f"📦 {title}",
     ]
 
+    coupon_discount = deal.get("coupon_discount", 0)
+    coupon_quota = deal.get("coupon_quota", 0)
+    price_type = deal.get("price_type", "")
+    predict_price = deal.get("predict_price", "")
+    commission_rate = deal.get("commission_rate", "")
+    shop = deal.get("shop", "")
+    sales = deal.get("sales", "")
+    tags = deal.get("tags", "")
+
     if old_price:
         # price/old_price 可能已带 ¥ 前缀
         p = price.replace("¥", "").replace("￥", "")
         op = old_price.replace("¥", "").replace("￥", "")
-        msg_lines.append(f"💰 {op} → ¥{p}{discount_str}")
+        type_hint = f"（{price_type}价）" if price_type else ""
+        if coupon_discount > 0:
+            msg_lines.append(f"💰 京东价{op} → ¥{p}{type_hint}{discount_str}")
+        else:
+            msg_lines.append(f"💰 {op} → ¥{p}{type_hint}{discount_str}")
     else:
         p = price.replace("¥", "").replace("￥", "")
-        msg_lines.append(f"💰 ¥{p}")
+        price_parts = [f"¥{p}"]
+        if predict_price:
+            price_parts.append(f"到手{predict_price}")
+        msg_lines.append(f"💰 {' / '.join(price_parts)}")
+
+    # 店铺信息
+    if shop:
+        shop_parts = [shop]
+        if sales:
+            shop_parts.append(f"月销{sales}")
+        if commission_rate:
+            shop_parts.append(f"佣金{commission_rate}")
+        msg_lines.append(f"🏪 {' | '.join(shop_parts)}")
+
+    # 促销标签
+    if tags:
+        msg_lines.append(f"🏷 {tags}")
 
     if source:
         msg_lines.append(f"🏪 来源: {source}")
 
     # 优惠券信息
     coupon_url = deal.get("coupon_url", "")
-    if coupon_url:
-        msg_lines.append(f"🎫 [点击领券]({coupon_url})")
+    if coupon_url and coupon_discount > 0:
+        if coupon_quota > 0:
+            msg_lines.append(f"🎫 [领取满{int(coupon_quota)}减{int(coupon_discount)}券]({coupon_url})")
+        else:
+            msg_lines.append(f"🎫 [领取¥{int(coupon_discount)}券]({coupon_url})")
+
+    # 京东价格可能存在多层优惠叠加，标注提示
+    source = deal.get("source", "")
+    if source == "京东" and price != old_price:
+        msg_lines.append("_⚠️ 京东商品有隐藏优惠，实际到手价以页面为准_")
 
     # 商品购买链接
     if url:
@@ -134,9 +175,10 @@ def icon_to_name(icon):
     """图标转文字"""
     mapping = {
         "🔴": "神价/历史低价",
-        "🟠": "限时秒杀",
+        "🟠": "大额店铺券",
         "🟡": "好价",
         "🟢": "普通优惠",
+        "🔵": "淘宝好物推荐",
     }
     return mapping.get(icon, "优惠信息")
 

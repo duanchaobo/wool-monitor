@@ -137,22 +137,39 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
             if not title:
                 continue
 
-            # 价格信息
+            # 价格信息：price=京东价, lowestPrice=促销后最低价,
+            # lowestPriceType(1=普通/2=拼购/3=秒杀), lowestCouponPrice=券后理论最低价
+            # 注意：京东有多层优惠叠加，API 无法返回完整优惠信息，以页面为准
             price_info = item.get("priceInfo", {})
-            price = price_info.get("lowestCouponPrice", 0) or price_info.get("price", 0) or 0
-            original_price = price_info.get("price", 0) or 0
+            jd_price = price_info.get("price", 0) or 0
+            lowest_price = price_info.get("lowestPrice", 0) or 0
+            lowest_price_type = price_info.get("lowestPriceType", 0)
+            lowest_coupon_price = price_info.get("lowestCouponPrice", 0) or 0
 
             # 优惠券信息
             coupon_info = item.get("couponInfo", {})
             coupon_list = coupon_info.get("couponList", [])
             coupon_str = ""
             coupon_link = ""
+            coupon_discount = 0
             if coupon_list:
                 best = coupon_list[0]
-                discount = best.get("discount", 0)
+                coupon_discount = best.get("discount", 0)
                 quota = best.get("quota", 0)
-                coupon_str = f"满{int(quota)}减{int(discount)}"
+                coupon_str = f"满{int(quota)}减{int(coupon_discount)}"
                 coupon_link = best.get("link", "")
+
+            # 到手价计算策略：
+            # 1. 有券时：京东价 - 券面额（自己算，比 API 的 lowestCouponPrice 更可控）
+            # 2. 无券时：取 lowestPrice（促销后价格）
+            # 3. 兜底：京东价
+            if jd_price > 0 and coupon_discount > 0:
+                price = round(jd_price - coupon_discount, 2)
+            elif lowest_price > 0 and lowest_price < jd_price:
+                price = lowest_price
+            else:
+                price = jd_price
+            original_price = jd_price if jd_price > 0 and jd_price != price else ""
 
             # 商品详情链接（优先 materialUrl，其次 coupon_link）
             material_url = item.get("materialUrl", "")
@@ -181,6 +198,10 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
             if original_price > 0 and price > 0 and original_price > price:
                 discount = round(1 - price / original_price, 2)
 
+            # 价格类型标注
+            price_type_map = {1: "促销", 2: "拼购", 3: "秒杀"}
+            price_type_tag = price_type_map.get(lowest_price_type, "")
+
             deal = {
                 "source": "京东",
                 "title": title[:60],
@@ -190,6 +211,8 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
                 "url": product_url,
                 "coupon_url": coupon_link,
                 "coupon_quota": coupon_list[0].get("quota", 0) if coupon_list else 0,
+                "coupon_discount": coupon_discount,
+                "price_type": price_type_tag,
                 "tag": coupon_str if coupon_str else ELITE_IDS.get(elite_id, "京粉精选"),
                 "category": cat_name,
                 "img_url": img_url,
@@ -221,6 +244,27 @@ def collect_jd_all_channels(max_pages=3):
             time.sleep(0.3)
 
     print(f"[京东联盟] 总计采集 {len(all_deals)} 条优惠券商品")
+    return all_deals
+
+
+def collect_jd_activity_deals(max_pages=2):
+    """
+    采集京东联盟活动页面商品（秒杀、生鲜、超市、数码等）
+    与 collect_jd_all_channels 互补，覆盖更多活动频道
+    """
+    # 活动类频道：45=京东秒杀, 43=生鲜美食, 36=超市, 35=数码家电, 39=美妆穿搭
+    activity_channels = [45, 43, 36, 35, 39]
+    all_deals = []
+
+    for elite_id in activity_channels:
+        for page in range(1, max_pages + 1):
+            deals = collect_jingfen_deals(elite_id=elite_id, page=page, page_size=30)
+            if not deals:
+                break
+            all_deals.extend(deals)
+            time.sleep(0.3)
+
+    print(f"[京东联盟活动页] 总计采集 {len(all_deals)} 条商品")
     return all_deals
 
 
