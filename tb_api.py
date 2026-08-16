@@ -530,6 +530,7 @@ def collect_tb_all(max_pages=3):
     # 1. 权益物料精选（店铺券）
     target_promotions = [37116, 62191, 37104, 61809]
     promotion_count = 0
+    seen_promo_titles = set()
     for promotion_id in target_promotions:
         for page in range(1, max_pages + 1):
             deals = collect_tb_promotion_deals(
@@ -539,8 +540,17 @@ def collect_tb_all(max_pages=3):
             )
             if not deals:
                 break
-            all_deals.extend(deals)
-            promotion_count += len(deals)
+            # 翻页去重：本页全部是重复数据则停止翻页
+            new_deals = []
+            for d in deals:
+                key = d.get("title", "")[:20]
+                if key not in seen_promo_titles:
+                    seen_promo_titles.add(key)
+                    new_deals.append(d)
+            if not new_deals:
+                break  # 本页全是重复，停止翻页
+            all_deals.extend(new_deals)
+            promotion_count += len(new_deals)
             time.sleep(0.5)
     print(f"[权益物料精选] {promotion_count} 条")
 
@@ -549,22 +559,36 @@ def collect_tb_all(max_pages=3):
     # 87579(母婴团精选) 87575(美妆物料精选) 91356(快消精选)
     TARGET_MATERIAL_IDS = [117935, 92182, 87578, 87579, 87575, 91356]
     recommend_count = 0
+    seen_recommend_ids = set()
     for mid in TARGET_MATERIAL_IDS:
         deals = collect_tb_material_recommend(material_id=mid, page_size=5)
-        if deals:
-            all_deals.extend(deals)
-            recommend_count += len(deals)
+        new_deals = []
+        for d in deals:
+            key = d.get("title", "")[:20] + "|" + d.get("price", "")
+            if key not in seen_recommend_ids:
+                seen_recommend_ids.add(key)
+                new_deals.append(d)
+        if new_deals:
+            all_deals.extend(new_deals)
+            recommend_count += len(new_deals)
         time.sleep(0.5)
     print(f"[物料推荐] {recommend_count} 条")
 
     # 3. 关键词搜索 - 母婴+日用品（有券商品）
     search_keywords = ["纸尿裤", "奶粉", "纸巾", "洗衣液", "洗发水", "儿童面霜"]
     search_count = 0
+    seen_search_ids = set()
     for kw in search_keywords:
         deals = collect_tb_material_search(q=kw, has_coupon=True, page_size=5)
-        if deals:
-            all_deals.extend(deals)
-            search_count += len(deals)
+        new_deals = []
+        for d in deals:
+            key = d.get("title", "")[:20] + "|" + d.get("price", "")
+            if key not in seen_search_ids:
+                seen_search_ids.add(key)
+                new_deals.append(d)
+        if new_deals:
+            all_deals.extend(new_deals)
+            search_count += len(new_deals)
         time.sleep(0.5)
     print(f"[关键词搜索] {search_count} 条")
 

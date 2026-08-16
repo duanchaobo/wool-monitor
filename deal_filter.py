@@ -93,8 +93,10 @@ def save_cache(cache):
 
 
 def make_cache_key(deal):
-    """生成去重key（基于商品标题前20字+价格）"""
-    text = (deal.get("title", "")[:20] + str(deal.get("price", "")))
+    """生成去重key（基于完整标题+价格，去除空白字符）"""
+    title = deal.get("title", "").strip().replace(" ", "").replace("\u3000", "")
+    price = str(deal.get("price", "")).strip()
+    text = title + price
     return hashlib.md5(text.encode()).hexdigest()
 
 
@@ -104,20 +106,22 @@ def is_duplicate(deal, cache):
     if key in cache:
         return True
 
-    # 疑似重复：标题前15字相同 + 价格相同/相近
-    title_prefix = deal.get("title", "")[:15]
-    price = deal.get("price", "")
+    # 疑似重复：标题前12字相同 + 价格相同/相近
+    title_prefix = deal.get("title", "").strip()[:12]
+    price = str(deal.get("price", "")).strip()
     for cached_key, cached_val in cache.items():
-        cached_title = cached_val.get("title", "")[:15]
-        cached_price = cached_val.get("price", "")
-        if cached_title == title_prefix and (cached_price == price or _price_similar(cached_price, price)):
-            # 疑似重复，调用大模型确认
+        cached_title = cached_val.get("full_title", cached_val.get("title", "")).strip()[:12]
+        cached_price = cached_val.get("price", "").strip()
+        # 价格相同或相近（≤2元误差视为同一商品不同规格）
+        price_match = (cached_price == price or _price_similar(cached_price, price, threshold=2.0))
+        if cached_title == title_prefix and price_match:
+            # 标题高度相似，调用大模型确认
             if SILICONFLOW_API_KEY:
                 is_dup = _llm_check_duplicate(
                     deal.get("title", ""), cached_val.get("full_title", cached_title)
                 )
                 if is_dup:
-                    print(f"  [AI去重] 跳过: {deal.get('title', '')[:25]} (与「{cached_title}」重复)")
+                    print(f"  [AI去重] 跳过: {deal.get('title', '')[:25]}")
                     return True
             else:
                 # 无API Key时按规则去重
@@ -125,13 +129,13 @@ def is_duplicate(deal, cache):
     return False
 
 
-def _price_similar(p1, p2):
-    """判断两个价格是否相近（误差≤1元视为相同）"""
+def _price_similar(p1, p2, threshold=2.0):
+    """判断两个价格是否相近（默认误差≤threshold元视为相同）"""
     import re
     n1 = re.findall(r"(\d+\.?\d*)", str(p1))
     n2 = re.findall(r"(\d+\.?\d*)", str(p2))
     if n1 and n2:
-        return abs(float(n1[0]) - float(n2[0])) <= 1.0
+        return abs(float(n1[0]) - float(n2[0])) <= threshold
     return p1 == p2
 
 
@@ -299,7 +303,7 @@ def filter_deals(deals):
         else:
             normal_list.append(deal)
 
-        # 7. 缓存该条（存完整标题供AI去重用）
+        # 7. 立即缓存并保存（同一批次内的后续重复能立刻拦截）
         key = make_cache_key(deal)
         cache[key] = {
             "time": datetime.now().isoformat(),
@@ -307,9 +311,7 @@ def filter_deals(deals):
             "full_title": deal.get("title", ""),
             "price": deal.get("price", ""),
         }
-
-    # 保存缓存
-    save_cache(cache)
+        save_cache(cache)  # 每条推送后立即写入文件
 
     # 按优先级排序
     normal_list.sort(key=lambda x: x["priority"], reverse=True)
