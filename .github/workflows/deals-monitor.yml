@@ -192,6 +192,7 @@ jobs:
             TB_APP_KEY=${{ secrets.TB_APP_KEY }}
             TB_APP_SECRET=${{ secrets.TB_APP_SECRET }}
             TB_ADZONE_ID=${{ secrets.TB_ADZONE_ID }}
+            SILICONFLOW_API_KEY=${{ secrets.SILICONFLOW_API_KEY }}
             ENVEOF
 
             # 执行采集

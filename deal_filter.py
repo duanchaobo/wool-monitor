@@ -5,13 +5,19 @@ deal_filter.py - 优惠筛选引擎
 1. 折扣力度 ≥ 50%（至少5折）
 2. 商品价格 ≥ 20元
 3. 优先推品牌商品、历史低价、神价格标签
-4. 去重（同一商品30分钟内不重复推）
+4. 去重（标题近似+价格相近 → 调用硅基流动大模型判断是否重复）
 """
 
 import json
 import hashlib
 import os
+import requests
 from datetime import datetime, timedelta
+
+# 硅基流动 API 配置
+SILICONFLOW_API_KEY = os.environ.get("SILICONFLOW_API_KEY", "")
+SILICONFLOW_MODEL = "deepseek-ai/DeepSeek-V3.2"
+SILICONFLOW_API_URL = "https://api.siliconflow.cn/v1/chat/completions"
 
 # ============ 配置 ============
 
@@ -93,9 +99,72 @@ def make_cache_key(deal):
 
 
 def is_duplicate(deal, cache):
-    """检查是否已推送过"""
+    """检查是否已推送过（先用规则快速过滤，疑似重复时调用大模型确认）"""
     key = make_cache_key(deal)
-    return key in cache
+    if key in cache:
+        return True
+
+    # 疑似重复：标题前15字相同 + 价格相同/相近
+    title_prefix = deal.get("title", "")[:15]
+    price = deal.get("price", "")
+    for cached_key, cached_val in cache.items():
+        cached_title = cached_val.get("title", "")[:15]
+        cached_price = cached_val.get("price", "")
+        if cached_title == title_prefix and (cached_price == price or _price_similar(cached_price, price)):
+            # 疑似重复，调用大模型确认
+            if SILICONFLOW_API_KEY:
+                is_dup = _llm_check_duplicate(
+                    deal.get("title", ""), cached_val.get("full_title", cached_title)
+                )
+                if is_dup:
+                    print(f"  [AI去重] 跳过: {deal.get('title', '')[:25]} (与「{cached_title}」重复)")
+                    return True
+            else:
+                # 无API Key时按规则去重
+                return True
+    return False
+
+
+def _price_similar(p1, p2):
+    """判断两个价格是否相近（误差≤1元视为相同）"""
+    import re
+    n1 = re.findall(r"(\d+\.?\d*)", str(p1))
+    n2 = re.findall(r"(\d+\.?\d*)", str(p2))
+    if n1 and n2:
+        return abs(float(n1[0]) - float(n2[0])) <= 1.0
+    return p1 == p2
+
+
+def _llm_check_duplicate(title1, title2):
+    """调用硅基流动 DeepSeek 判断两个商品标题是否指向同一商品"""
+    try:
+        prompt = f"""判断以下两个电商商品标题是否指向同一个商品（同一SKU/同一链接）。只回答 yes 或 no。
+
+商品1：{title1}
+商品2：{title2}
+
+注意：名称略有差异但核心商品相同（如仅规格/包装/促销词不同）也算同一个。"""
+
+        resp = requests.post(
+            SILICONFLOW_API_URL,
+            headers={
+                "Authorization": f"Bearer {SILICONFLOW_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": SILICONFLOW_MODEL,
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 10,
+                "temperature": 0,
+            },
+            timeout=15,
+        )
+        result = resp.json()
+        content = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip().lower()
+        return "yes" in content
+    except Exception as e:
+        print(f"  [AI去重异常] {e}")
+        return False
 
 
 def is_brand_product(title):
@@ -230,11 +299,13 @@ def filter_deals(deals):
         else:
             normal_list.append(deal)
 
-        # 7. 缓存该条
+        # 7. 缓存该条（存完整标题供AI去重用）
         key = make_cache_key(deal)
         cache[key] = {
             "time": datetime.now().isoformat(),
             "title": deal.get("title", "")[:30],
+            "full_title": deal.get("title", ""),
+            "price": deal.get("price", ""),
         }
 
     # 保存缓存
