@@ -107,8 +107,6 @@ def push_deal(deal):
         shop_parts = [shop]
         if sales:
             shop_parts.append(f"月销{sales}")
-        if commission_rate:
-            shop_parts.append(f"佣金{commission_rate}")
         msg_lines.append(f"🏪 {' | '.join(shop_parts)}")
 
     # 促销标签
