@@ -575,7 +575,10 @@ def collect_tb_all(max_pages=3):
     print(f"[物料推荐] {recommend_count} 条")
 
     # 3. 关键词搜索 - 母婴+日用品（有券商品）
-    search_keywords = ["纸尿裤", "奶粉", "纸巾", "洗衣液", "洗发水", "儿童面霜"]
+    search_keywords = [
+        "纸尿裤", "奶粉", "奶瓶", "玩具", "童装",          # 母婴
+        "纸巾", "洗衣液", "洗发水", "沐浴露", "牙膏"        # 日用洗护
+    ]
     search_count = 0
     seen_search_ids = set()
     for kw in search_keywords:
