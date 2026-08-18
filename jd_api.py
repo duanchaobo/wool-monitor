@@ -169,7 +169,7 @@ def collect_jingfen_deals(elite_id=1, page=1, page_size=10):
                 price = lowest_price
             else:
                 price = jd_price
-            original_price = jd_price if jd_price > 0 and jd_price != price else ""
+            original_price = jd_price if jd_price > 0 and jd_price != price else 0
 
             # 商品详情链接（优先 materialUrl，其次 coupon_link）
             material_url = item.get("materialUrl", "")
