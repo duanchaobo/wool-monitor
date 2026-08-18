@@ -381,7 +381,7 @@ def collect_tb_material_recommend(material_id, page_size=20):
                 "coupon_quota": 0,
                 "coupon_discount": 0,
                 "tag": f"物料推荐",
-                "category": "淘宝",
+                "category": basic.get("level_one_category_name", ""),
                 "img_url": pict_url,
                 "shop": shop_title,
                 "sales": annual_vol or tk_sales,
