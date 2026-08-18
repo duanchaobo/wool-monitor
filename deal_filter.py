@@ -129,23 +129,30 @@ def make_cache_key(deal):
 
 def is_duplicate(deal, cache):
     """检查是否已推送过（先用规则快速过滤，疑似重复时调用大模型确认）"""
+    # 1. 精确匹配：完整标题+价格完全相同
     key = make_cache_key(deal)
     if key in cache:
         return True
 
-    # 疑似重复：标题前12字相同 + 价格相同/相近
-    title_prefix = deal.get("title", "").strip()[:12]
+    # 2. 疑似重复：标题高度相似 + 价格相同/相近
+    title = deal.get("title", "").strip().replace(" ", "").replace("\u3000", "")
     price = str(deal.get("price", "")).strip()
     for cached_key, cached_val in cache.items():
-        cached_title = cached_val.get("full_title", cached_val.get("title", "")).strip()[:12]
+        cached_title = cached_val.get("full_title", cached_val.get("title", "")).strip().replace(" ", "").replace("\u3000", "")
         cached_price = cached_val.get("price", "").strip()
         # 价格相同或相近（≤2元误差视为同一商品不同规格）
         price_match = (cached_price == price or _price_similar(cached_price, price, threshold=2.0))
-        if cached_title == title_prefix and price_match:
-            # 标题高度相似，调用大模型确认
+        # 标题相似度：完整标题比较，允许部分差异（如规格/包装不同）
+        title_similar = (title == cached_title or
+                         title[:20] == cached_title[:20] or
+                         (len(title) > 10 and len(cached_title) > 10 and
+                          (title in cached_title or cached_title in title)))
+        if title_similar and price_match:
+            # 标题高度相似，调用大模型确认（传入完整标题+价格）
             if SILICONFLOW_API_KEY:
                 is_dup = _llm_check_duplicate(
-                    deal.get("title", ""), cached_val.get("full_title", cached_title)
+                    f"{deal.get('title', '')} 价格:{price}",
+                    f"{cached_val.get('full_title', cached_title)} 价格:{cached_price}"
                 )
                 if is_dup:
                     print(f"  [AI去重] 跳过: {deal.get('title', '')[:25]}")
