@@ -71,18 +71,15 @@ def push_deal(deal):
 
     # 价格显示（区分淘宝/京东）
     if source == "淘宝":
-        # 淘宝：现价(zk) → 到手(促销价) + 优惠力度
-        p = price.replace("¥", "").replace("￥", "")
-        final = predict_price.replace("¥", "").replace("￥", "") if predict_price else ""
-        # 计算优惠力度
+        # 淘宝页面价格：zk_final_price(现价) → final_promotion_price(到手价)
+        # 折扣 = 1 - 到手价/现价
+        p = price.replace("¥", "").replace("￥", "")              # 现价 = zk_final_price
+        final = predict_price.replace("¥", "").replace("￥", "") if predict_price else ""  # 到手价 = final_promotion_price
         cur_f = float(p) if p else 0
         final_f = float(final) if final else 0
-        off_str = ""
-        if cur_f > 0 and final_f > 0 and cur_f > final_f:
-            off_pct = int(round((1 - final_f / cur_f) * 100))
-            off_str = f"  [{off_pct}%OFF]"
-        if final and final != p:
-            msg_lines.append(f"💰 ¥{p} → ¥{final}{off_str}")
+        if final and final != p and cur_f > 0 and final_f > 0:
+            d_pct = int(round((1 - final_f / cur_f) * 100))
+            msg_lines.append(f"💰 ¥{p} → ¥{final}  [{d_pct}%OFF]")
         else:
             msg_lines.append(f"💰 ¥{p}")
     elif old_price:
@@ -243,7 +240,7 @@ def _draw_text_stroke(draw, pos, text, font, fill, stroke_color, stroke_width=3)
 
 
 def _add_text_overlay(img, deal):
-    """在图片上叠加三行居中信息：现价、到手价、优惠力度"""
+    """在图片上叠加居中信息：现价→到手价、优惠力度"""
     from PIL import Image, ImageDraw
 
     w, h = img.size
@@ -263,25 +260,25 @@ def _add_text_overlay(img, deal):
 
     font = _load_font(font_size)
 
-    # 解析价格：现价=price(zk_final)，到手=predict_price(促销价)
+    # 解析价格：现价=price(zk_final_price)，到手价=predict_price(final_promotion_price)
     current = str(deal.get("price", "")).replace("¥", "").replace("￥", "")
     final = str(deal.get("predict_price", "")).replace("¥", "").replace("￥", "")
 
-    # 计算优惠力度（现价→到手价）
+    # 折扣 = 1 - 到手价/现价
     cur_f = float(current) if current else 0
     final_f = float(final) if final else 0
+    off_pct = 0
     if cur_f > 0 and final_f > 0 and cur_f > final_f:
         off_pct = int(round((1 - final_f / cur_f) * 100))
-    else:
-        off_pct = 0
 
-    # 三行文字（居中）
-    lines = [
-        (f"现价 ¥{current}", (255, 255, 255)),       # 白色
-        (f"到手 ¥{final}", (255, 60, 60)),            # 红色
-    ]
-    if off_pct > 0:
-        lines.append((f"优惠 {off_pct}%OFF", (255, 230, 0)))  # 黄色
+    # 文字行（居中）
+    if final and final != current:
+        lines = [
+            (f"¥{current} → ¥{final}", (255, 255, 255)),  # 白色：现价→到手价
+            (f"{off_pct}%OFF", (255, 230, 0)),              # 黄色：折扣
+        ]
+    else:
+        lines = [(f"现价 ¥{current}", (255, 255, 255))]  # 白色
 
     start_y = h - bar_h + 10
     for i, (text, color) in enumerate(lines):

@@ -285,22 +285,16 @@ def filter_deals(deals):
                 print(f"  [券门槛过高] 跳过: {deal.get('title', '')[:20]} (商品¥{price_num}, 券需满¥{float(quota):.0f})")
                 continue
 
-        # 2.2 过滤优惠力度低于10%的商品
+        # 2.2 过滤有折扣的商品：到手价(final_promotion_price) < 现价(zk_final_price)
+        # 折扣 = 1 - 到手价/现价
         discount_pct = deal.get("discount", 0)
         if discount_pct == 0:
             from deal_collector import extract_number
-            # 新API：用 price(现价) 和 predict_price(到手价) 计算折扣
-            predict = extract_number(str(deal.get("predict_price", "")))
-            current = extract_number(str(deal.get("price", "")))
+            current = extract_number(str(deal.get("price", "")))      # 现价(zk_final_price)
+            predict = extract_number(str(deal.get("predict_price", "")))  # 到手价(final_promotion_price)
             if current > 0 and predict > 0 and current > predict:
                 discount_pct = round(1 - predict / current, 2)
                 deal["discount"] = discount_pct
-            else:
-                # 旧API：用 price 和 old_price 计算折扣
-                old = extract_number(str(deal.get("old_price", "")))
-                if old > 0 and current > 0 and old > current:
-                    discount_pct = round(1 - current / old, 2)
-                    deal["discount"] = discount_pct
         if discount_pct < 0.1:
             print(f"  [优惠力度低] 跳过: {deal.get('title', '')[:20]} ({discount_pct*100:.0f}%OFF)")
             continue
