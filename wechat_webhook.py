@@ -247,9 +247,9 @@ def _add_text_overlay(img, deal):
     from PIL import Image, ImageDraw
 
     w, h = img.size
-    # 字体大小按图片宽度自适应
-    font_size = max(24, int(w * 0.065))
-    line_h = font_size + 12
+    # 字体大小按图片宽度自适应（保证手机端可读）
+    font_size = max(36, int(w * 0.10))
+    line_h = font_size + 14
     total_lines = 3
     bar_h = line_h * total_lines + 20
 
@@ -289,7 +289,7 @@ def _add_text_overlay(img, deal):
         tw = bbox[2] - bbox[0]
         x = (w - tw) // 2  # 居中
         y = start_y + i * line_h
-        _draw_text_stroke(draw, (x, y), text, font, fill=color, stroke_color=(0, 0, 0), stroke_width=3)
+        _draw_text_stroke(draw, (x, y), text, font, fill=color, stroke_color=(0, 0, 0), stroke_width=4)
 
     return img
 
