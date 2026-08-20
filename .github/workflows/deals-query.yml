@@ -112,7 +112,13 @@ jobs:
           script: |
             source /etc/network_turbo 2>/dev/null || true
             rm -rf wool-monitor
-            git clone https://github.com/duanchaobo/wool-monitor.git
+            # git clone 带重试（学术加速不稳定）
+            for i in 1 2 3; do
+              echo ">>> git clone 尝试第 $i 次..."
+              git clone https://github.com/duanchaobo/wool-monitor.git && break
+              echo "克隆失败，等待 10 秒后重试..."
+              sleep 10
+            done
             cd wool-monitor
 
             # 安装中文字体
