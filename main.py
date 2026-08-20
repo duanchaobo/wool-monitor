@@ -35,6 +35,9 @@ from deal_collector import collect_all
 from deal_filter import filter_deals
 from wechat_webhook import push_deal, push_batch
 
+# 每次执行最多推送条数
+MAX_PUSH_PER_RUN = 10
+
 
 def main():
     print(f"\n{'='*50}")
@@ -54,21 +57,40 @@ def main():
     print("\n🔍 正在筛选高价值信息...")
     normal_deals, urgent_deals = filter_deals(all_deals)
 
-    # Step 3: 推送
-    if urgent_deals:
-        print("\n🚨 推送紧急信息...")
-        push_batch(urgent_deals)
+    # Step 3: 按品类去重（每个品类只推优惠力度最大的1款）
+    def pick_top_per_category(deals, max_total=MAX_PUSH_PER_RUN):
+        """按品类分组，每组取折扣最大的1条，总数不超过max_total"""
+        from collections import defaultdict
+        by_cat = defaultdict(list)
+        for d in deals:
+            cat = d.get("category", "其他") or "其他"
+            by_cat[cat].append(d)
+        result = []
+        for cat, items in by_cat.items():
+            best = max(items, key=lambda x: x.get("discount", 0))
+            result.append(best)
+        # 按折扣排序，取前max_total
+        result.sort(key=lambda x: x.get("discount", 0), reverse=True)
+        return result[:max_total]
 
-    if normal_deals:
-        print("\n📢 推送普通信息...")
-        push_batch(normal_deals)
+    urgent_final = pick_top_per_category(urgent_deals)
+    normal_final = pick_top_per_category(normal_deals)
 
-    # Step 4: 总结
+    # Step 4: 推送
+    if urgent_final:
+        print(f"\n🚨 推送紧急信息（{len(urgent_final)} 条）...")
+        push_batch(urgent_final)
+
+    if normal_final:
+        print(f"\n📢 推送普通信息（{len(normal_final)} 条）...")
+        push_batch(normal_final)
+
+    # Step 5: 总结
     print(f"\n{'='*50}")
     print(f"✅ 巡检完成")
     print(f"  总采集: {len(all_deals)} 条")
-    print(f"  紧急推送: {len(urgent_deals)} 条")
-    print(f"  普通推送: {min(len(normal_deals), 5)} 条")
+    print(f"  紧急推送: {len(urgent_final)} 条")
+    print(f"  普通推送: {len(normal_final)} 条")
     print(f"  过滤/去重: {len(all_deals) - len(urgent_deals) - len(normal_deals)} 条")
     print(f"⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'='*50}")
