@@ -81,6 +81,75 @@ def merge_category(raw_category):
     return "其他"
 
 
+# 8大目标类目
+TARGET_CATEGORIES = ["母婴", "日用品", "数码", "美食", "美妆", "服饰", "图书", "玩具"]
+
+# 硅基流动 API 配置
+SILICONFLOW_API_KEY = os.environ.get("SILICONFLOW_API_KEY", "")
+SILICONFLOW_API_URL = "https://api.siliconflow.cn/v1/chat/completions"
+
+# LLM 分类缓存（避免重复调用）
+_llm_category_cache = {}
+
+
+def llm_classify_category(title, raw_category=""):
+    """
+    使用硅基流动 LLM 对商品标题进行一级类目分类
+
+    Args:
+        title: 商品标题
+        raw_category: 原始类目（辅助判断）
+
+    Returns:
+        分类名称（8大类之一）
+    """
+    if not SILICONFLOW_API_KEY:
+        return "其他"
+
+    # 缓存 key
+    cache_key = f"{title[:30]}|{raw_category}"
+    if cache_key in _llm_category_cache:
+        return _llm_category_cache[cache_key]
+
+    prompt = f"""请根据商品标题判断它属于以下哪个分类：{', '.join(TARGET_CATEGORIES)}
+
+商品标题：{title}
+原始类目：{raw_category}
+
+只返回分类名称，不要解释。"""
+
+    try:
+        import requests
+        resp = requests.post(
+            SILICONFLOW_API_URL,
+            headers={
+                "Authorization": f"Bearer {SILICONFLOW_API_KEY}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": "Qwen/Qwen2.5-7B-Instruct",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 10,
+                "temperature": 0
+            },
+            timeout=10
+        )
+        result = resp.json()
+        answer = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
+
+        # 验证返回值是否在目标类目中
+        for cat in TARGET_CATEGORIES:
+            if cat in answer:
+                _llm_category_cache[cache_key] = cat
+                return cat
+
+        _llm_category_cache[cache_key] = "其他"
+        return "其他"
+    except Exception as e:
+        print(f"[LLM分类失败] {e}")
+        return "其他"
+
+
 # 全品类搜索关键词（覆盖所有常见品类）
 ALL_CATEGORY_KEYWORDS = [
     # 母婴
@@ -162,9 +231,16 @@ def format_deal(deal, index):
     taokouling = deal.get("taokouling", "")
     url = deal.get("url", "")
 
-    # 合并类目
-    raw_cat = deal.get("category", "其他")
+    # 合并类目：先查映射表，映射不到用LLM判断
+    raw_cat = deal.get("category", "")
     merged_cat = merge_category(raw_cat)
+    if merged_cat == "其他":
+        # 映射表未命中，用 LLM 根据标题分类
+        title = deal.get("title", "")
+        if title:
+            merged_cat = llm_classify_category(title, raw_cat)
+            if merged_cat != "其他":
+                print(f"  [LLM分类] {title[:25]}... → {merged_cat}")
 
     return {
         "id": index,
