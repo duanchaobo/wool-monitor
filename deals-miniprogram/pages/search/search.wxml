@@ -48,6 +48,7 @@
       wx:key="id"
       class="deal-card"
       data-url="{{item.url}}"
+      data-taokouling="{{item.taokouling}}"
       bindtap="copyLink"
     >
       <image class="deal-image" src="{{item.img_url}}" mode="aspectFill" lazy-load="true"></image>

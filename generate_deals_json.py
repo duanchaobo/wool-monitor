@@ -61,10 +61,10 @@ ALL_CATEGORY_KEYWORDS = [
 
 
 def collect_all_categories():
-    """采集全品类数据"""
+    """采集全品类数据，并生成淘口令"""
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-    from tb_api import collect_tb_material_search
+    from tb_api import collect_tb_material_search, generate_taokouling
 
     all_deals = []
     seen_ids = set()
@@ -76,6 +76,16 @@ def collect_all_categories():
                 key = d.get("title", "")[:20] + "|" + d.get("price", "")
                 if key not in seen_ids:
                     seen_ids.add(key)
+                    # 生成淘口令（方便复制后淘宝直接跳转）
+                    title = d.get("title", "")
+                    url = d.get("url", "")
+                    if title and url:
+                        try:
+                            tk = generate_taokouling(title, url)
+                            if tk:
+                                d["taokouling"] = tk
+                        except:
+                            pass
                     all_deals.append(d)
         except Exception as e:
             print(f"  [搜索失败] {kw}: {e}")
@@ -100,6 +110,10 @@ def format_deal(deal, index):
     tags_str = deal.get("tags", "")
     tags = [t.strip() for t in tags_str.split(",") if t.strip()] if tags_str else []
 
+    # 获取淘口令（优先用已有的，没有则用链接）
+    taokouling = deal.get("taokouling", "")
+    url = deal.get("url", "")
+
     return {
         "id": index,
         "title": deal.get("title", ""),
@@ -109,7 +123,8 @@ def format_deal(deal, index):
         "category": deal.get("category", "其他"),
         "shop": deal.get("shop", ""),
         "img_url": deal.get("img_url", ""),
-        "url": deal.get("url", ""),
+        "url": url,
+        "taokouling": taokouling,
         "tags": tags,
         "source": deal.get("source", ""),
     }

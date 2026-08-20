@@ -103,14 +103,20 @@ Page({
   },
 
   /**
-   * 复制淘口令/链接
+   * 复制淘口令/链接（优先淘口令）
    */
   copyLink(e) {
-    const url = e.currentTarget.dataset.url;
+    const taokouling = e.currentTarget.dataset.taokouling || '';
+    const url = e.currentTarget.dataset.url || '';
+    // 优先用淘口令，没有则用链接
+    const copyData = taokouling || url;
     wx.setClipboardData({
-      data: url,
+      data: copyData,
       success: () => {
-        wx.showToast({ title: '链接已复制', icon: 'success' });
+        wx.showToast({
+          title: taokouling ? '淘口令已复制' : '链接已复制',
+          icon: 'success'
+        });
       }
     });
   }
