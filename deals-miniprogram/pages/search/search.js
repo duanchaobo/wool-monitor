@@ -9,13 +9,38 @@ Page({
     loading: false,
     searched: false,
     triggerSuccess: false,
-    message: ''
+    message: '',
+    hasToken: false
   },
 
   onLoad() {
-    // 读取本地搜索历史
     const history = wx.getStorageSync('searchHistory') || [];
-    this.setData({ searchHistory: history });
+    const token = wx.getStorageSync('githubToken') || '';
+    this.setData({ searchHistory: history, hasToken: !!token });
+    const app = getApp();
+    if (app) app.globalData.githubToken = token;
+  },
+
+  /**
+   * 配置 GitHub Token
+   */
+  configToken() {
+    wx.showModal({
+      title: '配置 GitHub Token',
+      content: '请输入 GitHub Personal Access Token（需 workflow 权限）',
+      editable: true,
+      placeholderText: 'ghp_xxxxxxxxxxxx',
+      success: (res) => {
+        if (res.confirm && res.content) {
+          const token = res.content.trim();
+          wx.setStorageSync('githubToken', token);
+          const app = getApp();
+          if (app) app.globalData.githubToken = token;
+          this.setData({ hasToken: true });
+          wx.showToast({ title: 'Token 已保存', icon: 'success' });
+        }
+      }
+    });
   },
 
   /**
