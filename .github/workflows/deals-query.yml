@@ -107,7 +107,7 @@ jobs:
           port: ${{ secrets.AUTODL_SSH_PORT }}
           username: ${{ secrets.AUTODL_SSH_USER }}
           key: ${{ secrets.AUTODL_SSH_KEY }}
-          timeout: 60s
+          timeout: 600s
           command_timeout: 600s
           script: |
             source /etc/network_turbo 2>/dev/null || true
