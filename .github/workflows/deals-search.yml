@@ -121,12 +121,12 @@ jobs:
             ENVEOF
 
             # 执行搜索，生成结果 JSON
-            python3 generate_deals_json.py --search "${{ github.event.inputs.keyword }}" --output deals-data
+            python3 generate_deals_json.py --search "${{ github.event.inputs.keyword }}" --output docs
 
             # 提交并推送
             git config user.name "github-actions"
             git config user.email "actions@github.com"
-            git add deals-data/
+            git add docs/
             git commit -m "搜索结果: ${{ github.event.inputs.keyword }} $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
             git push https://${{ secrets.GITHUB_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
 

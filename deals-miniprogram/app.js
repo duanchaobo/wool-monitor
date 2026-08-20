@@ -2,7 +2,7 @@
 App({
   globalData: {
     // GitHub Pages 数据托管地址
-    dataBaseUrl: 'https://duanchaobo.github.io/wool-monitor/deals-data/'
+    dataBaseUrl: 'https://duanchaobo.github.io/wool-monitor/'
   },
 
   onLaunch() {

@@ -1,5 +1,5 @@
 // API 工具类 - 小程序直接读取 GitHub Pages 上的 JSON 数据
-const DATA_BASE_URL = 'https://duanchaobo.github.io/wool-monitor/deals-data/';
+const DATA_BASE_URL = 'https://duanchaobo.github.io/wool-monitor/';
 
 /**
  * 获取全品类优惠数据

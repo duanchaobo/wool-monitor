@@ -133,13 +133,13 @@ jobs:
             SILICONFLOW_API_KEY=${{ secrets.SILICONFLOW_API_KEY }}
             ENVEOF
 
-            # 执行全品类采集，输出 JSON
-            python3 generate_deals_json.py --output deals-data
+            # 执行全品类采集，输出 JSON 到 docs/
+            python3 generate_deals_json.py --output docs
 
             # 提交并推送数据到 GitHub
             git config user.name "github-actions"
             git config user.email "actions@github.com"
-            git add deals-data/
+            git add docs/
             git commit -m "更新优惠数据 $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
             git push https://${{ secrets.GITHUB_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
 
