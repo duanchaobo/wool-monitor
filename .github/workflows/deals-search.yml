@@ -103,7 +103,7 @@ jobs:
           script: |
             source /etc/network_turbo 2>/dev/null || true
             rm -rf wool-monitor
-            git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
+            git clone https://github.com/duanchaobo/wool-monitor.git
             cd wool-monitor
 
             apt-get update -qq && apt-get install -y -qq fonts-wqy-zenhei 2>/dev/null || true
@@ -122,6 +122,13 @@ jobs:
 
             # 执行搜索，生成结果 JSON
             python3 generate_deals_json.py --search "${{ github.event.inputs.keyword }}" --output deals-data
+
+            # 提交并推送
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add deals-data/
+            git commit -m "搜索结果: ${{ github.event.inputs.keyword }} $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
+            git push https://${{ secrets.GITHUB_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
 
       # ========== Step 4: 关机 ==========
       - name: 关机
