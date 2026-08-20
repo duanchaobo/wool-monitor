@@ -59,14 +59,3 @@
   color: #999;
   margin-top: 8rpx;
 }
-
-.token-tap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fffbe6;
-  border: 1rpx solid #ffe58f;
-  padding: 20rpx 30rpx;
-  font-size: 26rpx;
-  color: #d48806;
-}

@@ -8,39 +8,16 @@ Page({
     deals: [],
     loading: false,
     searched: false,
-    triggerSuccess: false,
     message: '',
-    hasToken: false
+    allDeals: []  // 全量数据（从首页缓存读取）
   },
 
   onLoad() {
     const history = wx.getStorageSync('searchHistory') || [];
-    const token = wx.getStorageSync('githubToken') || '';
-    this.setData({ searchHistory: history, hasToken: !!token });
-    const app = getApp();
-    if (app) app.globalData.githubToken = token;
-  },
-
-  /**
-   * 配置 GitHub Token
-   */
-  configToken() {
-    wx.showModal({
-      title: '配置 GitHub Token',
-      content: '请输入 GitHub Personal Access Token（需 workflow 权限）',
-      editable: true,
-      placeholderText: 'ghp_xxxxxxxxxxxx',
-      success: (res) => {
-        if (res.confirm && res.content) {
-          const token = res.content.trim();
-          wx.setStorageSync('githubToken', token);
-          const app = getApp();
-          if (app) app.globalData.githubToken = token;
-          this.setData({ hasToken: true });
-          wx.showToast({ title: 'Token 已保存', icon: 'success' });
-        }
-      }
-    });
+    this.setData({ searchHistory: history });
+    // 读取首页缓存的全量数据
+    const allDeals = wx.getStorageSync('allDeals') || [];
+    this.setData({ allDeals });
   },
 
   /**
@@ -51,56 +28,68 @@ Page({
   },
 
   /**
-   * 执行搜索
+   * 执行搜索（本地过滤，无需 Token）
    */
-  async doSearch() {
+  doSearch() {
     const keyword = this.data.keyword.trim();
     if (!keyword) {
       wx.showToast({ title: '请输入搜索关键词', icon: 'none' });
       return;
     }
 
-    // 保存搜索历史
     this.saveSearchHistory(keyword);
 
     this.setData({
       loading: true,
       searched: false,
       deals: [],
-      triggerSuccess: false,
       message: ''
     });
 
-    // 先尝试读取已有搜索结果
-    try {
-      const result = await api.fetchSearchResult(keyword);
-      this.setData({
-        deals: result.deals || [],
-        loading: false,
-        searched: true,
-        message: result.deals && result.deals.length > 0 ? '' : '暂无相关优惠'
+    // 本地搜索：标题/品类/店铺 匹配关键词
+    const allDeals = this.data.allDeals;
+    if (!allDeals || allDeals.length === 0) {
+      // 缓存失效，先拉取数据
+      this.loadAllDeals().then(() => {
+        this.filterDeals(keyword);
       });
-      return;
-    } catch (e) {
-      // 没有缓存结果，触发 GitHub Actions
+    } else {
+      this.filterDeals(keyword);
     }
+  },
 
-    // 触发 GitHub Actions 搜索
-    const token = wx.getStorageSync('githubToken') || '';
+  /**
+   * 本地过滤商品
+   */
+  filterDeals(keyword) {
+    const allDeals = this.data.allDeals || [];
+    const kw = keyword.toLowerCase();
+    const matched = allDeals.filter(d => {
+      return (d.title && d.title.toLowerCase().includes(kw)) ||
+             (d.category && d.category.toLowerCase().includes(kw)) ||
+             (d.shop && d.shop.toLowerCase().includes(kw)) ||
+             (d.tags && d.tags.some(t => t.toLowerCase().includes(kw)));
+    });
+
+    this.setData({
+      deals: matched,
+      loading: false,
+      searched: true,
+      message: matched.length > 0 ? '' : `未找到"${keyword}"相关优惠`
+    });
+  },
+
+  /**
+   * 加载全量数据
+   */
+  async loadAllDeals() {
     try {
-      const result = await api.triggerSearch(keyword, token);
-      this.setData({
-        loading: false,
-        searched: true,
-        triggerSuccess: true,
-        message: '搜索任务已提交，正在采集数据...\n请稍后返回首页或刷新搜索查看结果'
-      });
-    } catch (err) {
-      this.setData({
-        loading: false,
-        searched: true,
-        message: '搜索失败: ' + (err.message || '请检查网络')
-      });
+      const data = await api.fetchDealsData();
+      const deals = data.deals || [];
+      this.setData({ allDeals: deals });
+      wx.setStorageSync('allDeals', deals); // 缓存到本地
+    } catch (e) {
+      console.error('加载数据失败:', e);
     }
   },
 
@@ -114,32 +103,10 @@ Page({
   },
 
   /**
-   * 刷新搜索结果
-   */
-  async refreshResult() {
-    if (!this.data.keyword) return;
-    this.setData({ loading: true });
-    try {
-      const result = await api.fetchSearchResult(this.data.keyword);
-      this.setData({
-        deals: result.deals || [],
-        loading: false,
-        message: result.deals && result.deals.length > 0 ? '' : '暂无更多结果'
-      });
-    } catch (err) {
-      this.setData({
-        loading: false,
-        message: '数据更新中，请稍后再试'
-      });
-    }
-  },
-
-  /**
    * 保存搜索历史
    */
   saveSearchHistory(keyword) {
     let history = wx.getStorageSync('searchHistory') || [];
-    // 去重 + 限存10条
     history = history.filter(h => h !== keyword);
     history.unshift(keyword);
     if (history.length > 10) history = history.slice(0, 10);

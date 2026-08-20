@@ -41,10 +41,14 @@ Page({
         count: cat.count || 0
       }));
 
+      const deals = data.deals || [];
+      // 缓存到本地，供搜索页使用
+      wx.setStorageSync('allDeals', deals);
+
       this.setData({
         categories: [{ name: '全部', count: data.total || 0 }, ...categoriesWithDeals],
-        allDeals: data.deals || [],
-        filteredDeals: data.deals || [],
+        allDeals: deals,
+        filteredDeals: deals,
         loading: false,
         updateTime: data.updateTime || ''
       });
