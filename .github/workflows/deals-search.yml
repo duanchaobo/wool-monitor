@@ -128,7 +128,7 @@ jobs:
             git config user.email "actions@github.com"
             git add docs/
             git commit -m "搜索结果: ${{ github.event.inputs.keyword }} $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
-            git push https://${{ secrets.GITHUB_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
+            git push https://${{ secrets.PAT_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
 
       # ========== Step 4: 关机 ==========
       - name: 关机

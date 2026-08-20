@@ -160,48 +160,61 @@ def generate_deals_json(output_dir, search_keyword=None):
         all_deals = collect_all_categories()
         print(f"  采集到 {len(all_deals)} 条原始数据")
 
-        # 2. 筛选（复用现有逻辑）
-        normal_deals, urgent_deals = filter_deals(all_deals)
-        print(f"  筛选后: 普通 {len(normal_deals)} 条, 紧急 {len(urgent_deals)} 条")
+        # 2. 基础过滤（不去重历史商品）
+        valid_deals = []
+        for d in all_deals:
+            price = str(d.get("price", "")).replace("¥", "").replace("￥", "")
+            predict = str(d.get("predict_price", "")).replace("¥", "").replace("￥", "")
+            price_num = extract_number(price)
+            predict_num = extract_number(predict)
+            # 必须有价格
+            if price_num <= 0:
+                continue
+            # 有链接（有券/可购买）
+            url = d.get("url", "")
+            if not url:
+                continue
+            # 到手价必须低于现价（有折扣）
+            if predict_num > 0 and predict_num >= price_num:
+                continue
+            valid_deals.append(d)
 
-        # 3. 合并 + 格式化
-        all_filtered = urgent_deals + normal_deals
-        formatted = [format_deal(d, i) for i, d in enumerate(all_filtered)]
+        print(f"  有效商品: {len(valid_deals)} 条")
 
-        # 4. 按品类分组，每类随机取1款
+        # 3. 格式化
+        formatted = [format_deal(d, i) for i, d in enumerate(valid_deals)]
+
+        # 4. 过滤优惠<10%的商品
+        formatted = [d for d in formatted if d["discount"] >= 10]
+        print(f"  优惠≥10%: {len(formatted)} 条")
+
+        # 5. 按品类分组
         from collections import defaultdict
         by_category = defaultdict(list)
         for d in formatted:
             by_category[d["category"]].append(d)
 
-        final_deals = []
-        for cat, items in by_category.items():
-            random.shuffle(items)
-            final_deals.append(items[0])
-
-        random.shuffle(final_deals)
-
-        # 5. 生成品类列表
+        # 6. 生成品类列表
         categories = []
         for cat, items in sorted(by_category.items(), key=lambda x: -len(x[1])):
             categories.append({"name": cat, "count": len(items)})
 
-        # 6. 保存 deals.json
+        # 7. 保存 deals.json（包含所有有效商品，不去重）
         deals_data = {
-            "total": len(final_deals),
+            "total": len(formatted),
             "updateTime": update_time,
-            "deals": final_deals
+            "deals": formatted
         }
         with open(os.path.join(output_dir, "deals.json"), "w", encoding="utf-8") as f:
             json.dump(deals_data, f, ensure_ascii=False, indent=2)
 
-        # 7. 保存 categories.json
+        # 8. 保存 categories.json
         with open(os.path.join(output_dir, "categories.json"), "w", encoding="utf-8") as f:
             json.dump(categories, f, ensure_ascii=False, indent=2)
 
-        print(f"✅ 生成完成: {len(final_deals)} 条商品, {len(categories)} 个品类")
+        print(f"✅ 生成完成: {len(formatted)} 条商品, {len(categories)} 个品类")
         print(f"📁 输出目录: {output_dir}/")
-        print(f"   - deals.json ({len(final_deals)} 条)")
+        print(f"   - deals.json ({len(formatted)} 条)")
         print(f"   - categories.json ({len(categories)} 个品类)")
 
         return deals_data
