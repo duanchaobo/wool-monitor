@@ -188,7 +188,8 @@ def collect_tb_promotion_deals(promotion_id=37116, page_num=1, page_size=10):
                 "coupon_quota": float(entry_condition) if entry_condition else 0,
                 "coupon_amount": float(entry_discount) if entry_discount else 0,
                 "tag": PROMOTION_IDS.get(promotion_id, "淘宝优惠券"),
-                "category": "",  # 店铺券不限品类，设为空跳过品类过滤
+                "category": "优惠券",
+                "sub_category": PROMOTION_IDS.get(promotion_id, "店铺券"),
                 "img_url": "",
                 "shop": shop_name,
                 "sales": int(total_count) if total_count else 0,
@@ -283,7 +284,7 @@ def get_tb_material_ids(subject=1, material_type=1, page_size=20):
     return material_ids
 
 
-def collect_tb_material_recommend(material_id, page_size=20):
+def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
     """
     淘宝客物料推荐 - 根据物料ID获取推荐商品
     使用 taobao.tbk.dg.material.recommend API
@@ -291,6 +292,7 @@ def collect_tb_material_recommend(material_id, page_size=20):
     Args:
         material_id: 物料ID (从 optimus.tou.material.ids.get 获取，如 117935)
         page_size: 每页条数（最大100）
+        sub_name: 二级类目名称（物料主题名）
     """
     deals = []
 
@@ -376,7 +378,7 @@ def collect_tb_material_recommend(material_id, page_size=20):
                 "coupon_discount": 0,
                 "tag": f"物料推荐",
                 "category": basic.get("level_one_category_name", ""),
-                "sub_category": basic.get("level_two_category_name", ""),
+                "sub_category": basic.get("level_two_category_name", "") or sub_name or "",
                 "img_url": pict_url,
                 "shop": shop_title,
                 "sales": annual_vol or tk_sales,
@@ -490,7 +492,7 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
                 "coupon_discount": 0,
                 "tag": f"搜:{q}",
                 "category": basic.get("level_one_category_name", ""),
-                "sub_category": basic.get("level_two_category_name", ""),
+                "sub_category": basic.get("level_two_category_name", "") or q,
                 "img_url": pict_url,
                 "shop": shop_title,
                 "sales": annual_vol,
@@ -556,23 +558,24 @@ def collect_tb_all(max_pages=3):
     # 86589: 天猫国际直营类目爆款清单
     # 86614: 品牌券-食品, 86619: 品牌券-美妆个护, 86622: 品牌券-家居家装
     # 87575: 美妆物料精选, 91356: 618快消精选
-    TARGET_MATERIAL_IDS = [
-        # 母婴类（10个）
-        4040, 4041, 4042, 4043, 4044, 4045,  # 母婴主题(6个年龄段)
-        13374, 27454, 84226, 86616,             # 母婴专项(高佣/大额券/品牌券)
-        87579, 87578,                            # 母婴团/品牌团精选
-        # 日用/美妆/食品类（13个）
-        13371, 13375,                            # 高佣榜(美妆/食品)
-        27451, 27453, 27798,                    # 大额券(食品/美妆/家居)
-        84227, 84228,                            # 高佣(美妆/美食)
-        86589,                                   # 天猫国际
-        86614, 86619, 86622,                    # 品牌券(食品/美妆/家居)
-        87575, 91356,                            # 美妆物料/快消精选
-    ]
+    # 物料ID -> 二级类目名称映射
+    MATERIAL_ID_NAMES = {
+        4040: "备孕", 4041: "0-6月", 4042: "7-12月", 4043: "1-3岁", 4044: "4-6岁", 4045: "7-12岁",
+        13374: "高佣母婴", 27454: "大额券母婴", 84226: "高佣母婴", 86616: "品牌券母婴",
+        87579: "母婴团精选", 87578: "品牌团精选",
+        13371: "高佣美妆", 13375: "高佣食品",
+        27451: "大额券食品", 27453: "大额券美妆", 27798: "大额券家居",
+        84227: "高佣美妆", 84228: "高佣美食",
+        86589: "天猫国际",
+        86614: "品牌券食品", 86619: "品牌券美妆", 86622: "品牌券家居",
+        87575: "美妆精选", 91356: "快消精选",
+    }
+    TARGET_MATERIAL_IDS = list(MATERIAL_ID_NAMES.keys())
     recommend_count = 0
     seen_recommend_ids = set()
     for mid in TARGET_MATERIAL_IDS:
-        deals = collect_tb_material_recommend(material_id=mid, page_size=5)
+        sub_name = MATERIAL_ID_NAMES.get(mid, "")
+        deals = collect_tb_material_recommend(material_id=mid, page_size=5, sub_name=sub_name)
         new_deals = []
         for d in deals:
             key = d.get("title", "")[:20] + "|" + d.get("price", "")
