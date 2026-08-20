@@ -27,7 +27,7 @@ Page({
   },
 
   /**
-   * 加载数据
+   * 加载数据（过滤掉优惠力度<10%的商品）
    */
   async loadData() {
     this.setData({ loading: true });
@@ -35,20 +35,32 @@ Page({
       const data = await api.fetchDealsData();
       const categories = await api.fetchCategories();
 
-      // 为每个品类添加商品
-      const categoriesWithDeals = categories.map(cat => ({
-        name: cat.name,
-        count: cat.count || 0
-      }));
+      // 过滤：只保留优惠力度 >= 10% 的商品
+      const allDeals = (data.deals || []).filter(d => d.discount >= 10);
 
-      const deals = data.deals || [];
-      // 缓存到本地，供搜索页使用
-      wx.setStorageSync('allDeals', deals);
+      // 按品类分组统计
+      const catCount = {};
+      allDeals.forEach(d => {
+        const cat = d.category || '其他';
+        catCount[cat] = (catCount[cat] || 0) + 1;
+      });
+
+      // 构建品类列表（按商品数降序）
+      const categoriesWithDeals = categories
+        .map(cat => ({
+          name: cat.name,
+          count: catCount[cat.name] || 0
+        }))
+        .filter(cat => cat.count > 0)
+        .sort((a, b) => b.count - a.count);
+
+      // 缓存到本地，供搜索页使用（同样过滤）
+      wx.setStorageSync('allDeals', allDeals);
 
       this.setData({
-        categories: [{ name: '全部', count: data.total || 0 }, ...categoriesWithDeals],
-        allDeals: deals,
-        filteredDeals: deals,
+        categories: [{ name: '全部', count: allDeals.length }, ...categoriesWithDeals],
+        allDeals: allDeals,
+        filteredDeals: allDeals,
         loading: false,
         updateTime: data.updateTime || ''
       });
