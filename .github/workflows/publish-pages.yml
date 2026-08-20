@@ -1,0 +1,44 @@
+# GitHub Actions - 将 deals-data 目录发布到 GitHub Pages
+# 当 main 分支有 deals-data 变更时自动触发
+
+name: 发布数据到 GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'deals-data/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: 部署到 GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v5
+
+      - name: 设置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传 deals-data
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'deals-data'
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

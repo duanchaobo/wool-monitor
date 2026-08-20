@@ -1,0 +1,71 @@
+<!-- pages/search/search.wxml -->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <input
+      class="search-input"
+      placeholder="搜索商品名称/品牌/品类"
+      value="{{keyword}}"
+      bindinput="onInputChange"
+      confirm-type="search"
+      bindconfirm="doSearch"
+      focus="{{true}}"
+    />
+    <button class="search-btn" bindtap="doSearch">搜索</button>
+  </view>
+
+  <!-- 搜索历史 -->
+  <view wx:if="{{searchHistory.length > 0 && !searched}}" class="search-history">
+    <view class="history-header">
+      <text class="history-title">搜索历史</text>
+      <text class="history-clear" bindtap="clearHistory">清空</text>
+    </view>
+    <view class="history-tags">
+      <text
+        wx:for="{{searchHistory}}"
+        wx:key="*this"
+        class="history-tag"
+        data-keyword="{{item}}"
+        bindtap="quickSearch"
+      >{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading">
+    <view>🔍 正在搜索中...</view>
+    <view style="font-size:24rpx;margin-top:10rpx;">数据采集中，请稍候</view>
+  </view>
+
+  <!-- 提示信息 -->
+  <view wx:if="{{message && !loading}}" class="message-box">
+    <text>{{message}}</text>
+    <view wx:if="{{triggerSuccess}}" class="refresh-btn" bindtap="refreshResult">刷新结果</view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view wx:if="{{deals.length > 0}}" class="deal-list">
+    <view
+      wx:for="{{deals}}"
+      wx:key="id"
+      class="deal-card"
+      data-url="{{item.url}}"
+      bindtap="copyLink"
+    >
+      <image class="deal-image" src="{{item.img_url}}" mode="aspectFill" lazy-load="true"></image>
+      <view class="deal-info">
+        <view class="deal-title">{{item.title}}</view>
+        <view class="deal-price-row">
+          <view>
+            <text class="deal-price deal-price-symbol">¥</text>
+            <text class="deal-price">{{item.predict_price || item.price}}</text>
+            <text wx:if="{{item.predict_price && item.predict_price !== item.price}}" class="deal-original-price">¥{{item.price}}</text>
+          </view>
+          <view wx:if="{{item.discount > 0}}" class="deal-discount">{{item.discount}}%OFF</view>
+        </view>
+        <view wx:if="{{item.shop}}" class="deal-shop">🏪 {{item.shop}}</view>
+        <view wx:if="{{item.category}}" class="deal-category">📂 {{item.category}}</view>
+      </view>
+    </view>
+  </view>
+</view>

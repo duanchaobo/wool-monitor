@@ -1,0 +1,166 @@
+# GitHub Actions - 生成小程序用的 JSON 数据
+# 定时执行（每天 8:00-22:00 每2小时）或手动触发
+# 采集全品类优惠商品，输出为 JSON 文件推送到 GitHub Pages 分支
+
+name: 生成优惠数据（小程序）
+
+on:
+  schedule:
+    # 每天 8:00-22:00 每2小时执行一次
+    - cron: '0 8,10,12,14,16,18,20,22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-deals-json:
+    name: 采集并生成 JSON 数据
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v5
+
+      # ========== Step 1: 检查实例状态 ==========
+      - name: 检查 AutoDL 实例状态
+        id: check_status
+        run: |
+          python3 << 'PYEOF'
+          import requests, json, os, sys
+
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+
+          if not SESSION_TOKEN or not INSTANCE_UUID:
+              print("❌ 缺少 AutoDL 凭证")
+              sys.exit(1)
+
+          headers = {
+              "Authorization": SESSION_TOKEN,
+              "Content-Type": "application/json;charset=UTF-8",
+          }
+
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance",
+              json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
+
+          if result.get("code") != "Success":
+              print(f"⚠️ 查询失败: {result}")
+              sys.exit(1)
+
+          instances = result.get("data", {}).get("list", [])
+          target = next((i for i in instances if i.get("uuid") == INSTANCE_UUID), None)
+
+          if not target:
+              print(f"❌ 未找到实例")
+              sys.exit(1)
+
+          status = target.get("status", "")
+          print(f"实例状态: {status}")
+
+          need_power_off = "false" if status == "running" else "true"
+          github_output = os.environ.get("GITHUB_OUTPUT", "")
+          if github_output:
+              with open(github_output, "a") as f:
+                  f.write(f"need_power_off={need_power_off}\n")
+          print(f"need_power_off={need_power_off}")
+          PYEOF
+
+      # ========== Step 2: 开机 ==========
+      - name: 开机
+        if: steps.check_status.outputs.need_power_off == 'true'
+        run: |
+          python3 << 'PYEOF'
+          import requests, json, sys
+
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+          headers = {"Authorization": SESSION_TOKEN, "Content-Type": "application/json;charset=UTF-8"}
+
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance/power_on",
+              json={"instance_uuid": INSTANCE_UUID, "payload": "non_gpu"},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
+          if result.get("code") == "Success":
+              print("✅ 开机成功")
+          else:
+              print(f"⚠️ 开机: {result}")
+          PYEOF
+
+      - name: 等待启动
+        if: steps.check_status.outputs.need_power_off == 'true'
+        run: sleep 20
+
+      # ========== Step 3: SSH 执行采集 ==========
+      - name: SSH 采集并生成 JSON
+        id: ssh_run
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.AUTODL_SSH_HOST }}
+          port: ${{ secrets.AUTODL_SSH_PORT }}
+          username: ${{ secrets.AUTODL_SSH_USER }}
+          key: ${{ secrets.AUTODL_SSH_KEY }}
+          timeout: 60s
+          command_timeout: 600s
+          script: |
+            source /etc/network_turbo 2>/dev/null || true
+            rm -rf wool-monitor
+            git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
+            cd wool-monitor
+
+            # 安装中文字体
+            apt-get update -qq && apt-get install -y -qq fonts-wqy-zenhei 2>/dev/null || true
+
+            # 安装依赖
+            pip3 install -r requirements.txt -q
+
+            # 配置环境变量
+            cat > .env << ENVEOF
+            WECHAT_WEBHOOK_URL=${{ secrets.WECHAT_WEBHOOK_URL }}
+            JD_APP_KEY=${{ secrets.JD_APP_KEY }}
+            JD_APP_SECRET=${{ secrets.JD_APP_SECRET }}
+            JD_PID=${{ secrets.JD_PID }}
+            TB_APP_KEY=${{ secrets.TB_APP_KEY }}
+            TB_APP_SECRET=${{ secrets.TB_APP_SECRET }}
+            TB_ADZONE_ID=${{ secrets.TB_ADZONE_ID }}
+            SILICONFLOW_API_KEY=${{ secrets.SILICONFLOW_API_KEY }}
+            ENVEOF
+
+            # 执行全品类采集，输出 JSON
+            python3 generate_deals_json.py --output deals-data
+
+      # ========== Step 4: 拉取生成的数据 ==========
+      - name: 拉取 JSON 数据
+        if: steps.ssh_run.outcome == 'success'
+        run: |
+          # 从 AutoDL 拉取生成的数据
+          mkdir -p deals-data
+          # 数据已通过 git commit+push 回到仓库，这里 checkout 即可
+
+      # ========== Step 5: 关机 ==========
+      - name: 关机
+        if: steps.check_status.outputs.need_power_off == 'true'
+        run: |
+          python3 << 'PYEOF'
+          import requests, json
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+          headers = {"Authorization": SESSION_TOKEN, "Content-Type": "application/json;charset=UTF-8"}
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance/power_off",
+              json={"instance_uuid": INSTANCE_UUID},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
+          if result.get("code") == "Success":
+              print("✅ 关机成功")
+          else:
+              print(f"⚠️ 关机: {result}")
+          PYEOF
