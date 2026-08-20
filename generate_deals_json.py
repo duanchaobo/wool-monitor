@@ -14,7 +14,6 @@ generate_deals_json.py - 生成小程序用的 JSON 数据
 import os
 import sys
 import json
-import random
 import argparse
 from datetime import datetime
 
@@ -31,8 +30,7 @@ if os.path.exists(env_file):
                 if v:
                     os.environ[k.strip()] = v
 
-from deal_collector import collect_all, extract_number
-from deal_filter import filter_deals
+from deal_collector import extract_number
 
 
 # 全品类搜索关键词（覆盖所有常见品类）
