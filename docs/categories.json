@@ -67,7 +67,7 @@
   },
   {
     "name": "日用品",
-    "count": 41,
+    "count": 42,
     "subs": [
       {
         "name": "纸巾",
@@ -78,11 +78,19 @@
         "count": 3
       },
       {
+        "name": "沐浴露",
+        "count": 3
+      },
+      {
         "name": "牙膏",
         "count": 3
       },
       {
         "name": "洗洁精",
+        "count": 3
+      },
+      {
+        "name": "床上用品",
         "count": 3
       },
       {
@@ -114,20 +122,8 @@
         "count": 3
       },
       {
-        "name": "沐浴露",
-        "count": 2
-      },
-      {
-        "name": "床上用品",
-        "count": 2
-      },
-      {
         "name": "帐篷",
         "count": 2
-      },
-      {
-        "name": "羽绒服",
-        "count": 1
       },
       {
         "name": "书包",
@@ -190,7 +186,7 @@
         "count": 1
       },
       {
-        "name": "沐浴露",
+        "name": "连衣裙",
         "count": 1
       },
       {
@@ -205,7 +201,7 @@
   },
   {
     "name": "服饰",
-    "count": 16,
+    "count": 14,
     "subs": [
       {
         "name": "T恤",
@@ -220,16 +216,16 @@
         "count": 3
       },
       {
+        "name": "羽绒服",
+        "count": 2
+      },
+      {
         "name": "连衣裙",
-        "count": 3
+        "count": 2
       },
       {
         "name": "运动鞋",
-        "count": 2
-      },
-      {
-        "name": "羽绒服",
-        "count": 2
+        "count": 1
       }
     ]
   },
@@ -261,7 +257,7 @@
   },
   {
     "name": "图书",
-    "count": 7,
+    "count": 6,
     "subs": [
       {
         "name": "笔记本",
@@ -270,27 +266,23 @@
       {
         "name": "钢笔",
         "count": 3
-      },
-      {
-        "name": "书包",
-        "count": 1
       }
     ]
   },
   {
     "name": "玩具",
-    "count": 3,
+    "count": 5,
     "subs": [
       {
         "name": "玩具",
-        "count": 1
-      },
-      {
-        "name": "帐篷",
-        "count": 1
+        "count": 2
       },
       {
         "name": "书包",
+        "count": 2
+      },
+      {
+        "name": "帐篷",
         "count": 1
       }
     ]
@@ -301,7 +293,11 @@
     "subs": [
       {
         "name": "玩具",
-        "count": 2
+        "count": 1
+      },
+      {
+        "name": "羽绒服",
+        "count": 1
       }
     ]
   }
