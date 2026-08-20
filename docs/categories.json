@@ -1,7 +1,73 @@
 [
   {
-    "name": "洗护清洁剂/卫生巾/纸/香薰",
-    "count": 15,
+    "name": "美食",
+    "count": 44,
+    "subs": [
+      {
+        "name": "奶粉",
+        "count": 3
+      },
+      {
+        "name": "零食",
+        "count": 3
+      },
+      {
+        "name": "牛奶",
+        "count": 3
+      },
+      {
+        "name": "咖啡",
+        "count": 3
+      },
+      {
+        "name": "坚果",
+        "count": 3
+      },
+      {
+        "name": "大米",
+        "count": 3
+      },
+      {
+        "name": "食用油",
+        "count": 3
+      },
+      {
+        "name": "茶叶",
+        "count": 3
+      },
+      {
+        "name": "维生素",
+        "count": 3
+      },
+      {
+        "name": "蛋白粉",
+        "count": 3
+      },
+      {
+        "name": "血压计",
+        "count": 3
+      },
+      {
+        "name": "猫粮",
+        "count": 3
+      },
+      {
+        "name": "狗粮",
+        "count": 3
+      },
+      {
+        "name": "猫砂",
+        "count": 3
+      },
+      {
+        "name": "防晒霜",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "name": "日用品",
+    "count": 42,
     "subs": [
       {
         "name": "纸巾",
@@ -22,30 +88,52 @@
       {
         "name": "洗洁精",
         "count": 3
+      },
+      {
+        "name": "床上用品",
+        "count": 3
+      },
+      {
+        "name": "收纳",
+        "count": 3
+      },
+      {
+        "name": "保温杯",
+        "count": 3
+      },
+      {
+        "name": "雨伞",
+        "count": 3
+      },
+      {
+        "name": "枕头",
+        "count": 3
+      },
+      {
+        "name": "瑜伽垫",
+        "count": 3
+      },
+      {
+        "name": "登山包",
+        "count": 3
+      },
+      {
+        "name": "按摩仪",
+        "count": 3
+      },
+      {
+        "name": "帐篷",
+        "count": 2
+      },
+      {
+        "name": "书包",
+        "count": 1
       }
     ]
   },
   {
-    "name": "咖啡/麦片/冲饮",
-    "count": 9,
-    "subs": [
-      {
-        "name": "奶粉",
-        "count": 3
-      },
-      {
-        "name": "牛奶",
-        "count": 3
-      },
-      {
-        "name": "咖啡",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "3C数码配件",
-    "count": 9,
+    "name": "数码",
+    "count": 18,
     "subs": [
       {
         "name": "数据线",
@@ -56,74 +144,26 @@
         "count": 3
       },
       {
+        "name": "耳机",
+        "count": 3
+      },
+      {
+        "name": "鼠标",
+        "count": 3
+      },
+      {
+        "name": "键盘",
+        "count": 3
+      },
+      {
         "name": "手机壳",
         "count": 3
       }
     ]
   },
   {
-    "name": "宠物/宠物食品及用品",
-    "count": 9,
-    "subs": [
-      {
-        "name": "猫粮",
-        "count": 3
-      },
-      {
-        "name": "狗粮",
-        "count": 3
-      },
-      {
-        "name": "猫砂",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "婴童用品",
-    "count": 6,
-    "subs": [
-      {
-        "name": "奶瓶",
-        "count": 3
-      },
-      {
-        "name": "婴儿推车",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "零食/坚果/特产",
-    "count": 6,
-    "subs": [
-      {
-        "name": "零食",
-        "count": 3
-      },
-      {
-        "name": "坚果",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "粮油调味/速食/干货/烘焙",
-    "count": 6,
-    "subs": [
-      {
-        "name": "大米",
-        "count": 3
-      },
-      {
-        "name": "食用油",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "女士内衣/男士内衣/家居服",
-    "count": 6,
+    "name": "服饰",
+    "count": 15,
     "subs": [
       {
         "name": "袜子",
@@ -132,68 +172,84 @@
       {
         "name": "内衣",
         "count": 3
-      }
-    ]
-  },
-  {
-    "name": "女装/女士精品",
-    "count": 6,
-    "subs": [
+      },
       {
         "name": "羽绒服",
         "count": 3
       },
       {
+        "name": "T恤",
+        "count": 2
+      },
+      {
+        "name": "运动鞋",
+        "count": 2
+      },
+      {
         "name": "连衣裙",
-        "count": 3
+        "count": 2
       }
     ]
   },
   {
-    "name": "彩妆/香水/美妆工具",
-    "count": 6,
+    "name": "母婴",
+    "count": 14,
     "subs": [
+      {
+        "name": "纸尿裤",
+        "count": 3
+      },
+      {
+        "name": "奶瓶",
+        "count": 3
+      },
+      {
+        "name": "童装",
+        "count": 3
+      },
+      {
+        "name": "婴儿推车",
+        "count": 3
+      },
+      {
+        "name": "面膜",
+        "count": 1
+      },
+      {
+        "name": "防晒霜",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "美妆",
+    "count": 14,
+    "subs": [
+      {
+        "name": "洗发水",
+        "count": 3
+      },
       {
         "name": "口红",
         "count": 3
       },
       {
+        "name": "护肤套装",
+        "count": 3
+      },
+      {
         "name": "粉底液",
         "count": 3
-      }
-    ]
-  },
-  {
-    "name": "电脑硬件/显示器/电脑周边",
-    "count": 6,
-    "subs": [
-      {
-        "name": "鼠标",
-        "count": 3
       },
       {
-        "name": "键盘",
-        "count": 3
+        "name": "面膜",
+        "count": 2
       }
     ]
   },
   {
-    "name": "保健食品/膳食营养补充食品",
-    "count": 6,
-    "subs": [
-      {
-        "name": "维生素",
-        "count": 3
-      },
-      {
-        "name": "蛋白粉",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "文具用品/文化用品/商务用品",
-    "count": 6,
+    "name": "图书",
+    "count": 7,
     "subs": [
       {
         "name": "笔记本",
@@ -202,271 +258,41 @@
       {
         "name": "钢笔",
         "count": 3
-      }
-    ]
-  },
-  {
-    "name": "床上用品",
-    "count": 5,
-    "subs": [
-      {
-        "name": "枕头",
-        "count": 3
-      },
-      {
-        "name": "床上用品",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "name": "箱包皮具/热销女包/男包",
-    "count": 5,
-    "subs": [
-      {
-        "name": "登山包",
-        "count": 3
       },
       {
         "name": "书包",
-        "count": 2
+        "count": 1
       }
     ]
   },
   {
-    "name": "玩具/童车/益智/早教/游乐设备",
+    "name": "玩具",
     "count": 4,
     "subs": [
       {
         "name": "玩具",
-        "count": 3
+        "count": 2
       },
       {
         "name": "帐篷",
         "count": 1
-      }
-    ]
-  },
-  {
-    "name": "美容护肤/美体/精油",
-    "count": 4,
-    "subs": [
-      {
-        "name": "护肤套装",
-        "count": 3
       },
-      {
-        "name": "面膜",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "医疗器械",
-    "count": 4,
-    "subs": [
-      {
-        "name": "血压计",
-        "count": 3
-      },
-      {
-        "name": "防晒霜",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "婴童尿裤",
-    "count": 3,
-    "subs": [
-      {
-        "name": "纸尿裤",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "童装/婴儿装/亲子装",
-    "count": 3,
-    "subs": [
-      {
-        "name": "童装",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "茶",
-    "count": 3,
-    "subs": [
-      {
-        "name": "茶叶",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "男装",
-    "count": 3,
-    "subs": [
-      {
-        "name": "T恤",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "运动鞋new",
-    "count": 3,
-    "subs": [
-      {
-        "name": "运动鞋",
-        "count": 2
-      },
-      {
-        "name": "跑步鞋",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "影音电器",
-    "count": 3,
-    "subs": [
-      {
-        "name": "耳机",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "户外/登山/野营/旅行用品",
-    "count": 3,
-    "subs": [
-      {
-        "name": "帐篷",
-        "count": 2
-      },
-      {
-        "name": "收纳",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "餐饮具",
-    "count": 3,
-    "subs": [
-      {
-        "name": "保温杯",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "居家日用",
-    "count": 3,
-    "subs": [
-      {
-        "name": "雨伞",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "运动/瑜伽/健身/球迷用品",
-    "count": 3,
-    "subs": [
-      {
-        "name": "瑜伽垫",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "个人护理/保健/按摩器材",
-    "count": 3,
-    "subs": [
-      {
-        "name": "按摩仪",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "name": "美发护发/假发",
-    "count": 2,
-    "subs": [
-      {
-        "name": "洗发水",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "name": "婴童洗护",
-    "count": 2,
-    "subs": [
-      {
-        "name": "洗发水",
-        "count": 1
-      },
-      {
-        "name": "防晒霜",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "保健用品",
-    "count": 2,
-    "subs": [
-      {
-        "name": "面膜",
-        "count": 1
-      },
-      {
-        "name": "防晒霜",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "收纳整理",
-    "count": 2,
-    "subs": [
-      {
-        "name": "收纳",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "name": "流行男鞋",
-    "count": 1,
-    "subs": [
-      {
-        "name": "运动鞋",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "孕妇装/孕产妇用品/营养",
-    "count": 1,
-    "subs": [
-      {
-        "name": "面膜",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "运动包/户外包/配件",
-    "count": 1,
-    "subs": [
       {
         "name": "书包",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "其他",
+    "count": 2,
+    "subs": [
+      {
+        "name": "玩具",
+        "count": 1
+      },
+      {
+        "name": "T恤",
         "count": 1
       }
     ]
