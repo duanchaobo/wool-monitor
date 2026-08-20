@@ -127,7 +127,7 @@ def llm_classify_category(title, raw_category=""):
                 "Content-Type": "application/json"
             },
             json={
-                "model": "Qwen/Qwen2.5-7B-Instruct",
+                "model": "deepseek-ai/DeepSeek-V3.2",
                 "messages": [{"role": "user", "content": prompt}],
                 "max_tokens": 10,
                 "temperature": 0
