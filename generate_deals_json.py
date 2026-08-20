@@ -225,12 +225,14 @@ def format_deal(deal, index):
     raw_cat = deal.get("category", "")
     merged_cat = merge_category(raw_cat)
     if merged_cat == "其他":
-        # 映射表未命中，用 LLM 根据标题分类
         title = deal.get("title", "")
         if title:
-            merged_cat = llm_classify_category(title, raw_cat)
-            if merged_cat != "其他":
-                print(f"  [LLM分类] {title[:25]}... → {merged_cat}")
+            llm_result = llm_classify_category(title, raw_cat)
+            if llm_result != "其他":
+                merged_cat = llm_result
+        # 统计"其他"类数量
+        _other_count = getattr(format_deal, '_other_count', 0) + 1
+        format_deal._other_count = _other_count
 
     return {
         "id": index,
@@ -252,6 +254,10 @@ def format_deal(deal, index):
 def generate_deals_json(output_dir, search_keyword=None):
     """生成 JSON 数据文件"""
     os.makedirs(output_dir, exist_ok=True)
+
+    # 调试：检查 API Key 是否加载
+    print(f"[DEBUG] SILICONFLOW_API_KEY: {'已配置' if SILICONFLOW_API_KEY else '未配置'}")
+    format_deal._other_count = 0
 
     update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -359,6 +365,7 @@ def generate_deals_json(output_dir, search_keyword=None):
         print(f"📁 输出目录: {output_dir}/")
         print(f"   - deals.json ({len(formatted)} 条)")
         print(f"   - categories.json ({len(categories)} 个品类)")
+        print(f"[DEBUG] 映射到'其他'的商品: {getattr(format_deal, '_other_count', 0)} 条")
 
         return deals_data
 
