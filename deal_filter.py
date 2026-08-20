@@ -24,7 +24,7 @@ SILICONFLOW_API_URL = "https://api.siliconflow.cn/v1/chat/completions"
 MIN_DISCOUNT = 0.0      # 不限折扣
 MIN_PRICE = 0.0         # 不限价格
 CACHE_FILE = "push_cache.json"  # 去重缓存
-CACHE_EXPIRE_MIN = 0    # 0 = 永久去重，不再推送历史已推过的优惠
+CACHE_EXPIRE_MIN = 720  # 12小时去重，过期后同商品可再次推送（如价格更低了）
 
 # 品类过滤：白名单（淘宝实际品类名称，只推这些）
 # 基于MATERIAL_ID_REFERENCE.md中63个有效物料ID的实际返回类目整理

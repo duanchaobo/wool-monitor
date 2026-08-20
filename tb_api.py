@@ -188,7 +188,7 @@ def collect_tb_promotion_deals(promotion_id=37116, page_num=1, page_size=10):
                 "coupon_quota": float(entry_condition) if entry_condition else 0,
                 "coupon_amount": float(entry_discount) if entry_discount else 0,
                 "tag": PROMOTION_IDS.get(promotion_id, "淘宝优惠券"),
-                "category": PROMOTION_IDS.get(promotion_id, "淘宝"),
+                "category": "",  # 店铺券不限品类，设为空跳过品类过滤
                 "img_url": "",
                 "shop": shop_name,
                 "sales": int(total_count) if total_count else 0,
@@ -583,10 +583,22 @@ def collect_tb_all(max_pages=3):
         time.sleep(0.5)
     print(f"[物料推荐] {recommend_count} 条")
 
-    # 3. 关键词搜索 - 母婴+日用品（有券商品）
+    # 3. 关键词搜索 - 多品类（有券商品）
     search_keywords = [
-        "纸尿裤", "奶粉", "奶瓶", "玩具", "童装",          # 母婴
-        "纸巾", "洗衣液", "洗发水", "沐浴露", "牙膏"        # 日用洗护
+        # 母婴
+        "纸尿裤", "奶粉", "奶瓶", "玩具", "童装",
+        # 日用洗护
+        "纸巾", "洗衣液", "洗发水", "沐浴露", "牙膏",
+        # 食品饮料
+        "零食", "牛奶", "咖啡", "坚果", "大米",
+        # 服饰
+        "T恤", "运动鞋", "袜子", "内衣", "羽绒服",
+        # 美妆
+        "面膜", "口红", "护肤套装", "防晒霜",
+        # 数码家电
+        "数据线", "充电宝", "耳机", "鼠标",
+        # 家居
+        "床上用品", "收纳", "保温杯", "雨伞",
     ]
     search_count = 0
     seen_search_ids = set()
