@@ -33,6 +33,54 @@ if os.path.exists(env_file):
 from deal_collector import extract_number
 
 
+# 淘宝官方类目 → 8大精简类目映射
+CATEGORY_MERGE_MAP = {
+    # 母婴
+    "婴童用品": "母婴", "婴童尿裤": "母婴", "婴童洗护": "母婴",
+    "孕妇装/孕产妇用品/营养": "母婴", "童装/婴儿装/亲子装": "母婴",
+    "玩具/童车/益智/早教/游乐设备": "玩具",
+    # 日用品
+    "洗护清洁剂/卫生巾/纸/香薰": "日用品", "居家日用": "日用品",
+    "收纳整理": "日用品", "个人护理/保健/按摩器材": "日用品",
+    "餐饮具": "日用品", "床上用品": "日用品",
+    "箱包皮具/热销女包/男包": "日用品", "运动包/户外包/配件": "日用品",
+    "户外/登山/野营/旅行用品": "日用品",
+    # 数码
+    "3C数码配件": "数码", "电脑硬件/显示器/电脑周边": "数码",
+    "影音电器": "数码",
+    # 美食
+    "咖啡/麦片/冲饮": "美食", "零食/坚果/特产": "美食",
+    "粮油调味/速食/干货/烘焙": "美食", "茶": "美食",
+    "保健食品/膳食营养补充食品": "美食", "医疗器械": "美食",
+    "保健用品": "美食", "宠物/宠物食品及用品": "美食",
+    # 美妆
+    "彩妆/香水/美妆工具": "美妆", "美容护肤/美体/精油": "美妆",
+    "美发护发/假发": "美妆",
+    # 服饰
+    "女装/女士精品": "服饰", "男装": "服饰",
+    "女士内衣/男士内衣/家居服": "服饰", "流行男鞋": "服饰",
+    "运动鞋new": "服饰",
+    # 图书
+    "文具用品/文化用品/商务用品": "图书",
+    # 运动
+    "运动/瑜伽/健身/球迷用品": "日用品",
+}
+
+
+def merge_category(raw_category):
+    """将淘宝官方类目合并为8大精简类目"""
+    if not raw_category:
+        return "其他"
+    # 精确匹配
+    if raw_category in CATEGORY_MERGE_MAP:
+        return CATEGORY_MERGE_MAP[raw_category]
+    # 模糊匹配（取前缀）
+    for key, val in CATEGORY_MERGE_MAP.items():
+        if raw_category.startswith(key) or key.startswith(raw_category):
+            return val
+    return "其他"
+
+
 # 全品类搜索关键词（覆盖所有常见品类）
 ALL_CATEGORY_KEYWORDS = [
     # 母婴
@@ -114,13 +162,17 @@ def format_deal(deal, index):
     taokouling = deal.get("taokouling", "")
     url = deal.get("url", "")
 
+    # 合并类目
+    raw_cat = deal.get("category", "其他")
+    merged_cat = merge_category(raw_cat)
+
     return {
         "id": index,
         "title": deal.get("title", ""),
         "price": price,
         "predict_price": predict,
         "discount": discount_pct,
-        "category": deal.get("category", "其他"),
+        "category": merged_cat,
         "sub_category": deal.get("sub_category", ""),
         "shop": deal.get("shop", ""),
         "img_url": deal.get("img_url", ""),
