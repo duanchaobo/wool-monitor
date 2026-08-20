@@ -178,35 +178,25 @@ ALL_CATEGORY_KEYWORDS = [
 
 
 def collect_all_categories():
-    """采集全品类数据，并生成淘口令"""
+    """采集全品类数据（遍历全部物料ID），并生成淘口令"""
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-    from tb_api import collect_tb_material_search, generate_taokouling
+    from tb_api import collect_tb_all, generate_taokouling
 
-    all_deals = []
-    seen_ids = set()
+    # 采集全部63个物料ID的商品
+    all_deals = collect_tb_all()
 
-    for kw in ALL_CATEGORY_KEYWORDS:
-        try:
-            deals = collect_tb_material_search(q=kw, has_coupon=True, page_size=3)
-            for d in deals:
-                key = d.get("title", "")[:20] + "|" + d.get("price", "")
-                if key not in seen_ids:
-                    seen_ids.add(key)
-                    # 生成淘口令（方便复制后淘宝直接跳转）
-                    title = d.get("title", "")
-                    url = d.get("url", "")
-                    if title and url:
-                        try:
-                            tk = generate_taokouling(title, url)
-                            if tk:
-                                d["taokouling"] = tk
-                        except:
-                            pass
-                    all_deals.append(d)
-        except Exception as e:
-            print(f"  [搜索失败] {kw}: {e}")
-            continue
+    # 为每个商品生成淘口令
+    for d in all_deals:
+        title = d.get("title", "")
+        url = d.get("url", "")
+        if title and url:
+            try:
+                tk = generate_taokouling(title, url)
+                if tk:
+                    d["taokouling"] = tk
+            except:
+                pass
 
     return all_deals
 
