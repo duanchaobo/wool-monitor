@@ -67,7 +67,7 @@
   },
   {
     "name": "日用品",
-    "count": 42,
+    "count": 43,
     "subs": [
       {
         "name": "纸巾",
@@ -102,11 +102,15 @@
         "count": 3
       },
       {
-        "name": "雨伞",
+        "name": "枕头",
         "count": 3
       },
       {
         "name": "瑜伽垫",
+        "count": 3
+      },
+      {
+        "name": "帐篷",
         "count": 3
       },
       {
@@ -122,11 +126,7 @@
         "count": 3
       },
       {
-        "name": "帐篷",
-        "count": 2
-      },
-      {
-        "name": "枕头",
+        "name": "雨伞",
         "count": 1
       }
     ]
@@ -163,7 +163,7 @@
   },
   {
     "name": "母婴",
-    "count": 17,
+    "count": 15,
     "subs": [
       {
         "name": "纸尿裤",
@@ -182,10 +182,6 @@
         "count": 3
       },
       {
-        "name": "洗发水",
-        "count": 1
-      },
-      {
         "name": "连衣裙",
         "count": 1
       },
@@ -196,47 +192,17 @@
       {
         "name": "防晒霜",
         "count": 1
-      },
-      {
-        "name": "枕头",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "name": "服饰",
-    "count": 14,
-    "subs": [
-      {
-        "name": "袜子",
-        "count": 3
-      },
-      {
-        "name": "内衣",
-        "count": 3
-      },
-      {
-        "name": "羽绒服",
-        "count": 3
-      },
-      {
-        "name": "T恤",
-        "count": 2
-      },
-      {
-        "name": "连衣裙",
-        "count": 2
-      },
-      {
-        "name": "运动鞋",
-        "count": 1
       }
     ]
   },
   {
     "name": "美妆",
-    "count": 13,
+    "count": 14,
     "subs": [
+      {
+        "name": "洗发水",
+        "count": 3
+      },
       {
         "name": "口红",
         "count": 3
@@ -250,12 +216,38 @@
         "count": 3
       },
       {
-        "name": "洗发水",
+        "name": "面膜",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "name": "服饰",
+    "count": 13,
+    "subs": [
+      {
+        "name": "袜子",
+        "count": 3
+      },
+      {
+        "name": "内衣",
+        "count": 3
+      },
+      {
+        "name": "T恤",
         "count": 2
       },
       {
-        "name": "面膜",
+        "name": "羽绒服",
         "count": 2
+      },
+      {
+        "name": "连衣裙",
+        "count": 2
+      },
+      {
+        "name": "运动鞋",
+        "count": 1
       }
     ]
   },
@@ -279,11 +271,7 @@
     "subs": [
       {
         "name": "玩具",
-        "count": 2
-      },
-      {
-        "name": "帐篷",
-        "count": 1
+        "count": 3
       }
     ]
   },
@@ -292,11 +280,11 @@
     "count": 2,
     "subs": [
       {
-        "name": "玩具",
+        "name": "T恤",
         "count": 1
       },
       {
-        "name": "枕头",
+        "name": "羽绒服",
         "count": 1
       }
     ]
