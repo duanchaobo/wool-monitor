@@ -112,11 +112,17 @@ jobs:
           script: |
             source /etc/network_turbo 2>/dev/null || true
             rm -rf wool-monitor
-            # git clone 带重试（学术加速不稳定）
-            for i in 1 2 3; do
+            # git clone 带重试+完整性检查（学术加速不稳定）
+            for i in 1 2 3 4 5; do
               echo ">>> git clone 尝试第 $i 次..."
-              git clone https://github.com/duanchaobo/wool-monitor.git && break
-              echo "克隆失败，等待 10 秒后重试..."
+              git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
+              # 检查关键文件是否存在，确保克隆完整
+              if [ -f wool-monitor/requirements.txt ] && [ -f wool-monitor/generate_deals_json.py ]; then
+                echo "✅ git clone 完成"
+                break
+              fi
+              echo "克隆不完整，等待 10 秒后重试..."
+              rm -rf wool-monitor
               sleep 10
             done
             cd wool-monitor
