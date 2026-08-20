@@ -378,7 +378,7 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
                 "coupon_discount": 0,
                 "tag": f"物料推荐",
                 "category": basic.get("level_one_category_name", ""),
-                "sub_category": basic.get("level_two_category_name", "") or sub_name or "",
+                "sub_category": basic.get("category_name", "") or sub_name or "",
                 "img_url": pict_url,
                 "shop": shop_title,
                 "sales": annual_vol or tk_sales,
