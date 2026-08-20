@@ -168,17 +168,16 @@ jobs:
             # 开启学术加速（解决 GitHub 访问超时）
             source /etc/network_turbo 2>/dev/null || true
 
-            # 检查项目是否已存在
-            if [ -d "wool-monitor/.git" ]; then
-              echo "📁 项目已存在，拉取最新代码"
-              cd wool-monitor
-              git pull --rebase origin main
-            else
-              echo "📥 克隆项目..."
-              rm -rf wool-monitor
-              git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
-              cd wool-monitor
-            fi
+            # 每次强制重新克隆最新代码（避免git pull冲突导致旧代码残留）
+            echo "📥 克隆最新代码..."
+            rm -rf wool-monitor
+            git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
+            cd wool-monitor
+
+            # 安装中文字体（解决图片文字乱码）
+            echo "📦 安装中文字体..."
+            apt-get update -qq && apt-get install -y -qq fonts-wqy-zenhei fonts-wqy-microhei 2>/dev/null || true
+            fc-cache -fv 2>/dev/null || true
 
             # 安装依赖
             pip3 install -r requirements.txt -q
