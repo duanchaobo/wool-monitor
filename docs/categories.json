@@ -1,150 +1,372 @@
 [
   {
     "name": "洗护清洁剂/卫生巾/纸/香薰",
-    "count": 15
+    "count": 15,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 15
+      }
+    ]
   },
   {
     "name": "咖啡/麦片/冲饮",
-    "count": 9
+    "count": 9,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 9
+      }
+    ]
   },
   {
     "name": "3C数码配件",
-    "count": 9
+    "count": 9,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 9
+      }
+    ]
   },
   {
     "name": "宠物/宠物食品及用品",
-    "count": 9
-  },
-  {
-    "name": "文具用品/文化用品/商务用品",
-    "count": 7
+    "count": 9,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 9
+      }
+    ]
   },
   {
     "name": "婴童用品",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "零食/坚果/特产",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "粮油调味/速食/干货/烘焙",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "女士内衣/男士内衣/家居服",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "女装/女士精品",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "彩妆/香水/美妆工具",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "电脑硬件/显示器/电脑周边",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "保健食品/膳食营养补充食品",
-    "count": 6
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
-    "name": "床上用品",
-    "count": 5
-  },
-  {
-    "name": "玩具/童车/益智/早教/游乐设备",
-    "count": 4
-  },
-  {
-    "name": "运动鞋new",
-    "count": 4
+    "name": "文具用品/文化用品/商务用品",
+    "count": 6,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 6
+      }
+    ]
   },
   {
     "name": "美容护肤/美体/精油",
-    "count": 4
+    "count": 5,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 5
+      }
+    ]
   },
   {
-    "name": "医疗器械",
-    "count": 4
+    "name": "床上用品",
+    "count": 5,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 5
+      }
+    ]
   },
   {
     "name": "箱包皮具/热销女包/男包",
-    "count": 4
+    "count": 5,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "name": "玩具/童车/益智/早教/游乐设备",
+    "count": 4,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "name": "医疗器械",
+    "count": 4,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 4
+      }
+    ]
   },
   {
     "name": "婴童尿裤",
-    "count": 3
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
   },
   {
     "name": "童装/婴儿装/亲子装",
-    "count": 3
-  },
-  {
-    "name": "茶",
-    "count": 3
-  },
-  {
-    "name": "男装",
-    "count": 3
-  },
-  {
-    "name": "影音电器",
-    "count": 3
-  },
-  {
-    "name": "餐饮具",
-    "count": 3
-  },
-  {
-    "name": "居家日用",
-    "count": 3
-  },
-  {
-    "name": "运动/瑜伽/健身/球迷用品",
-    "count": 3
-  },
-  {
-    "name": "个人护理/保健/按摩器材",
-    "count": 3
-  },
-  {
-    "name": "孕妇装/孕产妇用品/营养",
-    "count": 2
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
   },
   {
     "name": "美发护发/假发",
-    "count": 2
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
   },
   {
-    "name": "保健用品",
-    "count": 2
+    "name": "茶",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "男装",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "运动鞋new",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "影音电器",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "餐饮具",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "居家日用",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "运动/瑜伽/健身/球迷用品",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "name": "个人护理/保健/按摩器材",
+    "count": 3,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 3
+      }
+    ]
   },
   {
     "name": "收纳整理",
-    "count": 2
+    "count": 2,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 2
+      }
+    ]
   },
   {
     "name": "户外/登山/野营/旅行用品",
-    "count": 2
+    "count": 2,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 2
+      }
+    ]
   },
   {
     "name": "流行男鞋",
-    "count": 1
+    "count": 1,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "孕妇装/孕产妇用品/营养",
+    "count": 1,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 1
+      }
+    ]
   },
   {
     "name": "婴童洗护",
-    "count": 1
+    "count": 1,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "保健用品",
+    "count": 1,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 1
+      }
+    ]
   },
   {
     "name": "厨房/烹饪用具",
-    "count": 1
+    "count": 1,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 1
+      }
+    ]
   },
   {
     "name": "运动包/户外包/配件",
-    "count": 1
+    "count": 1,
+    "subs": [
+      {
+        "name": "其他",
+        "count": 1
+      }
+    ]
   }
 ]
