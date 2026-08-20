@@ -196,6 +196,48 @@ def update_github_secret(token):
     return all_ok
 
 
+def update_autodl_config(token):
+    """更新 autodl定时开机关机 项目的 config.py 中的 SESSION_TOKEN"""
+    import re
+    from pathlib import Path
+    config_path = Path(PROJECT_DIR).parent / "autodl定时开机关机" / "config.py"
+    if not config_path.exists():
+        logger.debug(f"未找到 {config_path}，跳过")
+        return
+    try:
+        content = config_path.read_text(encoding="utf-8")
+        new_content = re.sub(
+            r'SESSION_TOKEN\s*=\s*"[^"]*"',
+            f'SESSION_TOKEN = "{token}"',
+            content,
+        )
+        config_path.write_text(new_content, encoding="utf-8")
+        logger.info("   ✅ autodl定时开机关机/config.py 已同步")
+    except Exception as e:
+        logger.warning(f"   ❌ 同步 config.py 失败: {e}")
+
+
+def update_jinbu_env(token):
+    """更新 金部长解说 项目的 .env 中的 AUTODL_SESSION_TOKEN"""
+    import re
+    from pathlib import Path
+    env_path = Path(PROJECT_DIR).parent / "金部长解说" / ".env"
+    if not env_path.exists():
+        logger.debug(f"未找到 {env_path}，跳过")
+        return
+    try:
+        content = env_path.read_text(encoding="utf-8")
+        new_content = re.sub(
+            r'AUTODL_SESSION_TOKEN=[^\n]*',
+            f'AUTODL_SESSION_TOKEN={token}',
+            content,
+        )
+        env_path.write_text(new_content, encoding="utf-8")
+        logger.info("   ✅ 金部长解说/.env 已同步")
+    except Exception as e:
+        logger.warning(f"   ❌ 同步 .env 失败: {e}")
+
+
 def main():
     print("=" * 50)
     print("🔑 AutoDL Token 获取 & GitHub Secret 更新工具")
@@ -225,10 +267,18 @@ def main():
         sys.exit(1)
 
     # 更新 GitHub Secret
-    if update_github_secret(token):
+    gh_ok = update_github_secret(token)
+
+    # 同步更新本地项目的 token
+    update_autodl_config(token)
+    update_jinbu_env(token)
+
+    if gh_ok:
         print("\n" + "=" * 50)
-        print("🎉 全部完成！Token 已更新到 GitHub Secret")
-        print("   下次 GitHub Actions 运行时将使用新 Token")
+        print("🎉 全部完成！")
+        print("   GitHub Secret 已更新到 2 个仓库")
+        print("   autodl定时开机关机/config.py 已同步")
+        print("   金部长解说/.env 已同步")
         print("=" * 50)
     else:
         sys.exit(1)

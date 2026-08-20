@@ -244,11 +244,11 @@ def _add_text_overlay(img, deal):
     from PIL import Image, ImageDraw
 
     w, h = img.size
-    # 字体大小按图片宽度自适应（保证手机端可读）
-    font_size = max(48, int(w * 0.13))
-    line_h = font_size + 18
-    total_lines = 3
-    bar_h = line_h * total_lines + 24
+    # 蒙条高度不超过图片30%（避免遮挡商品主体）
+    bar_h = int(h * 0.30)
+    # 字体大小在蒙条内自适应（2行文字）
+    font_size = max(36, min(int(bar_h * 0.35), int(w * 0.10)))
+    line_h = font_size + 14
 
     # 半透明黑色底色条（覆盖底部）
     img = img.convert("RGBA")
@@ -280,7 +280,7 @@ def _add_text_overlay(img, deal):
     else:
         lines = [(f"现价 ¥{current}", (255, 255, 255))]  # 白色
 
-    start_y = h - bar_h + 10
+    start_y = h - bar_h + (bar_h - len(lines) * line_h) // 2  # 垂直居中
     for i, (text, color) in enumerate(lines):
         bbox = draw.textbbox((0, 0), text, font=font)
         tw = bbox[2] - bbox[0]
@@ -316,14 +316,27 @@ def push_image(webhook_url, img_url, deal=None):
 
         img = Image.open(BytesIO(resp.content)).convert("RGB")
 
+        # 限制图片最大尺寸（企微限制2MB，过大会报invalid image size）
+        max_size = 1200
+        if max(img.size) > max_size:
+            ratio = max_size / max(img.size)
+            new_w = int(img.width * ratio)
+            new_h = int(img.height * ratio)
+            img = img.resize((new_w, new_h), Image.LANCZOS)
+
         # 叠加优惠信息文字
         if deal:
             img = _add_text_overlay(img, deal)
 
-        # 转 PNG
+        # 转 PNG（限制文件大小<2MB）
         buf = BytesIO()
-        img.save(buf, format="PNG")
+        img.save(buf, format="PNG", optimize=True)
         img_bytes = buf.getvalue()
+        # 如果还是太大，转 JPEG 压缩
+        if len(img_bytes) > 1.8 * 1024 * 1024:
+            buf = BytesIO()
+            img.save(buf, format="JPEG", quality=80, optimize=True)
+            img_bytes = buf.getvalue()
 
         img_base64 = base64.b64encode(img_bytes).decode()
         md5_hash = hashlib.md5(img_bytes).hexdigest()
