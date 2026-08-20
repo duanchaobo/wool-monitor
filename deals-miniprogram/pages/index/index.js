@@ -3,10 +3,12 @@ const api = require('../../utils/api.js');
 
 Page({
   data: {
-    categories: [],        // 品类列表
-    activeCategory: '全部', // 当前选中品类
-    allDeals: [],          // 所有商品
-    filteredDeals: [],     // 当前品类过滤后的商品
+    categories: [],         // 一级类目列表（含subs二级类目）
+    currentSubs: [],        // 当前一级类目下的二级类目列表
+    activeCategory: '全部', // 当前选中一级类目
+    activeSubCategory: '',  // 当前选中二级类目
+    allDeals: [],           // 所有商品
+    filteredDeals: [],      // 过滤后的商品
     loading: true,
     updateTime: ''
   },
@@ -16,7 +18,6 @@ Page({
   },
 
   onShow() {
-    // 每次显示页面时刷新数据
     this.loadData();
   },
 
@@ -38,27 +39,21 @@ Page({
       // 过滤：只保留优惠力度 >= 10% 的商品
       const allDeals = (data.deals || []).filter(d => d.discount >= 10);
 
-      // 按品类分组统计
-      const catCount = {};
-      allDeals.forEach(d => {
-        const cat = d.category || '其他';
-        catCount[cat] = (catCount[cat] || 0) + 1;
-      });
-
-      // 构建品类列表（按商品数降序）
+      // 构建一级类目（含二级类目），按商品数降序
       const categoriesWithDeals = categories
         .map(cat => ({
           name: cat.name,
-          count: catCount[cat.name] || 0
+          count: cat.count || 0,
+          subs: cat.subs || []
         }))
         .filter(cat => cat.count > 0)
         .sort((a, b) => b.count - a.count);
 
-      // 缓存到本地，供搜索页使用（同样过滤）
+      // 缓存到本地，供搜索页使用
       wx.setStorageSync('allDeals', allDeals);
 
       this.setData({
-        categories: [{ name: '全部', count: allDeals.length }, ...categoriesWithDeals],
+        categories: [{ name: '全部', count: allDeals.length, subs: [] }, ...categoriesWithDeals],
         allDeals: allDeals,
         filteredDeals: allDeals,
         loading: false,
@@ -75,22 +70,45 @@ Page({
   },
 
   /**
-   * 切换品类
+   * 切换一级类目
    */
   switchCategory(e) {
     const category = e.currentTarget.dataset.category;
+    // 找到当前一级类目对应的二级类目
+    const catObj = this.data.categories.find(c => c.name === category);
+    const subs = catObj ? (catObj.subs || []) : [];
+
     if (category === '全部') {
       this.setData({
         activeCategory: category,
+        activeSubCategory: '',
+        currentSubs: [],
         filteredDeals: this.data.allDeals
       });
     } else {
       const filtered = this.data.allDeals.filter(d => d.category === category);
       this.setData({
         activeCategory: category,
+        activeSubCategory: '',
+        currentSubs: subs,
         filteredDeals: filtered
       });
     }
+  },
+
+  /**
+   * 切换二级类目
+   */
+  switchSubCategory(e) {
+    const subCategory = e.currentTarget.dataset.sub;
+    const activeCategory = this.data.activeCategory;
+    const filtered = this.data.allDeals.filter(d =>
+      d.category === activeCategory && d.sub_category === subCategory
+    );
+    this.setData({
+      activeSubCategory: subCategory,
+      filteredDeals: filtered
+    });
   },
 
   /**
@@ -108,7 +126,6 @@ Page({
   copyLink(e) {
     const taokouling = e.currentTarget.dataset.taokouling || '';
     const url = e.currentTarget.dataset.url || '';
-    // 优先用淘口令，没有则用链接
     const copyData = taokouling || url;
     wx.setClipboardData({
       data: copyData,

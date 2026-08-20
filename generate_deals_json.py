@@ -121,6 +121,7 @@ def format_deal(deal, index):
         "predict_price": predict,
         "discount": discount_pct,
         "category": deal.get("category", "其他"),
+        "sub_category": deal.get("sub_category", ""),
         "shop": deal.get("shop", ""),
         "img_url": deal.get("img_url", ""),
         "url": url,
@@ -201,16 +202,27 @@ def generate_deals_json(output_dir, search_keyword=None):
         formatted = [d for d in formatted if d["discount"] >= 10]
         print(f"  优惠≥10%: {len(formatted)} 条")
 
-        # 5. 按品类分组
+        # 5. 按一级+二级类目分组
         from collections import defaultdict
         by_category = defaultdict(list)
         for d in formatted:
             by_category[d["category"]].append(d)
 
-        # 6. 生成品类列表
+        # 6. 生成两级类目列表
         categories = []
         for cat, items in sorted(by_category.items(), key=lambda x: -len(x[1])):
-            categories.append({"name": cat, "count": len(items)})
+            # 统计二级类目
+            sub_cat_count = defaultdict(int)
+            for item in items:
+                sub = item.get("sub_category", "") or "其他"
+                sub_cat_count[sub] += 1
+            # 按数量降序排列二级类目
+            sub_cats = sorted(sub_cat_count.items(), key=lambda x: -x[1])
+            categories.append({
+                "name": cat,
+                "count": len(items),
+                "subs": [{"name": s[0], "count": s[1]} for s in sub_cats]
+            })
 
         # 7. 保存 deals.json（包含所有有效商品，不去重）
         deals_data = {

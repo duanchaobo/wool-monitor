@@ -6,55 +6,76 @@
     <view class="search-btn" style="background:#ddd;color:#999;">搜索</view>
   </view>
 
-  <!-- 品类标签 -->
-  <scroll-view class="category-tabs" scroll-x="true" enhanced="true" show-scrollbar="false">
-    <view
-      wx:for="{{categories}}"
-      wx:key="name"
-      class="category-tab {{activeCategory === item.name ? 'active' : ''}}"
-      data-category="{{item.name}}"
-      bindtap="switchCategory"
-    >
-      {{item.name}} ({{item.count}})
-    </view>
-  </scroll-view>
-
-  <!-- 商品列表 -->
-  <view wx:if="{{loading}}" class="loading">加载中...</view>
-
-  <view wx:elif="{{filteredDeals.length === 0}}" class="empty">
-    <view class="empty-icon">📭</view>
-    <view>暂无该品类优惠</view>
-  </view>
-
-  <view wx:else class="deal-list">
-    <view
-      wx:for="{{filteredDeals}}"
-      wx:key="id"
-      class="deal-card"
-      data-url="{{item.url}}"
-      data-taokouling="{{item.taokouling}}"
-      bindtap="copyLink"
-    >
-      <image class="deal-image" src="{{item.img_url}}" mode="aspectFill" lazy-load="true"></image>
-      <view class="deal-info">
-        <view class="deal-title">{{item.title}}</view>
-        <view class="deal-price-row">
-          <view>
-            <text class="deal-price deal-price-symbol">¥</text>
-            <text class="deal-price">{{item.predict_price || item.price}}</text>
-            <text wx:if="{{item.predict_price && item.predict_price !== item.price}}" class="deal-original-price">¥{{item.price}}</text>
-          </view>
-          <view wx:if="{{item.discount > 0}}" class="deal-discount">{{item.discount}}%OFF</view>
-        </view>
-        <view wx:if="{{item.shop}}" class="deal-shop">🏪 {{item.shop}}</view>
-        <view wx:if="{{item.tags}}" class="deal-tags">
-          <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="deal-tag">{{tag}}</text>
-        </view>
+  <!-- 主体：左侧一级类目 + 右侧内容 -->
+  <view class="main-content">
+    <!-- 左侧一级类目 -->
+    <scroll-view class="category-sidebar" scroll-y="true">
+      <view
+        wx:for="{{categories}}"
+        wx:key="name"
+        class="sidebar-item {{activeCategory === item.name ? 'active' : ''}}"
+        data-category="{{item.name}}"
+        bindtap="switchCategory"
+      >
+        <text class="sidebar-text">{{item.name}}</text>
+        <text class="sidebar-count">{{item.count}}</text>
       </view>
+    </scroll-view>
+
+    <!-- 右侧：二级类目 + 商品列表 -->
+    <view class="content-area">
+      <!-- 二级类目标签 -->
+      <scroll-view wx:if="{{currentSubs.length > 0}}" class="sub-category-bar" scroll-x="true" enhanced="true" show-scrollbar="false">
+        <view
+          wx:for="{{currentSubs}}"
+          wx:key="name"
+          class="sub-tab {{activeSubCategory === item.name ? 'active' : ''}}"
+          data-sub="{{item.name}}"
+          bindtap="switchSubCategory"
+        >
+          {{item.name}}({{item.count}})
+        </view>
+      </scroll-view>
+
+      <!-- 商品列表 -->
+      <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+      <view wx:elif="{{filteredDeals.length === 0}}" class="empty">
+        <view class="empty-icon">📭</view>
+        <view>暂无该品类优惠</view>
+      </view>
+
+      <scroll-view wx:else class="deal-scroll" scroll-y="true">
+        <view class="deal-list">
+          <view
+            wx:for="{{filteredDeals}}"
+            wx:key="id"
+            class="deal-card"
+            data-url="{{item.url}}"
+            data-taokouling="{{item.taokouling}}"
+            bindtap="copyLink"
+          >
+            <image class="deal-image" src="{{item.img_url}}" mode="aspectFill" lazy-load="true"></image>
+            <view class="deal-info">
+              <view class="deal-title">{{item.title}}</view>
+              <view class="deal-price-row">
+                <view>
+                  <text class="deal-price deal-price-symbol">¥</text>
+                  <text class="deal-price">{{item.predict_price || item.price}}</text>
+                  <text wx:if="{{item.predict_price && item.predict_price !== item.price}}" class="deal-original-price">¥{{item.price}}</text>
+                </view>
+                <view wx:if="{{item.discount > 0}}" class="deal-discount">{{item.discount}}%OFF</view>
+              </view>
+              <view wx:if="{{item.shop}}" class="deal-shop">🏪 {{item.shop}}</view>
+              <view wx:if="{{item.tags}}" class="deal-tags">
+                <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="deal-tag">{{tag}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 更新时间 -->
+        <view wx:if="{{updateTime}}" class="update-time">数据更新时间: {{updateTime}}</view>
+      </scroll-view>
     </view>
   </view>
-
-  <!-- 更新时间 -->
-  <view wx:if="{{updateTime}}" class="update-time">数据更新时间: {{updateTime}}</view>
 </view>
