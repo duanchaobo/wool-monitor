@@ -57,9 +57,10 @@ def main():
     print("\n🔍 正在筛选高价值信息...")
     normal_deals, urgent_deals = filter_deals(all_deals)
 
-    # Step 3: 按品类去重（每个品类只推优惠力度最大的1款）
-    def pick_top_per_category(deals, max_total=MAX_PUSH_PER_RUN):
-        """按品类分组，每组取折扣最大的1条，总数不超过max_total"""
+    # Step 3: 按品类去重（每个品类随机取1款，避免原价虚高的商品）
+    def pick_random_per_category(deals, max_total=MAX_PUSH_PER_RUN):
+        """按品类分组，每组随机取1条，总数不超过max_total"""
+        import random
         from collections import defaultdict
         by_cat = defaultdict(list)
         for d in deals:
@@ -67,14 +68,12 @@ def main():
             by_cat[cat].append(d)
         result = []
         for cat, items in by_cat.items():
-            best = max(items, key=lambda x: x.get("discount", 0))
-            result.append(best)
-        # 按折扣排序，取前max_total
-        result.sort(key=lambda x: x.get("discount", 0), reverse=True)
+            result.append(random.choice(items))
+        random.shuffle(result)
         return result[:max_total]
 
-    urgent_final = pick_top_per_category(urgent_deals)
-    normal_final = pick_top_per_category(normal_deals)
+    urgent_final = pick_random_per_category(urgent_deals)
+    normal_final = pick_random_per_category(normal_deals)
 
     # Step 4: 推送
     if urgent_final:
