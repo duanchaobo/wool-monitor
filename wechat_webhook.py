@@ -151,9 +151,12 @@ def push_deal(deal):
 
     content = "\n".join(msg_lines)
 
+    # 使用 text 类型而非 markdown：
+    # - markdown 在企微是卡片消息，转发到微信会显示"不支持的消息类型"
+    # - text 是纯文本，企微和微信都能正常显示和转发
     payload = {
-        "msgtype": "markdown",
-        "markdown": {
+        "msgtype": "text",
+        "text": {
             "content": content
         }
     }
