@@ -222,11 +222,11 @@ def collect_all():
     print(f"开始采集优惠信息... {datetime.now().strftime('%H:%M:%S')}")
     print("=" * 50)
 
-    # 0. 京东联盟 API（京粉精选）
-    from jd_api import collect_jd_all_channels
-    jd_deals = collect_jd_all_channels()
-    all_deals.extend(jd_deals)
-    print(f"京东联盟精选: {len(jd_deals)} 条")
+    # 0. 京东联盟 API（京粉精选）- 暂时注释，权限有限商品少
+    # from jd_api import collect_jd_all_channels
+    # jd_deals = collect_jd_all_channels()
+    # all_deals.extend(jd_deals)
+    # print(f"京东联盟精选: {len(jd_deals)} 条")
 
     # 0.2 淘宝联盟（物料精选 - 多品类高佣优惠券）
     from tb_api import collect_tb_all
