@@ -2,7 +2,8 @@
 <view class="container">
   <!-- 搜索入口 -->
   <view class="search-bar" bindtap="goToSearch">
-    <view class="search-input" style="color:#999;">🔍 搜索优惠商品...</view    <view class="search-btn" style="background:#ddd;color:#999;">搜索</view>
+    <view class="search-input" style="color:#999;">🔍 搜索优惠商品...</view>
+    <view class="search-btn" style="background:#ddd;color:#999;">搜索</view>
   </view>
 
   <!-- 品类标签 -->
