@@ -512,52 +512,14 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
 
 def collect_tb_all(max_pages=3):
     """
-    淘宝联盟全量采集 - 多种优惠券类型 + 物料推荐 + 关键词搜索
+    淘宝联盟全量采集 - 仅物料推荐API（taobao.tbk.dg.material.recommend）
 
     Args:
-        max_pages: 每种优惠券最多翻几页
+        max_pages: 每种优惠券最多翻几页（未使用）
     """
     all_deals = []
 
-    # 1. 权益物料精选（店铺券）
-    target_promotions = [37116, 62191, 37104, 61809]
-    promotion_count = 0
-    seen_promo_titles = set()
-    for promotion_id in target_promotions:
-        for page in range(1, max_pages + 1):
-            deals = collect_tb_promotion_deals(
-                promotion_id=promotion_id,
-                page_num=page,
-                page_size=10
-            )
-            if not deals:
-                break
-            # 翻页去重：本页全部是重复数据则停止翻页
-            new_deals = []
-            for d in deals:
-                key = d.get("title", "")[:20]
-                if key not in seen_promo_titles:
-                    seen_promo_titles.add(key)
-                    new_deals.append(d)
-            if not new_deals:
-                break  # 本页全是重复，停止翻页
-            all_deals.extend(new_deals)
-            promotion_count += len(new_deals)
-            time.sleep(0.5)
-    print(f"[权益物料精选] {promotion_count} 条")
-
-    # 2. 物料推荐 - 母婴+日用品（基于MATERIAL_ID_REFERENCE.md验证有效的ID）
-    # === 母婴类 ===
-    # 4040-4045: 母婴主题(备孕/0-6月/7-12月/1-3岁/4-6岁/7-12岁)
-    # 13374: 高佣榜-母婴, 27454: 大额券-母婴, 84226: 高佣母婴, 86616: 品牌券-母婴
-    # 87579: 母婴团精选, 87578: 品牌团精选
-    # === 日用/美妆/食品类 ===
-    # 13371: 高佣榜-美妆个护, 13375: 高佣榜-食品
-    # 27451: 大额券-食品, 27453: 大额券-美妆个护, 27798: 大额券-家居家装
-    # 84227: 高佣美妆, 84228: 高佣美食
-    # 86589: 天猫国际直营类目爆款清单
-    # 86614: 品牌券-食品, 86619: 品牌券-美妆个护, 86622: 品牌券-家居家装
-    # 87575: 美妆物料精选, 91356: 618快消精选
+    # 物料推荐 - 全部63个有效物料ID（基于MATERIAL_ID_REFERENCE.md）
     # 物料ID -> 二级类目名称映射（全部63个有效ID）
     MATERIAL_ID_NAMES = {
         # === 母婴类 ===
@@ -594,7 +556,7 @@ def collect_tb_all(max_pages=3):
     seen_recommend_ids = set()
     for mid in TARGET_MATERIAL_IDS:
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
-        deals = collect_tb_material_recommend(material_id=mid, page_size=5, sub_name=sub_name)
+        deals = collect_tb_material_recommend(material_id=mid, page_size=10, sub_name=sub_name)
         new_deals = []
         for d in deals:
             key = d.get("title", "")[:20] + "|" + d.get("price", "")
@@ -604,41 +566,8 @@ def collect_tb_all(max_pages=3):
         if new_deals:
             all_deals.extend(new_deals)
             recommend_count += len(new_deals)
-        time.sleep(0.5)
+        time.sleep(0.3)
     print(f"[物料推荐] {recommend_count} 条")
-
-    # 3. 关键词搜索 - 多品类（有券商品）
-    search_keywords = [
-        # 母婴
-        "纸尿裤", "奶粉", "奶瓶", "玩具", "童装",
-        # 日用洗护
-        "纸巾", "洗衣液", "洗发水", "沐浴露", "牙膏",
-        # 食品饮料
-        "零食", "牛奶", "咖啡", "坚果", "大米",
-        # 服饰
-        "T恤", "运动鞋", "袜子", "内衣", "羽绒服",
-        # 美妆
-        "面膜", "口红", "护肤套装", "防晒霜",
-        # 数码家电
-        "数据线", "充电宝", "耳机", "鼠标",
-        # 家居
-        "床上用品", "收纳", "保温杯", "雨伞",
-    ]
-    search_count = 0
-    seen_search_ids = set()
-    for kw in search_keywords:
-        deals = collect_tb_material_search(q=kw, has_coupon=True, page_size=5)
-        new_deals = []
-        for d in deals:
-            key = d.get("title", "")[:20] + "|" + d.get("price", "")
-            if key not in seen_search_ids:
-                seen_search_ids.add(key)
-                new_deals.append(d)
-        if new_deals:
-            all_deals.extend(new_deals)
-            search_count += len(new_deals)
-        time.sleep(0.5)
-    print(f"[关键词搜索] {search_count} 条")
 
     print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条优惠券商品")
     return all_deals
