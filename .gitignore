@@ -12,6 +12,13 @@ __pycache__/
 dist/
 build/
 
+# 价格对比脚本和输出文件（临时调试用）
+dump_*.py
+API响应数据_*.xlsx
+完整价格信息_*.json
+优惠券对比_*.xlsx
+优惠券对比_*.json
+
 # 系统
 .DS_Store
 Thumbs.db
