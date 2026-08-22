@@ -203,19 +203,36 @@ def collect_all_categories():
 
 def format_deal(deal, index):
     """将 deal 格式化为小程序需要的格式"""
+    # 价格字段（来自 optional.upgrade API）
+    # price = 销售价(zk_final_price)
+    # predict_price = 实际到手价(final_promotion_price - gov_subsidy)
+    # coupon_price = 券后价(final_promotion_price)
+    # gov_subsidy = 政府补贴金额
+    # discount = 优惠力度%（已预计算）
     price = str(deal.get("price", "")).replace("¥", "").replace("￥", "")
     predict = str(deal.get("predict_price", "")).replace("¥", "").replace("￥", "")
+    coupon_price = str(deal.get("coupon_price", "")).replace("¥", "").replace("￥", "")
+    gov_subsidy = str(deal.get("gov_subsidy", "")).replace("¥", "").replace("￥", "")
 
-    # 计算折扣百分比
-    price_num = extract_number(price)
-    predict_num = extract_number(predict)
-    discount_pct = 0
-    if price_num > 0 and predict_num > 0 and price_num > predict_num:
-        discount_pct = int(round((1 - predict_num / price_num) * 100))
+    # 使用预计算的折扣百分比（基于实际到手价）
+    discount_pct = deal.get("discount", 0)
+    if not discount_pct:
+        # 备用计算
+        price_num = extract_number(price)
+        predict_num = extract_number(predict)
+        if price_num > 0 and predict_num > 0 and price_num > predict_num:
+            discount_pct = int(round((1 - predict_num / price_num) * 100))
 
     # 处理标签
     tags_str = deal.get("tags", "")
     tags = [t.strip() for t in tags_str.split(",") if t.strip()] if tags_str else []
+
+    # 添加优惠券信息和政府补贴到标签
+    coupon_details = deal.get("coupon_details", "")
+    if coupon_details:
+        tags.append(coupon_details)
+    if gov_subsidy and float(gov_subsidy) > 0:
+        tags.append(f"国家补贴¥{gov_subsidy}")
 
     # 获取淘口令（优先用已有的，没有则用链接）
     taokouling = deal.get("taokouling", "")
@@ -237,9 +254,11 @@ def format_deal(deal, index):
     return {
         "id": index,
         "title": deal.get("title", ""),
-        "price": price,
-        "predict_price": predict,
-        "discount": discount_pct,
+        "price": price,                    # 销售价
+        "predict_price": predict,          # 实际到手价
+        "coupon_price": coupon_price,      # 券后价
+        "gov_subsidy": gov_subsidy,        # 政府补贴
+        "discount": discount_pct,          # 优惠力度%
         "category": merged_cat,
         "sub_category": deal.get("sub_category", ""),
         "shop": deal.get("shop", ""),

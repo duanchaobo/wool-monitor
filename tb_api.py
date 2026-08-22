@@ -2,9 +2,16 @@
 tb_api.py - 淘宝联盟淘宝客优惠券采集
 
 使用淘宝开放平台 API:
+  - taobao.tbk.dg.material.optional.upgrade  物料推荐升级版（含完整价格信息）
   - taobao.tbk.dg.optimus.promotion  权益物料精选（大额店铺券/天猫店铺券等）
-  - taobao.tbk.dg.optimus.material   官方物料精选
   - taobao.tbk.tpwd.create           淘口令生成
+
+价格字段说明（来自 optional.upgrade API）:
+  reserve_price          = 原价/吊牌价
+  zk_final_price         = 销售价（页面显示价格）
+  final_promotion_price  = 券后价（扣除优惠券/满减后）
+  gov_subsidy            = 政府补贴（国家补贴，需额外扣除）
+  实际到手价 = final_promotion_price - gov_subsidy.discount
 
 所需凭证:
   TB_APP_KEY     - AppKey
@@ -284,18 +291,176 @@ def get_tb_material_ids(subject=1, material_type=1, page_size=20):
     return material_ids
 
 
+def _extract_price_from_optional(price_info):
+    """
+    从 optional.upgrade API 的 price_promotion_info 中提取完整价格信息
+
+    Returns:
+        dict: {
+            'original_price': 原价(reserve_price),
+            'sale_price': 销售价(zk_final_price),
+            'coupon_price': 券后价(final_promotion_price),
+            'gov_subsidy': 政府补贴金额(浮点数),
+            'actual_price': 实际到手价(券后价-补贴),
+            'discount_pct': 优惠力度百分比,
+            'coupon_details': 优惠券明细列表,
+            'has_gov_subsidy': 是否有政府补贴,
+        }
+    """
+    reserve_price = price_info.get("reserve_price", "")
+    zk_price = price_info.get("zk_final_price", "")
+    final_price = price_info.get("final_promotion_price", "")
+
+    # 政府补贴
+    gov_subsidy = 0
+    gov_info = price_info.get("gov_subsidy", {})
+    if gov_info:
+        discount_str = gov_info.get("state_subsidy_info", {}).get("max_discount", "0")
+        try:
+            gov_subsidy = float(discount_str)
+        except (ValueError, TypeError):
+            gov_subsidy = 0
+
+    # 优惠券明细
+    coupon_details = []
+    promo_paths = price_info.get("final_promotion_path_list", {})
+    path_data = promo_paths.get("final_promotion_path_map_data", [])
+    for p in path_data:
+        desc = p.get("promotion_desc", "")
+        title = p.get("promotion_title", "")
+        if desc:
+            coupon_details.append(f"{title}:{desc}")
+
+    # 计算实际到手价
+    try:
+        coupon_price_num = float(final_price) if final_price else 0
+    except (ValueError, TypeError):
+        coupon_price_num = 0
+
+    actual_price = round(coupon_price_num - gov_subsidy, 2) if coupon_price_num > 0 else 0
+    if actual_price < 0:
+        actual_price = coupon_price_num
+
+    # 计算优惠力度 = 1 - 实际到手价 / 销售价
+    discount_pct = 0
+    try:
+        sale_num = float(zk_price) if zk_price else 0
+        if sale_num > 0 and actual_price > 0:
+            discount_pct = round((1 - actual_price / sale_num) * 100)
+    except (ValueError, TypeError):
+        pass
+
+    return {
+        'original_price': reserve_price,
+        'sale_price': zk_price,
+        'coupon_price': final_price,
+        'gov_subsidy': gov_subsidy,
+        'actual_price': actual_price,
+        'discount_pct': discount_pct,
+        'coupon_details': coupon_details,
+        'has_gov_subsidy': gov_subsidy > 0,
+    }
+
+
+def _enrich_price_info(deal):
+    """
+    对单个商品调用 optional.upgrade API 补充完整价格信息
+    使用商品标题作为搜索关键词
+    """
+    title = deal.get("title", "")
+    if not title:
+        return deal
+
+    # 用标题前12字作为搜索关键词
+    keyword = title[:12]
+    biz_params = {
+        "adzone_id": int(TB_ADZONE_ID),
+        "q": keyword,
+        "page_no": 1,
+        "page_size": 3,
+        "platform": 2,
+    }
+
+    result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
+    if not result:
+        return deal
+
+    try:
+        if "error_response" in result:
+            return deal
+
+        resp_key = "tbk_dg_material_optional_upgrade_response"
+        inner = result.get(resp_key, {})
+        result_list = inner.get("result_list", {})
+        items = result_list.get("map_data", [])
+
+        if not items:
+            return deal
+
+        # 取第一条匹配结果
+        first = items[0]
+        price_info = first.get("price_promotion_info", {})
+        publish_info = first.get("publish_info", {})
+
+        # 提取完整价格
+        price_data = _extract_price_from_optional(price_info)
+
+        # 更新 deal 的价格信息
+        if price_data['sale_price']:
+            deal["price"] = f"¥{price_data['sale_price']}"
+        if price_data['original_price']:
+            deal["old_price"] = f"¥{price_data['original_price']}"
+        if price_data['actual_price']:
+            deal["predict_price"] = f"¥{price_data['actual_price']}"
+        if price_data['coupon_price']:
+            deal["coupon_price"] = f"¥{price_data['coupon_price']}"
+        if price_data['gov_subsidy']:
+            deal["gov_subsidy"] = f"¥{price_data['gov_subsidy']}"
+        if price_data['discount_pct']:
+            deal["discount"] = price_data['discount_pct']
+        if price_data['coupon_details']:
+            deal["coupon_details"] = ", ".join(price_data['coupon_details'])
+
+        # 政府补贴省份
+        gov_info = price_info.get("gov_subsidy", {})
+        if gov_info:
+            province_list = gov_info.get("state_subsidy_info", {}).get("province_list", {})
+            provinces = province_list.get("string", [])
+            if provinces:
+                deal["gov_provinces"] = ", ".join(provinces[:5])
+
+        # 更新推广链接（optional 返回的链接更准确）
+        click_url = publish_info.get("click_url", "")
+        if click_url:
+            if click_url.startswith("//"):
+                click_url = "https:" + click_url
+            deal["url"] = click_url
+
+        # 更新佣金率
+        commission_rate_raw = publish_info.get("commission_rate", "")
+        if commission_rate_raw:
+            deal["commission_rate"] = f"{float(commission_rate_raw)/100:.1f}%"
+
+    except Exception as e:
+        pass  # 价格补充失败不影响主流程
+
+    return deal
+
+
 def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
     """
     淘宝客物料推荐 - 根据物料ID获取推荐商品
-    使用 taobao.tbk.dg.material.recommend API
+    使用 taobao.tbk.dg.material.recommend API 获取商品列表
+    再用 taobao.tbk.dg.material.optional.upgrade 补充完整价格信息
 
     Args:
-        material_id: 物料ID (从 optimus.tou.material.ids.get 获取，如 117935)
+        material_id: 物料ID
         page_size: 每页条数（最大100）
         sub_name: 二级类目名称（物料主题名）
     """
     deals = []
 
+    # Step 1: 用 material.recommend 获取商品列表
     biz_params = {
         "adzone_id": int(TB_ADZONE_ID),
         "material_id": int(material_id),
@@ -322,16 +487,10 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
             if not title:
                 continue
 
-            # 价格（页面实际显示：zk_final_price → final_promotion_price）
-            # zk_final_price         = 销售价格（页面主价格，如 ¥65.8）
-            # final_promotion_price  = 预估到手价（实际支付金额，如 ¥14.9）
-            # 折扣 = 1 - final_promotion_price / zk_final_price
+            # 基础价格（来自 recommend API）
             zk_price = price_info.get("zk_final_price", "")
             final_price = price_info.get("final_promotion_price", "")
-
-            # 页面主价格（现价）= zk_final_price
             show_price = zk_price or final_price
-            # 到手价 = final_promotion_price（比现价低时才有折扣）
             pay_price = final_price if final_price and final_price != show_price else ""
 
             # 图片
@@ -351,9 +510,8 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
             if click_url and click_url.startswith("//"):
                 click_url = "https:" + click_url
 
-            # 佣金（原始值需除以100，如180=1.8%）
-            income_info = publish_info.get("income_info", {})
-            commission_rate_raw = income_info.get("commission_rate", "")
+            # 佣金率
+            commission_rate_raw = publish_info.get("commission_rate", "")
             if commission_rate_raw:
                 commission_rate = f"{float(commission_rate_raw)/100:.1f}%"
             else:
@@ -367,11 +525,14 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
             deal = {
                 "source": "淘宝",
                 "title": title[:60],
-                "price": f"¥{show_price}" if show_price else "",          # 现价（页面主价格/zk_final_price）
-                "old_price": "",  # 不再使用划线价
-                "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（final_promotion_price）
-                "coupon_price": "",
-                "discount": 0,
+                "price": f"¥{show_price}" if show_price else "",          # 销售价
+                "old_price": "",                                          # 原价（后续补充）
+                "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（后续补充）
+                "coupon_price": "",                                       # 券后价（后续补充）
+                "gov_subsidy": "",                                        # 政府补贴（后续补充）
+                "discount": 0,                                            # 优惠力度（后续补充）
+                "coupon_details": "",                                     # 券明细（后续补充）
+                "gov_provinces": "",                                      # 补贴省份（后续补充）
                 "url": click_url,
                 "coupon_url": "",
                 "coupon_quota": 0,
@@ -386,6 +547,10 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
                 "tags": ", ".join(tags),
                 "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
             }
+
+            # Step 2: 用 optional.upgrade 补充完整价格信息
+            deal = _enrich_price_info(deal)
+
             deals.append(deal)
 
     except Exception as e:
@@ -512,14 +677,14 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
 
 def collect_tb_all(max_pages=3):
     """
-    淘宝联盟全量采集 - 仅物料推荐API（taobao.tbk.dg.material.recommend）
+    淘宝联盟全量采集
+    流程：material.recommend（物料ID获取商品）→ optional.upgrade（补充价格）
 
     Args:
         max_pages: 每种优惠券最多翻几页（未使用）
     """
     all_deals = []
 
-    # 物料推荐 - 全部63个有效物料ID（基于MATERIAL_ID_REFERENCE.md）
     # 物料ID -> 二级类目名称映射（全部63个有效ID）
     MATERIAL_ID_NAMES = {
         # === 母婴类 ===
@@ -553,23 +718,24 @@ def collect_tb_all(max_pages=3):
     }
     TARGET_MATERIAL_IDS = list(MATERIAL_ID_NAMES.keys())
     recommend_count = 0
-    seen_recommend_ids = set()
+    seen_keys = set()
     for mid in TARGET_MATERIAL_IDS:
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
         deals = collect_tb_material_recommend(material_id=mid, page_size=10, sub_name=sub_name)
         new_deals = []
         for d in deals:
-            key = d.get("title", "")[:20] + "|" + d.get("price", "")
-            if key not in seen_recommend_ids:
-                seen_recommend_ids.add(key)
+            # 去重key：标题+店铺+销售价
+            key = d.get("title", "")[:20] + "|" + d.get("shop", "")[:10] + "|" + d.get("price", "")
+            if key not in seen_keys:
+                seen_keys.add(key)
                 new_deals.append(d)
         if new_deals:
             all_deals.extend(new_deals)
             recommend_count += len(new_deals)
         time.sleep(0.3)
-    print(f"[物料推荐] {recommend_count} 条")
+    print(f"[物料推荐] {recommend_count} 条（去重后）")
 
-    print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条优惠券商品")
+    print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条商品")
     return all_deals
 
 
