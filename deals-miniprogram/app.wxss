@@ -213,6 +213,20 @@ page {
   margin-top: 8rpx;
 }
 
+.deal-sales {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 8rpx;
+}
+
+.sales-item {
+  font-size: 20rpx;
+  color: #ff6b00;
+  background: #fff7e6;
+  padding: 2rpx 12rpx;
+  border-radius: 8rpx;
+}
+
 .deal-tags {
   display: flex;
   flex-wrap: wrap;

@@ -63,6 +63,10 @@
           <view wx:if="{{item.discount > 0}}" class="deal-discount">{{item.discount}}%OFF</view>
         </view>
         <view wx:if="{{item.shop}}" class="deal-shop">🏪 {{item.shop}}</view>
+        <view wx:if="{{item.annual_vol || item.tk_total_sales}}" class="deal-sales">
+          <text wx:if="{{item.annual_vol}}" class="sales-item">年销{{item.annual_vol}}</text>
+          <text wx:if="{{item.tk_total_sales}}" class="sales-item">推广{{item.tk_total_sales}}件</text>
+        </view>
         <view wx:if="{{item.category}}" class="deal-category">📂 {{item.category}}</view>
       </view>
     </view>
