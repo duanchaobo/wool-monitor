@@ -267,6 +267,9 @@ def format_deal(deal, index):
         "taokouling": taokouling,
         "tags": tags,
         "source": deal.get("source", ""),
+        # 销量数据
+        "annual_vol": deal.get("annual_vol", ""),          # 年化销量（如 "10万+"）
+        "tk_total_sales": deal.get("tk_total_sales", ""),  # 淘宝客总销量
     }
 
 
