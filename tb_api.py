@@ -291,6 +291,25 @@ def get_tb_material_ids(subject=1, material_type=1, page_size=20):
     return material_ids
 
 
+def _parse_annual_vol(annual_vol_str):
+    """
+    解析 annual_vol 字段为数值
+    示例: "3万+" → 30000, "2000+" → 2000, "100" → 100
+    """
+    if not annual_vol_str:
+        return 0
+    s = str(annual_vol_str).strip().replace("+", "")
+    try:
+        if "万" in s:
+            return int(float(s.replace("万", "")) * 10000)
+        elif "千" in s:
+            return int(float(s.replace("千", "")) * 10000)
+        else:
+            return int(float(s))
+    except (ValueError, TypeError):
+        return 0
+
+
 def _extract_price_from_optional(price_info):
     """
     从 optional.upgrade API 的 price_promotion_info 中提取完整价格信息
@@ -441,6 +460,16 @@ def _enrich_price_info(deal):
         if commission_rate_raw:
             deal["commission_rate"] = f"{float(commission_rate_raw)/100:.1f}%"
 
+        # 提取销量数据（用于排序）
+        basic_info = first.get("item_basic_info", {})
+        annual_vol = basic_info.get("annual_vol", "")
+        tk_total_sales = basic_info.get("tk_total_sales", "")
+        if annual_vol:
+            deal["annual_vol"] = annual_vol
+            deal["annual_vol_num"] = _parse_annual_vol(annual_vol)
+        if tk_total_sales:
+            deal["tk_total_sales"] = tk_total_sales
+
     except Exception as e:
         pass  # 价格补充失败不影响主流程
 
@@ -543,6 +572,9 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
                 "img_url": pict_url,
                 "shop": shop_title,
                 "sales": annual_vol or tk_sales,
+                "annual_vol": annual_vol,
+                "annual_vol_num": _parse_annual_vol(annual_vol),
+                "tk_total_sales": tk_sales,
                 "commission_rate": commission_rate,
                 "tags": ", ".join(tags),
                 "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
@@ -735,7 +767,13 @@ def collect_tb_all(max_pages=3):
         time.sleep(0.3)
     print(f"[物料推荐] {recommend_count} 条（去重后）")
 
-    print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条商品")
+    # 按销量排序：优先 annual_vol（年化销量），其次 tk_total_sales
+    all_deals.sort(key=lambda d: (
+        d.get("annual_vol_num", 0),
+        d.get("tk_total_sales", 0) if isinstance(d.get("tk_total_sales"), (int, float)) else 0
+    ), reverse=True)
+
+    print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条商品（已按销量排序）")
     return all_deals
 
 
