@@ -75,14 +75,18 @@ def main():
     urgent_final = pick_random_per_category(urgent_deals)
     normal_final = pick_random_per_category(normal_deals)
 
-    # Step 4: 推送
-    if urgent_final:
-        print(f"\n🚨 推送紧急信息（{len(urgent_final)} 条）...")
-        push_batch(urgent_final)
+    # Step 4: 推送（已停用，改为小程序展示）
+    # if urgent_final:
+    #     print(f"\n🚨 推送紧急信息（{len(urgent_final)} 条）...")
+    #     push_batch(urgent_final)
+    #
+    # if normal_final:
+    #     print(f"\n📢 推送普通信息（{len(normal_final)} 条）...")
+    #     push_batch(normal_final)
 
-    if normal_final:
-        print(f"\n📢 推送普通信息（{len(normal_final)} 条）...")
-        push_batch(normal_final)
+    print(f"\n📢 企微推送已停用（改为小程序展示）")
+    print(f"   紧急信息: {len(urgent_final)} 条（未推送）")
+    print(f"   普通信息: {len(normal_final)} 条（未推送）")
 
     # Step 5: 总结
     print(f"\n{'='*50}")
