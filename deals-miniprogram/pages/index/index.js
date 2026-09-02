@@ -11,8 +11,7 @@ Page({
     filteredDeals: [],      // 过滤后的商品
     loading: true,
     updateTime: '',
-    scrollTop: 0,           // 滚动位置
-    _stateRestored: false   // 标记是否已恢复状态
+    scrollTop: 0            // 滚动位置
   },
 
   onLoad() {
@@ -20,22 +19,25 @@ Page({
   },
 
   onShow() {
-    if (this.data._stateRestored) {
-      // 从淘宝切回，恢复滚动位置即可，不重新加载数据
-      this.setData({ _stateRestored: false });
-      if (this.data.scrollTop > 0) {
+    // 切回时检查保存的状态，若数据未变化则直接恢复滚动位置，不重新加载
+    const savedState = wx.getStorageSync('indexState');
+    if (savedState && savedState.updateTime === this.data.updateTime && this.data.allDeals.length > 0) {
+      if (savedState.scrollTop > 0) {
         wx.pageScrollTo({
-          scrollTop: this.data.scrollTop,
+          scrollTop: savedState.scrollTop,
           duration: 0
         });
       }
       return;
     }
-    this.loadData();
+    // 首次加载或数据已更新时才请求网络
+    if (this.data.allDeals.length === 0) {
+      this.loadData();
+    }
   },
 
   onHide() {
-    // 切换到淘宝前保存当前浏览状态
+    // 切换到淘宝前保存当前浏览状态（含筛选和滚动位置）
     wx.setStorageSync('indexState', {
       activeCategory: this.data.activeCategory,
       activeSubCategory: this.data.activeSubCategory,
@@ -83,47 +85,15 @@ Page({
       // 缓存到本地，供搜索页使用
       wx.setStorageSync('allDeals', allDeals);
 
-      // 尝试恢复之前保存的浏览状态
-      const savedState = wx.getStorageSync('indexState');
-      let activeCategory = '全部';
-      let activeSubCategory = '';
-      let currentSubs = [];
-      let filteredDeals = allDeals;
-
-      if (savedState && savedState.allDeals) {
-        // 检查数据是否有更新（通过updateTime判断）
-        if (savedState.updateTime === (data.updateTime || '')) {
-          // 数据未变化，恢复之前的筛选状态
-          activeCategory = savedState.activeCategory || '全部';
-          activeSubCategory = savedState.activeSubCategory || '';
-
-          const catObj = newCategories.find(c => c.name === activeCategory);
-          currentSubs = catObj ? (catObj.subs || []) : [];
-
-          if (activeCategory === '全部') {
-            filteredDeals = allDeals;
-          } else {
-            filteredDeals = allDeals.filter(d => d.category === activeCategory);
-          }
-
-          if (activeSubCategory) {
-            filteredDeals = filteredDeals.filter(d => d.sub_category === activeSubCategory);
-          }
-        }
-        // 清除已使用的状态
-        wx.removeStorageSync('indexState');
-      }
-
       this.setData({
         categories: newCategories,
         allDeals: allDeals,
-        filteredDeals: filteredDeals,
-        activeCategory: activeCategory,
-        activeSubCategory: activeSubCategory,
-        currentSubs: currentSubs,
+        filteredDeals: allDeals,
+        activeCategory: '全部',
+        activeSubCategory: '',
+        currentSubs: [],
         loading: false,
-        updateTime: data.updateTime || '',
-        _stateRestored: true
+        updateTime: data.updateTime || ''
       });
     } catch (err) {
       console.error('加载数据失败:', err);
