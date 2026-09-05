@@ -334,6 +334,10 @@ def llm_classify_category(title, raw_category=""):
         result = resp.json()
         answer = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
+        # 调试：打印 LLM 返回内容（仅前5次）
+        if _llm_stats["total_calls"] <= 5:
+            print(f"[LLM调试] 标题: {title[:30]}... | 原始类目: {raw_cat} | LLM返回: '{answer}'")
+
         # 验证返回值是否在目标类目中
         for cat in TARGET_CATEGORIES:
             if cat in answer:
