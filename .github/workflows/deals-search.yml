@@ -1,5 +1,6 @@
 # GitHub Actions - 小程序搜索触发
 # 接收用户搜索词，采集相关商品，生成搜索结果 JSON
+# ⚠️ 无论任务成功/失败/超时，都会确保关机
 
 name: 搜索优惠商品（小程序）
 
@@ -20,6 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
+    # 输出变量传递给下游 job
+    outputs:
+      need_power_off: ${{ steps.check_status.outputs.need_power_off }}
+
     steps:
       - name: 检出代码
         uses: actions/checkout@v5
@@ -27,6 +32,8 @@ jobs:
       # ========== Step 1: 检查实例状态 ==========
       - name: 检查 AutoDL 实例状态
         id: check_status
+        # 即使检查失败也继续执行（默认 need_power_off=true 确保关机）
+        continue-on-error: true
         run: |
           python3 << 'PYEOF'
           import requests, json, os, sys
@@ -34,36 +41,55 @@ jobs:
           SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
           INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
 
-          if not SESSION_TOKEN or not INSTANCE_UUID:
-              sys.exit(1)
+          # 默认需要关机（任何异常都确保关机）
+          need_power_off = "true"
 
-          headers = {
-              "Authorization": SESSION_TOKEN,
-              "Content-Type": "application/json;charset=UTF-8",
-          }
+          try:
+              if not SESSION_TOKEN or not INSTANCE_UUID:
+                  print("❌ 缺少 AutoDL 凭证")
+                  sys.exit(1)
 
-          resp = requests.post(
-              "https://www.autodl.com/api/v1/instance",
-              json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
-              headers=headers, timeout=30
-          )
-          result = resp.json()
+              headers = {
+                  "Authorization": SESSION_TOKEN,
+                  "Content-Type": "application/json;charset=UTF-8",
+              }
 
-          if result.get("code") != "Success":
-              sys.exit(1)
+              resp = requests.post(
+                  "https://www.autodl.com/api/v1/instance",
+                  json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
+                  headers=headers, timeout=30
+              )
+              result = resp.json()
 
-          instances = result.get("data", {}).get("list", [])
-          target = next((i for i in instances if i.get("uuid") == INSTANCE_UUID), None)
+              if result.get("code") != "Success":
+                  print(f"⚠️ 查询失败: {result}")
+                  sys.exit(1)
 
-          if not target:
-              sys.exit(1)
+              instances = result.get("data", {}).get("list", [])
+              target = next((i for i in instances if i.get("uuid") == INSTANCE_UUID), None)
 
-          status = target.get("status", "")
-          need_power_off = "false" if status == "running" else "true"
-          github_output = os.environ.get("GITHUB_OUTPUT", "")
-          if github_output:
-              with open(github_output, "a") as f:
-                  f.write(f"need_power_off={need_power_off}\n")
+              if not target:
+                  print(f"❌ 未找到实例")
+                  sys.exit(1)
+
+              status = target.get("status", "")
+              print(f"实例状态: {status}")
+
+              # 只有明确是 running 状态才不需要关机
+              need_power_off = "false" if status == "running" else "true"
+
+          except Exception as e:
+              print(f"⚠️ 检查异常: {e}")
+              # 异常时默认需要关机
+              need_power_off = "true"
+
+          finally:
+              # 无论如何都写入输出
+              github_output = os.environ.get("GITHUB_OUTPUT", "")
+              if github_output:
+                  with open(github_output, "a") as f:
+                      f.write(f"need_power_off={need_power_off}\n")
+              print(f"need_power_off={need_power_off}")
           PYEOF
 
       # ========== Step 2: 开机 ==========
@@ -126,9 +152,17 @@ jobs:
             git commit -m "搜索结果: ${{ github.event.inputs.keyword }} $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
             git push https://${{ secrets.PAT_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
 
-      # ========== Step 4: 关机 ==========
+  # ========== 独立的关机 job：无论上游成功/失败/超时都会执行 ==========
+  power-off:
+    name: 确保关机
+    needs: [search-deals]
+    # 关键：always() 确保无论上游 job 状态如何都会执行
+    if: always() && needs.search-deals.outputs.need_power_off == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
       - name: 关机
-        if: steps.check_status.outputs.need_power_off == 'true'
         run: |
           python3 << 'PYEOF'
           import requests, json
@@ -143,4 +177,6 @@ jobs:
           result = resp.json()
           if result.get("code") == "Success":
               print("✅ 关机成功")
+          else:
+              print(f"⚠️ 关机: {result}")
           PYEOF
