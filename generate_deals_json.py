@@ -492,7 +492,7 @@ def generate_deals_json(output_dir, search_keyword=None):
     format_deal._other_count = 0
     # 重置 LLM 统计
     global _llm_stats
-    _llm_stats = {"total_calls": 0, "success": 0, "failed": 0, "cache_hits": 0, "returned_other": 0}
+    _llm_stats = {"total_calls": 0, "success": 0, "failed": 0, "cache_hits": 0, "returned_other": 0, "api_invalid": False}
 
     update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
