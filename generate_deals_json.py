@@ -274,6 +274,15 @@ SILICONFLOW_API_URL = "https://api.siliconflow.cn/v1/chat/completions"
 # LLM 分类缓存（避免重复调用）
 _llm_category_cache = {}
 
+# LLM 调用统计
+_llm_stats = {
+    "total_calls": 0,       # 总调用次数（不含缓存命中）
+    "success": 0,           # 成功分类次数（返回非"其他"）
+    "failed": 0,            # 调用失败次数
+    "cache_hits": 0,        # 缓存命中次数
+    "returned_other": 0,    # LLM返回"其他"的次数
+}
+
 
 def llm_classify_category(title, raw_category=""):
     """
@@ -286,13 +295,18 @@ def llm_classify_category(title, raw_category=""):
     Returns:
         分类名称（8大类之一）
     """
+    global _llm_stats
+
     if not SILICONFLOW_API_KEY:
         return "其他"
 
     # 缓存 key
     cache_key = f"{title[:30]}|{raw_category}"
     if cache_key in _llm_category_cache:
+        _llm_stats["cache_hits"] += 1
         return _llm_category_cache[cache_key]
+
+    _llm_stats["total_calls"] += 1
 
     prompt = f"""请根据商品标题判断它属于以下哪个分类：{', '.join(TARGET_CATEGORIES)}
 
@@ -323,12 +337,16 @@ def llm_classify_category(title, raw_category=""):
         # 验证返回值是否在目标类目中
         for cat in TARGET_CATEGORIES:
             if cat in answer:
+                _llm_stats["success"] += 1
                 _llm_category_cache[cache_key] = cat
                 return cat
 
+        # LLM 返回了非目标类目的内容
+        _llm_stats["returned_other"] += 1
         _llm_category_cache[cache_key] = "其他"
         return "其他"
     except Exception as e:
+        _llm_stats["failed"] += 1
         print(f"[LLM分类失败] {e}")
         return "其他"
 
@@ -463,6 +481,9 @@ def generate_deals_json(output_dir, search_keyword=None):
     # 调试：检查 API Key 是否加载
     print(f"[DEBUG] SILICONFLOW_API_KEY: {'已配置' if SILICONFLOW_API_KEY else '未配置'}")
     format_deal._other_count = 0
+    # 重置 LLM 统计
+    global _llm_stats
+    _llm_stats = {"total_calls": 0, "success": 0, "failed": 0, "cache_hits": 0, "returned_other": 0}
 
     update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -570,7 +591,18 @@ def generate_deals_json(output_dir, search_keyword=None):
         print(f"📁 输出目录: {output_dir}/")
         print(f"   - deals.json ({len(formatted)} 条)")
         print(f"   - categories.json ({len(categories)} 个品类)")
-        print(f"[DEBUG] 映射到'其他'的商品: {getattr(format_deal, '_other_count', 0)} 条")
+
+        # 输出 LLM 分类统计
+        print(f"\n[LLM分类统计]")
+        print(f"  映射表归类为'其他': {getattr(format_deal, '_other_count', 0)} 条")
+        print(f"  LLM 总调用次数: {_llm_stats['total_calls']}")
+        print(f"  缓存命中次数: {_llm_stats['cache_hits']}")
+        print(f"  成功分类次数: {_llm_stats['success']}")
+        print(f"  返回'其他'次数: {_llm_stats['returned_other']}")
+        print(f"  调用失败次数: {_llm_stats['failed']}")
+        if _llm_stats['total_calls'] > 0:
+            success_rate = _llm_stats['success'] / _llm_stats['total_calls'] * 100
+            print(f"  分类成功率: {success_rate:.1f}%")
 
         return deals_data
 
