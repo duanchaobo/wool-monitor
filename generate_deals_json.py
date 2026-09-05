@@ -281,6 +281,7 @@ _llm_stats = {
     "failed": 0,            # 调用失败次数
     "cache_hits": 0,        # 缓存命中次数
     "returned_other": 0,    # LLM返回"其他"的次数
+    "api_invalid": False,   # API Key 是否无效（检测到后跳过后续调用）
 }
 
 
@@ -297,7 +298,8 @@ def llm_classify_category(title, raw_category=""):
     """
     global _llm_stats
 
-    if not SILICONFLOW_API_KEY:
+    # API Key 未配置或已判定无效时直接跳过
+    if not SILICONFLOW_API_KEY or _llm_stats["api_invalid"]:
         return "其他"
 
     # 缓存 key
@@ -332,12 +334,14 @@ def llm_classify_category(title, raw_category=""):
             timeout=10
         )
         result = resp.json()
-        answer = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
-        # 调试：打印完整 API 响应（仅前3次）
-        if _llm_stats["total_calls"] <= 3:
-            print(f"[LLM调试] 标题: {title[:30]}...")
-            print(f"[LLM调试] API响应: {json.dumps(result, ensure_ascii=False)[:300]}")
+        # 检测 API Key 是否无效（硅基流动返回 code 30014）
+        if result.get("code") == 30014 or "invalid" in str(result.get("message", "")).lower():
+            _llm_stats["api_invalid"] = True
+            print(f"[LLM] API Key 无效，跳过后续分类调用: {result.get('message', '')}")
+            return "其他"
+
+        answer = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
         # 验证返回值是否在目标类目中
         for cat in TARGET_CATEGORIES:
