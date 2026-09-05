@@ -1,16 +1,15 @@
 """
-main.py - 主程序入口
+main.py - 主程序入口（已停用企微推送，改为小程序展示）
 
 工作流程：
 1. 采集多个来源的优惠信息
 2. 筛选/去重/排序
-3. 优先推送紧急信息，再推普通信息
-4. 统计结果输出日志
+3. 统计结果输出日志
 
 环境变量配置（通过 GitHub Secrets 或 .env 文件）：
-  WECHAT_WEBHOOK_URL  - 企业微信群机器人 Webhook 地址（必填）
-  JD_APP_KEY          - 京东联盟 AppKey（可选）
-  JD_APP_SECRET       - 京东联盟 AppSecret（可选）
+  TB_APP_KEY          - 淘宝联盟 AppKey（必填）
+  TB_APP_SECRET       - 淘宝联盟 AppSecret（必填）
+  TB_ADZONE_ID        - 淘宝联盟 AdzoneId（必填）
 """
 
 import sys
@@ -33,7 +32,6 @@ if os.path.exists(env_file):
 
 from deal_collector import collect_all
 from deal_filter import filter_deals
-from wechat_webhook import push_deal, push_batch
 
 # 每次执行最多推送条数
 MAX_PUSH_PER_RUN = 10
@@ -75,18 +73,10 @@ def main():
     urgent_final = pick_random_per_category(urgent_deals)
     normal_final = pick_random_per_category(normal_deals)
 
-    # Step 4: 推送（已停用，改为小程序展示）
-    # if urgent_final:
-    #     print(f"\n🚨 推送紧急信息（{len(urgent_final)} 条）...")
-    #     push_batch(urgent_final)
-    #
-    # if normal_final:
-    #     print(f"\n📢 推送普通信息（{len(normal_final)} 条）...")
-    #     push_batch(normal_final)
-
-    print(f"\n📢 企微推送已停用（改为小程序展示）")
-    print(f"   紧急信息: {len(urgent_final)} 条（未推送）")
-    print(f"   普通信息: {len(normal_final)} 条（未推送）")
+    # Step 4: 展示筛选结果（企微推送已停用，改为小程序展示）
+    print(f"\n📢 筛选结果（小程序展示）")
+    print(f"   紧急信息: {len(urgent_final)} 条")
+    print(f"   普通信息: {len(normal_final)} 条")
 
     # Step 5: 总结
     print(f"\n{'='*50}")
