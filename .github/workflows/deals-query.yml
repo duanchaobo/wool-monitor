@@ -95,17 +95,15 @@ jobs:
           timeout: 900s
           command_timeout: 900s
           script: |
-            # 保存原始PATH（network_turbo可能会改PATH）
+            # 保存原始环境（network_turbo会改PATH和网络路由）
             export ORIG_PATH="$PATH"
-            source /etc/network_turbo 2>/dev/null || true
-            export PATH="$ORIG_PATH:$PATH"
 
             rm -rf wool-monitor
-            # git clone 带重试+完整性检查（学术加速不稳定）
+            # 仅 git clone 时使用学术加速（加速GitHub访问）
+            source /etc/network_turbo 2>/dev/null || true
             for i in 1 2 3 4 5; do
               echo ">>> git clone 尝试第 $i 次..."
               git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
-              # 检查关键文件是否存在，确保克隆完整
               if [ -f wool-monitor/requirements.txt ] && [ -f wool-monitor/generate_deals_json.py ]; then
                 echo "✅ git clone 完成"
                 break
@@ -114,6 +112,9 @@ jobs:
               rm -rf wool-monitor
               sleep 10
             done
+            # 恢复原始环境（避免network_turbo影响SSH稳定性和pip/API调用）
+            export PATH="$ORIG_PATH"
+            unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
             cd wool-monitor
 
             # 确保 python3/pip3 可用
@@ -122,8 +123,8 @@ jobs:
               apt-get update -qq && apt-get install -y -qq python3 python3-pip 2>/dev/null
             fi
 
-            # 安装依赖（系统Python）
-            pip3 install -r requirements.txt -q
+            # 安装依赖（系统Python，忽略已安装的包）
+            pip3 install -r requirements.txt -q --prefer-binary 2>/dev/null || true
 
             # 配置环境变量
             cat > .env << ENVEOF
@@ -137,6 +138,7 @@ jobs:
             python3 generate_deals_json.py --output docs
 
             # 提交并推送数据到 GitHub
+            source /etc/network_turbo 2>/dev/null || true
             git config user.name "github-actions"
             git config user.email "actions@github.com"
             git add docs/
