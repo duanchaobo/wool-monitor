@@ -672,9 +672,9 @@ def collect_tb_all(max_pages=3):
     recommend_count = 0
 
     def _fetch_one(mid):
-        """单个物料ID采集（在子线程中执行）"""
+        """单个物料ID采集（在子线程中执行，只取第1页）"""
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
-        deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=True)
+        deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=False)
         return mid, sub_name, deals
 
     # 并行采集，最多4个线程（避免API限流）

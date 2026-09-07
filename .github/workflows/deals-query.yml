@@ -1,8 +1,7 @@
 # GitHub Actions - 生成小程序用的 JSON 数据
-# 定时执行（每天 8:00-22:00 每2小时）或手动触发
-# 采集全品类优惠商品，输出为 JSON 文件推送到 GitHub Pages 分支
+# 定时执行（每天 7:00 北京时间）或手动触发
+# 采集天猫旗舰店优惠商品，输出为 JSON 文件推送到 GitHub Pages 分支
 # ⚠️ 无论任务成功/失败/超时，都会确保关机
-
 name: 生成优惠数据（小程序）
 
 on:
@@ -20,167 +19,77 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
-    # 输出变量传递给下游 job
-    outputs:
-      need_power_off: ${{ steps.check_status.outputs.need_power_off }}
-
     steps:
       - name: 检出代码
         uses: actions/checkout@v5
 
-      # ========== Step 1: 查找/开机 GPU 实例 ==========
-      - name: 查找并开机 GPU 实例
-        id: check_status
-        continue-on-error: true
+      # ========== Step 1: 开机（固定实例，无卡模式） ==========
+      - name: 开机
+        id: power_on
         run: |
           python3 << 'PYEOF'
-          import requests, json, os, sys
+          import requests, json, sys
 
           SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
-          # 主实例UUID（fallback用）
-          PRIMARY_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
 
-          need_power_off = "false"
-          selected_uuid = ""
-          selected_host = ""
-          selected_port = ""
+          headers = {
+              "Authorization": SESSION_TOKEN,
+              "Content-Type": "application/json;charset=UTF-8",
+          }
 
-          try:
-              if not SESSION_TOKEN:
-                  print("❌ 缺少 AutoDL 凭证")
-                  sys.exit(1)
+          # 查询实例状态
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance",
+              json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
 
-              headers = {
-                  "Authorization": SESSION_TOKEN,
-                  "Content-Type": "application/json;charset=UTF-8",
-              }
+          if result.get("code") != "Success":
+              print(f"❌ 查询失败: {result}")
+              sys.exit(1)
 
-              # 查询所有实例
-              resp = requests.post(
-                  "https://www.autodl.com/api/v1/instance",
-                  json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
+          instances = result.get("data", {}).get("list", [])
+          target = None
+          for inst in instances:
+              if inst.get("uuid") == INSTANCE_UUID:
+                  target = inst
+                  break
+
+          if not target:
+              print(f"❌ 实例 {INSTANCE_UUID} 不存在")
+              sys.exit(1)
+
+          status = target.get("status", "")
+          print(f"实例状态: {status}")
+
+          if status == "running":
+              print("✅ 实例已开机，无需操作")
+          else:
+              print("🔄 开机中（non_gpu 模式）...")
+              power_resp = requests.post(
+                  "https://www.autodl.com/api/v1/instance/power_on",
+                  json={"instance_uuid": INSTANCE_UUID, "payload": "non_gpu"},
                   headers=headers, timeout=30
               )
-              result = resp.json()
-
-              if result.get("code") != "Success":
-                  print(f"⚠️ 查询失败: {result}")
-                  sys.exit(1)
-
-              instances = result.get("data", {}).get("list", [])
-              print(f"共 {len(instances)} 个实例")
-
-              # 提取每个实例的关键信息（SSH直接从API获取）
-              def get_ssh_info(inst):
-                  """从实例数据提取SSH连接信息"""
-                  host = inst.get("proxy_host") or inst.get("ssh_host") or ""
-                  port = str(inst.get("ssh_port") or inst.get("proxy_port") or "22")
-                  return host, port
-
-              def has_gpu(inst):
-                      return inst.get("gpu_all_num", 0) > 0
-
-              # 打印所有实例状态
-              for inst in instances:
-                  uuid = inst.get("uuid", "")[:12]
-                  status = inst.get("status", "")
-                  gpu_all = inst.get("gpu_all_num", 0)
-                  gpu_idle = inst.get("gpu_idle_num", 0)
-                  host, port = get_ssh_info(inst)
-                  print(f"  {uuid}... status={status} gpu={gpu_all}/{gpu_idle} ssh={host}:{port}")
-
-              # 策略1: 找已 running 且有 GPU 的实例（直接使用）
-              for inst in instances:
-                  if inst.get("status") == "running" and has_gpu(inst):
-                      uuid = inst.get("uuid")
-                      host, port = get_ssh_info(inst)
-                      gpu_idle = inst.get("gpu_idle_num", 0)
-                      print(f"\n✅ 找到已开机的GPU实例: {uuid[:12]}... GPU空闲={gpu_idle}")
-                      selected_uuid = uuid
-                      selected_host = host
-                      selected_port = port
-                      need_power_off = "false"
-                      break
-
-              # 策略2: 找 shutdown 且有 GPU 的实例开机
-              if not selected_uuid:
-                  for inst in instances:
-                      if inst.get("status") == "shutdown" and has_gpu(inst):
-                          uuid = inst.get("uuid")
-                          host, port = get_ssh_info(inst)
-                          gpu_all = inst.get("gpu_all_num", 0)
-                          print(f"\n🔄 找到关机的GPU实例，准备开机: {uuid[:12]}... GPU={gpu_all}卡")
-                          # 开机
-                          power_resp = requests.post(
-                              "https://www.autodl.com/api/v1/instance/power_on",
-                              json={"instance_uuid": uuid, "payload": "gpu"},
-                              headers=headers, timeout=30
-                          )
-                          power_result = power_resp.json()
-                          if power_result.get("code") == "Success":
-                              print(f"✅ 开机成功: {uuid[:12]}...")
-                              selected_uuid = uuid
-                              selected_host = host
-                              selected_port = port
-                              need_power_off = "true"
-                              break
-                          else:
-                              print(f"⚠️ 开机失败 {uuid[:12]}...: {power_result}")
-
-              # 策略3: fallback 到主实例
-              if not selected_uuid:
-                  for inst in instances:
-                      if inst.get("uuid") == PRIMARY_UUID:
-                          uuid = inst.get("uuid")
-                          host, port = get_ssh_info(inst)
-                          print(f"\n⚠️ 无可用GPU实例，使用主实例: {uuid[:12]}... status={inst.get('status')}")
-                          selected_uuid = uuid
-                          selected_host = host
-                          selected_port = port
-                          need_power_off = "true"
-                          break
-
-              if not selected_uuid:
-                  print("❌ 没有任何可用实例")
-                  sys.exit(1)
-
-              print(f"\n📌 选中实例: {selected_uuid}")
-              print(f"   SSH: {selected_host}:{selected_port}")
-              print(f"   need_power_off: {need_power_off}")
-
-          except Exception as e:
-              print(f"⚠️ 检查异常: {e}")
-              need_power_off = "true"
-              selected_uuid = PRIMARY_UUID
-              selected_host = "${{ secrets.AUTODL_SSH_HOST }}"
-              selected_port = "${{ secrets.AUTODL_SSH_PORT }}"
-
-          finally:
-              github_output = os.environ.get("GITHUB_OUTPUT", "")
-              if github_output:
-                  with open(github_output, "a") as f:
-                      f.write(f"need_power_off={need_power_off}\n")
-                      f.write(f"selected_uuid={selected_uuid}\n")
-                      f.write(f"selected_host={selected_host}\n")
-                      f.write(f"selected_port={selected_port}\n")
-              print(f"need_power_off={need_power_off}")
-              print(f"selected_uuid={selected_uuid}")
-              print(f"selected_host={selected_host}")
-              print(f"selected_port={selected_port}")
+              power_result = power_resp.json()
+              if power_result.get("code") == "Success":
+                  print("✅ 开机成功")
+              else:
+                  print(f"⚠️ 开机: {power_result}")
           PYEOF
 
       - name: 等待启动
-        if: steps.check_status.outputs.need_power_off == 'true'
         run: sleep 20
 
-      # ========== Step 3: SSH 执行采集 ==========
+      # ========== Step 2: SSH 执行采集 ==========
       - name: SSH 采集并生成 JSON
         id: ssh_run
-        if: steps.check_status.outputs.need_power_off != 'invalid' && steps.check_status.outputs.selected_host != ''
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ steps.check_status.outputs.selected_host }}
-          port: ${{ steps.check_status.outputs.selected_port }}
+          host: ${{ secrets.AUTODL_SSH_HOST }}
+          port: ${{ secrets.AUTODL_SSH_PORT }}
           username: ${{ secrets.AUTODL_SSH_USER }}
           key: ${{ secrets.AUTODL_SSH_KEY }}
           timeout: 900s
@@ -243,8 +152,7 @@ jobs:
   power-off:
     name: 确保关机
     needs: [generate-deals-json]
-    # 关键：always() 确保无论上游 job 状态如何都会执行
-    if: always() && needs.generate-deals-json.outputs.need_power_off == 'true'
+    if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -254,7 +162,7 @@ jobs:
           python3 << 'PYEOF'
           import requests, json
           SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
-          INSTANCE_UUID = "${{ steps.check_status.outputs.selected_uuid }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
           headers = {"Authorization": SESSION_TOKEN, "Content-Type": "application/json;charset=UTF-8"}
           if not INSTANCE_UUID:
               print("⚠️ 无实例UUID，跳过关机")
