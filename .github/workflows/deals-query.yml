@@ -186,7 +186,11 @@ jobs:
           timeout: 900s
           command_timeout: 900s
           script: |
+            # 保存原始PATH（network_turbo可能会改PATH）
+            export ORIG_PATH="$PATH"
             source /etc/network_turbo 2>/dev/null || true
+            export PATH="$ORIG_PATH:$PATH"
+
             rm -rf wool-monitor
             # git clone 带重试+完整性检查（学术加速不稳定）
             for i in 1 2 3 4 5; do
@@ -203,10 +207,10 @@ jobs:
             done
             cd wool-monitor
 
-            # 确保 python3 和 pip 可用（新实例可能没有）
+            # 确保 python3 可用
             if ! command -v python3 &>/dev/null; then
-              echo ">>> 安装 python3..."
-              apt-get update -qq && apt-get install -y -qq python3 python3-pip python3-venv 2>/dev/null || true
+              echo ">>> python3 not found, installing..."
+              apt-get update -qq && apt-get install -y -qq python3 python3-pip python3-venv 2>/dev/null
             fi
 
             # 创建虚拟环境并安装依赖
