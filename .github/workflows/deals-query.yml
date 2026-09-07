@@ -126,6 +126,66 @@ jobs:
             # 安装依赖（系统Python，忽略已安装的包）
             pip3 install -r requirements.txt -q --prefer-binary 2>/dev/null || true
 
+            # === 诊断：测试 optional.upgrade API 在 AutoDL 上是否可用 ===
+            echo "=== API 诊断测试 ==="
+            python3 << 'TESTEOF'
+import os, sys, json, hashlib, requests
+from datetime import datetime
+
+env_file = os.path.join(os.path.dirname(os.path.abspath('.')), 'wool-monitor', '.env')
+if not os.path.exists(env_file):
+    env_file = '.env'
+with open(env_file) as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith('#') and '=' in line:
+            k, _, v = line.partition('=')
+            if v: os.environ[k.strip()] = v
+
+TB_APP_KEY = os.environ.get('TB_APP_KEY', '')
+TB_APP_SECRET = os.environ.get('TB_APP_SECRET', '')
+TB_ADZONE_ID = os.environ.get('TB_ADZONE_ID', '')
+
+def _make_sign(params, secret):
+    sorted_params = sorted(params.items(), key=lambda x: str(x[0]))
+    sign_str = secret
+    for k, v in sorted_params:
+        sign_str += str(k) + str(v)
+    sign_str += secret
+    return hashlib.md5(sign_str.encode('utf-8')).hexdigest().upper()
+
+API_GATEWAY = 'https://eco.taobao.com/router/rest'
+
+# 测试 recommend
+print('测试 recommend API...')
+timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+params = {'app_key': TB_APP_KEY, 'method': 'taobao.tbk.dg.material.recommend', 'timestamp': timestamp, 'v': '2.0', 'sign_method': 'md5', 'format': 'json', 'adzone_id': int(TB_ADZONE_ID), 'material_id': 13371, 'page_no': 1, 'page_size': 2}
+params['sign'] = _make_sign(params, TB_APP_SECRET)
+resp = requests.get(API_GATEWAY, params=params, timeout=15)
+result = resp.json()
+if 'error_response' in result:
+    print(f'  recommend: ❌ {result["error_response"]}')
+else:
+    items = result.get('tbk_dg_material_recommend_response', {}).get('result_list', {}).get('map_data', [])
+    print(f'  recommend: ✅ 返回 {len(items)} 条')
+
+# 测试 optional.upgrade（连续3次）
+print('测试 optional.upgrade API（连续3次）...')
+for i in range(3):
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    params = {'app_key': TB_APP_KEY, 'method': 'taobao.tbk.dg.material.optional.upgrade', 'timestamp': timestamp, 'v': '2.0', 'sign_method': 'md5', 'format': 'json', 'adzone_id': int(TB_ADZONE_ID), 'q': f'面膜{i}', 'page_no': 1, 'page_size': 2, 'platform': 2}
+    params['sign'] = _make_sign(params, TB_APP_SECRET)
+    resp = requests.get(API_GATEWAY, params=params, timeout=15)
+    result = resp.json()
+    if 'error_response' in result:
+        err = result['error_response']
+        print(f'  第{i+1}次: ❌ code={err.get("code")}, msg={err.get("msg")}')
+    else:
+        items = result.get('tbk_dg_material_optional_upgrade_response', {}).get('result_list', {}).get('map_data', [])
+        print(f'  第{i+1}次: ✅ 返回 {len(items)} 条')
+print('=== 诊断结束 ===')
+TESTEOF
+
             # 配置环境变量
             cat > .env << ENVEOF
             TB_APP_KEY=${{ secrets.TB_APP_KEY }}
