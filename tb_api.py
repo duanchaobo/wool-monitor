@@ -285,7 +285,10 @@ def _enrich_price_info(deal):
         "platform": 2,
     }
 
-    result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
+    try:
+        result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
+    except Exception:
+        return deal
     if not result:
         return deal
 
@@ -419,10 +422,21 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                     continue
 
                 # 基础价格（来自 recommend API）
-                zk_price = price_info.get("zk_final_price", "")
-                final_price = price_info.get("final_promotion_price", "")
+                reserve_price = price_info.get("reserve_price", "")   # 原价/吊牌价
+                zk_price = price_info.get("zk_final_price", "")        # 销售价
+                final_price = price_info.get("final_promotion_price", "")  # 券后价
                 show_price = zk_price or final_price
                 pay_price = final_price if final_price and final_price != show_price else ""
+
+                # 计算折扣（基于销售价和券后价）
+                discount_pct = 0
+                try:
+                    sale_num = float(zk_price) if zk_price else 0
+                    final_num = float(final_price) if final_price else 0
+                    if sale_num > 0 and final_num > 0 and final_num < sale_num:
+                        discount_pct = round((1 - final_num / sale_num) * 100)
+                except (ValueError, TypeError):
+                    pass
 
                 # 图片
                 pict_url = basic.get("pict_url", "")
@@ -490,9 +504,6 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                     "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
                 }
 
-                # Step 2: 用 optional.upgrade 补充完整价格信息
-                deal = _enrich_price_info(deal)
-
                 deals.append(deal)
 
         except Exception as e:
@@ -510,6 +521,20 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
             break
         page_no += 1
         time.sleep(0.3)
+
+    # 统一补充价格信息（带延迟避免限流）
+    if deals:
+        print(f"[物料推荐] {sub_name} 开始补充价格信息 ({len(deals)} 条)...")
+        enriched = 0
+        for i, deal in enumerate(deals):
+            enriched_deal = _enrich_price_info(deal)
+            if enriched_deal != deal:
+                deals[i] = enriched_deal
+                enriched += 1
+            # 每10条休息0.5秒，避免触发API限流
+            if (i + 1) % 10 == 0:
+                time.sleep(0.5)
+        print(f"[物料推荐] {sub_name} 价格补充完成 ({enriched}/{len(deals)} 条有效)")
 
     return deals
 
