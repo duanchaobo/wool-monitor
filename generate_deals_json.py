@@ -338,8 +338,8 @@ def generate_deals_json(output_dir, search_keyword=None):
         raw_deals = collect_tb_material_search(q=search_keyword, has_coupon=True, page_size=30)
         # 搜索模式：也进行旗舰店筛选+关键词分类
         deals = [format_deal(d, i) for i, d in enumerate(raw_deals)]
-        # 过滤：有价格 + 旗舰店 + 匹配到分类
-        deals = [d for d in deals if d["price"] and d["shop"] and "旗舰店" in d["shop"] and d["category"]]
+        # 过滤：有价格 + 天猫 + 匹配到分类
+        deals = [d for d in deals if d["price"] and d.get("user_type") == 1 and d["category"]]
 
         # 按折扣排序
         deals.sort(key=lambda x: x["discount"], reverse=True)
@@ -393,9 +393,9 @@ def generate_deals_json(output_dir, search_keyword=None):
         # 3. 格式化（含关键词分类）
         formatted = [format_deal(d, i) for i, d in enumerate(valid_deals)]
 
-        # 4. 只保留天猫旗舰店商品
-        flagship = [d for d in formatted if "旗舰店" in d.get("shop", "")]
-        print(f"  旗舰店筛选: {len(flagship)} 条")
+        # 4. 只保留天猫商品（user_type=1）
+        flagship = [d for d in formatted if d.get("user_type") == 1]
+        print(f"  天猫筛选: {len(flagship)} 条")
 
         # 5. 只保留匹配到分类的商品
         categorized = [d for d in flagship if d["category"] is not None]

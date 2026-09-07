@@ -432,6 +432,13 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                 # 店铺
                 shop_title = basic.get("shop_title", "")
 
+                # user_type: 0=淘宝, 1=天猫
+                user_type = basic.get("user_type", 0)
+                try:
+                    user_type = int(user_type)
+                except (ValueError, TypeError):
+                    user_type = 0
+
                 # 销量
                 annual_vol = basic.get("annual_vol", "")
                 tk_sales = basic.get("tk_total_sales", "")
@@ -454,7 +461,8 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                 tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
 
                 deal = {
-                    "source": "淘宝",
+                    "source": "天猫" if user_type == 1 else "淘宝",
+                    "user_type": user_type,
                     "title": title[:60],
                     "price": f"¥{show_price}" if show_price else "",          # 销售价
                     "old_price": "",                                          # 原价（后续补充）
