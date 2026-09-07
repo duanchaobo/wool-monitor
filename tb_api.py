@@ -639,15 +639,35 @@ def collect_tb_all(max_pages=3):
         91356: "快消精选",
     }
     TARGET_MATERIAL_IDS = list(MATERIAL_ID_NAMES.keys())
-    recommend_count = 0
+
+    # ========== 多线程并行采集 ==========
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    import threading
+
     seen_keys = set()
-    for idx, mid in enumerate(TARGET_MATERIAL_IDS, 1):
+    lock = threading.Lock()
+    recommend_count = 0
+
+    def _fetch_one(mid):
+        """单个物料ID采集（在子线程中执行）"""
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
-        # 全量翻页采集，page_size=100
         deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=True)
+        return mid, sub_name, deals
+
+    # 并行采集，最多8个线程
+    results = {}
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = {executor.submit(_fetch_one, mid): mid for mid in TARGET_MATERIAL_IDS}
+        for future in as_completed(futures):
+            mid, sub_name, deals = future.result()
+            results[mid] = (sub_name, deals)
+            print(f"  [{len(results):2d}/{len(TARGET_MATERIAL_IDS)}] {sub_name}: {len(deals)} 条")
+
+    # 按原始顺序合并 + 去重
+    for mid in TARGET_MATERIAL_IDS:
+        sub_name, deals = results[mid]
         new_deals = []
         for d in deals:
-            # 去重key：标题+店铺+销售价
             key = d.get("title", "")[:20] + "|" + d.get("shop", "")[:10] + "|" + d.get("price", "")
             if key not in seen_keys:
                 seen_keys.add(key)
@@ -655,9 +675,8 @@ def collect_tb_all(max_pages=3):
         if new_deals:
             all_deals.extend(new_deals)
             recommend_count += len(new_deals)
-        print(f"  [{idx:2d}/{len(TARGET_MATERIAL_IDS)}] {sub_name}: {len(new_deals)} 条（累计 {recommend_count} 条）")
-        time.sleep(0.3)
-    print(f"[物料推荐] {recommend_count} 条（去重后）")
+
+    print(f"[物料推荐] {recommend_count} 条（去重后，多线程并行采集）")
 
     # 按销量排序：优先 annual_vol（年化销量），其次 tk_total_sales
     all_deals.sort(key=lambda d: (

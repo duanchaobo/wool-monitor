@@ -104,7 +104,7 @@ jobs:
 
           resp = requests.post(
               "https://www.autodl.com/api/v1/instance/power_on",
-              json={"instance_uuid": INSTANCE_UUID, "payload": "non_gpu"},
+              json={"instance_uuid": INSTANCE_UUID, "payload": "gpu"},
               headers=headers, timeout=30
           )
           result = resp.json()
