@@ -344,7 +344,7 @@ def _enrich_price_info(deal):
     return deal
 
 
-def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
+def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fetch_all_pages=True):
     """
     淘宝客物料推荐 - 根据物料ID获取推荐商品
     使用 taobao.tbk.dg.material.recommend API 获取商品列表
@@ -354,109 +354,131 @@ def collect_tb_material_recommend(material_id, page_size=20, sub_name=None):
         material_id: 物料ID
         page_size: 每页条数（最大100）
         sub_name: 二级类目名称（物料主题名）
+        fetch_all_pages: 是否翻页获取所有商品（默认True）
     """
     deals = []
+    page_no = 1
+    total_count = None
 
-    # Step 1: 用 material.recommend 获取商品列表
-    biz_params = {
-        "adzone_id": int(TB_ADZONE_ID),
-        "material_id": int(material_id),
-        "page_no": 1,
-        "page_size": min(page_size, 100),
-    }
+    while True:
+        # Step 1: 用 material.recommend 获取商品列表
+        biz_params = {
+            "adzone_id": int(TB_ADZONE_ID),
+            "material_id": int(material_id),
+            "page_no": page_no,
+            "page_size": min(page_size, 100),
+        }
 
-    result = _call_tb_api("taobao.tbk.dg.material.recommend", **biz_params)
-    if not result:
-        return deals
+        result = _call_tb_api("taobao.tbk.dg.material.recommend", **biz_params)
+        if not result:
+            break
 
-    try:
-        resp_key = "tbk_dg_material_recommend_response"
-        inner = result.get(resp_key, {})
-        result_list = inner.get("result_list", {})
-        items = result_list.get("map_data", [])
+        try:
+            resp_key = "tbk_dg_material_recommend_response"
+            inner = result.get(resp_key, {})
+            result_list = inner.get("result_list", {})
+            items = result_list.get("map_data", [])
 
-        for item in items:
-            basic = item.get("item_basic_info", {})
-            price_info = item.get("price_promotion_info", {})
-            publish_info = item.get("publish_info", {})
+            # 获取总数量（仅在第一页）
+            if total_count is None:
+                total_count = inner.get("total_count", 0)
 
-            title = basic.get("title", "") or basic.get("short_title", "")
-            if not title:
-                continue
+            if not items:
+                break
 
-            # 基础价格（来自 recommend API）
-            zk_price = price_info.get("zk_final_price", "")
-            final_price = price_info.get("final_promotion_price", "")
-            show_price = zk_price or final_price
-            pay_price = final_price if final_price and final_price != show_price else ""
+            for item in items:
+                basic = item.get("item_basic_info", {})
+                price_info = item.get("price_promotion_info", {})
+                publish_info = item.get("publish_info", {})
 
-            # 图片
-            pict_url = basic.get("pict_url", "")
-            if pict_url and not pict_url.startswith("http"):
-                pict_url = "https:" + pict_url
+                title = basic.get("title", "") or basic.get("short_title", "")
+                if not title:
+                    continue
 
-            # 店铺
-            shop_title = basic.get("shop_title", "")
+                # 基础价格（来自 recommend API）
+                zk_price = price_info.get("zk_final_price", "")
+                final_price = price_info.get("final_promotion_price", "")
+                show_price = zk_price or final_price
+                pay_price = final_price if final_price and final_price != show_price else ""
 
-            # 销量
-            annual_vol = basic.get("annual_vol", "")
-            tk_sales = basic.get("tk_total_sales", "")
+                # 图片
+                pict_url = basic.get("pict_url", "")
+                if pict_url and not pict_url.startswith("http"):
+                    pict_url = "https:" + pict_url
 
-            # 推广链接
-            click_url = publish_info.get("click_url", "")
-            if click_url and click_url.startswith("//"):
-                click_url = "https:" + click_url
+                # 店铺
+                shop_title = basic.get("shop_title", "")
 
-            # 佣金率
-            commission_rate_raw = publish_info.get("commission_rate", "")
-            if commission_rate_raw:
-                commission_rate = f"{float(commission_rate_raw)/100:.1f}%"
-            else:
-                commission_rate = ""
+                # 销量
+                annual_vol = basic.get("annual_vol", "")
+                tk_sales = basic.get("tk_total_sales", "")
 
-            # 促销标签
-            promo_tags = price_info.get("promotion_tag_list", {})
-            tag_list = promo_tags.get("promotion_tag_map_data", [])
-            tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
+                # 推广链接
+                click_url = publish_info.get("click_url", "")
+                if click_url and click_url.startswith("//"):
+                    click_url = "https:" + click_url
 
-            deal = {
-                "source": "淘宝",
-                "title": title[:60],
-                "price": f"¥{show_price}" if show_price else "",          # 销售价
-                "old_price": "",                                          # 原价（后续补充）
-                "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（后续补充）
-                "coupon_price": "",                                       # 券后价（后续补充）
-                "gov_subsidy": "",                                        # 政府补贴（后续补充）
-                "discount": 0,                                            # 优惠力度（后续补充）
-                "coupon_details": "",                                     # 券明细（后续补充）
-                "gov_provinces": "",                                      # 补贴省份（后续补充）
-                "url": click_url,
-                "coupon_url": "",
-                "coupon_quota": 0,
-                "coupon_discount": 0,
-                "tag": f"物料推荐",
-                "category": basic.get("level_one_category_name", ""),
-                "sub_category": basic.get("category_name", "") or sub_name or "",
-                "img_url": pict_url,
-                "shop": shop_title,
-                "sales": annual_vol or tk_sales,
-                "annual_vol": annual_vol,
-                "annual_vol_num": _parse_annual_vol(annual_vol),
-                "tk_total_sales": tk_sales,
-                "commission_rate": commission_rate,
-                "tags": ", ".join(tags),
-                "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
-            }
+                # 佣金率
+                commission_rate_raw = publish_info.get("commission_rate", "")
+                if commission_rate_raw:
+                    commission_rate = f"{float(commission_rate_raw)/100:.1f}%"
+                else:
+                    commission_rate = ""
 
-            # Step 2: 用 optional.upgrade 补充完整价格信息
-            deal = _enrich_price_info(deal)
+                # 促销标签
+                promo_tags = price_info.get("promotion_tag_list", {})
+                tag_list = promo_tags.get("promotion_tag_map_data", [])
+                tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
 
-            deals.append(deal)
+                deal = {
+                    "source": "淘宝",
+                    "title": title[:60],
+                    "price": f"¥{show_price}" if show_price else "",          # 销售价
+                    "old_price": "",                                          # 原价（后续补充）
+                    "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（后续补充）
+                    "coupon_price": "",                                       # 券后价（后续补充）
+                    "gov_subsidy": "",                                        # 政府补贴（后续补充）
+                    "discount": 0,                                            # 优惠力度（后续补充）
+                    "coupon_details": "",                                     # 券明细（后续补充）
+                    "gov_provinces": "",                                      # 补贴省份（后续补充）
+                    "url": click_url,
+                    "coupon_url": "",
+                    "coupon_quota": 0,
+                    "coupon_discount": 0,
+                    "tag": f"物料推荐",
+                    "category": basic.get("level_one_category_name", ""),
+                    "sub_category": basic.get("category_name", "") or sub_name or "",
+                    "img_url": pict_url,
+                    "shop": shop_title,
+                    "sales": annual_vol or tk_sales,
+                    "annual_vol": annual_vol,
+                    "annual_vol_num": _parse_annual_vol(annual_vol),
+                    "tk_total_sales": tk_sales,
+                    "commission_rate": commission_rate,
+                    "tags": ", ".join(tags),
+                    "time": datetime.now().strftime("%Y-%m-%d %H:%M"),
+                }
 
-    except Exception as e:
-        print(f"[物料推荐] 解析失败: {e}")
-        import traceback
-        traceback.print_exc()
+                # Step 2: 用 optional.upgrade 补充完整价格信息
+                deal = _enrich_price_info(deal)
+
+                deals.append(deal)
+
+        except Exception as e:
+            print(f"[物料推荐] 解析失败: {e}")
+            import traceback
+            traceback.print_exc()
+            break
+
+        # 判断是否继续翻页
+        if not fetch_all_pages:
+            break
+        if total_count and len(deals) >= total_count:
+            break
+        if len(items) < page_size:
+            break
+        page_no += 1
+        time.sleep(0.3)
 
     return deals
 
@@ -619,9 +641,10 @@ def collect_tb_all(max_pages=3):
     TARGET_MATERIAL_IDS = list(MATERIAL_ID_NAMES.keys())
     recommend_count = 0
     seen_keys = set()
-    for mid in TARGET_MATERIAL_IDS:
+    for idx, mid in enumerate(TARGET_MATERIAL_IDS, 1):
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
-        deals = collect_tb_material_recommend(material_id=mid, page_size=10, sub_name=sub_name)
+        # 全量翻页采集，page_size=100
+        deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=True)
         new_deals = []
         for d in deals:
             # 去重key：标题+店铺+销售价
@@ -632,6 +655,7 @@ def collect_tb_all(max_pages=3):
         if new_deals:
             all_deals.extend(new_deals)
             recommend_count += len(new_deals)
+        print(f"  [{idx:2d}/{len(TARGET_MATERIAL_IDS)}] {sub_name}: {len(new_deals)} 条（累计 {recommend_count} 条）")
         time.sleep(0.3)
     print(f"[物料推荐] {recommend_count} 条（去重后）")
 
