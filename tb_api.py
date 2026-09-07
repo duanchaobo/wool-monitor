@@ -55,7 +55,7 @@ def _make_sign(params, secret):
 
 
 def _call_tb_api(method, **biz_params):
-    """调用淘宝开放平台 API"""
+    """调用淘宝开放平台 API（带重试）"""
     if not TB_APP_KEY or not TB_APP_SECRET:
         print("[淘宝联盟] 未配置 AppKey/AppSecret，跳过")
         return None
@@ -72,17 +72,34 @@ def _call_tb_api(method, **biz_params):
     params.update(biz_params)
     params["sign"] = _make_sign(params, TB_APP_SECRET)
 
-    try:
-        resp = requests.get(API_GATEWAY, params=params, timeout=15)
-        result = resp.json()
-        if "error_response" in result:
-            err = result["error_response"]
-            print(f"[淘宝联盟] API 错误: code={err.get('code')}, msg={err.get('msg')}")
+    # 重试配置：最多3次，指数退避
+    max_retries = 3
+    for attempt in range(1, max_retries + 1):
+        try:
+            resp = requests.get(API_GATEWAY, params=params, timeout=15)
+            result = resp.json()
+            if "error_response" in result:
+                err = result["error_response"]
+                code = err.get("code")
+                # 内部调用失败（code=15）可重试
+                if code == 15 and attempt < max_retries:
+                    wait = attempt * 2
+                    print(f"[淘宝联盟] API 错误 code=15，第{attempt}次重试（等待{wait}s）...")
+                    time.sleep(wait)
+                    continue
+                print(f"[淘宝联盟] API 错误: code={code}, msg={err.get('msg')}")
+                return None
+            return result
+        except Exception as e:
+            if attempt < max_retries:
+                wait = attempt * 2
+                print(f"[淘宝联盟] API 调用失败: {e}，第{attempt}次重试（等待{wait}s）...")
+                time.sleep(wait)
+                continue
+            print(f"[淘宝联盟] API 调用失败: {e}")
             return None
-        return result
-    except Exception as e:
-        print(f"[淘宝联盟] API 调用失败: {e}")
-        return None
+
+    return None
 
 
 def generate_taokouling(title, url):
@@ -371,7 +388,13 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
 
         result = _call_tb_api("taobao.tbk.dg.material.recommend", **biz_params)
         if not result:
-            break
+            # API 失败时跳过当前页，不 break（可能是临时网络问题）
+            print(f"[物料推荐] {sub_name} 第{page_no}页失败，跳过")
+            page_no += 1
+            if page_no > 5:  # 连续失败超过5页则停止翻页
+                break
+            time.sleep(1)
+            continue
 
         try:
             resp_key = "tbk_dg_material_recommend_response"
@@ -654,9 +677,9 @@ def collect_tb_all(max_pages=3):
         deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=True)
         return mid, sub_name, deals
 
-    # 并行采集，最多8个线程
+    # 并行采集，最多4个线程（避免API限流）
     results = {}
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    with ThreadPoolExecutor(max_workers=4) as executor:
         futures = {executor.submit(_fetch_one, mid): mid for mid in TARGET_MATERIAL_IDS}
         for future in as_completed(futures):
             mid, sub_name, deals = future.result()
