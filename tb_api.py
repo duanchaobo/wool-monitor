@@ -44,6 +44,38 @@ TB_ADZONE_ID = os.environ.get("TB_ADZONE_ID", "")
 
 API_GATEWAY = "https://eco.taobao.com/router/rest"
 
+# ========== 物料ID -> 二级类目名称映射（全局常量，63个有效ID） ==========
+MATERIAL_ID_NAMES = {
+    # === 母婴类 ===
+    4040: "备孕", 4041: "0-6月", 4042: "7-12月", 4043: "1-3岁", 4044: "4-6岁", 4045: "7-12岁",
+    13374: "高佣母婴", 27454: "大额券母婴", 84226: "高佣母婴", 86616: "品牌券母婴",
+    87579: "母婴团精选", 87578: "品牌团精选",
+    # === 服饰类 ===
+    13367: "高佣女装", 13370: "高佣鞋包", 13372: "高佣男装", 13373: "高佣内衣",
+    27448: "大额券女装", 28029: "热销大服饰", 84222: "高佣服饰", 84223: "高佣新内衣",
+    86617: "品牌券内衣", 86618: "品牌券男装", 86620: "品牌券鞋包", 86623: "品牌券女装",
+    92183: "淘宝服饰精选", 4093: "潮流范",
+    # === 数码家电 ===
+    13369: "高佣数码家电", 84224: "高佣数码", 86621: "品牌券数码", 92182: "天猫品牌团",
+    # === 运动户外 ===
+    13376: "高佣运动户外", 86615: "品牌券运动", 88344: "运动精选",
+    # === 美妆 ===
+    13371: "高佣美妆", 27453: "大额券美妆", 84227: "高佣美妆", 86619: "品牌券美妆",
+    87575: "美妆精选", 86589: "天猫国际",
+    # === 美食 ===
+    13375: "高佣食品", 27451: "大额券食品", 84228: "高佣美食", 86614: "品牌券食品",
+    # === 日用品/家居 ===
+    13368: "高佣家居家装", 27798: "大额券家居", 86622: "品牌券家居",
+    13366: "高佣综合", 27446: "大额券综合", 28026: "热销综合",
+    28027: "热销大快消", 28028: "热销电器美家",
+    # === 其他 ===
+    84229: "高佣猫超", 84230: "高佣精选", 84225: "高佣文娱",
+    86592: "国际直营爆款", 86594: "天天特卖", 86595: "品牌精选",
+    86637: "猜你喜欢", 4092: "有好货精品",
+    117935: "直播闪降", 98168: "品牌精选", 92184: "珠宝精选",
+    91356: "快消精选",
+}
+
 
 def _make_sign(params, secret):
     """生成淘宝开放平台 API 签名（MD5）"""
@@ -359,7 +391,7 @@ def _enrich_price_info(deal):
         if tk_total_sales:
             deal["tk_total_sales"] = tk_total_sales
 
-    except Exception as e:
+    except Exception:
         pass  # 价格补充失败不影响主流程
 
     return deal
@@ -369,7 +401,6 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
     """
     淘宝客物料推荐 - 根据物料ID获取推荐商品
     使用 taobao.tbk.dg.material.recommend API 获取商品列表
-    再用 taobao.tbk.dg.material.optional.upgrade 补充完整价格信息
 
     Args:
         material_id: 物料ID
@@ -476,25 +507,24 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                 tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
 
                 # 用recommend API的价格初始化（后续enrichment会覆盖为更准确的价格）
-                # 这样即使enrichment失败，商品也有基本价格数据
-                init_discount = discount_pct  # 之前计算的折扣（基于zk_final_price和final_promotion_price）
+                init_discount = discount_pct
                 deal = {
                     "source": "天猫" if user_type == 1 else "淘宝",
                     "user_type": user_type,
                     "title": title[:60],
-                    "price": f"¥{show_price}" if show_price else "",          # 销售价
-                    "old_price": f"¥{reserve_price}" if reserve_price and reserve_price != show_price else "",  # 原价
-                    "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价
-                    "coupon_price": f"¥{final_price}" if final_price else "", # 券后价
-                    "gov_subsidy": "",                                        # 政府补贴（后续补充）
-                    "discount": init_discount,                                # 优惠力度（recommend API计算）
-                    "coupon_details": "",                                     # 券明细（后续补充）
-                    "gov_provinces": "",                                      # 补贴省份（后续补充）
+                    "price": f"¥{show_price}" if show_price else "",
+                    "old_price": f"¥{reserve_price}" if reserve_price and reserve_price != show_price else "",
+                    "predict_price": f"¥{pay_price}" if pay_price else "",
+                    "coupon_price": f"¥{final_price}" if final_price else "",
+                    "gov_subsidy": "",
+                    "discount": init_discount,
+                    "coupon_details": "",
+                    "gov_provinces": "",
                     "url": click_url,
                     "coupon_url": "",
                     "coupon_quota": 0,
                     "coupon_discount": 0,
-                    "tag": f"物料推荐",
+                    "tag": "物料推荐",
                     "category": basic.get("level_one_category_name", ""),
                     "sub_category": basic.get("category_name", "") or sub_name or "",
                     "img_url": pict_url,
@@ -526,8 +556,6 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
         page_no += 1
         time.sleep(0.3)
 
-    # 注意：enrichment 统一在 collect_tb_all 中按流程处理
-    # 这里只返回原始采集结果（含recommend API的价格）
     return deals
 
 
@@ -572,35 +600,23 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
             if not title:
                 continue
 
-            # 价格（页面实际显示：zk_final_price → final_promotion_price）
-            # zk_final_price         = 销售价格（页面主价格，如 ¥65.8）
-            # final_promotion_price  = 预估到手价（实际支付金额，如 ¥14.9）
-            # 折扣 = 1 - final_promotion_price / zk_final_price
             zk_price = price_info.get("zk_final_price", "")
             final_price = price_info.get("final_promotion_price", "")
 
-            # 页面主价格（现价）= zk_final_price
             show_price = zk_price or final_price
-            # 到手价 = final_promotion_price（比现价低时才有折扣）
             pay_price = final_price if final_price and final_price != show_price else ""
 
-            # 图片
             pict_url = basic.get("pict_url", "")
             if pict_url and not pict_url.startswith("http"):
                 pict_url = "https:" + pict_url
 
-            # 店铺
             shop_title = basic.get("shop_title", "")
-
-            # 销量
             annual_vol = basic.get("annual_vol", "")
 
-            # 推广链接
             click_url = publish_info.get("click_url", "")
             if click_url and click_url.startswith("//"):
                 click_url = "https:" + click_url
 
-            # 佣金（原始值需除以100，如180=1.8%）
             income_info = publish_info.get("income_info", {})
             commission_rate_raw = income_info.get("commission_rate", "")
             if commission_rate_raw:
@@ -608,7 +624,6 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
             else:
                 commission_rate = ""
 
-            # 促销标签
             promo_tags = price_info.get("promotion_tag_list", {})
             tag_list = promo_tags.get("promotion_tag_map_data", [])
             tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
@@ -616,9 +631,9 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
             deal = {
                 "source": "淘宝",
                 "title": title[:60],
-                "price": f"¥{show_price}" if show_price else "",          # 现价（页面主价格/zk_final_price）
-                "old_price": "",  # 不再使用划线价
-                "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（final_promotion_price）
+                "price": f"¥{show_price}" if show_price else "",
+                "old_price": "",
+                "predict_price": f"¥{pay_price}" if pay_price else "",
                 "coupon_price": "",
                 "discount": 0,
                 "url": click_url,
@@ -645,50 +660,57 @@ def collect_tb_material_search(q, has_coupon=True, page_size=20):
     return deals
 
 
-def collect_tb_all(max_pages=3):
-    """
-    淘宝联盟全量采集
-    流程：material.recommend（物料ID获取商品）→ optional.upgrade（补充价格）
+# ========== 双工作流架构核心函数 ==========
 
-    Args:
-        max_pages: 每种优惠券最多翻几页（未使用）
+def _load_famous_shop_names():
     """
-    all_deals = []
+    从 famous_brands.txt 加载知名品牌旗舰店名称集合
+    Returns:
+        set: 店铺名集合，如 {"小米官方旗舰店", "Apple苹果官方旗舰店", ...}
+    """
+    shop_names = set()
+    brands_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "famous_brands.txt")
+    if not os.path.exists(brands_file):
+        print(f"[警告] 品牌列表文件不存在: {brands_file}")
+        return shop_names
 
-    # 物料ID -> 二级类目名称映射（全部63个有效ID）
-    MATERIAL_ID_NAMES = {
-        # === 母婴类 ===
-        4040: "备孕", 4041: "0-6月", 4042: "7-12月", 4043: "1-3岁", 4044: "4-6岁", 4045: "7-12岁",
-        13374: "高佣母婴", 27454: "大额券母婴", 84226: "高佣母婴", 86616: "品牌券母婴",
-        87579: "母婴团精选", 87578: "品牌团精选",
-        # === 服饰类 ===
-        13367: "高佣女装", 13370: "高佣鞋包", 13372: "高佣男装", 13373: "高佣内衣",
-        27448: "大额券女装", 28029: "热销大服饰", 84222: "高佣服饰", 84223: "高佣新内衣",
-        86617: "品牌券内衣", 86618: "品牌券男装", 86620: "品牌券鞋包", 86623: "品牌券女装",
-        92183: "淘宝服饰精选", 4093: "潮流范",
-        # === 数码家电 ===
-        13369: "高佣数码家电", 84224: "高佣数码", 86621: "品牌券数码", 92182: "天猫品牌团",
-        # === 运动户外 ===
-        13376: "高佣运动户外", 86615: "品牌券运动", 88344: "运动精选",
-        # === 美妆 ===
-        13371: "高佣美妆", 27453: "大额券美妆", 84227: "高佣美妆", 86619: "品牌券美妆",
-        87575: "美妆精选", 86589: "天猫国际",
-        # === 美食 ===
-        13375: "高佣食品", 27451: "大额券食品", 84228: "高佣美食", 86614: "品牌券食品",
-        # === 日用品/家居 ===
-        13368: "高佣家居家装", 27798: "大额券家居", 86622: "品牌券家居",
-        13366: "高佣综合", 27446: "大额券综合", 28026: "热销综合",
-        28027: "热销大快消", 28028: "热销电器美家",
-        # === 其他 ===
-        84229: "高佣猫超", 84230: "高佣精选", 84225: "高佣文娱",
-        86592: "国际直营爆款", 86594: "天天特卖", 86595: "品牌精选",
-        86637: "猜你喜欢", 4092: "有好货精品",
-        117935: "直播闪降", 98168: "品牌精选", 92184: "珠宝精选",
-        91356: "快消精选",
-    }
+    with open(brands_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            # 匹配店铺行：  序号. 店铺名
+            match = re.match(r'^\s*\d+\.\s*(.+)$', line)
+            if match:
+                shop_names.add(match.group(1).strip())
+    return shop_names
+
+
+def _is_famous_brand_shop(shop_title, famous_shop_names):
+    """
+    判断店铺是否是知名品牌天猫旗舰店
+    使用精确匹配 + 包含匹配
+    """
+    if not shop_title:
+        return False
+    # 精确匹配
+    if shop_title in famous_shop_names:
+        return True
+    # 包含匹配（店铺名包含品牌关键词）
+    for name in famous_shop_names:
+        if name in shop_title or shop_title in name:
+            return True
+    return False
+
+
+def collect_recommend_then_filter():
+    """
+    Workflow 1: recommend API 采集 → 筛选知名品牌天猫旗舰店 → 去重
+
+    Returns:
+        list: 筛选后的原始商品列表（未enrichment）
+    """
     TARGET_MATERIAL_IDS = list(MATERIAL_ID_NAMES.keys())
 
-    # ========== 加载知名品牌店铺列表 ==========
+    # 加载知名品牌店铺列表
     famous_shop_names = _load_famous_shop_names()
     print(f"[知名品牌] 加载 {len(famous_shop_names)} 个旗舰店")
 
@@ -736,33 +758,75 @@ def collect_tb_all(max_pages=3):
         filtered_deals.append(d)
     print(f"[阶段2] 筛选知名品牌天猫店 + 去重: {len(filtered_deals)} 条")
 
-    # ========== 阶段3: 调用 optional.upgrade 补充价格 ==========
-    # 带熔断机制：连续失败次数过多时跳过剩余（用recommend价格兜底）
+    return filtered_deals
+
+
+def enrich_deals_batch(deals, batch_size=200, start_index=0):
+    """
+    Workflow 2: 对商品列表调用 optional.upgrade 补充价格（分批处理）
+
+    Args:
+        deals: 待处理的商品列表
+        batch_size: 本次处理的商品数量
+        start_index: 从第几个商品开始处理
+
+    Returns:
+        tuple: (enriched_deals, end_index, total)
+            - enriched_deals: 本次处理的商品列表（含enrichment结果）
+            - end_index: 下次应从第几个商品开始
+            - total: 商品总数
+    """
+    total = len(deals)
+    end_index = min(start_index + batch_size, total)
+
+    if start_index >= total:
+        print(f"[enrich] 无待处理商品（start_index={start_index}, total={total}）")
+        return [], end_index, total
+
+    batch = deals[start_index:end_index]
+    print(f"[enrich] 处理第 {start_index+1}-{end_index} 条（共 {total} 条）")
+
     enriched_deals = []
     consecutive_failures = 0
     MAX_CONSECUTIVE_FAILURES = 20  # 连续失败20次则跳过剩余
-    for i, deal in enumerate(filtered_deals):
+
+    for i, deal in enumerate(batch):
         if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
             # 熔断：剩余商品直接用recommend价格
-            print(f"  [阶段3] 触发熔断（连续失败{consecutive_failures}次），剩余{len(filtered_deals)-i}条用recommend价格")
-            enriched_deals.extend(filtered_deals[i:])
+            print(f"  [enrich] 触发熔断（连续失败{consecutive_failures}次），剩余{len(batch)-i}条用recommend价格")
+            enriched_deals.extend(batch[i:])
             break
+
         enriched = _enrich_price_info(deal)
-        # 判断是否enrichment成功（价格是否有更新）
+        # 判断是否enrichment成功
         if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
-            consecutive_failures = 0  # 成功则重置计数
+            consecutive_failures = 0
         else:
             consecutive_failures += 1
         enriched_deals.append(enriched)
+
         # 每条间隔0.5秒避免限流
         time.sleep(0.5)
         if (i + 1) % 20 == 0:
-            print(f"  [阶段3] 价格补充进度: {i+1}/{len(filtered_deals)} (连续失败:{consecutive_failures})")
-    print(f"[阶段3] 价格补充完成: {len(enriched_deals)} 条")
+            print(f"  [enrich] 进度: {start_index+i+1}/{total} (连续失败:{consecutive_failures})")
 
-    # ========== 阶段4: 计算折扣，过滤 <10% ==========
+    print(f"[enrich] 完成: 处理 {len(enriched_deals)} 条，下次从 {end_index} 开始")
+    return enriched_deals, end_index, total
+
+
+def filter_by_discount(deals, min_discount=10):
+    """
+    计算商品折扣，过滤掉折扣低于阈值的商品
+
+    Args:
+        deals: 商品列表
+        min_discount: 最低折扣百分比（默认10%）
+
+    Returns:
+        list: 过滤后的商品列表
+    """
     final_deals = []
-    for d in enriched_deals:
+    for d in deals:
         price_num = 0
         predict_num = 0
         try:
@@ -778,10 +842,9 @@ def collect_tb_all(max_pages=3):
         if not discount and price_num > 0 and predict_num > 0 and predict_num < price_num:
             discount = round((1 - predict_num / price_num) * 100)
 
-        if discount >= 10:
+        if discount >= min_discount:
             d["discount"] = discount
             final_deals.append(d)
-    print(f"[阶段4] 过滤折扣<10%: {len(final_deals)} 条")
 
     # 按销量排序
     final_deals.sort(key=lambda d: (
@@ -789,47 +852,28 @@ def collect_tb_all(max_pages=3):
         d.get("tk_total_sales", 0) if isinstance(d.get("tk_total_sales"), (int, float)) else 0
     ), reverse=True)
 
-    print(f"[淘宝联盟] 最终 {len(final_deals)} 条商品")
+    print(f"[折扣过滤] 保留 {len(final_deals)}/{len(deals)} 条（折扣≥{min_discount}%）")
     return final_deals
 
 
-def _load_famous_shop_names():
-    """
-    从 famous_brands.txt 加载知名品牌旗舰店名称集合
-    Returns:
-        set: 店铺名集合，如 {"小米官方旗舰店", "Apple苹果官方旗舰店", ...}
-    """
-    shop_names = set()
-    brands_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "famous_brands.txt")
-    if not os.path.exists(brands_file):
-        print(f"[警告] 品牌列表文件不存在: {brands_file}")
-        return shop_names
+# ========== 兼容旧接口 ==========
 
-    with open(brands_file, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            # 匹配店铺行：  序号. 店铺名
-            match = re.match(r'^\s*\d+\.\s*(.+)$', line)
-            if match:
-                shop_names.add(match.group(1).strip())
-    return shop_names
-
-
-def _is_famous_brand_shop(shop_title, famous_shop_names):
+def collect_tb_all(max_pages=3):
     """
-    判断店铺是否是知名品牌天猫旗舰店
-    使用精确匹配 + 包含匹配
+    淘宝联盟全量采集（兼容旧接口）
+    流程：material.recommend → 筛选 → 去重 → optional.upgrade → 折扣过滤
     """
-    if not shop_title:
-        return False
-    # 精确匹配
-    if shop_title in famous_shop_names:
-        return True
-    # 包含匹配（店铺名包含品牌关键词）
-    for name in famous_shop_names:
-        if name in shop_title or shop_title in name:
-            return True
-    return False
+    # Step 1-2: 采集 + 筛选 + 去重
+    filtered_deals = collect_recommend_then_filter()
+
+    # Step 3: 补充价格
+    enriched_deals, _, _ = enrich_deals_batch(filtered_deals, batch_size=len(filtered_deals), start_index=0)
+
+    # Step 4: 折扣过滤
+    final_deals = filter_by_discount(enriched_deals, min_discount=10)
+
+    print(f"[淘宝联盟] 最终 {len(final_deals)} 条商品")
+    return final_deals
 
 
 if __name__ == "__main__":

@@ -1,0 +1,193 @@
+# GitHub Actions - Workflow 1: recommend API 采集 → 筛选 → 去重
+# 每天北京时间 6:00 执行（UTC 22:00）
+# 输出原始商品名单到 docs/raw_deals.json
+name: 采集商品名单（Workflow 1）
+
+on:
+  schedule:
+    # 每天北京时间 6:00 执行一次（UTC 22:00）
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect-raw-deals:
+    name: recommend API 采集 → 筛选 → 去重
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v5
+
+      # ========== Step 1: 开机（固定实例，无卡模式） ==========
+      - name: 开机
+        id: power_on
+        run: |
+          python3 << 'PYEOF'
+          import requests, json, sys
+
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+
+          headers = {
+              "Authorization": SESSION_TOKEN,
+              "Content-Type": "application/json;charset=UTF-8",
+          }
+
+          # 查询实例状态
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance",
+              json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
+
+          if result.get("code") != "Success":
+              print(f"❌ 查询失败: {result}")
+              sys.exit(1)
+
+          instances = result.get("data", {}).get("list", [])
+          target = None
+          for inst in instances:
+              if inst.get("uuid") == INSTANCE_UUID:
+                  target = inst
+                  break
+
+          if not target:
+              print(f"❌ 实例 {INSTANCE_UUID} 不存在")
+              sys.exit(1)
+
+          status = target.get("status", "")
+          print(f"实例状态: {status}")
+
+          if status == "running":
+              print("✅ 实例已开机，无需操作")
+          else:
+              print("🔄 开机中（non_gpu 模式）...")
+              power_resp = requests.post(
+                  "https://www.autodl.com/api/v1/instance/power_on",
+                  json={"instance_uuid": INSTANCE_UUID, "payload": "non_gpu"},
+                  headers=headers, timeout=30
+              )
+              power_result = power_resp.json()
+              if power_result.get("code") == "Success":
+                  print("✅ 开机成功")
+              else:
+                  print(f"⚠️ 开机: {power_result}")
+          PYEOF
+
+      - name: 等待启动
+        run: sleep 20
+
+      # ========== Step 2: SSH 执行采集 ==========
+      - name: SSH 采集商品名单
+        id: ssh_run
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.AUTODL_SSH_HOST }}
+          port: ${{ secrets.AUTODL_SSH_PORT }}
+          username: ${{ secrets.AUTODL_SSH_USER }}
+          key: ${{ secrets.AUTODL_SSH_KEY }}
+          timeout: 900s
+          command_timeout: 900s
+          script: |
+            # 保存原始环境（network_turbo会改PATH、代理、路由）
+            export ORIG_PATH="$PATH"
+            export ORIG_HTTP_PROXY="$http_proxy"
+            export ORIG_HTTPS_PROXY="$https_proxy"
+            export ORIG_HTTP_PROXY="$HTTP_PROXY"
+            export ORIG_HTTPS_PROXY="$HTTPS_PROXY"
+
+            # ===== 函数：开启/关闭学术加速 =====
+            enable_turbo() {
+              source /etc/network_turbo 2>/dev/null || true
+            }
+            disable_turbo() {
+              export PATH="$ORIG_PATH"
+              export http_proxy="$ORIG_HTTP_PROXY"
+              export https_proxy="$ORIG_HTTPS_PROXY"
+              export HTTP_PROXY="$ORIG_HTTP_PROXY"
+              export HTTPS_PROXY="$ORIG_HTTPS_PROXY"
+              unset all_proxy ALL_PROXY
+            }
+
+            # ===== 阶段1: git clone（开启加速） =====
+            rm -rf wool-monitor
+            enable_turbo
+            for i in 1 2 3 4 5; do
+              echo ">>> git clone 尝试第 $i 次..."
+              git clone --depth 1 https://github.com/duanchaobo/wool-monitor.git
+              if [ -f wool-monitor/requirements.txt ] && [ -f wool-monitor/collect_step1.py ]; then
+                echo "✅ git clone 完成"
+                break
+              fi
+              echo "克隆不完整，等待 10 秒后重试..."
+              rm -rf wool-monitor
+              sleep 10
+            done
+            cd wool-monitor
+
+            # ===== 阶段2: 采集数据（关闭加速，直连淘宝联盟） =====
+            disable_turbo
+
+            # 确保 python3/pip3 可用
+            if ! command -v python3 &>/dev/null; then
+              echo ">>> python3 not found, installing..."
+              apt-get update -qq && apt-get install -y -qq python3 python3-pip 2>/dev/null
+            fi
+
+            # 安装依赖
+            pip3 install -r requirements.txt -q --prefer-binary 2>/dev/null || true
+
+            # 配置环境变量
+            cat > .env << ENVEOF
+            TB_APP_KEY=${{ secrets.TB_APP_KEY }}
+            TB_APP_SECRET=${{ secrets.TB_APP_SECRET }}
+            TB_ADZONE_ID=${{ secrets.TB_ADZONE_ID }}
+            SILICONFLOW_API_KEY=${{ secrets.SILICONFLOW_API_KEY }}
+            ENVEOF
+
+            # 执行 Workflow 1: recommend API 采集 → 筛选 → 去重
+            python3 collect_step1.py --output docs
+
+            # ===== 阶段3: git push（开启加速） =====
+            enable_turbo
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add docs/
+            git commit -m "更新原始商品名单 $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
+            git push https://${{ secrets.PAT_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
+
+  # ========== 独立的关机 job：无论上游成功/失败/超时都会执行 ==========
+  power-off:
+    name: 确保关机
+    needs: [collect-raw-deals]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 关机
+        run: |
+          python3 << 'PYEOF'
+          import requests, json
+          SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
+          INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
+          headers = {"Authorization": SESSION_TOKEN, "Content-Type": "application/json;charset=UTF-8"}
+          if not INSTANCE_UUID:
+              print("⚠️ 无实例UUID，跳过关机")
+              exit(0)
+          resp = requests.post(
+              "https://www.autodl.com/api/v1/instance/power_off",
+              json={"instance_uuid": INSTANCE_UUID},
+              headers=headers, timeout=30
+          )
+          result = resp.json()
+          if result.get("code") == "Success":
+              print(f"✅ 关机成功: {INSTANCE_UUID[:12]}...")
+          else:
+              print(f"⚠️ 关机: {result}")
+          PYEOF
