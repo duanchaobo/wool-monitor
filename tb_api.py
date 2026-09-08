@@ -525,24 +525,27 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
         page_no += 1
         time.sleep(0.3)
 
+    # 先过滤天猫商品，再enrichment（避免浪费API调用在淘宝商品上）
+    tmall_deals = [d for d in deals if d.get("user_type") == 1]
+
     # 补充价格信息（限制数量避免API限流）
     # 淘宝联盟API有限流，大量调用会返回code=15
-    # 策略：只对前N条调用optional.upgrade，其余用recommend API的价格
+    # 策略：只对天猫商品的前N条调用optional.upgrade
     MAX_ENRICH_PER_MATERIAL = 15  # 每个物料ID最多补充15条
-    if deals:
-        enrich_count = min(len(deals), MAX_ENRICH_PER_MATERIAL)
-        print(f"[物料推荐] {sub_name} 补充价格信息 ({enrich_count}/{len(deals)} 条)...")
+    if tmall_deals:
+        enrich_count = min(len(tmall_deals), MAX_ENRICH_PER_MATERIAL)
+        print(f"[物料推荐] {sub_name} 补充价格信息 ({enrich_count}/{len(tmall_deals)} 条天猫)...")
         enriched = 0
         for i in range(enrich_count):
-            enriched_deal = _enrich_price_info(deals[i])
-            if enriched_deal != deals[i]:
-                deals[i] = enriched_deal
+            enriched_deal = _enrich_price_info(tmall_deals[i])
+            if enriched_deal != tmall_deals[i]:
+                tmall_deals[i] = enriched_deal
                 enriched += 1
             # 每条之间休息0.3秒，避免触发限流
             time.sleep(0.3)
         print(f"[物料推荐] {sub_name} 价格补充完成 ({enriched}/{enrich_count} 条有效)")
 
-    return deals
+    return tmall_deals
 
 
 def collect_tb_material_search(q, has_coupon=True, page_size=20):
@@ -713,10 +716,9 @@ def collect_tb_all(max_pages=3):
     def _fetch_one(mid):
         """单个物料ID采集（在子线程中执行，只取第1页，只保留天猫商品）"""
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
+        # collect_tb_material_recommend 内部已过滤天猫 + enrichment
         deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=False)
-        # 只保留天猫商品（减少enrichment API调用量）
-        tmall_deals = [d for d in deals if d.get("user_type") == 1]
-        return mid, sub_name, tmall_deals
+        return mid, sub_name, deals
 
     # 并行采集，最多4个线程（避免API限流）
     results = {}
