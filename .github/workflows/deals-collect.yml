@@ -85,8 +85,8 @@ jobs:
                   sys.exit(1)
 
           # 获取实例IP（重新查询确保拿到最新IP）
-          ip = target.get("ip", "") or target.get("public_ip", "")
-          ssh_port = target.get("ssh_port", 22)
+          ip = target.get("proxy_host", "")
+          ssh_port = target.get("proxy_port", 22)
           print(f"实例IP: {ip}:{ssh_port}")
 
           if not ip:
