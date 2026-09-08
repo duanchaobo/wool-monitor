@@ -1,15 +1,14 @@
-# GitHub Actions - Workflow 2: 分批补充价格 → 折扣过滤 → 生成小程序JSON
-# 每小时执行一次（从北京时间 7:00 开始，即 UTC 23:00）
-# 每次处理 200 条商品，处理完毕后停止
-# 新的一天 Workflow 1 执行后会重置进度
+# GitHub Actions - Workflow 2: 补充价格 → 折扣过滤 → 生成小程序JSON
+# 触发方式：
+#   1. Workflow 1 完成后自动触发（全量处理所有商品）
+#   2. 手动触发（workflow_dispatch）
 name: 补充价格生成JSON（Workflow 2）
 
 on:
-  schedule:
-    # 每小时执行一次（UTC 23:00 = 北京 7:00，UTC 0:00-22:00 = 北京 8:00-次日6:00）
-    # 覆盖北京时间 7:00 ~ 次日 6:00
-    - cron: '0 23 * * *'   # 北京 7:00
-    - cron: '0 0-22 * * *' # 北京 8:00 ~ 次日 6:00
+  workflow_run:
+    workflows: ["采集商品名单（Workflow 1）"]
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -17,9 +16,9 @@ permissions:
 
 jobs:
   enrich-and-generate:
-    name: 分批补充价格 → 生成小程序JSON
+    name: 补充价格 → 生成小程序JSON
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: 检出代码
@@ -166,9 +165,9 @@ jobs:
               fi
             fi
 
-            # 执行 Workflow 2: 分批补充价格 → 生成小程序JSON
+            # 执行 Workflow 2: 补充价格 → 生成小程序JSON（全量处理）
             # PYTHONUNBUFFERED=1 确保print实时输出到日志（避免缓冲导致日志"卡住"）
-            PYTHONUNBUFFERED=1 python3 collect_step2.py --output docs --batch-size 200
+            PYTHONUNBUFFERED=1 python3 collect_step2.py --output docs
 
             # ===== 阶段3: git push（开启加速） =====
             enable_turbo

@@ -436,9 +436,8 @@ def generate_mini_program_json(output_dir):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Workflow 2: 分批补充价格 → 生成小程序JSON")
+    parser = argparse.ArgumentParser(description="Workflow 2: 补充价格 → 折扣过滤 → 生成小程序JSON")
     parser.add_argument("--output", default="docs", help="输出目录")
-    parser.add_argument("--batch-size", type=int, default=200, help="每批处理数量")
     parser.add_argument("--reset", action="store_true", help="重置进度，从头开始处理")
     parser.add_argument("--skip-enrich", action="store_true", help="跳过enrichment，直接生成JSON")
     args = parser.parse_args()
@@ -446,7 +445,7 @@ def main():
     os.makedirs(args.output, exist_ok=True)
 
     print("=" * 60)
-    print("Workflow 2: 分批补充价格 → 折扣过滤 → 生成小程序JSON")
+    print("Workflow 2: 补充价格 → 折扣过滤 → 生成小程序JSON")
     print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
@@ -478,11 +477,11 @@ def main():
         generate_mini_program_json(args.output)
         sys.exit(0)
 
-    # 执行enrichment
-    print(f"\n📦 开始处理: 从第 {start_index+1} 条开始，本批 {args.batch_size} 条")
+    # 执行enrichment（全量处理剩余商品）
+    print(f"\n📦 开始处理: 从第 {start_index+1} 条开始，共 {len(raw_deals) - start_index} 条")
     enriched_batch, end_index, total = enrich_deals_batch(
         raw_deals,
-        batch_size=args.batch_size,
+        batch_size=len(raw_deals),  # 一次处理全部
         start_index=start_index
     )
 
@@ -491,7 +490,7 @@ def main():
         sys.exit(0)
 
     # 为每个商品生成淘口令
-    print("\n🔗 生成淘口令...")
+    print(f"\n🔗 生成淘口令（{len(enriched_batch)} 条）...")
     taokouling_count = 0
     for i, deal in enumerate(enriched_batch):
         title = deal.get("title", "")
@@ -507,16 +506,13 @@ def main():
             print(f"  淘口令进度: {i+1}/{len(enriched_batch)}")
     print(f"  淘口令生成: {taokouling_count}/{len(enriched_batch)} 条")
 
-    # 加载已有的enriched商品并追加
-    existing_enriched = load_enriched_deals(args.output)
-
-    # 如果是重置后的第一批，覆盖；否则追加
+    # 保存（从头开始则覆盖，否则追加）
     if args.reset or start_index == 0:
         all_enriched = enriched_batch
     else:
+        existing_enriched = load_enriched_deals(args.output)
         all_enriched = existing_enriched + enriched_batch
 
-    # 保存
     save_enriched_deals(args.output, all_enriched)
 
     # 更新进度
