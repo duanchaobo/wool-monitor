@@ -155,15 +155,7 @@ jobs:
 
             # 检查进度文件，判断是否有待处理商品
             if [ -f docs/enrich_progress.json ]; then
-              PROGRESS=$(python3 -c "
-              import json
-              with open('docs/enrich_progress.json') as f:
-                  p = json.load(f)
-              start = p.get('start_index', 0)
-              total = p.get('total', 0)
-              completed = p.get('completed', False)
-              print(f'{start}|{total}|{completed}')
-              ")
+              PROGRESS=$(python3 -c "import json; p=json.load(open('docs/enrich_progress.json')); print(str(p.get('start_index',0))+'|'+str(p.get('total',0))+'|'+str(p.get('completed',False)))")
               START=$(echo $PROGRESS | cut -d'|' -f1)
               TOTAL=$(echo $PROGRESS | cut -d'|' -f2)
               COMPLETED=$(echo $PROGRESS | cut -d'|' -f3)
