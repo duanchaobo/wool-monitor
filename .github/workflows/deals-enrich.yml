@@ -152,7 +152,8 @@ jobs:
             cd wool-monitor
 
             # ===== 阶段2: 检查是否有需要处理的商品 =====
-            disable_turbo
+            # 保持turbo模式，避免disable_turbo恢复代理导致SSH连接断开
+            # disable_turbo
 
             # 确保 python3/pip3 可用
             if ! command -v python3 &>/dev/null; then
