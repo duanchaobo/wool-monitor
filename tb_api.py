@@ -474,16 +474,19 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                 tag_list = promo_tags.get("promotion_tag_map_data", [])
                 tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
 
+                # 用recommend API的价格初始化（后续enrichment会覆盖为更准确的价格）
+                # 这样即使enrichment失败，商品也有基本价格数据
+                init_discount = discount_pct  # 之前计算的折扣（基于zk_final_price和final_promotion_price）
                 deal = {
                     "source": "天猫" if user_type == 1 else "淘宝",
                     "user_type": user_type,
                     "title": title[:60],
                     "price": f"¥{show_price}" if show_price else "",          # 销售价
-                    "old_price": "",                                          # 原价（后续补充）
-                    "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价（后续补充）
-                    "coupon_price": "",                                       # 券后价（后续补充）
+                    "old_price": f"¥{reserve_price}" if reserve_price and reserve_price != show_price else "",  # 原价
+                    "predict_price": f"¥{pay_price}" if pay_price else "",    # 到手价
+                    "coupon_price": f"¥{final_price}" if final_price else "", # 券后价
                     "gov_subsidy": "",                                        # 政府补贴（后续补充）
-                    "discount": 0,                                            # 优惠力度（后续补充）
+                    "discount": init_discount,                                # 优惠力度（recommend API计算）
                     "coupon_details": "",                                     # 券明细（后续补充）
                     "gov_provinces": "",                                      # 补贴省份（后续补充）
                     "url": click_url,
@@ -522,19 +525,22 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
         page_no += 1
         time.sleep(0.3)
 
-    # 统一补充价格信息（带延迟避免限流）
+    # 补充价格信息（限制数量避免API限流）
+    # 淘宝联盟API有限流，大量调用会返回code=15
+    # 策略：只对前N条调用optional.upgrade，其余用recommend API的价格
+    MAX_ENRICH_PER_MATERIAL = 15  # 每个物料ID最多补充15条
     if deals:
-        print(f"[物料推荐] {sub_name} 开始补充价格信息 ({len(deals)} 条)...")
+        enrich_count = min(len(deals), MAX_ENRICH_PER_MATERIAL)
+        print(f"[物料推荐] {sub_name} 补充价格信息 ({enrich_count}/{len(deals)} 条)...")
         enriched = 0
-        for i, deal in enumerate(deals):
-            enriched_deal = _enrich_price_info(deal)
-            if enriched_deal != deal:
+        for i in range(enrich_count):
+            enriched_deal = _enrich_price_info(deals[i])
+            if enriched_deal != deals[i]:
                 deals[i] = enriched_deal
                 enriched += 1
-            # 每10条休息0.5秒，避免触发API限流
-            if (i + 1) % 10 == 0:
-                time.sleep(0.5)
-        print(f"[物料推荐] {sub_name} 价格补充完成 ({enriched}/{len(deals)} 条有效)")
+            # 每条之间休息0.3秒，避免触发限流
+            time.sleep(0.3)
+        print(f"[物料推荐] {sub_name} 价格补充完成 ({enriched}/{enrich_count} 条有效)")
 
     return deals
 
