@@ -12,6 +12,7 @@ collect_step2.py - Workflow 2: 读取原始名单 → 分批补充价格 → 折
 """
 
 import os
+import re
 import sys
 import json
 import argparse
@@ -217,6 +218,57 @@ CATEGORY_KEYWORDS = {
 CATEGORY_LIST = list(CATEGORY_KEYWORDS.keys())
 
 
+def _load_shop_category_map():
+    """
+    从 famous_brands.txt 加载店铺→分类映射
+    Returns:
+        dict: {店铺名: 分类名}
+    """
+    shop_category = {}
+    brands_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "famous_brands.txt")
+    if not os.path.exists(brands_file):
+        return shop_category
+
+    current_category = None
+    with open(brands_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            # 匹配分类头：【分类名】(数量)
+            cat_match = re.match(r'^【(.+?)】', line)
+            if cat_match:
+                current_category = cat_match.group(1)
+                continue
+            # 匹配店铺行：  序号. 店铺名
+            shop_match = re.match(r'^\s*\d+\.\s*(.+)$', line)
+            if shop_match and current_category:
+                shop_name = shop_match.group(1).strip()
+                shop_category[shop_name] = current_category
+
+    return shop_category
+
+
+# 全局加载店铺分类映射
+SHOP_CATEGORY_MAP = _load_shop_category_map()
+
+
+def classify_by_shop(shop_title):
+    """
+    按店铺名在 famous_brands.txt 中的分类来归类
+    Returns:
+        分类名，未找到返回 None
+    """
+    if not shop_title:
+        return None
+    # 精确匹配
+    if shop_title in SHOP_CATEGORY_MAP:
+        return SHOP_CATEGORY_MAP[shop_title]
+    # 包含匹配
+    for shop_name, category in SHOP_CATEGORY_MAP.items():
+        if shop_name in shop_title or shop_title in shop_name:
+            return category
+    return None
+
+
 def classify_by_keywords(title, api_category="", api_sub_category=""):
     """根据关键词匹配商品所属一级分类"""
     text = f"{title} {api_category} {api_sub_category}".lower()
@@ -266,7 +318,11 @@ def format_deal(deal, index):
     title = deal.get("title", "")
     api_category = deal.get("category", "")
     api_sub_category = deal.get("sub_category", "")
-    matched_category = classify_by_keywords(title, api_category, api_sub_category)
+    # 优先按店铺分类（基于 famous_brands.txt），找不到再用关键词匹配
+    shop = deal.get("shop", "")
+    matched_category = classify_by_shop(shop)
+    if not matched_category:
+        matched_category = classify_by_keywords(title, api_category, api_sub_category)
 
     return {
         "id": index,
