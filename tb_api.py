@@ -20,6 +20,7 @@ tb_api.py - 淘宝联盟淘宝客优惠券采集
 """
 
 import os
+import re
 import json
 import time
 import hashlib
@@ -525,27 +526,9 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
         page_no += 1
         time.sleep(0.3)
 
-    # 先过滤天猫商品，再enrichment（避免浪费API调用在淘宝商品上）
-    tmall_deals = [d for d in deals if d.get("user_type") == 1]
-
-    # 补充价格信息（限制数量避免API限流）
-    # 淘宝联盟API有限流，大量调用会返回code=15
-    # 策略：只对天猫商品的前N条调用optional.upgrade
-    MAX_ENRICH_PER_MATERIAL = 15  # 每个物料ID最多补充15条
-    if tmall_deals:
-        enrich_count = min(len(tmall_deals), MAX_ENRICH_PER_MATERIAL)
-        print(f"[物料推荐] {sub_name} 补充价格信息 ({enrich_count}/{len(tmall_deals)} 条天猫)...")
-        enriched = 0
-        for i in range(enrich_count):
-            enriched_deal = _enrich_price_info(tmall_deals[i])
-            if enriched_deal != tmall_deals[i]:
-                tmall_deals[i] = enriched_deal
-                enriched += 1
-            # 每条之间休息0.3秒，避免触发限流
-            time.sleep(0.3)
-        print(f"[物料推荐] {sub_name} 价格补充完成 ({enriched}/{enrich_count} 条有效)")
-
-    return tmall_deals
+    # 注意：enrichment 统一在 collect_tb_all 中按流程处理
+    # 这里只返回原始采集结果（含recommend API的价格）
+    return deals
 
 
 def collect_tb_material_search(q, has_coupon=True, page_size=20):
@@ -705,22 +688,20 @@ def collect_tb_all(max_pages=3):
     }
     TARGET_MATERIAL_IDS = list(MATERIAL_ID_NAMES.keys())
 
-    # ========== 多线程并行采集 ==========
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    import threading
+    # ========== 加载知名品牌店铺列表 ==========
+    famous_shop_names = _load_famous_shop_names()
+    print(f"[知名品牌] 加载 {len(famous_shop_names)} 个旗舰店")
 
-    seen_keys = set()
-    lock = threading.Lock()
-    recommend_count = 0
+    # ========== 阶段1: 多线程并行采集（recommend API，不过滤不enrichment） ==========
+    from concurrent.futures import ThreadPoolExecutor, as_completed
 
     def _fetch_one(mid):
-        """单个物料ID采集（在子线程中执行，只取第1页，只保留天猫商品）"""
+        """单个物料ID采集（只取第1页，不做过滤和enrichment）"""
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
-        # collect_tb_material_recommend 内部已过滤天猫 + enrichment
         deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=False)
         return mid, sub_name, deals
 
-    # 并行采集，最多4个线程（避免API限流）
+    # 并行采集，最多4个线程
     results = {}
     with ThreadPoolExecutor(max_workers=4) as executor:
         futures = {executor.submit(_fetch_one, mid): mid for mid in TARGET_MATERIAL_IDS}
@@ -729,29 +710,113 @@ def collect_tb_all(max_pages=3):
             results[mid] = (sub_name, deals)
             print(f"  [{len(results):2d}/{len(TARGET_MATERIAL_IDS)}] {sub_name}: {len(deals)} 条")
 
-    # 按原始顺序合并 + 去重
+    # 合并所有结果
+    all_raw_deals = []
     for mid in TARGET_MATERIAL_IDS:
         sub_name, deals = results[mid]
-        new_deals = []
-        for d in deals:
-            key = d.get("title", "")[:20] + "|" + d.get("shop", "")[:10] + "|" + d.get("price", "")
-            if key not in seen_keys:
-                seen_keys.add(key)
-                new_deals.append(d)
-        if new_deals:
-            all_deals.extend(new_deals)
-            recommend_count += len(new_deals)
+        all_raw_deals.extend(deals)
+    print(f"[阶段1] recommend API 采集 {len(all_raw_deals)} 条原始商品")
 
-    print(f"[物料推荐] {recommend_count} 条（去重后，多线程并行采集）")
+    # ========== 阶段2: 筛选知名品牌天猫旗舰店 + 去重 ==========
+    seen_keys = set()
+    filtered_deals = []
+    for d in all_raw_deals:
+        # 条件1: 天猫商品
+        if d.get("user_type") != 1:
+            continue
+        # 条件2: 店铺名在知名品牌列表中
+        shop = d.get("shop", "")
+        if not _is_famous_brand_shop(shop, famous_shop_names):
+            continue
+        # 去重
+        key = d.get("title", "")[:30] + "|" + shop
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        filtered_deals.append(d)
+    print(f"[阶段2] 筛选知名品牌天猫店 + 去重: {len(filtered_deals)} 条")
 
-    # 按销量排序：优先 annual_vol（年化销量），其次 tk_total_sales
-    all_deals.sort(key=lambda d: (
+    # ========== 阶段3: 调用 optional.upgrade 补充价格 ==========
+    enriched_deals = []
+    for i, deal in enumerate(filtered_deals):
+        enriched = _enrich_price_info(deal)
+        enriched_deals.append(enriched)
+        # 每条间隔0.3秒避免限流
+        time.sleep(0.3)
+        if (i + 1) % 20 == 0:
+            print(f"  [阶段3] 价格补充进度: {i+1}/{len(filtered_deals)}")
+    print(f"[阶段3] optional.upgrade 价格补充完成: {len(enriched_deals)} 条")
+
+    # ========== 阶段4: 计算折扣，过滤 <10% ==========
+    final_deals = []
+    for d in enriched_deals:
+        price_num = 0
+        predict_num = 0
+        try:
+            price_str = str(d.get("price", "")).replace("¥", "").replace("￥", "")
+            predict_str = str(d.get("predict_price", "")).replace("¥", "").replace("￥", "")
+            price_num = float(price_str) if price_str else 0
+            predict_num = float(predict_str) if predict_str else 0
+        except (ValueError, TypeError):
+            pass
+
+        # 计算折扣
+        discount = d.get("discount", 0)
+        if not discount and price_num > 0 and predict_num > 0 and predict_num < price_num:
+            discount = round((1 - predict_num / price_num) * 100)
+
+        if discount >= 10:
+            d["discount"] = discount
+            final_deals.append(d)
+    print(f"[阶段4] 过滤折扣<10%: {len(final_deals)} 条")
+
+    # 按销量排序
+    final_deals.sort(key=lambda d: (
         d.get("annual_vol_num", 0),
         d.get("tk_total_sales", 0) if isinstance(d.get("tk_total_sales"), (int, float)) else 0
     ), reverse=True)
 
-    print(f"[淘宝联盟] 总计采集 {len(all_deals)} 条商品（已按销量排序）")
-    return all_deals
+    print(f"[淘宝联盟] 最终 {len(final_deals)} 条商品")
+    return final_deals
+
+
+def _load_famous_shop_names():
+    """
+    从 famous_brands.txt 加载知名品牌旗舰店名称集合
+    Returns:
+        set: 店铺名集合，如 {"小米官方旗舰店", "Apple苹果官方旗舰店", ...}
+    """
+    shop_names = set()
+    brands_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "famous_brands.txt")
+    if not os.path.exists(brands_file):
+        print(f"[警告] 品牌列表文件不存在: {brands_file}")
+        return shop_names
+
+    with open(brands_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            # 匹配店铺行：  序号. 店铺名
+            match = re.match(r'^\s*\d+\.\s*(.+)$', line)
+            if match:
+                shop_names.add(match.group(1).strip())
+    return shop_names
+
+
+def _is_famous_brand_shop(shop_title, famous_shop_names):
+    """
+    判断店铺是否是知名品牌天猫旗舰店
+    使用精确匹配 + 包含匹配
+    """
+    if not shop_title:
+        return False
+    # 精确匹配
+    if shop_title in famous_shop_names:
+        return True
+    # 包含匹配（店铺名包含品牌关键词）
+    for name in famous_shop_names:
+        if name in shop_title or shop_title in name:
+            return True
+    return False
 
 
 if __name__ == "__main__":
