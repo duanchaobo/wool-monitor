@@ -15,6 +15,7 @@ import os
 import re
 import sys
 import json
+import time
 import argparse
 from datetime import datetime
 from collections import defaultdict
@@ -488,6 +489,23 @@ def main():
     if not enriched_batch:
         print("⚠️ 本批无商品需要处理")
         sys.exit(0)
+
+    # 为每个商品生成淘口令
+    print("\n🔗 生成淘口令...")
+    taokouling_count = 0
+    for i, deal in enumerate(enriched_batch):
+        title = deal.get("title", "")
+        url = deal.get("url", "")
+        if title and url:
+            tk = generate_taokouling(title, url)
+            if tk:
+                deal["taokouling"] = tk
+                taokouling_count += 1
+        # 每条约0.3秒间隔避免限流
+        time.sleep(0.3)
+        if (i + 1) % 50 == 0:
+            print(f"  淘口令进度: {i+1}/{len(enriched_batch)}")
+    print(f"  淘口令生成: {taokouling_count}/{len(enriched_batch)} 条")
 
     # 加载已有的enriched商品并追加
     existing_enriched = load_enriched_deals(args.output)
