@@ -105,8 +105,8 @@ def _call_tb_api(method, **biz_params):
     params.update(biz_params)
     params["sign"] = _make_sign(params, TB_APP_SECRET)
 
-    # 重试配置：最多3次，指数退避
-    max_retries = 3
+    # 重试配置：遇到API错误立即重试一次，不做额外等待
+    max_retries = 2
     for attempt in range(1, max_retries + 1):
         try:
             resp = requests.get(API_GATEWAY, params=params, timeout=15)
@@ -117,23 +117,16 @@ def _call_tb_api(method, **biz_params):
                 msg = err.get("msg", "")
                 sub_code = err.get("sub_code", "")
                 sub_msg = err.get("sub_msg", "")
-                # 打印完整错误信息用于诊断
                 print(f"[淘宝联盟] API错误: code={code}, msg={msg}, sub_code={sub_code}, sub_msg={sub_msg}")
-                # 内部调用失败（code=15）或限流可重试
-                if code in (15, 20, 4001) and attempt < max_retries:
-                    wait = attempt * 3
-                    print(f"[淘宝联盟] 第{attempt}次重试（等待{wait}s）...")
-                    time.sleep(wait)
+                # 立即重试一次，不等待
+                if attempt < max_retries:
                     continue
                 return None
             return result
         except Exception as e:
-            if attempt < max_retries:
-                wait = attempt * 3
-                print(f"[淘宝联盟] 请求异常: {e}，第{attempt}次重试（等待{wait}s）...")
-                time.sleep(wait)
-                continue
             print(f"[淘宝联盟] 请求异常: {e}")
+            if attempt < max_retries:
+                continue
             return None
 
     return None
