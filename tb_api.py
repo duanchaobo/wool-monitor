@@ -718,9 +718,9 @@ def collect_recommend_then_filter():
     from concurrent.futures import ThreadPoolExecutor, as_completed
 
     def _fetch_one(mid):
-        """单个物料ID采集（只取第1页，不做过滤和enrichment）"""
+        """单个物料ID采集（翻页获取全部商品，不做过滤和enrichment）"""
         sub_name = MATERIAL_ID_NAMES.get(mid, "")
-        deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=False)
+        deals = collect_tb_material_recommend(material_id=mid, page_size=100, sub_name=sub_name, fetch_all_pages=True)
         return mid, sub_name, deals
 
     # 并行采集，最多4个线程

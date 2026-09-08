@@ -16,7 +16,7 @@ jobs:
   collect-raw-deals:
     name: recommend API 采集 → 筛选 → 去重
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: 检出代码
