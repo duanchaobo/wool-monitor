@@ -171,14 +171,14 @@ jobs:
             SILICONFLOW_API_KEY=${{ secrets.SILICONFLOW_API_KEY }}
             ENVEOF
 
-            # 检查进度文件，判断是否有待处理商品
+            # 检查进度文件，判断是否有待处理商品（total=0表示未初始化，不跳过）
             if [ -f docs/enrich_progress.json ]; then
               PROGRESS=$(python3 -c "import json; p=json.load(open('docs/enrich_progress.json')); print(str(p.get('start_index',0))+'|'+str(p.get('total',0))+'|'+str(p.get('completed',False)))")
               START=$(echo $PROGRESS | cut -d'|' -f1)
               TOTAL=$(echo $PROGRESS | cut -d'|' -f2)
               COMPLETED=$(echo $PROGRESS | cut -d'|' -f3)
               echo "进度: start=$START, total=$TOTAL, completed=$COMPLETED"
-              if [ "$COMPLETED" = "True" ] || [ "$START" -ge "$TOTAL" ]; then
+              if [ "$COMPLETED" = "True" ] || { [ "$TOTAL" -gt 0 ] && [ "$START" -ge "$TOTAL" ]; }; then
                 echo "✅ 所有商品已处理完毕，跳过本次执行"
                 exit 0
               fi
