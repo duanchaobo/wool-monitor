@@ -18,7 +18,7 @@ jobs:
   enrich-and-generate:
     name: 补充价格 → 生成小程序JSON
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: 检出代码
