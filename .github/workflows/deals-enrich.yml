@@ -93,8 +93,8 @@ jobs:
           port: ${{ secrets.AUTODL_SSH_PORT }}
           username: ${{ secrets.AUTODL_SSH_USER }}
           key: ${{ secrets.AUTODL_SSH_KEY }}
-          timeout: 900s
-          command_timeout: 900s
+          timeout: 2700s
+          command_timeout: 2700s
           script: |
             # 保存原始环境（network_turbo会改PATH、代理、路由）
             export ORIG_PATH="$PATH"
