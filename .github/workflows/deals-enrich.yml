@@ -86,8 +86,10 @@ jobs:
                   sys.exit(1)
 
           # 获取实例IP（重新查询确保拿到最新IP）
-          ip = target.get("ip", "") or target.get("public_ip", "")
-          ssh_port = target.get("ssh_port", 22)
+          # 调试：打印所有字段找IP
+          print(f"实例字段: {json.dumps(target, ensure_ascii=False)}")
+          ip = target.get("ip", "") or target.get("public_ip", "") or target.get("ip_address", "") or target.get("host", "") or target.get("addr", "")
+          ssh_port = target.get("ssh_port", 22) or target.get("port", 22)
           print(f"实例IP: {ip}:{ssh_port}")
 
           if not ip:
