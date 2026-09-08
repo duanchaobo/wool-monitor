@@ -151,7 +151,7 @@ jobs:
             ENVEOF
 
             # 执行 Workflow 1: recommend API 采集 → 筛选 → 去重
-            python3 collect_step1.py --output docs
+            PYTHONUNBUFFERED=1 python3 collect_step1.py --output docs
 
             # ===== 阶段3: git push（开启加速） =====
             enable_turbo
