@@ -84,10 +84,10 @@ jobs:
                   print("❌ 等待开机超时")
                   sys.exit(1)
 
-          # 获取实例IP（重新查询确保拿到最新IP）
+          # 获取实例IP和SSH端口
           ip = target.get("proxy_host", "")
-          ssh_port = target.get("proxy_port", 22)
-          print(f"实例IP: {ip}:{ssh_port}")
+          ssh_port = target.get("ssh_port", 22)
+          print(f"实例: {ip}:{ssh_port}")
 
           if not ip:
               print("❌ 无法获取实例IP")
