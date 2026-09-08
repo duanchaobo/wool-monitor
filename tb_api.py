@@ -114,22 +114,26 @@ def _call_tb_api(method, **biz_params):
             if "error_response" in result:
                 err = result["error_response"]
                 code = err.get("code")
-                # 内部调用失败（code=15）可重试
-                if code == 15 and attempt < max_retries:
-                    wait = attempt * 2
-                    print(f"[淘宝联盟] API 错误 code=15，第{attempt}次重试（等待{wait}s）...")
+                msg = err.get("msg", "")
+                sub_code = err.get("sub_code", "")
+                sub_msg = err.get("sub_msg", "")
+                # 打印完整错误信息用于诊断
+                print(f"[淘宝联盟] API错误: code={code}, msg={msg}, sub_code={sub_code}, sub_msg={sub_msg}")
+                # 内部调用失败（code=15）或限流可重试
+                if code in (15, 20, 4001) and attempt < max_retries:
+                    wait = attempt * 3
+                    print(f"[淘宝联盟] 第{attempt}次重试（等待{wait}s）...")
                     time.sleep(wait)
                     continue
-                print(f"[淘宝联盟] API 错误: code={code}, msg={err.get('msg')}")
                 return None
             return result
         except Exception as e:
             if attempt < max_retries:
-                wait = attempt * 2
-                print(f"[淘宝联盟] API 调用失败: {e}，第{attempt}次重试（等待{wait}s）...")
+                wait = attempt * 3
+                print(f"[淘宝联盟] 请求异常: {e}，第{attempt}次重试（等待{wait}s）...")
                 time.sleep(wait)
                 continue
-            print(f"[淘宝联盟] API 调用失败: {e}")
+            print(f"[淘宝联盟] 请求异常: {e}")
             return None
 
     return None
@@ -761,15 +765,14 @@ def collect_recommend_then_filter():
     return filtered_deals
 
 
-def enrich_deals_batch(deals, batch_size=200, start_index=0, max_workers=3):
+def enrich_deals_batch(deals, batch_size=200, start_index=0):
     """
-    Workflow 2: 对商品列表调用 optional.upgrade 补充价格（并发处理）
+    Workflow 2: 对商品列表调用 optional.upgrade 补充价格（串行处理）
 
     Args:
         deals: 待处理的商品列表
         batch_size: 本次处理的商品数量
         start_index: 从第几个商品开始处理
-        max_workers: 并发线程数（默认3）
 
     Returns:
         tuple: (enriched_deals, end_index, total)
@@ -785,61 +788,34 @@ def enrich_deals_batch(deals, batch_size=200, start_index=0, max_workers=3):
         return [], end_index, total
 
     batch = deals[start_index:end_index]
-    print(f"[enrich] 处理第 {start_index+1}-{end_index} 条（共 {total} 条，{max_workers}线程并发）")
+    print(f"[enrich] 处理第 {start_index+1}-{end_index} 条（共 {total} 条）")
 
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-
-    enriched_deals = [None] * len(batch)
+    enriched_deals = []
     consecutive_failures = 0
-    MAX_CONSECUTIVE_FAILURES = 20
+    MAX_CONSECUTIVE_FAILURES = 20  # 连续失败20次则跳过剩余
 
-    def enrich_single(args):
-        """单个商品enrichment，带限流重试"""
-        idx, deal = args
-        # 错开请求时间，避免同时发起
-        time.sleep(idx * 0.2)
-        return idx, _enrich_price_info_with_retry(deal)
+    for i, deal in enumerate(batch):
+        if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
+            # 熔断：剩余商品直接用recommend价格
+            print(f"  [enrich] 触发熔断（连续失败{consecutive_failures}次），剩余{len(batch)-i}条用recommend价格")
+            enriched_deals.extend(batch[i:])
+            break
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(enrich_single, (i, deal)): i for i, deal in enumerate(batch)}
-        completed = 0
-        for future in as_completed(futures):
-            try:
-                idx, enriched = future.result()
-                enriched_deals[idx] = enriched
-                # 判断是否成功
-                if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
-                    consecutive_failures = 0
-                else:
-                    consecutive_failures += 1
-                completed += 1
-                if completed % 50 == 0:
-                    print(f"  [enrich] 进度: {start_index+completed}/{total} (连续失败:{consecutive_failures})")
-            except Exception as e:
-                idx = futures[future]
-                enriched_deals[idx] = batch[idx]
-                consecutive_failures += 1
+        enriched = _enrich_price_info(deal)
+        # 判断是否enrichment成功
+        if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
+            consecutive_failures = 0
+        else:
+            consecutive_failures += 1
+        enriched_deals.append(enriched)
 
-    # 熔断检查：连续失败太多，剩余用原价
-    if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
-        print(f"  [enrich] 触发熔断（连续失败{consecutive_failures}次）")
+        # 每条间隔1秒避免限流
+        time.sleep(1)
+        if (i + 1) % 20 == 0:
+            print(f"  [enrich] 进度: {start_index+i+1}/{total} (连续失败:{consecutive_failures})")
 
     print(f"[enrich] 完成: 处理 {len(enriched_deals)} 条，下次从 {end_index} 开始")
     return enriched_deals, end_index, total
-
-
-def _enrich_price_info_with_retry(deal, max_retries=3):
-    """enrichment with exponential backoff on failure"""
-    for attempt in range(max_retries):
-        enriched = _enrich_price_info(deal)
-        # 成功则返回
-        if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
-            return enriched
-        # 失败则指数退避后重试
-        if attempt < max_retries - 1:
-            wait = (2 ** attempt) * 1.5  # 1.5s, 3s, 6s
-            time.sleep(wait)
-    return enriched
 
 
 def filter_by_discount(deals, min_discount=10):

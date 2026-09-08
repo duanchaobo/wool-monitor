@@ -489,32 +489,21 @@ def main():
         print("⚠️ 本批无商品需要处理")
         sys.exit(0)
 
-    # 为每个商品生成淘口令（并发）
-    print(f"\n🔗 生成淘口令（{len(enriched_batch)} 条，3线程并发）...")
-    from concurrent.futures import ThreadPoolExecutor, as_completed
+    # 为每个商品生成淘口令（串行）
+    print(f"\n🔗 生成淘口令（{len(enriched_batch)} 条）...")
     taokouling_count = 0
-
-    def gen_taokouling(args):
-        idx, deal = args
-        time.sleep(idx * 0.1)  # 错开请求
+    for i, deal in enumerate(enriched_batch):
         title = deal.get("title", "")
         url = deal.get("url", "")
         if title and url:
             tk = generate_taokouling(title, url)
-            return idx, tk
-        return idx, ""
-
-    with ThreadPoolExecutor(max_workers=3) as executor:
-        futures = {executor.submit(gen_taokouling, (i, deal)): i for i, deal in enumerate(enriched_batch)}
-        completed = 0
-        for future in as_completed(futures):
-            idx, tk = future.result()
             if tk:
-                enriched_batch[idx]["taokouling"] = tk
+                deal["taokouling"] = tk
                 taokouling_count += 1
-            completed += 1
-            if completed % 100 == 0:
-                print(f"  淘口令进度: {completed}/{len(enriched_batch)}")
+        # 每条约0.5秒间隔避免限流
+        time.sleep(0.5)
+        if (i + 1) % 50 == 0:
+            print(f"  淘口令进度: {i+1}/{len(enriched_batch)}")
     print(f"  淘口令生成: {taokouling_count}/{len(enriched_batch)} 条")
 
     # 保存（从头开始则覆盖，否则追加）
