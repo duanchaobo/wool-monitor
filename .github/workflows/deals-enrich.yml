@@ -24,12 +24,12 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v5
 
-      # ========== Step 1: 开机（固定实例，无卡模式） ==========
+      # ========== Step 1: 开机（固定实例，无卡模式，获取最新IP） ==========
       - name: 开机
         id: power_on
         run: |
           python3 << 'PYEOF'
-          import requests, json, sys
+          import os, requests, json, sys, time
 
           SESSION_TOKEN = "${{ secrets.AUTODL_SESSION_TOKEN }}"
           INSTANCE_UUID = "${{ secrets.AUTODL_INSTANCE_UUID }}"
@@ -39,25 +39,21 @@ jobs:
               "Content-Type": "application/json;charset=UTF-8",
           }
 
-          # 查询实例状态
-          resp = requests.post(
-              "https://www.autodl.com/api/v1/instance",
-              json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
-              headers=headers, timeout=30
-          )
-          result = resp.json()
+          def query_instance():
+              resp = requests.post(
+                  "https://www.autodl.com/api/v1/instance",
+                  json={"page_index":1,"page_size":50,"status":[],"charge_type":[],"sub_name":"","unbind_sub_user":False},
+                  headers=headers, timeout=30
+              )
+              result = resp.json()
+              if result.get("code") != "Success":
+                  return None
+              for inst in result.get("data", {}).get("list", []):
+                  if inst.get("uuid") == INSTANCE_UUID:
+                      return inst
+              return None
 
-          if result.get("code") != "Success":
-              print(f"❌ 查询失败: {result}")
-              sys.exit(1)
-
-          instances = result.get("data", {}).get("list", [])
-          target = None
-          for inst in instances:
-              if inst.get("uuid") == INSTANCE_UUID:
-                  target = inst
-                  break
-
+          target = query_instance()
           if not target:
               print(f"❌ 实例 {INSTANCE_UUID} 不存在")
               sys.exit(1)
@@ -65,9 +61,7 @@ jobs:
           status = target.get("status", "")
           print(f"实例状态: {status}")
 
-          if status == "running":
-              print("✅ 实例已开机，无需操作")
-          else:
+          if status != "running":
               print("🔄 开机中（non_gpu 模式）...")
               power_resp = requests.post(
                   "https://www.autodl.com/api/v1/instance/power_on",
@@ -75,10 +69,35 @@ jobs:
                   headers=headers, timeout=30
               )
               power_result = power_resp.json()
-              if power_result.get("code") == "Success":
-                  print("✅ 开机成功")
+              if power_result.get("code") != "Success":
+                  print(f"⚠️ 开机失败: {power_result}")
+                  sys.exit(1)
+              print("✅ 开机指令已发送，等待实例就绪...")
+
+              # 轮询等待实例开机完成，最多等120秒
+              for i in range(24):
+                  time.sleep(5)
+                  target = query_instance()
+                  if target and target.get("status") == "running":
+                      print(f"✅ 实例已开机（{(i+1)*5}秒）")
+                      break
               else:
-                  print(f"⚠️ 开机: {power_result}")
+                  print("❌ 等待开机超时")
+                  sys.exit(1)
+
+          # 获取实例IP（重新查询确保拿到最新IP）
+          ip = target.get("ip", "") or target.get("public_ip", "")
+          ssh_port = target.get("ssh_port", 22)
+          print(f"实例IP: {ip}:{ssh_port}")
+
+          if not ip:
+              print("❌ 无法获取实例IP")
+              sys.exit(1)
+
+          # 输出给后续步骤使用
+          with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
+              f.write(f"instance_ip={ip}\n")
+              f.write(f"instance_port={ssh_port}\n")
           PYEOF
 
       - name: 等待启动
@@ -89,8 +108,8 @@ jobs:
         id: ssh_run
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.AUTODL_SSH_HOST }}
-          port: ${{ secrets.AUTODL_SSH_PORT }}
+          host: ${{ steps.power_on.outputs.instance_ip }}
+          port: ${{ steps.power_on.outputs.instance_port }}
           username: ${{ secrets.AUTODL_SSH_USER }}
           key: ${{ secrets.AUTODL_SSH_KEY }}
           timeout: 2700s
