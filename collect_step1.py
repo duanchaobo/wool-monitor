@@ -46,6 +46,25 @@ def main():
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
     print(f"\n✅ 保存原始商品名单: {len(filtered_deals)} 条 → {output_file}")
+
+    # 重置进度文件：新一天的原始名单生成后，清空进度让 Workflow 2 从头处理
+    progress_file = os.path.join(args.output, "enrich_progress.json")
+    progress = {
+        "start_index": 0,
+        "total": len(filtered_deals),
+        "last_run": None,
+        "completed": False
+    }
+    with open(progress_file, "w", encoding="utf-8") as f:
+        json.dump(progress, f, ensure_ascii=False, indent=2)
+    print(f"🔄 重置进度文件: start_index=0, total={len(filtered_deals)}")
+
+    # 清空旧的 enriched_deals.json，避免 Workflow 2 追加到旧数据
+    enriched_file = os.path.join(args.output, "enriched_deals.json")
+    if os.path.exists(enriched_file):
+        os.remove(enriched_file)
+        print(f"🗑️ 清除旧的 enriched_deals.json")
+
     print(f"完成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     return len(filtered_deals)
