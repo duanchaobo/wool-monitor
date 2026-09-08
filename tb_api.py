@@ -737,15 +737,28 @@ def collect_tb_all(max_pages=3):
     print(f"[阶段2] 筛选知名品牌天猫店 + 去重: {len(filtered_deals)} 条")
 
     # ========== 阶段3: 调用 optional.upgrade 补充价格 ==========
+    # 带熔断机制：连续失败次数过多时跳过剩余（用recommend价格兜底）
     enriched_deals = []
+    consecutive_failures = 0
+    MAX_CONSECUTIVE_FAILURES = 20  # 连续失败20次则跳过剩余
     for i, deal in enumerate(filtered_deals):
+        if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
+            # 熔断：剩余商品直接用recommend价格
+            print(f"  [阶段3] 触发熔断（连续失败{consecutive_failures}次），剩余{len(filtered_deals)-i}条用recommend价格")
+            enriched_deals.extend(filtered_deals[i:])
+            break
         enriched = _enrich_price_info(deal)
+        # 判断是否enrichment成功（价格是否有更新）
+        if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
+            consecutive_failures = 0  # 成功则重置计数
+        else:
+            consecutive_failures += 1
         enriched_deals.append(enriched)
-        # 每条间隔0.3秒避免限流
-        time.sleep(0.3)
+        # 每条间隔0.5秒避免限流
+        time.sleep(0.5)
         if (i + 1) % 20 == 0:
-            print(f"  [阶段3] 价格补充进度: {i+1}/{len(filtered_deals)}")
-    print(f"[阶段3] optional.upgrade 价格补充完成: {len(enriched_deals)} 条")
+            print(f"  [阶段3] 价格补充进度: {i+1}/{len(filtered_deals)} (连续失败:{consecutive_failures})")
+    print(f"[阶段3] 价格补充完成: {len(enriched_deals)} 条")
 
     # ========== 阶段4: 计算折扣，过滤 <10% ==========
     final_deals = []
