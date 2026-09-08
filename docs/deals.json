@@ -1,6 +1,6 @@
 {
-  "total": 413,
-  "updateTime": "2026-09-08 11:49:36",
+  "total": 497,
+  "updateTime": "2026-09-08 12:08:12",
   "deals": [
     {
       "id": 0,
@@ -25,6 +25,54 @@
     },
     {
       "id": 1,
+      "title": "立白大师香氛洗衣液家用官方旗舰店正品香水持久留香除菌柔顺护衣",
+      "price": "45.4",
+      "predict_price": "37.91",
+      "coupon_price": "37.91",
+      "gov_subsidy": "",
+      "discount": 16,
+      "category": "家居日用",
+      "sub_category": "常规洗衣液",
+      "shop": "立白集团官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/880496338/O1CN013GvZyQr5NGE1chua_!!4611686018427383506-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D07ejrfPVMB5w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w04Cob7w50eT%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOpI%2BbGrWL3xXnwNe8LJ7A94GgF4YozOiIV%2FrXsPKqzKB8WaJY9%2B9lLNqwax86n12fiU4P%2BaqUPSD69vYz4Ed3nIT6Iwrtc26a9HZ0T7oizyqinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&union_lens=lensId%3AMAPI%401788840208%402132deda_1fab_1a07f2f67fc_ae30%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣1.36元",
+        "10元",
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "100万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 2,
+      "title": "杜蕾斯超薄|避孕套官方旗舰店正品安全套超薄男士专用玻尿酸bytt",
+      "price": "79.9",
+      "predict_price": "59.9",
+      "coupon_price": "59.9",
+      "gov_subsidy": "",
+      "discount": 25,
+      "category": "个人护理/洗护",
+      "sub_category": "避孕套",
+      "shop": "durex杜蕾斯官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/1986899349/O1CN01gDZlUqS4moC1chua_!!4611686018427383189-2-item_pic.png",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DaTbNZiWmSTVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2B8nGtf4wca03T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOmBcQ2PUWjUw9xU02NtRI%2BWMURTE6IxXbovrSY7W%2BKHY4m7DTG%2F8R5TYhyE8d%2F8NBDDZTcYHrTMdfT8AIzArMHnUa93s7ezknAd%2ByyOP5kIYZ3F%2FvNzClBhxKmPmpIKZsA%3D%3D&scm=1007.15348.115058.0_86595_6ba8d29e-9384-4d0b-829f-4c343a5e2548&pvid=6ba8d29e-9384-4d0b-829f-4c343a5e2548&app_pvid=59590_33.44.112.53_1213_1788836848798&ptl=floorId:86595;originalFloorId:86595;pvid:6ba8d29e-9384-4d0b-829f-4c343a5e2548;app_pvid:59590_33.44.112.53_1213_1788836848798&union_lens=lensId%3AMAPI%401788836848%400_86595_6ba8d29e-9384-4d0b-829f-4c343a5e2548%401%40eyJmbG9vcklkIjo4NjU5NX0ie%3Bscm%3A1007.15348.115058.0_86595_6ba8d29e-9384-4d0b-829f-4c343a5e2548",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.8元",
+        "官方立减20元"
+      ],
+      "source": "天猫",
+      "annual_vol": "100万+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 3,
       "title": "皇家小虎火山石脆皮烤肠纯地道肉香肠热狗空气炸锅食材肉肠黑胡椒",
       "price": "11.7",
       "predict_price": "7.9",
@@ -49,7 +97,54 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 2,
+      "id": 4,
+      "title": "云南白药牙膏经典留兰薄荷香型护龈清新口气成人官方正品旗舰店",
+      "price": "99.5",
+      "predict_price": "19.9",
+      "coupon_price": "19.9",
+      "gov_subsidy": "",
+      "discount": 80,
+      "category": "医药保健",
+      "sub_category": "牙膏",
+      "shop": "云南白药牙膏官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/3301608143/O1CN01OMjvGpLUGRC1chua_!!4611686018427382479-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DqEXPt4fwLGVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0K7PhFmWInHbT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA0oH5jLhzpiEQFNUq9YLvE1H8hjJEag%2BygeFWwgl02h4FIoLT6YZnF%2FWEmvFl7zlHCzJFM6pfGf6qjAZ27ANE7vT78lNtVWaXTqRwWbOWyUeASXezk83TTaMAbOovZJ124OTQy1y2zMBxg5p7bh%2BFbQ%3D&union_lens=lensId%3AMAPI%401788840203%40214154fd_2063_1a07f2f566e_d266%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "直降79.6元",
+        "包邮",
+        "秒杀直降:直降79.6元"
+      ],
+      "source": "天猫",
+      "annual_vol": "70万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 5,
+      "title": "佳帮手空气炸锅专用纸家用加厚吸油纸食物烤箱烘焙硅油纸垫锡纸碗",
+      "price": "9.9",
+      "predict_price": "4.9",
+      "coupon_price": "4.9",
+      "gov_subsidy": "",
+      "discount": 51,
+      "category": "家居日用",
+      "sub_category": "锡纸/油纸",
+      "shop": "佳帮手官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/1741393998/O1CN01wLX6bT1fP8W7I8gZY_!!4611686018427383886-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Dy%2BFrhhBQi0Bw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0C%2F%2FSFwe05N%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgE5yvCr4%2BH8BLZ1UwckAI7luj1f6Rx7c9%2FqvG4VIPgoM8%2FQmxoAd3tfeN4noSqhPa%2BUt9BmiAjqu63p891j4BhTdCf2q%2BzET3iUS179x1eNb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840229%40213f0ddb_20c4_1a07f2fb8de_5e8e%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.1元",
+        "补贴5元",
+        "包邮",
+        "百亿补贴:补贴5元"
+      ],
+      "source": "天猫",
+      "annual_vol": "70万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 6,
       "title": "十月结晶一次性内裤月子纯棉抗菌孕妇产妇产后大码旅行日抛内裤女",
       "price": "49.87",
       "predict_price": "29.9",
@@ -73,7 +168,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 3,
+      "id": 7,
       "title": "自然实感第3代新生婴儿宽口径硅橡胶奶嘴宝宝贝亲官方旗舰店正品",
       "price": "54",
       "predict_price": "38.48",
@@ -97,7 +192,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 4,
+      "id": 8,
       "title": "皇家小虎蛋挞皮家用烘焙空气炸锅半成品蛋挞液套餐组合官方旗舰店",
       "price": "23.55",
       "predict_price": "17.95",
@@ -121,7 +216,79 @@
       "tk_total_sales": ""
     },
     {
-      "id": 5,
+      "id": 9,
+      "title": "【芭芭农场兑换】金龙鱼6步鲜金域鲜稻长粒香大米2.5kg2025年新米",
+      "price": "31",
+      "predict_price": "23.9",
+      "coupon_price": "23.9",
+      "gov_subsidy": "",
+      "discount": 23,
+      "category": "食品饮料",
+      "sub_category": "大米",
+      "shop": "金龙鱼官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/1712235030/O1CN01y0FIY21n1nJ7Vxf46_!!4611686018427380246-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DD7WMBJMvefxw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0ko8LC5Z9arnT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOujRkNcQyu%2FQgKKiraFjybvlpNfnCYAhX%2BlfmuuJC82Q6mhiGRfDh%2Bv%2Br9R4Tdkuph2CI8FCxNhPrHKcmJYvTri67iDMV3P5K0LAv%2FgDyc79S%2B7db59tdKb4JizjNWEBHA%3D%3D&union_lens=lensId%3AMAPI%401788840216%4021364bf3_1484_1a07f2f885a_0e35%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.62元",
+        "5元",
+        "包邮",
+        "商品券:满25减5, 限时补贴:限时补贴2.1元"
+      ],
+      "source": "天猫",
+      "annual_vol": "60万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 10,
+      "title": "小米官方米家体重秤电子秤智能体脂秤家用精准减肥体重称人体秤",
+      "price": "98",
+      "predict_price": "68.0",
+      "coupon_price": "68",
+      "gov_subsidy": "",
+      "discount": 31,
+      "category": "数码3C",
+      "sub_category": "体重秤/健康秤/体脂秤",
+      "shop": "小米官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/1714128138/O1CN01izXxOwXMdDG2vH2e-1714128138.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DZyzkdbpd9eVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0c9gbWf8%2BINTT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA16sEzmZJdUtV60gu2TrRwWfA17wsnsD3s4S3jJ%2B0HXgh15brXVrGu44I3rf%2Bhpck2j91pl1PPA06yBMNIsdiXtwyWoHTUGfUL%2BFpfHq1r%2FgQe4ooxcBjTmKcg09nNkh%2BU2uEEfFpkDOxiXvDf8DaRs%3D&union_lens=lensId%3AMAPI%401788840218%40213f0a2e_1497_1a07f2f9053_3af2%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "直降30元",
+        "包邮",
+        "秒杀直降:直降30元"
+      ],
+      "source": "天猫",
+      "annual_vol": "60万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 11,
+      "title": "闪魔适用iphone16pro钢化膜苹果17promax手机膜新款18保护膜13pro全屏防摔14贴膜15Pro Max",
+      "price": "15.9",
+      "predict_price": "9.65",
+      "coupon_price": "9.65",
+      "gov_subsidy": "",
+      "discount": 39,
+      "category": "数码3C",
+      "sub_category": "手机贴膜",
+      "shop": "闪魔旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/793375733/O1CN01nTwS6qf5M8H2vH2e_!!4611686018427384821-2-item_pic.png",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DPp8QU%2FoufEpw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0tYjKClaPdgbT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA2x5CyvCHYiUFam%2BOHt5pmzsNUqqHb%2FCmUuRSopTppecpI92rC%2FxL8xRVUZsVSmGLp2u%2F4RXHiTdKfcQ48ezMluZjAV52e6wgcw8%2FRIZf0rjN7aKodFrdQZncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840222%4021414d98_1fd7_1a07f2fa077_de8b%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.48元",
+        "补贴0.25元",
+        "直降6元",
+        "包邮",
+        "限时补贴:补贴0.25元, 秒杀直降:直降6元"
+      ],
+      "source": "天猫",
+      "annual_vol": "60万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 12,
       "title": "十月结晶孕产妇产褥垫产后专用护理垫一次性床单大号月经尿垫卧床",
       "price": "28.62",
       "predict_price": "22.9",
@@ -146,7 +313,7 @@
       "tk_total_sales": "10000"
     },
     {
-      "id": 6,
+      "id": 13,
       "title": "【充电宝3c认证可上飞机】倍思快充大容量2026新款20000毫安移动电源适用苹果18小米华为手机官方旗舰店正品",
       "price": "139",
       "predict_price": "85.44",
@@ -171,7 +338,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 7,
+      "id": 14,
       "title": "【充电宝3c认证可上飞机】倍思2026新款磁吸无线器适用小米苹果17便携式专用快充大容量移动电源正品官方旗舰",
       "price": "139",
       "predict_price": "85.44",
@@ -195,7 +362,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 8,
+      "id": 15,
       "title": "【充电宝3c认证可上飞机】倍思新款磁吸无线适用苹果17超薄便携移动电源magsafe专用小米快充新国标官方正品1",
       "price": "139",
       "predict_price": "85.44",
@@ -219,7 +386,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 9,
+      "id": 16,
       "title": "十月结晶月子纸产妇卫生纸加长孕妇产房用产后产妇专用刀纸1袋装",
       "price": "37.37",
       "predict_price": "22.9",
@@ -244,7 +411,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 10,
+      "id": 17,
       "title": "babycare云朵加厚绵柔巾新生婴儿专用一次性洗脸巾小熊巾非棉柔巾",
       "price": "8.9",
       "predict_price": "6.9",
@@ -270,7 +437,7 @@
       "tk_total_sales": "50000"
     },
     {
-      "id": 11,
+      "id": 18,
       "title": "ABC正品官方旗舰店卫生巾透气KMS轻透薄纯棉日用夜用姨妈巾6包",
       "price": "13.9",
       "predict_price": "10.36",
@@ -291,7 +458,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 12,
+      "id": 19,
       "title": "小皮有机高铁侠米粉 维C加铁 营养婴儿辅食宝宝米糊外出原味6个月",
       "price": "77",
       "predict_price": "61.42",
@@ -312,7 +479,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 13,
+      "id": 20,
       "title": "babycare湿巾婴儿手口专用湿纸巾安全新生儿童宝宝加大加厚大包装",
       "price": "34.9",
       "predict_price": "9.41",
@@ -333,7 +500,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 14,
+      "id": 21,
       "title": "十月结晶储奶袋母乳储存袋小容量母乳存奶袋200ml一次性保鲜奶袋",
       "price": "23.62",
       "predict_price": "14.9",
@@ -358,7 +525,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 15,
+      "id": 22,
       "title": "十月结晶防溢乳垫超薄一次性溢乳垫哺乳期防漏奶垫透气乳贴秋季",
       "price": "17.37",
       "predict_price": "13.9",
@@ -383,7 +550,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 16,
+      "id": 23,
       "title": "美的烧水壶智能电热水壶家用新款泡茶不锈钢保温办公室华凌电水壶",
       "price": "89.91",
       "predict_price": "59.0",
@@ -404,7 +571,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 17,
+      "id": 24,
       "title": "2026秋新版53天天练二年级上同步练习册语文数学英语人教北师江苏教PEP五三天天练二三四五六年级上下册暑假衔接新华书店",
       "price": "25.7",
       "predict_price": "14.02",
@@ -428,7 +595,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 18,
+      "id": 25,
       "title": "【颠覆升级】雅诗兰黛第二代DW持妆粉底液 持久遮瑕控油服帖防晒",
       "price": "490",
       "predict_price": "430.0",
@@ -452,7 +619,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 19,
+      "id": 26,
       "title": "皇家小虎手抓饼面饼皮正品旗舰店早餐半成品美食葱油煎饼卷饼商用",
       "price": "14.9",
       "predict_price": "10.6",
@@ -477,7 +644,108 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 20,
+      "id": 27,
+      "title": "CeraVe适乐肤水杨酸洗面奶氨基酸洁面祛痘油皮",
+      "price": "139",
+      "predict_price": "96.48",
+      "coupon_price": "96.48",
+      "gov_subsidy": "",
+      "discount": 31,
+      "category": "美妆护肤",
+      "sub_category": "洁面",
+      "shop": "CeraVe适乐肤官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/4207869750/O1CN01ZToMmKNaKEL2R3rs_!!4611686018427387702-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DTOU59m%2FQDQ9w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0c9gbWf8%2BINTT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOt6UQyVg2Bl7lxUIg7e3StCnRIS3nwQudKdUQBOPmGNsghcE5K8dk4lDEVtveD6EcXazeUeOlkuOv6gWZYiZ0O5Ygi3RPmhc8LJqU9putkOXgJ0TgceiqqnsIkysm5Xa6iGFCzYOOqAQ&umpChannel=tblmgydpbt&u_channel=tblmgydpbt&union_lens=lensId%3AMAPI%401788840218%400b50f062_1441_1a07f2f8db4_44f2%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣8.34元",
+        "15元",
+        "官方立减21元",
+        "包邮",
+        "商品券:满139减15, 限时超级补贴:限时超级补贴6.52元, 官方立减:官方立减21元"
+      ],
+      "source": "天猫",
+      "annual_vol": "30万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 28,
+      "title": "爷爷的农场宝宝热炒食用油核桃油亚麻籽油牛油果油婴幼儿辅食用油",
+      "price": "69.5",
+      "predict_price": "54.0",
+      "coupon_price": "54",
+      "gov_subsidy": "",
+      "discount": 22,
+      "category": "母婴",
+      "sub_category": "食用油/核桃油",
+      "shop": "爷爷的农场官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/3947124211/O1CN01St3COiawseF2vH2e_!!4611686018427385331-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DX9yyLEaNJIJw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w051Z6%2BDcapmnT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOvZE5Q94uCwg0dyQqN%2FXMlvJ8Lf%2FC75oFmM0ypPXNkm6kXYoC7q9Ay58eLaIhMQTzLH3QMGc%2FMq9ZL3FLQWH%2BLhcfm37xb4PJbtOXOUwkgHbaHk2BqE89wRncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840226%40213db0ec_203e_1a07f2fae47_0f99%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣5.56元",
+        "5元",
+        "官方8.5折",
+        "包邮",
+        "商品券:满68减5, 官方立减:官方8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "30万+",
+      "tk_total_sales": "5000"
+    },
+    {
+      "id": 29,
+      "title": "babycare湿巾婴儿手口专用湿纸巾小包便携装新生儿童宝宝加厚迷你",
+      "price": "34.9",
+      "predict_price": "9.41",
+      "coupon_price": "9.41",
+      "gov_subsidy": "",
+      "discount": 73,
+      "category": "母婴",
+      "sub_category": "普通婴童湿巾",
+      "shop": "babycare旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2275046294/O1CN01TAW8HXAZ9JE1chua-2275046294.png",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DMARZKFgRgK1w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0bdgD7S9srr%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOu9eCbU8A65XpEMdJIjB4JQNWnoDcOTbwOBO%2FnxdZpIhVlYsJrO9Kb3gmLOUE6A%2BB9huC4FLPn5wyosXPAGmTt1deEqtwEl0zOCueWMkhbL8txlEDu3vgYFncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840227%400b521574_0fae_1a07f2fb382_95b0%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣1.05元",
+        "10元",
+        "官方立减15元",
+        "包邮",
+        "商品券:满34减10, 官方立减:官方立减15元, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "30万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 30,
+      "title": "【线粒体焕亮】HBN发光水pro精华水α-熊果苷抗氧提亮爽肤水喷雾",
+      "price": "152",
+      "predict_price": "119.0",
+      "coupon_price": "119",
+      "gov_subsidy": "",
+      "discount": 22,
+      "category": "美妆护肤",
+      "sub_category": "化妆水/爽肤水",
+      "shop": "HBN官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2204177871674/O1CN01vCd8p4ehevJ1chua-2204177871674.png",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DKcKMQiQNYfFw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0ca%2FEwD15oDLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOoE2ueki%2BffzQqTKHeblyqsyon%2B0u2HSq%2FrUGzQgCxJjXr4UrCNCjNTAx6E2vi2KyBoWyk2sWj0NTmC0JM6EEWgSIz%2BVIb9tlIraS0b9PwVv8%2F5jjKsTozQQQisdQEj3osYMXU3NNCg%2F&union_lens=lensId%3AMAPI%401788840231%40214690a4_1ff2_1a07f2fc11d_8da4%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣4.56元",
+        "10元",
+        "官方8.5折",
+        "包邮",
+        "商品券:满100减10, 官方立减:官方8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "30万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 31,
       "title": "贝亲宽口径玻璃奶瓶0到6个月婴儿新生防胀气防呛奶嘴官方旗舰店",
       "price": "179",
       "predict_price": "89.59",
@@ -505,7 +773,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 21,
+      "id": 32,
       "title": "十月结晶唐浅益生菌安睡裤产妇专用产后经期日夜两用免脱安心裤",
       "price": "22.9",
       "predict_price": "12.9",
@@ -529,7 +797,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 22,
+      "id": 33,
       "title": "绿联适用iPad11钢化膜2026款Air8Pro11寸苹果mini7/6平板25第10代221a16保护3贴膜10.2",
       "price": "22.5",
       "predict_price": "14.0",
@@ -554,7 +822,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 23,
+      "id": 34,
       "title": "闪魔适用苹果18/17充电器线适用iphone16promax手机pd快充13编织14平板ipad12双typec转li",
       "price": "27.66",
       "predict_price": "19.46",
@@ -579,7 +847,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 24,
+      "id": 35,
       "title": "盐津铺子手撕素肉零食休闲食品小吃豆干素食辣味解馋素牛肉小包装",
       "price": "17.6",
       "predict_price": "9.9",
@@ -600,7 +868,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 25,
+      "id": 36,
       "title": "【专享】康恩贝儿童钙铁锌口服液葡萄糖酸钙锌口溶液青少年补锌",
       "price": "79.4",
       "predict_price": "38.4",
@@ -623,7 +891,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 26,
+      "id": 37,
       "title": "【吴磊推荐】冷酸灵抗敏感牙膏套装极地白清新口气洁白牙齿旗舰店",
       "price": "61",
       "predict_price": "33.9",
@@ -644,7 +912,7 @@
       "tk_total_sales": "10000"
     },
     {
-      "id": 27,
+      "id": 38,
       "title": "英国femfresh芳芯洗护私处洗护液私密清洁日常洗护",
       "price": "19.9",
       "predict_price": "7.51",
@@ -665,7 +933,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 28,
+      "id": 39,
       "title": "英国femfresh芳芯洗护私处洗护液私密护理液亲肤特护经期护理洗护",
       "price": "19.9",
       "predict_price": "7.51",
@@ -686,7 +954,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 29,
+      "id": 40,
       "title": "佳帮手垃圾袋加厚家用手提式黑色抽绳厨房用大号特厚实惠装塑料袋",
       "price": "11.9",
       "predict_price": "6.9",
@@ -710,7 +978,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 30,
+      "id": 41,
       "title": "三利干发帽女超强吸水速干加厚双层洗头擦头毛巾包头巾浴帽干发巾",
       "price": "22.9",
       "predict_price": "16.25",
@@ -736,7 +1004,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 31,
+      "id": 42,
       "title": "佳帮手抽绳垃圾袋家用加厚手提式大号带抽绳厨房办公室专用塑料袋",
       "price": "10.9",
       "predict_price": "5.9",
@@ -760,7 +1028,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 32,
+      "id": 43,
       "title": "佳帮手衣服收纳箱大容量家用衣物被子羽绒服布艺百纳箱衣柜整理箱",
       "price": "27.7",
       "predict_price": "17.7",
@@ -784,7 +1052,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 33,
+      "id": 44,
       "title": "薇诺娜宝贝舒润霜50g秋冬保湿宝宝面霜舒缓婴儿红痒儿童面霜派样",
       "price": "105",
       "predict_price": "39.0",
@@ -808,7 +1076,7 @@
       "tk_total_sales": "10000"
     },
     {
-      "id": 34,
+      "id": 45,
       "title": "妇炎洁内裤清洗液女士除菌除螨清洗剂祛血渍黄官方专用内衣洗衣液",
       "price": "34.9",
       "predict_price": "18.91",
@@ -834,7 +1102,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 35,
+      "id": 46,
       "title": "晨光k35按动中性笔考试碳素笔黑色速干顺滑初中生水笔签字笔芯0.5子弹头墨蓝红笔学生专用老师圆珠笔正品官方",
       "price": "8.54",
       "predict_price": "6.82",
@@ -859,7 +1127,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 36,
+      "id": 47,
       "title": "晨光修正带涂改带大容量小学生专用原纸色改正带隐形改错带改字带初中生静音修改带消字涂改液官方旗舰店正品",
       "price": "13.37",
       "predict_price": "10.7",
@@ -882,7 +1150,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 37,
+      "id": 48,
       "title": "得力中性笔直液式走珠笔黑笔刷题笔签字笔考试老师学生专用蓝红笔黑色写字笔圆珠笔水笔水性碳素直液笔笔速干",
       "price": "14.4",
       "predict_price": "6.3",
@@ -905,7 +1173,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 38,
+      "id": 49,
       "title": "修正带晨光官方旗舰店正品学生用大容量修正带初中生专用修正带小学生专用改正带顺滑休正带耐摔更改带涂改带",
       "price": "13.37",
       "predict_price": "10.7",
@@ -930,7 +1198,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 39,
+      "id": 50,
       "title": "修正带晨光官方旗舰店正品小学生专用修正带初中生专用大容量涂改带休正带晨光静音修正带学生用大容量涂改液",
       "price": "13.37",
       "predict_price": "10.7",
@@ -955,7 +1223,80 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 40,
+      "id": 51,
+      "title": "【户外军训出游】珀莱雅盾护防晒霜SPF50+防水防暴晒清爽旅游露营",
+      "price": "199",
+      "predict_price": "169.0",
+      "coupon_price": "169",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "美妆护肤",
+      "sub_category": "防晒霜",
+      "shop": "珀莱雅官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/379424083/O1CN01O6uwPJjrzhB1chua_!!4611686018427383123-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D8cUbfyaJZTZw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0lGm4gdHtBuLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOlp6Itn6u7BWR%2FIYyRGoPso1bdAiJQ%2BcGMSSLGfzRjrC56MYejHVRrzyl5M4Yr2aqZL4uiQ%2FFgSt%2FCnLGvRMYbKNXxU4S3kLDkasMphlI2ib4pDbIfrKeD7sIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840215%402166c8fd_13e6_1a07f2f85b3_47c4%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣9.95元",
+        "官方8.5折",
+        "包邮",
+        "官方立减:官方8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "20万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 52,
+      "title": "CeraVe适乐肤氨基酸洗面奶洁面乳油性温和清洁",
+      "price": "118",
+      "predict_price": "82.43",
+      "coupon_price": "82.43",
+      "gov_subsidy": "",
+      "discount": 30,
+      "category": "美妆护肤",
+      "sub_category": "洁面",
+      "shop": "CeraVe适乐肤官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/4207869750/O1CN01A9smeexI3VE2R3rs_!!4611686018427387702-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DaEh0XaQoqIpw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0VwUXWltU6OLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOt6UQyVg2Bl7lxUIg7e3StB6DbUIWJh9p5utYiU9qqVK8wgPaL5jUqBszrp4oNBG%2FtxPN3yPIIidn%2Frmb4Jc6R3YpehvGGzR%2FmURbhxeD9Iky7Ts2k6YVjDsIkysm5Xa6iGFCzYOOqAQ&umpChannel=tblmgydpbt&u_channel=tblmgydpbt&union_lens=lensId%3AMAPI%401788840225%40212c099c_1fa4_1a07f2fab6c_be58%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣7.08元",
+        "15元",
+        "官方8.8折",
+        "包邮",
+        "商品券:满118减15, 限时超级补贴:限时超级补贴5.57元, 官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "20万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 53,
+      "title": "佳帮手纳米海绵魔力擦去污厨房清洁棉高密度海绵块魔术擦鞋神器",
+      "price": "8.9",
+      "predict_price": "3.9",
+      "coupon_price": "3.9",
+      "gov_subsidy": "",
+      "discount": 56,
+      "category": "家居日用",
+      "sub_category": "海绵擦",
+      "shop": "佳帮手官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/1741393998/O1CN01IcCg111fP8adpBVo9_!!4611686018427383886-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D0rG3XgimJQFw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0bdgD7S9srr%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgE5yvCr4%2BH8BLZ1UwckAI4Hg1mc1NQLWq3eE1vBDfuzfvj9kG89seWhqlUTuBv4XOvDscro16U%2BxxOEys1z1AfuDR%2BRk8zuQ8bywMBmCvebb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840227%40210863b6_206f_1a07f2fb0f8_c56b%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.09元",
+        "补贴5元",
+        "包邮",
+        "百亿补贴:补贴5元"
+      ],
+      "source": "天猫",
+      "annual_vol": "20万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 54,
       "title": "babycare云朵乳霜纸婴儿专用云柔纸巾宝宝柔肤卫生抽纸实惠装家用",
       "price": "37.9",
       "predict_price": "18.91",
@@ -976,7 +1317,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 41,
+      "id": 55,
       "title": "舒客宝贝儿童牙膏修护低氟防蛀2-6-12岁宝宝婴幼儿换牙期青少年",
       "price": "47.9",
       "predict_price": "17.01",
@@ -997,7 +1338,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 42,
+      "id": 56,
       "title": "babycare儿童保温杯宝宝婴幼儿园学饮6个月以上1到3岁专用水杯",
       "price": "179",
       "predict_price": "64.63",
@@ -1022,7 +1363,7 @@
       "tk_total_sales": "10000"
     },
     {
-      "id": 43,
+      "id": 57,
       "title": "十月结晶待产包入院全套母子组合产后实用月子用品孕产妇备产秋季",
       "price": "161.25",
       "predict_price": "109.0",
@@ -1047,7 +1388,7 @@
       "tk_total_sales": "10000"
     },
     {
-      "id": 44,
+      "id": 58,
       "title": "贝亲玻璃奶瓶0到6个月婴儿新生防胀气防呛奶瓶奶嘴正品官方旗舰店",
       "price": "324",
       "predict_price": "211.36",
@@ -1075,7 +1416,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 45,
+      "id": 59,
       "title": "子初蚕丝安睡裤女经期防漏产妇卫生巾姨妈期安心裤亲肤透气薄款",
       "price": "19.9",
       "predict_price": "9.41",
@@ -1101,7 +1442,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 46,
+      "id": 60,
       "title": "babycare全新小熊巾干湿两用新生洗脸巾婴幼儿宝宝专用非棉柔巾",
       "price": "7.9",
       "predict_price": "6.9",
@@ -1125,7 +1466,7 @@
       "tk_total_sales": "10000"
     },
     {
-      "id": 47,
+      "id": 61,
       "title": "babycare金山茶花一次性内裤女月子产妇高腰大码出差旅行日抛孕妇",
       "price": "219",
       "predict_price": "141.55",
@@ -1150,7 +1491,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 48,
+      "id": 62,
       "title": "云跑|特步童鞋男童运动鞋休闲儿童鞋2026年秋季跑步鞋女童鞋跑鞋",
       "price": "119.9",
       "predict_price": "89.9",
@@ -1174,7 +1515,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 49,
+      "id": 63,
       "title": "【孕妈补贴】Babycare礼遇待产包30件套产妇专用山茶母子入院全套",
       "price": "269",
       "predict_price": "99",
@@ -1197,7 +1538,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 50,
+      "id": 64,
       "title": "十月结晶婴儿浴巾纯棉纱布初生新生儿全棉超软吸水宝宝儿童大毛巾",
       "price": "73.75",
       "predict_price": "45.0",
@@ -1221,7 +1562,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 51,
+      "id": 65,
       "title": "贝亲PPSU宽口径奶瓶0到6个月以上宝宝婴儿新生儿防胀气官方旗舰店",
       "price": "159",
       "predict_price": "80.09",
@@ -1249,7 +1590,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 52,
+      "id": 66,
       "title": "十月结晶四叶草婴儿湿巾纸手口专用便携加厚大包装新生宝宝湿纸巾",
       "price": "49.9",
       "predict_price": "19.9",
@@ -1274,7 +1615,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 53,
+      "id": 67,
       "title": "十月结晶计量型产妇卫生巾特护产后专用大号裤型测量出血舒睡裤",
       "price": "49.87",
       "predict_price": "29.9",
@@ -1299,7 +1640,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 54,
+      "id": 68,
       "title": "babycare山茶花产褥垫隔尿垫孕产妇用品护理垫成人一次性术后护理",
       "price": "49.9",
       "predict_price": "24.9",
@@ -1324,7 +1665,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 55,
+      "id": 69,
       "title": "十月结晶孕妇内裤女怀孕早中晚期产后月子纯棉底裆秋低腰抑菌短裤",
       "price": "69.9",
       "predict_price": "36.9",
@@ -1349,7 +1690,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 56,
+      "id": 70,
       "title": "全棉时代100%棉婴儿湿巾纯棉湿纸巾新生儿宝宝手口湿巾家庭装80抽",
       "price": "219.9",
       "predict_price": "94.91",
@@ -1374,7 +1715,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 57,
+      "id": 71,
       "title": "【小罐尝鲜】皇家美素力婴儿配方奶粉1段400g*1罐 乳铁蛋白",
       "price": "219",
       "predict_price": "185.0",
@@ -1398,7 +1739,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 58,
+      "id": 72,
       "title": "特步童装男童裤子儿童防蚊裤2026春秋款青少年秋装薄款运动裤长裤",
       "price": "89.9",
       "predict_price": "59.9",
@@ -1423,7 +1764,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 59,
+      "id": 73,
       "title": "【小罐尝鲜】皇家美素佳儿较大婴儿配方奶粉2段400g*1罐 乳铁蛋白",
       "price": "209",
       "predict_price": "180.0",
@@ -1448,7 +1789,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 60,
+      "id": 74,
       "title": "【小罐尝鲜】皇家美素佳儿幼儿配方奶粉3段400g*1罐 乳铁蛋白",
       "price": "209",
       "predict_price": "180.0",
@@ -1473,7 +1814,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 61,
+      "id": 75,
       "title": "特步小白鞋女鞋秋季情侣休闲鞋子男鞋空军一号厚底百搭运动鞋板鞋",
       "price": "159",
       "predict_price": "109",
@@ -1497,7 +1838,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 62,
+      "id": 76,
       "title": "特步空军一号情侣板鞋男鞋秋季潮流休闲鞋运动鞋女鞋子厚底小白鞋",
       "price": "159",
       "predict_price": "109.0",
@@ -1522,7 +1863,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 63,
+      "id": 77,
       "title": "佟丽娅明星同款鸭鸭轻薄羽绒服2026秋冬新款保暖连帽休闲内胆外套",
       "price": "189",
       "predict_price": "149",
@@ -1546,7 +1887,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 64,
+      "id": 78,
       "title": "绿联适用华为Mate80钢化膜畅享90ProMax手机膜Mate60/70防爆膜Pura70/nova15/16荣耀X7",
       "price": "15.2",
       "predict_price": "8.91",
@@ -1572,7 +1913,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 65,
+      "id": 79,
       "title": "奥克斯饮水机下置水桶立式家用全自动智能制冷热两用小型宿舍新款",
       "price": "239",
       "predict_price": "159.0",
@@ -1596,7 +1937,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 66,
+      "id": 80,
       "title": "倍思apple pencil电容笔适用苹果ipad触控笔平板二代Pro触屏笔ipencil一代ipad pencil手写",
       "price": "170",
       "predict_price": "138",
@@ -1620,7 +1961,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 67,
+      "id": 81,
       "title": "绿联适用红米k80钢化膜k70/k90钢化膜K100Promax手机膜K100Pro贴膜k90至尊版K80抗蓝光膜red",
       "price": "16.9",
       "predict_price": "14.3",
@@ -1644,7 +1985,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 68,
+      "id": 82,
       "title": "鸿星尔克速干短袖男夏季新款男士衣服爸爸冰丝速干衣运动t恤上衣",
       "price": "79",
       "predict_price": "39.0",
@@ -1665,7 +2006,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 69,
+      "id": 83,
       "title": "361运动鞋男鞋2026夏季跑鞋官方正品旗舰店减震跑步鞋轻便休闲鞋",
       "price": "139",
       "predict_price": "99.0",
@@ -1686,7 +2027,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 70,
+      "id": 84,
       "title": "【下拉详情领补贴】雀巢咖啡金牌瑞士进口速溶黑咖啡美式冻干咖啡",
       "price": "115",
       "predict_price": "52.5",
@@ -1707,7 +2048,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 71,
+      "id": 85,
       "title": "【臧姑娘水饺】湾仔码头速食餐玉米/白菜/三鲜猪肉水饺1320g饺子",
       "price": "119.8",
       "predict_price": "72.01",
@@ -1731,7 +2072,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 72,
+      "id": 86,
       "title": "今麦郎麻辣香锅方便面速食多口味免煮泡面含海带丝整箱批发",
       "price": "17.4",
       "predict_price": "10.9",
@@ -1757,7 +2098,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 73,
+      "id": 87,
       "title": "小熊驾到新奥尔良腌制料烤翅腌料儿童烤肉鸡翅烧烤调料官方旗舰店",
       "price": "15.8",
       "predict_price": "11.31",
@@ -1782,7 +2123,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 74,
+      "id": 88,
       "title": "皇家小虎葱油饼老上海正宗手抓饼皮面饼旗舰店早餐食品半成品煎饼",
       "price": "34.18",
       "predict_price": "26.98",
@@ -1807,7 +2148,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 75,
+      "id": 89,
       "title": "【中秋礼盒】江中猴姑饼干酥性老人营养健康办公室猴头菇养胃食品",
       "price": "117",
       "predict_price": "94.0",
@@ -1832,7 +2173,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 76,
+      "id": 90,
       "title": "今麦郎山西刀削面拉面范袋装方便面兰州拉面泡面整箱方便面",
       "price": "24.9",
       "predict_price": "18.9",
@@ -1857,7 +2198,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 77,
+      "id": 91,
       "title": "妇炎洁私处清洗液洗护液女性抑菌可内外阴清洗私密护理液官方正品",
       "price": "14.9",
       "predict_price": "10.1",
@@ -1878,7 +2219,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 78,
+      "id": 92,
       "title": "三利欧阳娜娜干发帽女超强吸水速干包头巾新款干发巾浴帽洗头毛巾",
       "price": "39.9",
       "predict_price": "28.6",
@@ -1904,7 +2245,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 79,
+      "id": 93,
       "title": "盐津铺子鱼豆腐豆干辣零食豆腐干解馋零食小吃休闲食品夜宵小包装",
       "price": "17.6",
       "predict_price": "9.9",
@@ -1929,7 +2270,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 80,
+      "id": 94,
       "title": "十月结晶婴儿洗衣皂宝宝专用新生儿幼童抑菌香皂家用洗衣皂bb肥皂",
       "price": "29.9",
       "predict_price": "14.9",
@@ -1954,7 +2295,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 81,
+      "id": 95,
       "title": "当当网2026秋新版 实验班提优训练一1二三3四五六6年级上册下册语文数学英语人教版苏教北师译林外研春雨教育小学教材同步",
       "price": "29.9",
       "predict_price": "23.9",
@@ -1977,7 +2318,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 82,
+      "id": 96,
       "title": "晨光透明胶带封箱胶带大卷封口批发大号加宽带封箱带封口透明胶布胶纸包装不留胶6厘米宽胶带4.5cm快递打包",
       "price": "4.5",
       "predict_price": "3.5",
@@ -2001,7 +2342,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 83,
+      "id": 97,
       "title": "【三筒装】得力金属回形针0037办公加厚电镀表层曲别针彩色回形针学生手工文具彩色工字钉大头针组合三针一钉",
       "price": "5.88",
       "predict_price": "4.71",
@@ -2025,7 +2366,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 84,
+      "id": 98,
       "title": "得力矫姿自动铅笔小学生用HB启蒙握笔0.9mm不断芯2.0mm免削活动铅笔不用削的自动2年级儿童宝宝练字日常书写",
       "price": "11.8",
       "predict_price": "2.9",
@@ -2050,7 +2391,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 85,
+      "id": 99,
       "title": "晨光笔中性笔黑笔直液式走珠笔速干顺滑学生专用水笔黑色水性碳素直液笔签字笔圆珠笔红笔考试刷题笔作业神器",
       "price": "6.89",
       "predict_price": "5.2",
@@ -2073,7 +2414,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 86,
+      "id": 100,
       "title": "得力铅笔小学生无铅毒一年级二年级2b学生考试专用可定制涂卡笔答题卡儿童笔橡皮擦绘图素描幼儿园hb六角杆",
       "price": "5",
       "predict_price": "4",
@@ -2095,7 +2436,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 87,
+      "id": 101,
       "title": "ZEBRA斑马官方旗舰店官网中性笔JJ15斑马黑笔笔记水笔0.5套装学霸刷题笔中小学生用JJ77按动式笔sarasa圆珠",
       "price": "49.5",
       "predict_price": "42.5",
@@ -2120,7 +2461,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 88,
+      "id": 102,
       "title": "晨光文具铅笔2b小学生无铅毒一年级二年级30支桶装儿童铅笔学生专用hb木杆铅笔幼儿园绘画素描笔100支带橡皮",
       "price": "6.01",
       "predict_price": "5.01",
@@ -2144,7 +2485,53 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 89,
+      "id": 103,
+      "title": "2026秋华夏万卷同步写字课课练一二三年级四五六年级上册下册小学生语文正楷书控笔训练人教版生字描红本天天练硬笔书法练字帖",
+      "price": "12.3",
+      "predict_price": "9.86",
+      "coupon_price": "9.86",
+      "gov_subsidy": "",
+      "discount": 20,
+      "category": "图书音像",
+      "sub_category": "小学教辅",
+      "shop": "博库旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/859515618/O1CN01WkGU4z1rN6FGRgcAz_!!4611686018427382498-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Dg2b9ZNDw8v9w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w053a6BxlBj1DT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOlW1cFVmbKNPL9Y%2FYjU1RiUUfEJmgaR3KU4GdEupAslNMBsTBn4jXNwj7szQtEGE8VRPgu10Nu%2BSm2WvCgg3ITjX8A8LgO3W633tee8DdQBIb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840158%400b084907_13e0_1a07f2ea467_e8af%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.07元",
+        "限时优惠:满1件9.23折, 限时补贴:满1件8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "10万+",
+      "tk_total_sales": "500"
+    },
+    {
+      "id": 104,
+      "title": "佳帮手魔术扫把家用刮地板刮水器地面扫水拖地两用浴室卫生间神器",
+      "price": "24.8",
+      "predict_price": "19.8",
+      "coupon_price": "19.8",
+      "gov_subsidy": "",
+      "discount": 20,
+      "category": "家居日用",
+      "sub_category": "扫把",
+      "shop": "佳帮手官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/1741393998/O1CN01LQY0LC1fP8bgy8S65_!!4611686018427383886-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DGmgTvxg7QDRw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0McIayu1B3iTT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgE5yvCr4%2BH8BLZ1UwckAI54fKMr9Z4XYJHzYTzFmj33zGUdPMKvQQj6gLQoa1Su4jWT7VkrOq9mLvvDV2TBnf%2FQ2EVwEJbwqWIyt1jX5lGgEEIrHUBI96LGDF1NzTQoPw%3D%3D&union_lens=lensId%3AMAPI%401788840224%402133e003_1fd4_1a07f2fa5eb_05a5%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.25元",
+        "补贴5元",
+        "包邮",
+        "百亿补贴:补贴5元"
+      ],
+      "source": "天猫",
+      "annual_vol": "10万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 105,
       "title": "特步跑步鞋男鞋夏季新款黑色运动鞋软底防滑爸爸官方透气休闲鞋子",
       "price": "149",
       "predict_price": "99.0",
@@ -2168,7 +2555,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 90,
+      "id": 106,
       "title": "【秋季限定】MAC/魅可锁色弹唇釉哑光持色滋润显白不拔干76/67/62",
       "price": "200",
       "predict_price": "175.0",
@@ -2193,7 +2580,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 91,
+      "id": 107,
       "title": "今麦郎安徽板面桶装方便面泡面速食夜宵非油炸面整箱批发",
       "price": "18.8",
       "predict_price": "12.9",
@@ -2219,7 +2606,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 92,
+      "id": 108,
       "title": "皇家小虎糯米烧麦烧卖速冻面点早餐半成品食品包子速食纸皮烧麦",
       "price": "23.9",
       "predict_price": "18.3",
@@ -2244,7 +2631,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 93,
+      "id": 109,
       "title": "舒客牙贴牙齿美白牙贴去黄洁白美白牙齿贴片炫白牙贴面",
       "price": "188",
       "predict_price": "149.0",
@@ -2265,7 +2652,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 94,
+      "id": 110,
       "title": "晨光文具中性笔按动式gp1008学生考试用笔0.5圆珠笔黑色水笔速干碳素笔医用处方墨蓝按动笔教师批改专用红笔",
       "price": "14.3",
       "predict_price": "5.52",
@@ -2289,7 +2676,31 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 95,
+      "id": 111,
+      "title": "【新华正版】现代汉语词典第7版最新版正版第七版+古汉语常用字字典第6版商务印书馆2026中小学生工具书正版古代汉语辞典汉",
+      "price": "44",
+      "predict_price": "39.0",
+      "coupon_price": "39",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "图书音像",
+      "sub_category": "汉语/辞典",
+      "shop": "新华文轩旗舰",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/101450072/O1CN01DWRj4p1CP1fM8bted_!!4611686018427380056-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DaXNeib23pOtw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0tYjKClaPdgbT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOr1WeYxITqj%2B62P9BBERjYustkkBLGytjD28HLplY%2F9pcYFFD70E4iXESIVSVtGXlzz3q%2FDYvNEfz0aqzi%2FtwPvv%2FPNqndMdmrJc%2BIg39Enpb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840222%40210862dc_149e_1a07f2f9dd3_e016%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.44元",
+        "5元",
+        "包邮",
+        "商品券:满44减5"
+      ],
+      "source": "天猫",
+      "annual_vol": "9万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 112,
       "title": "贝亲迪士尼PPSU宽口径大容量吸管婴儿6个月以上大宝宝宽口径奶瓶",
       "price": "258",
       "predict_price": "186.49",
@@ -2316,7 +2727,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 96,
+      "id": 113,
       "title": "美的电饼铛家用双面加热电饼档煎饼烙饼锅一体加深加大煎锅烹饪机",
       "price": "408.98",
       "predict_price": "109.0",
@@ -2339,7 +2750,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 97,
+      "id": 114,
       "title": "骆驼凯旋登山鞋女款防滑透气专业情侣徒步鞋户外轻便男款运动鞋子",
       "price": "339",
       "predict_price": "197.0",
@@ -2365,7 +2776,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 98,
+      "id": 115,
       "title": "晨光水彩笔幼儿园专用水彩笔小学生专用水彩笔儿童可水洗安全画笔24色彩笔36色易可洗涂色笔官方旗舰店正品",
       "price": "12.25",
       "predict_price": "9.31",
@@ -2390,7 +2801,31 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 99,
+      "id": 116,
+      "title": "晨光直尺子15cm直尺波浪尺小学生专用一年级尺子高颜值初中生专用卡通简约办公用尺测量尺20cm",
+      "price": "5",
+      "predict_price": "3.0",
+      "coupon_price": "3",
+      "gov_subsidy": "",
+      "discount": 40,
+      "category": "文具办公",
+      "sub_category": "各类尺/三角板/量角器",
+      "shop": "M&G晨光文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/3337113620/O1CN01YyEZZTpi0qC1chua_!!4611686018427383828-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DhvjOsKaSRGNw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0Rr%2BRJDGlv7HT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA0oH5jLhzpiEzERwpHlTerFShGlHrhZDJnQM4y4C9Hx0tsnSMjJ9VSTpRjqN9WbrR9jKwkmOGScqP8%2FjKVf5WzLLFx2jVXVWRJFZ%2BixDCgw%2FKTCPHsj4ku%2Bu5Y%2Fz2ifAXIOTQy1y2zMBxg5p7bh%2BFbQ%3D&union_lens=lensId%3AMAPI%401788840228%40212793b7_2040_1a07f2fb632_63fd%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.05元",
+        "直降2元",
+        "包邮",
+        "秒杀直降:直降2元"
+      ],
+      "source": "天猫",
+      "annual_vol": "8万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 117,
       "title": "临风安踏儿童运动鞋女童鞋子2026秋季跑步鞋青少年学生鞋女孩鞋子",
       "price": "169",
       "predict_price": "139.0",
@@ -2415,7 +2850,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 100,
+      "id": 118,
       "title": "十月结晶孕妇内裤纯棉女孕期中晚期产后透气高腰托腹内裤抗菌大码",
       "price": "79.9",
       "predict_price": "39.9",
@@ -2440,7 +2875,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 101,
+      "id": 119,
       "title": "十月结晶婴儿勺子宝宝硅胶软勺新生儿喂水勺子儿童餐具辅食勺软头",
       "price": "39.9",
       "predict_price": "22.9",
@@ -2465,7 +2900,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 102,
+      "id": 120,
       "title": "爷爷的农场橄榄油100%特级初榨喷雾进口热炒凉拌食用油官方正品",
       "price": "36",
       "predict_price": "24.9",
@@ -2491,7 +2926,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 103,
+      "id": 121,
       "title": "皇家小虎牛肉馅饼儿童早餐半成品速食猪肉酸菜手抓饼煎饼早饭美食",
       "price": "24.9",
       "predict_price": "19.1",
@@ -2516,7 +2951,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 104,
+      "id": 122,
       "title": "晨光文件夹袋资料册a4透明插页资料收纳册资料夹档案整理办公用品活页夹产检孕检收纳册谱夹奖状收集册乐谱夹",
       "price": "4.7",
       "predict_price": "3.7",
@@ -2540,7 +2975,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 105,
+      "id": 123,
       "title": "得力折纸彩纸手工diy儿童手工正方形折纸彩色卡纸a4纸小学生幼儿园制作材料8K长方形剪纸千纸鹤美术专用纸",
       "price": "5.92",
       "predict_price": "4.5",
@@ -2563,7 +2998,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 106,
+      "id": 124,
       "title": "得力文件夹a4资料夹蓝色资料册a4文件夹透明翻页透明插页文件收纳册办公用品合同文件夹多页文件册试卷活页夹",
       "price": "5.53",
       "predict_price": "3.7",
@@ -2587,7 +3022,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 107,
+      "id": 125,
       "title": "【升级顶量HMO】合生元派星3段婴幼儿奶粉三段宝宝800g*6罐 顺丰",
       "price": "390",
       "predict_price": "318.0",
@@ -2608,7 +3043,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 108,
+      "id": 126,
       "title": "【升级顶量HMO】合生元派星二段婴幼儿奶粉宝宝800g*6罐 顺丰速达",
       "price": "390",
       "predict_price": "318.0",
@@ -2629,7 +3064,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 109,
+      "id": 127,
       "title": "【升级顶量HMO】合生元派星3段奶粉婴幼儿宝宝奶粉800g10罐 顺丰",
       "price": "390",
       "predict_price": "318.0",
@@ -2650,7 +3085,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 110,
+      "id": 128,
       "title": "十月结晶月子帽女纯棉帽子大头围透气产妇亲子帽产后夏秋四季薄款",
       "price": "39.9",
       "predict_price": "22.9",
@@ -2675,7 +3110,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 111,
+      "id": 129,
       "title": "babycare尿布台婴儿护理台多功能换尿布抚触按摩便携可折叠婴儿床",
       "price": "530",
       "predict_price": "343.4",
@@ -2703,7 +3138,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 112,
+      "id": 130,
       "title": "畅跑裤特步童装男童裤子速干裤夏装大童防蚊裤春秋款儿童运动长裤",
       "price": "79.9",
       "predict_price": "49.9",
@@ -2726,7 +3161,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 113,
+      "id": 131,
       "title": "【升级顶量HMO】合生元派星一段新生婴儿牛奶粉1段婴幼儿奶粉800g",
       "price": "390",
       "predict_price": "318.0",
@@ -2749,7 +3184,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 114,
+      "id": 132,
       "title": "【升级顶量HMO】合生元派星2段婴幼儿牛奶粉婴儿二段奶粉宝宝800g",
       "price": "390",
       "predict_price": "318.0",
@@ -2773,7 +3208,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 115,
+      "id": 133,
       "title": "十月结晶婴儿嘟嘟棉柔巾宝宝干湿两用100%纯棉洗脸巾新生儿专用巾",
       "price": "89.9",
       "predict_price": "43.9",
@@ -2798,7 +3233,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 116,
+      "id": 134,
       "title": "十月结晶5D零感反重力孕妇哺乳期聚拢内衣产后母乳文胸罩薄透气秋",
       "price": "184.9",
       "predict_price": "99.9",
@@ -2823,7 +3258,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 117,
+      "id": 135,
       "title": "迪卡侬新款MH150冲锋衣女款小个子户外硬壳单层徒步防风防水外套",
       "price": "349.9",
       "predict_price": "304.9",
@@ -2847,7 +3282,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 118,
+      "id": 136,
       "title": "【官方正品】MAC/魅可持妆净颜套装无瑕粉底液不辣眼卸妆油",
       "price": "210",
       "predict_price": "185.0",
@@ -2870,7 +3305,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 119,
+      "id": 137,
       "title": "【官方正品】MAC/魅可无瑕粉底液油皮的神遮瑕控油持妆雾面不脱妆",
       "price": "210",
       "predict_price": "185.0",
@@ -2894,7 +3329,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 120,
+      "id": 138,
       "title": "【官方正品】MAC/魅可精准塑形眼线液笔防水防汗持久不易晕染细",
       "price": "210",
       "predict_price": "185.0",
@@ -2919,7 +3354,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 121,
+      "id": 139,
       "title": "【官方正品】MAC/魅可锁色弹唇釉哑光持色滋润显白不沾杯76/67/62",
       "price": "210",
       "predict_price": "185.0",
@@ -2944,7 +3379,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 122,
+      "id": 140,
       "title": "【官方正品】MAC/魅可小眼影变色龙哑光爆闪细闪不脱妆 跳跳糖",
       "price": "210",
       "predict_price": "185.0",
@@ -2968,7 +3403,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 123,
+      "id": 141,
       "title": "【官方正品】MAC/魅可化妆刷眼影晕染刷烟熏刷易上色便携 217",
       "price": "210",
       "predict_price": "185.0",
@@ -2993,7 +3428,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 124,
+      "id": 142,
       "title": "【官方正品】MAC/魅可发发蝴蝶春季限定口红润唇膏蝴蝶盘683",
       "price": "210",
       "predict_price": "185.0",
@@ -3017,7 +3452,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 125,
+      "id": 143,
       "title": "【官方正品】MAC/魅可专业彩妆盘 妆容一盘容纳 自由组合拼装",
       "price": "210",
       "predict_price": "185.0",
@@ -3040,7 +3475,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 126,
+      "id": 144,
       "title": "【官方正品】MAC/魅可大子弹头口红唇膏哑光滋润显色683/609/693",
       "price": "210",
       "predict_price": "185.0",
@@ -3064,7 +3499,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 127,
+      "id": 145,
       "title": "【官方正品】MAC/魅可妆前焕采乳 保湿妆前乳 持久不脱妆保湿",
       "price": "210",
       "predict_price": "185.0",
@@ -3088,7 +3523,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 128,
+      "id": 146,
       "title": "【官方正品】MAC/魅可水漾棒棒糖唇釉水光唇蜜口红 943/946/939",
       "price": "210",
       "predict_price": "185.0",
@@ -3112,7 +3547,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 129,
+      "id": 147,
       "title": "【官方正品】MAC/魅可焦点小眼影哑光显色彩妆盘替芯持色自然",
       "price": "210",
       "predict_price": "185.0",
@@ -3134,7 +3569,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 130,
+      "id": 148,
       "title": "【官方正品】MAC/魅可反光镜唇蜜唇釉保湿滋润显色淡唇纹226/224",
       "price": "210",
       "predict_price": "185.0",
@@ -3158,7 +3593,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 131,
+      "id": 149,
       "title": "【官方正品】MAC/魅可反光镜高光唇蜜唇釉滋润显色淡唇纹238",
       "price": "210",
       "predict_price": "185.0",
@@ -3182,7 +3617,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 132,
+      "id": 150,
       "title": "【官方正品】MAC/魅可聚光瓶粉底液遮瑕干皮滋润保湿养肤不脱妆",
       "price": "210",
       "predict_price": "185.0",
@@ -3207,7 +3642,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 133,
+      "id": 151,
       "title": "【官方正品】MAC/魅可无瑕大黑饼油皮粉饼定妆补妆遮瑕细腻不卡粉",
       "price": "210",
       "predict_price": "185.0",
@@ -3231,7 +3666,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 134,
+      "id": 152,
       "title": "【官方正品】MAC/魅可细致双头眉笔防晕染立体自然野生眉",
       "price": "210",
       "predict_price": "185.0",
@@ -3255,7 +3690,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 135,
+      "id": 153,
       "title": "好想你红枣夹核桃礼盒特产灰枣伴手礼办公室零食夹心枣大枣",
       "price": "12",
       "predict_price": "8.5",
@@ -3276,7 +3711,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 136,
+      "id": 154,
       "title": "雀巢咖啡1+2原味90条特浓三合一拿铁速溶咖啡旗舰店教师节礼物",
       "price": "182.9",
       "predict_price": "119.9",
@@ -3297,7 +3732,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 137,
+      "id": 155,
       "title": "金龙鱼芝麻香油400ml 家用调味瓶装拌菜纯芝麻原料",
       "price": "27.9",
       "predict_price": "19.9",
@@ -3321,7 +3756,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 138,
+      "id": 156,
       "title": "麦富迪猫粮三文鱼油成幼猫粮天然营养布偶猫咪通用10kg20斤实惠装",
       "price": "359",
       "predict_price": "169.0",
@@ -3342,7 +3777,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 139,
+      "id": 157,
       "title": "佳帮手大容量收纳箱超大家用塑料加厚玩具储物箱特大号衣服整理箱",
       "price": "22.9",
       "predict_price": "14.9",
@@ -3366,7 +3801,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 140,
+      "id": 158,
       "title": "妇炎洁抑菌凝胶女私处护理液杀菌银离子妇科抗菌私密保养官方正品",
       "price": "69.9",
       "predict_price": "18.53",
@@ -3392,7 +3827,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 141,
+      "id": 159,
       "title": "日本ZEBRA斑马官方旗舰店官网中性笔JJ15黑笔按动水笔套装签字文具圆珠笔学生考试刷题专用SARASA替芯0.5",
       "price": "14",
       "predict_price": "11.2",
@@ -3417,7 +3852,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 142,
+      "id": 160,
       "title": "日本ZEBRA斑马官方旗舰店官网JJ15复古系列SARASA按动式中性笔彩色驼黄湖蓝黑加仑水笔可换替芯0.5笔夹限定款",
       "price": "14",
       "predict_price": "11.2",
@@ -3442,7 +3877,55 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 143,
+      "id": 161,
+      "title": "【分段式书皮】晨光三段式书皮小学生专用包书皮透明自粘书皮纸书套a4书膜一年级开学必备文具学习入学用品",
+      "price": "11.13",
+      "predict_price": "8.46",
+      "coupon_price": "8.46",
+      "gov_subsidy": "",
+      "discount": 24,
+      "category": "文具办公",
+      "sub_category": "书皮/书衣",
+      "shop": "晨光学习用品旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2200773078708/O1CN01BLpbI5ViPDH1chua_!!4611686018427383476-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D2ELdqKnLAOVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0C%2F%2FSFwe05N%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA%2FB0OZnibL2sqciuOAUD5ifcfbUSjimDNG%2F88gFZg6wmPyNO5csOfe%2Bm1gMLs6WsamsqKGK%2F0WkfKkBR2wJCcKhIQI%2B9OtLWTlx%2BbfvFvg8lP7sufatUJ5uvfA5TmQPdn2dxf7zcwpQYcSpj5qSCmbA%3D&union_lens=lensId%3AMAPI%401788840229%4021663569_14ff_1a07f2fbb91_1ef1%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.11元",
+        "直降2.23元",
+        "包邮",
+        "秒杀直降:直降2.23元, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "6万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 162,
+      "title": "欧舒丹甜扁桃沐浴油清洁保湿紧致留香紧致舒缓洗卸合一沐浴露洗澡",
+      "price": "260",
+      "predict_price": "235",
+      "coupon_price": "235",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "沐浴油",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01UxuqMGqL5PE2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DlcN8wwwZrBNw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoa9fn6t6DGIf22EHRX1sDI6%2F6G%2FxrtiiMGn9eEgih4%2F9j%2BnWak8ke4UhsiFf730P%2Bx4BIWfh%2FYxune86myY6kcjinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.6元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "6万+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 163,
       "title": "十月结晶粒粒阳光婴儿衣服四季纯棉蝴蝶衣萌趣亲肤新生儿宝宝衣服",
       "price": "79.9",
       "predict_price": "59.9",
@@ -3466,7 +3949,7 @@
       "tk_total_sales": "5000"
     },
     {
-      "id": 144,
+      "id": 164,
       "title": "十月结晶孕产妇月子鞋产后包跟拖鞋软底防滑鞋室内鞋子秋四季薄款",
       "price": "59.9",
       "predict_price": "29.9",
@@ -3491,7 +3974,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 145,
+      "id": 165,
       "title": "361童鞋女童运动鞋男童鞋子秋季新款轻便女孩网面透气儿童跑步鞋",
       "price": "139.9",
       "predict_price": "84.9",
@@ -3517,7 +4000,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 146,
+      "id": 166,
       "title": "贝亲FUN宽口径双把手PPSU奶瓶0到6个月以上大宝宝断奶奶瓶奶嘴",
       "price": "209",
       "predict_price": "104.79",
@@ -3544,7 +4027,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 147,
+      "id": 167,
       "title": "十月结晶月子袜孕妇纯棉袜子女孕产妇松口简约透气中长筒袜秋冬款",
       "price": "36.9",
       "predict_price": "19.9",
@@ -3569,7 +4052,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 148,
+      "id": 168,
       "title": "【详情领专属优惠】babycare紫盖湿纸巾60抽新生婴儿手口宝宝可用",
       "price": "19.9",
       "predict_price": "9.41",
@@ -3593,7 +4076,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 149,
+      "id": 169,
       "title": "【曼秀雷敦】50惠育发精华养润防脱精华液防掉发滋养固发头皮护理",
       "price": "152",
       "predict_price": "102.1",
@@ -3614,7 +4097,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 150,
+      "id": 170,
       "title": "皇家小虎蛋挞皮家用烘焙和蛋挞液套餐组合空气炸锅半成品食材生皮",
       "price": "21.98",
       "predict_price": "16.68",
@@ -3639,7 +4122,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 151,
+      "id": 171,
       "title": "【3c认证可上飞机】倍思卡片磁吸2026新款无线充电宝适用苹果18超薄小巧便携iPhone快充专用Magsafe移动电源",
       "price": "139",
       "predict_price": "86.33",
@@ -3664,7 +4147,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 152,
+      "id": 172,
       "title": "2026秋 五星学霸小学一年级二三四五六年级上下册语文数学英语人教北师大版经纶5星学霸提优大考卷同步练习册课时作业本同步",
       "price": "25.87",
       "predict_price": "19.01",
@@ -3689,7 +4172,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 153,
+      "id": 173,
       "title": "晨光记号笔黑色油性笔标记笔大头笔粗头马克笔勾线笔防水防油不掉色物流快递专用批发大容量速干水笔红色工地",
       "price": "5.81",
       "predict_price": "4.81",
@@ -3713,7 +4196,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 154,
+      "id": 174,
       "title": "当当网2026秋季新版口算大通关数学一二年级三年级四五六上册下册人教版苏教北师小学思维训练计算口算题速算53天天练口算题",
       "price": "16.9",
       "predict_price": "13.8",
@@ -3736,7 +4219,33 @@
       "tk_total_sales": ""
     },
     {
-      "id": 155,
+      "id": 175,
+      "title": "雪中飞2026秋新款男女童连帽经典排骨羽绒纯色简约百搭舒适",
+      "price": "209",
+      "predict_price": "122.05",
+      "coupon_price": "122.05",
+      "gov_subsidy": "",
+      "discount": 42,
+      "category": "服饰鞋包",
+      "sub_category": "羽绒服",
+      "shop": "雪中飞官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/407916093/O1CN01wf8Xt6hGr3F2R3rs-407916093.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DlVbc5XdbSk9w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0Hl5hmNYd8%2FnT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgI6mkA9NrdGR%2FIYyRGoPsqFpSPrv5oBueuMDI1tMgJxVwUCKBxgA%2BywVs1nQwrtlNTnWj4ezpH3%2Bq63q0oRotHked6ufxnbH%2FNbx4TgniULinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&union_lens=lensId%3AMAPI%401788840230%400bb41b62_1f97_1a07f2fbe67_0f74%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "加补20元",
+        "88VIP专享95折",
+        "40元",
+        "官方立减50元",
+        "店铺券:满200减20, 官方立减:官方立减50元, 88VIP9.5折:88VIP专享95折, 品类加补券:满99减10，需使用加补券"
+      ],
+      "source": "天猫",
+      "annual_vol": "5万+",
+      "tk_total_sales": "10000"
+    },
+    {
+      "id": 176,
       "title": "小皮有机高铁侠米粉2阶段咀嚼宝宝辅食婴儿米糊谷物颗粒食材7个月",
       "price": "77",
       "predict_price": "61.46",
@@ -3757,7 +4266,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 156,
+      "id": 177,
       "title": "贝亲FUN宽口径把手PPSU奶瓶重力球6个月以上宝宝断奶吸管奶瓶官方",
       "price": "248",
       "predict_price": "124.26",
@@ -3784,7 +4293,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 157,
+      "id": 178,
       "title": "全棉时代婴儿棉柔巾婴儿洗脸巾纯棉超柔乳霜新生儿干湿两用宝宝",
       "price": "49.9",
       "predict_price": "37.91",
@@ -3809,7 +4318,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 158,
+      "id": 179,
       "title": "贝亲防溢乳垫哺乳期羊毛脂一次性超薄透气防溢乳垫产妇专用旗舰店",
       "price": "128",
       "predict_price": "43.7",
@@ -3834,7 +4343,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 159,
+      "id": 180,
       "title": "特步运动鞋女鞋夏季新款透气网面轻便休闲软底妈妈减震体育跑步鞋",
       "price": "159",
       "predict_price": "99.0",
@@ -3858,7 +4367,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 160,
+      "id": 181,
       "title": "babycare恒温热水壶婴儿专用烧水壶宝宝泡奶机家用电热水壶冲奶器",
       "price": "300",
       "predict_price": "164.9",
@@ -3880,7 +4389,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 161,
+      "id": 182,
       "title": "绿联typec转hdmi手机电脑电视同屏转换连接线笔记本平板外接显示器投影仪4K高清投屏线适用macbook",
       "price": "37.37",
       "predict_price": "29.9",
@@ -3901,7 +4410,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 162,
+      "id": 183,
       "title": "绿联Typec转HDMI拓展坞VGA扩展转换器转接头外接笔记本电脑手机iPad平板连接电视投影仪usb多功能投屏显示器",
       "price": "37.37",
       "predict_price": "29.9",
@@ -3922,7 +4431,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 163,
+      "id": 184,
       "title": "迪卡侬官方旗舰店硬壳MH500冲锋衣男女新款户外防风防水夹克外套",
       "price": "599.9",
       "predict_price": "519.9",
@@ -3946,7 +4455,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 164,
+      "id": 185,
       "title": "伊利欣活中老年成人营养奶粉益生菌送爸妈礼盒800g*2罐官方正品",
       "price": "300",
       "predict_price": "121.41",
@@ -3967,7 +4476,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 165,
+      "id": 186,
       "title": "【新国标认证】七度空间安睡裤动物君裤型卫生巾安心裤10条",
       "price": "38",
       "predict_price": "21.0",
@@ -3988,7 +4497,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 166,
+      "id": 187,
       "title": "绿伞衣领净500g*5袋深层去污衣物除渍洁净家用洗白衣领去黄去渍",
       "price": "39.9",
       "predict_price": "26.9",
@@ -4009,7 +4518,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 167,
+      "id": 188,
       "title": "妇炎洁官方正品凝胶抑菌苦参私处护理杀菌银离子妇用抗菌私密保养",
       "price": "69.9",
       "predict_price": "19.5",
@@ -4032,7 +4541,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 168,
+      "id": 189,
       "title": "晨光文具中性笔按动黑笔k35签字笔红蓝按动笔0.5子弹头碳素水笔学生刷题笔教师办公文具用品医用墨蓝处方笔",
       "price": "11.38",
       "predict_price": "5.61",
@@ -4056,7 +4565,55 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 169,
+      "id": 190,
+      "title": "Schneider施耐德非碳素墨水德国进口钢笔用瓶装墨水33ml 补充液 蓝色 黑色 蓝黑 新品彩色上市墨水套装",
+      "price": "49",
+      "predict_price": "38.1",
+      "coupon_price": "38.1",
+      "gov_subsidy": "",
+      "discount": 22,
+      "category": "家用电器",
+      "sub_category": "笔用墨水/补充液/墨囊",
+      "shop": "施耐德文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2207822398874/O1CN01HQHiFG2FQLiKXBymb_!!4611686018427381146-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DYHwxN1IAItxw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w00qJVyTo94SjT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOsAPYBslPiB8hshCT2a0eBcEOk6kiQ%2Bi0G9MWzJAOqCkqa7banbDbU4o86hAXsOq%2BM8bJqdaQu%2FaNnN5M3s8lgMSIz%2BVIb9tlBkzdtAs%2FlNmgwB9OB2l4xcQQisdQEj3osYMXU3NNCg%2F&union_lens=lensId%3AMAPI%401788840145%400b0b74ed_1fb3_1a07f2e726f_78ea%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.33元",
+        "5元",
+        "官方8.8折",
+        "店铺券:满30减5, 官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "4万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 191,
+      "title": "欧舒丹洗发水合集草本平衡强韧纯净洗发露清洁控油防断发发部护理",
+      "price": "235",
+      "predict_price": "210.0",
+      "coupon_price": "210",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "洗发水",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01cuSXHDlrMqC2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D5t882166olZw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0JA3A0JZXGCnT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZpzkW3n6W9oP%2Fr8jX0YeYHlUqh95tBnGyevwDj3Plh2K%2B%2B5VC7PcAjWiYBlZylc%2FC4%2FApvI96NZk34MgvRv6i3G%2BLq1Soei6dncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840359%40212b2441_2000_1a07f31b5ef_1f2c%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣7.05元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "4万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 192,
       "title": "babycare六面体益智玩具婴儿童早教百宝箱宝宝多功能忙碌板周岁礼",
       "price": "229",
       "predict_price": "159.0",
@@ -4077,7 +4634,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 170,
+      "id": 193,
       "title": "361度官方童装男童裤子儿童运动裤秋季新款青少年卫裤男孩长裤",
       "price": "99",
       "predict_price": "59.0",
@@ -4102,7 +4659,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 171,
+      "id": 194,
       "title": "费列罗官方旗舰店榛果威化巧克力制品96粒婚礼结婚喜糖伴手礼零食",
       "price": "350",
       "predict_price": "206.0",
@@ -4127,7 +4684,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 172,
+      "id": 195,
       "title": "云跑|特步儿童运动鞋秋季男童鞋跑步鞋中大童男孩儿童鞋子跑鞋",
       "price": "119.9",
       "predict_price": "89.9",
@@ -4151,7 +4708,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 173,
+      "id": 196,
       "title": "德力西接线板排插拖线板插线板插排插座宿舍家用多功能插头转换器",
       "price": "21.23",
       "predict_price": "16.03",
@@ -4172,7 +4729,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 174,
+      "id": 197,
       "title": "Freego一次性内裤女纯棉旅行平角男出差免洗日抛产后月子儿童女款",
       "price": "39.9",
       "predict_price": "14.63",
@@ -4193,7 +4750,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 175,
+      "id": 198,
       "title": "准者三色篮球成人7号6号5号儿童小学生室外耐磨防尘专用训练正品",
       "price": "85",
       "predict_price": "59.0",
@@ -4214,7 +4771,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 176,
+      "id": 199,
       "title": "Freego儿童一次性内裤旅行纯棉平角男女童宝宝幼童小学生婴儿5条",
       "price": "21.8",
       "predict_price": "16.1",
@@ -4235,7 +4792,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 177,
+      "id": 200,
       "title": "迪卡侬MH500 3L压胶硬壳冲锋裤男女户外登山裤徒步裤防水防风雪山",
       "price": "349.9",
       "predict_price": "304.9",
@@ -4258,7 +4815,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 178,
+      "id": 201,
       "title": "自然堂隔离霜正品官方旗舰店防晒霜美白遮瑕三合一素颜霜妆前乳女",
       "price": "117",
       "predict_price": "79.0",
@@ -4279,7 +4836,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 179,
+      "id": 202,
       "title": "【抢券立减】雅诗兰黛小棕瓶护肤套装礼盒 小棕瓶眼霜+精华 抗皱",
       "price": "720",
       "predict_price": "610.0",
@@ -4304,7 +4861,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 180,
+      "id": 203,
       "title": "【抢券立减】雅诗兰黛白金养肤粉底液 持久遮瑕保湿抗氧化服帖",
       "price": "980",
       "predict_price": "870.0",
@@ -4329,7 +4886,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 181,
+      "id": 204,
       "title": "【专享】中秋节康恩贝蛋白粉乳清蛋白质粉有助于增强免疫力",
       "price": "159",
       "predict_price": "76.0",
@@ -4354,7 +4911,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 182,
+      "id": 205,
       "title": "【专享】哈药盖中盖氨糖软骨素中老年钙片维生素D3片关节营养",
       "price": "104.87",
       "predict_price": "39.9",
@@ -4377,7 +4934,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 183,
+      "id": 206,
       "title": "金龙鱼蟹稻共生盘锦大米5kg东北大米经典圆粒珍珠米粳米10斤",
       "price": "49.9",
       "predict_price": "29.9",
@@ -4401,7 +4958,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 184,
+      "id": 207,
       "title": "费列罗官方旗舰店榛果威化巧克力制品8粒*3盒“小金砖”礼品送礼",
       "price": "350",
       "predict_price": "206.0",
@@ -4425,7 +4982,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 185,
+      "id": 208,
       "title": "金龙鱼 非转基因精炼一级大豆油5L/桶 食用油优质大豆油色拉油",
       "price": "99.9",
       "predict_price": "59.9",
@@ -4449,7 +5006,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 186,
+      "id": 209,
       "title": "当当网2026秋新版53基础练积累与默写小学语文句式训练大全五三阅读真题60篇100一二三四五六年级上下册小学生语文专项",
       "price": "14.8",
       "predict_price": "10.6",
@@ -4473,7 +5030,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 187,
+      "id": 210,
       "title": "晨光文件袋透明塑料加厚大容量A4塑料防水袋按扣试卷收纳学生用考试专用袋子档案资料袋文件夹包办公文具用品",
       "price": "7.38",
       "predict_price": "5.9",
@@ -4497,7 +5054,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 188,
+      "id": 211,
       "title": "当当网2026秋新版53全优卷上下册试卷测试卷全套一二三四五六年级人教版北师苏教同步练习册小学语文数学英语5.3五三天天",
       "price": "14.8",
       "predict_price": "10.6",
@@ -4521,7 +5078,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 189,
+      "id": 212,
       "title": "得力水溶性粉笔无尘无毒儿童彩色黑板报教师专用家用鲜艳无粉尘环保宝宝12色可湿擦幼儿园教学水性粉笔白色",
       "price": "8.78",
       "predict_price": "7.9",
@@ -4545,7 +5102,33 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 190,
+      "id": 213,
+      "title": "晨光分段式包书皮自粘透明磨砂包书膜书皮纸包书套小学生一年级上册二三年级A4书16K一年级学习用品开学必备",
+      "price": "11",
+      "predict_price": "8.46",
+      "coupon_price": "8.46",
+      "gov_subsidy": "",
+      "discount": 23,
+      "category": "文具办公",
+      "sub_category": "书皮/书衣",
+      "shop": "晨光学习用品旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2200773078708/O1CN01ZCiUwW2ECK5j3ALNq_!!4611686018427383476-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DxMYdr8ZiP49w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w01hhvslvL9nzT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA%2FB0OZnibL2sqciuOAUD5ifcfbUSjimDNMjnVIuzFLQJIKuAkDyzEUrknHCGQGLk%2BtcSCoSe66ynxSYt4px6bQU7VFL5LS%2F7WxIjP5Uhv22U5Du3HY%2FmWnVvwnR0V1aAkG%2FN5VuAD9EJDJbuZDCrHt4%3D&union_lens=lensId%3AMAPI%401788840223%402104a3e6_14b5_1a07f2fa32d_a50d%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.11元",
+        "补贴1.45元",
+        "直降0.65元",
+        "包邮",
+        "秒杀直降:直降0.65元, 限时补贴:补贴1.45元, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "3万+",
+      "tk_total_sales": "1000"
+    },
+    {
+      "id": 214,
       "title": "小皮婴标果泥婴幼儿无添加盐糖缤纷水果泥西梅泥宝宝蔬菜泥辅食泥",
       "price": "300",
       "predict_price": "185.54",
@@ -4566,7 +5149,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 191,
+      "id": 215,
       "title": "babycare爬爬垫拼接爬行垫宝宝加厚家用婴儿无甲醛客厅儿童地垫",
       "price": "329",
       "predict_price": "151.05",
@@ -4587,7 +5170,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 192,
+      "id": 216,
       "title": "适用2027一本阅读训练100篇阅读理解小学生一百篇同步语文数学英语阅读理解专项训练三四五六年级上下人教版课外真题暑假衔",
       "price": "29.4",
       "predict_price": "19.4",
@@ -4611,7 +5194,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 193,
+      "id": 217,
       "title": "361度童鞋儿童小白鞋男童板鞋秋季新款透气男孩运动鞋女童白鞋子",
       "price": "129.9",
       "predict_price": "89.8",
@@ -4635,7 +5218,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 194,
+      "id": 218,
       "title": "babycare秋冬新生婴儿儿童加厚浴巾宝宝浴袍毛巾斗篷暖绒盖毯裹巾",
       "price": "109",
       "predict_price": "79.0",
@@ -4660,7 +5243,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 195,
+      "id": 219,
       "title": "云跑|特步儿童2026年秋新款女童网面跑步鞋儿童男童小白鞋运动鞋",
       "price": "119.9",
       "predict_price": "89.9",
@@ -4684,7 +5267,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 196,
+      "id": 220,
       "title": "绿联相机读卡器cf多合一sd卡读取器ms/tf内存储卡转换usb高速适用佳能索尼大疆苹果17电脑Typec手机ccd多功",
       "price": "37.37",
       "predict_price": "29.9",
@@ -4705,7 +5288,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 197,
+      "id": 221,
       "title": "晨光a4打印纸官方旗舰店正品a4纸500张一包复印纸批发整箱70g白纸80g单包加厚双面打印机白纸草稿纸办公用品",
       "price": "11",
       "predict_price": "8.19",
@@ -4726,7 +5309,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 198,
+      "id": 222,
       "title": "金霸王5号7号电池七号五号碱性干电池适用空调电视遥控器玩具鼠标钟表智能锁电子指纹门锁耐用正品官方囤货装",
       "price": "57.9",
       "predict_price": "45.9",
@@ -4748,7 +5331,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 199,
+      "id": 223,
       "title": "【风盾】伯希和户外软壳裤男秋季防风耐磨长裤保暖徒步登山裤女款",
       "price": "359",
       "predict_price": "269.0",
@@ -4769,7 +5352,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 200,
+      "id": 224,
       "title": "特步卫衣男秋季新款简约男装休闲上衣圆领内搭长袖套头衫运动服男",
       "price": "105",
       "predict_price": "60.0",
@@ -4793,7 +5376,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 201,
+      "id": 225,
       "title": "【独家礼盒】曼秀雷敦一二布布肌研极润化妆水乳护肤补水乳液干皮",
       "price": "111",
       "predict_price": "80.68",
@@ -4814,7 +5397,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 202,
+      "id": 226,
       "title": "【断货回归】MAC/魅可小金盒生姜高光修容盘哑光鼻影阴影omega",
       "price": "380",
       "predict_price": "340.0",
@@ -4840,7 +5423,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 203,
+      "id": 227,
       "title": "【教师节礼物】肌肤之钥CPB钻光精华水爽肤水紧致滋润抗老礼物",
       "price": "860",
       "predict_price": "750",
@@ -4863,7 +5446,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 204,
+      "id": 228,
       "title": "Swisse斯维诗钙片中老年补钙维生素d柠檬酸钙片青少年孕妇保健品",
       "price": "309",
       "predict_price": "59.0",
@@ -4884,7 +5467,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 205,
+      "id": 229,
       "title": "伊利新西兰进口全脂奶粉/脱脂奶粉高钙营养1kg/袋全家成人旗舰店",
       "price": "139.8",
       "predict_price": "78.0",
@@ -4905,7 +5488,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 206,
+      "id": 230,
       "title": "康恩贝褪黑素改善睡眠片保健退黑素官方正品维生素b6片成人非软糖",
       "price": "33.2",
       "predict_price": "27.74",
@@ -4930,7 +5513,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 207,
+      "id": 231,
       "title": "王致和豆腐乳大块腐乳340g瓶组合正宗老北京风味火锅酱料南乳汁",
       "price": "17",
       "predict_price": "11.9",
@@ -4954,7 +5537,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 208,
+      "id": 232,
       "title": "胡姬花古法花生油特香型900ml压榨一级小瓶宿舍油食用油",
       "price": "37.9",
       "predict_price": "25.9",
@@ -4978,7 +5561,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 209,
+      "id": 233,
       "title": "洁丽雅婴儿口水巾纯棉纱布卡通毛巾儿童宝宝洗脸擦手小方巾新生儿",
       "price": "22.7",
       "predict_price": "15.9",
@@ -5003,7 +5586,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 210,
+      "id": 234,
       "title": "妇炎洁凝胶女私处抑菌杀菌银离子妇科抗菌护理液私密保养官方正品",
       "price": "129.9",
       "predict_price": "71.9",
@@ -5027,7 +5610,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 211,
+      "id": 235,
       "title": "美的吹风机折叠家用负离子电吹风护发大风力吹风筒宿舍用学生便携",
       "price": "84.1",
       "predict_price": "59.0",
@@ -5053,7 +5636,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 212,
+      "id": 236,
       "title": "晨光活页本B5横线笔记本子A4方格网格记录本A5多规格可拆卸替芯软壳考研线圈错题本加厚纸张不咯手活页夹高中",
       "price": "7.19",
       "predict_price": "6.19",
@@ -5077,7 +5660,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 213,
+      "id": 237,
       "title": "晨光可水洗马克笔水性马克笔儿童小学生专用12色48色36色24色80色双头彩色笔套装美术幼儿园画画笔水彩笔官方",
       "price": "18.5",
       "predict_price": "14.8",
@@ -5100,7 +5683,78 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 214,
+      "id": 238,
+      "title": "晨光你好火星笔按动中性笔火星限定黑色静音笔初中生专用速干小学生ST笔头水笔签字笔大墨王火星舱圆珠笔文具",
+      "price": "6.9",
+      "predict_price": "4.94",
+      "coupon_price": "4.94",
+      "gov_subsidy": "",
+      "discount": 28,
+      "category": "文具办公",
+      "sub_category": "中性笔",
+      "shop": "mg晨光珍美专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2719689122/O1CN015LQDKP2HFw02TKyHT_!!4611686018427382178-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D773lffLePJFw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0YK4FTlhdvmfT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA%2FB0OZnibL2shsYh7LMkyn%2FrY%2F0EERGNiwCoEMEfZ%2FiTS4PY3uTujVnQjJCMZJW%2BUW0cUzrSMHnnTZ6PladluGXWoPWGf0VHbM11RiMMC0o3qPoRq7QcQ6mKcg09nNkh%2BU2uEEfFpkDOxiXvDf8DaRs%3D&union_lens=lensId%3AMAPI%401788840154%400bb2a78a_141a_1a07f2e96e2_1828%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.07元",
+        "直降1.7元",
+        "秒杀直降:直降1.7元, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "2万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 239,
+      "title": "晨光软头水彩笔儿童可水洗幼儿园小学生专用48色画画笔套装可洗彩色水溶性专用宝宝涂色笔专用美术绘画",
+      "price": "13.7",
+      "predict_price": "11.6",
+      "coupon_price": "11.6",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "文具办公",
+      "sub_category": "水彩笔",
+      "shop": "M&G晨光文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/3337113620/O1CN01YPnRLr1cc0uBhOghB_!!4611686018427383828-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DCwOTfdh51Epw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0WqRT4zZPvzXT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOl5p4OLil2iCUoRpR64WQybgl%2F3gnTHcTOCUvmVNyLd5H3pnMwURJypj%2FnYEAf3xi0N6PomroOoa7YGlDhF4K1baIp7xU8ckLUKNCJsiHw89INgCteKgQzaDk0MtctszAcYOae24fhW0&union_lens=lensId%3AMAPI%401788840159%40212b6f26_19e1_1a07f2ea9a6_7ecb%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.13元",
+        "包邮",
+        "官方立减:官方8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "2万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 240,
+      "title": "欧舒丹香氛沐浴露全新樱花清洁留香沐浴液沐浴啫喱夏季洗澡男女士",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01XEnv1bSHxZL2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DiFP5vZaxUaJw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0zb%2FlvLSsljHT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobKjIAYVbMwce5aSvbvprV8cEI%2FREA3IJVUm4m25kRWS388hdf%2FqTHdIRm9qG3s5FA3lDV%2FIwOiqCXUhZXcnasCPQyIkfvA6kj3nECpsulAKqJn5AyUbPoV&union_lens=lensId%3AMAPI%401788840312%40213e552b_2037_1a07f30fde3_4203%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "2万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 241,
       "title": "子初婴儿洗衣液新生宝宝专用儿童婴幼儿整箱批家用实惠装大人通用",
       "price": "29.5",
       "predict_price": "18.5",
@@ -5122,7 +5776,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 215,
+      "id": 242,
       "title": "【百补】babycare皇室狮子王国纸尿裤拉拉裤新生儿超薄透气尿不湿",
       "price": "69.8",
       "predict_price": "59.8",
@@ -5143,7 +5797,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 216,
+      "id": 243,
       "title": "babycare扭扭车1到3岁儿童周岁宝宝大人可坐双人婴儿防侧翻溜溜车",
       "price": "409",
       "predict_price": "244.0",
@@ -5164,7 +5818,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 217,
+      "id": 244,
       "title": "【清仓】129.9任选2件十月结晶孕产妇哺乳文胸大码胸罩透气月子期",
       "price": "199.9",
       "predict_price": "84.0",
@@ -5188,7 +5842,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 218,
+      "id": 245,
       "title": "安踏儿童试炼｜篮球鞋青少年官方旗舰店正品专业轻便男童运动鞋",
       "price": "189",
       "predict_price": "149.0",
@@ -5212,7 +5866,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 219,
+      "id": 246,
       "title": "美旅官方大容量行李箱登机20寸24寸拉杆箱旅行箱子万向轮男薯条箱",
       "price": "599",
       "predict_price": "414.05",
@@ -5233,7 +5887,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 220,
+      "id": 247,
       "title": "雪中飞2026春热销男女轻便百搭内恤简约保暖圆领排骨羽绒服情侣",
       "price": "209",
       "predict_price": "139.0",
@@ -5256,7 +5910,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 221,
+      "id": 248,
       "title": "雪中飞2026春装新款排骨羽绒基础轻薄羽绒服男士休闲短立领保暖S",
       "price": "239",
       "predict_price": "169.0",
@@ -5282,7 +5936,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 222,
+      "id": 249,
       "title": "品胜适用苹果13充电器12正品iPhone快充PD20W充电头6s手机8plus通用16安卓USB一套装7p数据线11快",
       "price": "21.9",
       "predict_price": "19.2",
@@ -5303,7 +5957,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 223,
+      "id": 250,
       "title": "【经典款】伯希和户外速干裤男款秋季透气徒步裤轻薄拒水登山裤女",
       "price": "379",
       "predict_price": "254.0",
@@ -5324,7 +5978,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 224,
+      "id": 251,
       "title": "伯希和户外渔夫帽女新款登山遮阳防晒男士徒步透气可折叠帽子",
       "price": "119",
       "predict_price": "89.0",
@@ -5345,7 +5999,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 225,
+      "id": 252,
       "title": "迪卡侬羽绒服Trek100轻薄立领秋冬男女户外运动内胆排骨服ODT3",
       "price": "349.9",
       "predict_price": "304.9",
@@ -5369,7 +6023,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 226,
+      "id": 253,
       "title": "Hera/赫妍黑金粉底液遮瑕持久不脱妆油皮适用官方旗舰店韩国正品",
       "price": "320",
       "predict_price": "234.0",
@@ -5390,7 +6044,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 227,
+      "id": 254,
       "title": "自然堂雪润美白淡斑套装水乳官方旗舰店正品祛斑保湿护肤品化妆品",
       "price": "175",
       "predict_price": "108.0",
@@ -5411,7 +6065,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 228,
+      "id": 255,
       "title": "【顺丰速达】肌肤之钥CPB御龄防晒霜清爽面部防晒SPF50+抗皱",
       "price": "800",
       "predict_price": "690",
@@ -5435,7 +6089,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 229,
+      "id": 256,
       "title": "【教师节礼物】雅诗兰黛追光小圆管固体唇蜜/唇膏/口红 水光镜面",
       "price": "290",
       "predict_price": "250",
@@ -5459,7 +6113,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 230,
+      "id": 257,
       "title": "【直播专属】肌肤之钥CPB方气垫水光版精华水粉底防晒遮瑕礼盒",
       "price": "525",
       "predict_price": "450",
@@ -5482,7 +6136,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 231,
+      "id": 258,
       "title": "【泡泡玛特联名礼盒】MAC/魅可24H卷王气垫粉底油皮遮瑕持久持妆",
       "price": "280",
       "predict_price": "240",
@@ -5506,7 +6160,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 232,
+      "id": 259,
       "title": "雅诗兰黛面霜智妍夜胶原晚霜 抗老抗皱紧致保湿修护淡纹 官方正品",
       "price": "990",
       "predict_price": "880.0",
@@ -5531,7 +6185,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 233,
+      "id": 260,
       "title": "【大牌日】海蓝之谜奇迹面霜500ml修护紧致舒缓抗皱礼盒",
       "price": "1095",
       "predict_price": "985.0",
@@ -5555,7 +6209,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 234,
+      "id": 261,
       "title": "【专享】康恩贝蓝莓叶黄素酯片黑加仑专利中老年儿童成人正品旗舰",
       "price": "27.9",
       "predict_price": "12.5",
@@ -5576,7 +6230,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 235,
+      "id": 262,
       "title": "今麦郎粉面菜蛋方便面桶装多合一泡面整箱酸辣粉丝速食面内含卤蛋",
       "price": "21.9",
       "predict_price": "16.5",
@@ -5601,7 +6255,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 236,
+      "id": 263,
       "title": "胡姬花古法小榨花生油158ml*2食用油小瓶装一级压榨粮油露营宿舍",
       "price": "19.9",
       "predict_price": "9.9",
@@ -5625,7 +6279,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 237,
+      "id": 264,
       "title": "绿伞油烟净抽油烟机清洗剂4瓶厨房灶台去重油污强力清洁剂油污净",
       "price": "47",
       "predict_price": "34.9",
@@ -5646,7 +6300,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 238,
+      "id": 265,
       "title": "蓝月亮衣领净白衬衫T恤袖口衣领强力去污除渍喷剂瓶补套装",
       "price": "62.6",
       "predict_price": "32.3",
@@ -5667,7 +6321,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 239,
+      "id": 266,
       "title": "高思学校竞赛数学课本一二三四五六年级上下册同步高思导引高斯数学竞赛课本视频课举一反三奥数思维专项训练书新华书店官方旗舰店",
       "price": "17.5",
       "predict_price": "8.3",
@@ -5691,7 +6345,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 240,
+      "id": 267,
       "title": "贝因美dha藻油孕妇儿童DHA凝胶糖果",
       "price": "99",
       "predict_price": "75.0",
@@ -5715,7 +6369,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 241,
+      "id": 268,
       "title": "新版 阳光同学计算小达人默写小达人苏教版一二三四五六年级上下册语文数学英语小学生同步课堂专项训练算术本练习题册口算天天练",
       "price": "19.8",
       "predict_price": "11.8",
@@ -5738,7 +6392,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 242,
+      "id": 269,
       "title": "德国辉柏嘉官方旗舰店72色水溶性彩铅24色36色48色60色水溶彩铅初学者绘画专用成人绘画彩铅",
       "price": "19.9",
       "predict_price": "17.5",
@@ -5762,7 +6416,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 243,
+      "id": 270,
       "title": "得力线圈本笔记本本子A4横线加厚大学生考研错题本日记本B5网格本高中生专用摘抄本加厚记事本简约透明活页本",
       "price": "7.33",
       "predict_price": "5.79",
@@ -5786,7 +6440,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 244,
+      "id": 271,
       "title": "晨光文具线圈笔记本子a5线圈本b5康奈尔笔记本学生考研横线方格空白记事本日记本手账本错题本高颜值考公",
       "price": "7.6",
       "predict_price": "6.46",
@@ -5810,7 +6464,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 245,
+      "id": 272,
       "title": "辉柏嘉官方旗舰店官网橡皮擦小学生超净橡皮儿童考试专用不易留痕擦得干净像皮美术绘画绘图象皮擦学习文具",
       "price": "9.8",
       "predict_price": "8.63",
@@ -5834,7 +6488,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 246,
+      "id": 273,
       "title": "德国进口Schneider施耐德钢笔BK410三年级小学生练字专用EF细尖0.35男孩女生款F尖0.5可换墨囊可擦儿童二",
       "price": "4.78",
       "predict_price": "3.51",
@@ -5858,7 +6512,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 247,
+      "id": 274,
       "title": "晨光优品k5直液式走珠笔可换墨囊墨胆笔芯0.5mm全针管黑色碳素中性笔学生用水性签字商务官方旗舰店正品",
       "price": "10",
       "predict_price": "6.65",
@@ -5884,7 +6538,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 248,
+      "id": 275,
       "title": "得力档案盒文件资料盒A4文件盒收纳盒加厚塑料盒办公室文件夹资料册档案夹立式资料袋会计凭证文档标签整理盒",
       "price": "6.94",
       "predict_price": "5.8",
@@ -5907,7 +6561,199 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 249,
+      "id": 276,
+      "title": "德国进口Schneider施耐德黑科技签字笔星际One Change办公商务高档学生直液式中性水笔可换芯宝珠走珠笔0.6",
+      "price": "4.78",
+      "predict_price": "3.51",
+      "coupon_price": "3.51",
+      "gov_subsidy": "",
+      "discount": 27,
+      "category": "家用电器",
+      "sub_category": "宝珠/走珠/签字笔",
+      "shop": "施耐德文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2207822398874/O1CN01P2YvmC2FQLiIXLY2M_!!4611686018427381146-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DO1N%2BxSCESRFw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w08q3WcbQpl3HT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA%2FB0OZnibL2sv%2Fpsmf8U7XqsaTJlUqOhv85BBLHfvLAGbE6pLmE2CGlqgkn41VfZyJF2v5nHVVmB5HNxR8G4wCmrrIzG3AayGvOWpITo8dfSjQ0OsrX4qJo9DIiR%2B8DqSPecQKmy6UAqomfkDJRs%2BhU%3D&union_lens=lensId%3AMAPI%401788840155%40213ee320_19d8_1a07f2e9997_9a16%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "官方8.8折",
+        "秒杀直降:直降1.27元"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 277,
+      "title": "【节日送礼】思笔乐stabilo官方旗舰店德国钢笔三四年级小学生专用正姿训练练字硬笔书法儿童高颜值男女喜欢",
+      "price": "79",
+      "predict_price": "59",
+      "coupon_price": "59",
+      "gov_subsidy": "",
+      "discount": 25,
+      "category": "文具办公",
+      "sub_category": "钢笔",
+      "shop": "stabilo思笔乐旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2986895310/O1CN017HExTt1p62C4eJV69_!!4611686018427381710-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Dw4QCf%2BQNMTtw4vFB6t2Z2ueEDrYVVa64K7Vc7tFgwiGx5e2f4Vr4dSbDA8t5fnVgDOz%2BQ0BmwbzJ9IZPvyayMtgEfNdfhSU0GmRIpC9xniK9WyRVplZS9ezBXD%2BSe4CZLqRDcCRFj%2BYUR0j63MJvWr4oLTa5dJr%2FXMlbY0R0f%2FXm%2FZRuLO3Tr4JgRL1f9ZThnazwgOMPFpY2xiHMLmdXZG9T3plAc0csEiM%2FlSG%2FbZSn2Gl4q9jOVqZpWy6yJ84sEEIrHUBI96LGDF1NzTQoPw%3D%3D&scm=1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940&pvid=99e5fb33-5751-41fa-b171-6bfbe9c55940&app_pvid=59590_33.80.35.201_1658_1788836846970&ptl=floorId:84225;originalFloorId:84225;pvid:99e5fb33-5751-41fa-b171-6bfbe9c55940;app_pvid:59590_33.80.35.201_1658_1788836846970&union_lens=lensId%3AMAPI%401788836847%400_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940%401%40eyJmbG9vcklkIjo4NDIyNX0ie%3Bscm%3A1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣4.74元",
+        "补贴20元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 278,
+      "title": "【教师节礼物】欧舒丹沐浴露身体乳护手霜套装保湿留香伴手礼送人",
+      "price": "500",
+      "predict_price": "440.0",
+      "coupon_price": "440",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "身体护理套装/礼盒",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01NGVcuuvNdSH2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DOj%2B0pC8x2h9w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w01oh9aOzbcSTT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoYeNFHNXfgOTbgEpqydY6bcmyMArWu7lceHPLqvHnzaBfbkQIrP%2BLWvNirmfKtteZX0fGoliHJuLQV94teZjB8NinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&union_lens=lensId%3AMAPI%401788840351%402146a1d8_2008_1a07f319531_0e26%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "加补50元",
+        "淘金币频道抵扣5元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 279,
+      "title": "欧舒丹清新马鞭草香氛沐浴露清洁留香洗澡沐浴啫喱品牌官方正品",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01JqOGsSUWFTL2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DKmZOzifRB5Vw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0zlhp9O5mEHPT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZc00WoDR%2BRW1XSzmulZfrAVv6NiNda%2BsMPCz2Ky6S1ES0ZD%2FmbpK5ebJ%2F0W0JRoJmVwgckXlsc8s0bT6GLm6ydbbNtB5BLvsvsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840369%40212b2a49_1fcb_1a07f31dc1e_5d9c%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 280,
+      "title": "【教师节礼物】欧舒丹沐浴露身体乳护手霜套装薰衣草留香保湿礼物",
+      "price": "500",
+      "predict_price": "440.0",
+      "coupon_price": "440",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "身体护理套装/礼盒",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN01MyNWCe5WAgJ2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DH3e25%2F5JRtNw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0Df71%2FkXKvwXT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqob%2BkDnXJ%2BD5BpTuvc5p07uoE0gU8z0AdPuJj85gWBg8P%2FmKpth7Xx%2By%2BQIM1QhmE%2Fufg6%2FWfDRX7ZblVYlW5vGKneocJO5IPZqDk0MtctszAcYOae24fhW0&union_lens=lensId%3AMAPI%401788840413%40212b13f2_1fd7_1a07f3289b0_b4a8%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "加补50元",
+        "淘金币频道抵扣5元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 281,
+      "title": "欧舒丹美体乳甜扁桃紧致弹润保湿滋润留香身体乳身体护理润肤乳",
+      "price": "580",
+      "predict_price": "520.0",
+      "coupon_price": "520",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "身体乳/霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01Tqv1wFAfCjF2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DtMzE4stiRLFw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0YQlBwUQC%2FHvT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoYlOgcWNfJPmAh02cxz68xhd%2FSmIkaOQ2sk%2FVt15R9%2FlrhiYfE%2BroF6NcnHPE31Jeh4BIWfh%2FYxulP6E1iJOsjPinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&union_lens=lensId%3AMAPI%401788840462%40213f6413_14ac_1a07f33497a_ae85%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣5.8元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": "50"
+    },
+    {
+      "id": 282,
+      "title": "【全新上市】欧舒丹鎏金美肤油杏仁奶香紧致抗皱身体高光护理油",
+      "price": "260",
+      "predict_price": "235",
+      "coupon_price": "235",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "身体护理油",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01vnFGYNyMNwI2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D0cchW7P3%2FwNw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoYYNQ1di9DM5BA6QYhj0xlyk0nYN0opXIttWuR%2BHzEh0Gfds4Uj0lCwrJ0rdpCv0tFcfm37xb4PJZS27zNuCjAmDdDW9vvh4WlncX%2B83MKUGHEqY%2Bakgpmw&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.6元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 283,
+      "title": "【教师节礼物】欧舒丹身体乳护手霜套装保湿修护舒缓紧致送老师",
+      "price": "500",
+      "predict_price": "440.0",
+      "coupon_price": "440",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "身体护理套装/礼盒",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01KW4whzVgGtL2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DKoScWfvtF9hw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0T%2BHWFA7rlEvT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoa01xMjhjp8AbmQ23oL%2BfpHcohwMAQdKjaQ%2FYdjLeb9oKJTQf6YqIh0GiSpaP6tGqKJWJN0oNLHQKQTzS1PTT7njAGzqL2SdduDk0MtctszAcYOae24fhW0&union_lens=lensId%3AMAPI%401788840480%40213f0b4f_1497_1a07f339004_0dc6%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣5.3元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "1万+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 284,
       "title": "babycare云柔巾婴儿专用乳霜纸巾宝宝柔肤卫生抽纸实惠装40抽",
       "price": "11.9",
       "predict_price": "9.9",
@@ -5928,7 +6774,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 250,
+      "id": 285,
       "title": "波司登2026秋冬款羽绒马甲坎肩男羽绒服立领鸭绒休闲百搭羽绒外套",
       "price": "299",
       "predict_price": "184.0",
@@ -5956,7 +6802,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 251,
+      "id": 286,
       "title": "【官方旗舰店】纽曼L66移动联通电信4G全网通老年手机老人手机大字体大声音大按键超长待机男女士学生备用机",
       "price": "108",
       "predict_price": "86.0",
@@ -5977,7 +6823,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 252,
+      "id": 287,
       "title": "【大牌日】全新海蓝之谜鎏光唇部SPA棒唇膏口红新色上市礼盒",
       "price": "590",
       "predict_price": "480.0",
@@ -6001,7 +6847,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 253,
+      "id": 288,
       "title": "【欢聚日】瑷尔博士舒安喷雾补水保湿玻尿酸湿敷爽肤化妆水",
       "price": "99.8",
       "predict_price": "46.0",
@@ -6025,7 +6871,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 254,
+      "id": 289,
       "title": "2026新版亲近母语日有所诵一年级二三四五六年级上下册第七版7版注音版小学生123456年级语文阅读教材教辅少儿诵读书新",
       "price": "23.9",
       "predict_price": "16.3",
@@ -6049,7 +6895,31 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 255,
+      "id": 290,
+      "title": "【店播】欧舒丹草本菁纯洗发水套装平衡清洁保湿控油蓬松发部护理",
+      "price": "620",
+      "predict_price": "510",
+      "coupon_price": "510",
+      "gov_subsidy": "",
+      "discount": 18,
+      "category": "美妆护肤",
+      "sub_category": "洗发水",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2248304671/O1CN01lZ1mz5746nC2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DV6SoE7%2Fo6M9w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoaxjfsq0U%2B1RAWIm22x2Ry41rUfAqIg2oBgLzajs06k1yJiUEcBVhHuIPU3yHk7fsZYgi3RPmhc8B8RpJnGl6hk9wP4b2CewxbsIkysm5Xa6iGFCzYOOqAQ&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣18.6元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "9000+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 291,
       "title": "babycare儿童摇摇马溜溜车木马宝宝婴儿周岁儿童玩具生日礼物摇马",
       "price": "279",
       "predict_price": "194.0",
@@ -6070,7 +6940,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 256,
+      "id": 292,
       "title": "asics/亚瑟士童鞋1204A126",
       "price": "359",
       "predict_price": "284.0",
@@ -6094,7 +6964,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 257,
+      "id": 293,
       "title": "鸭鸭轻薄羽绒服马甲男2026年秋冬无袖修身轻型短款运动保暖外套C",
       "price": "159",
       "predict_price": "119",
@@ -6118,7 +6988,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 258,
+      "id": 294,
       "title": "波司登新品羽绒服男士短款休闲防寒保暖2026冬季加厚男装商务外套",
       "price": "799",
       "predict_price": "469.0",
@@ -6147,7 +7017,7 @@
       "tk_total_sales": "9"
     },
     {
-      "id": 259,
+      "id": 295,
       "title": "舒适达护敏健龈牙膏200g套装红蓝管改善牙龈出血清新口腔护齿亮白",
       "price": "93",
       "predict_price": "78.0",
@@ -6168,7 +7038,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 260,
+      "id": 296,
       "title": "晨光胶棒固体胶大号办公财务胶水儿童幼儿园手工课强力胶水学生用考研小刀固体胶棒36克大容量12支21克高粘度",
       "price": "4.5",
       "predict_price": "3.5",
@@ -6192,7 +7062,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 261,
+      "id": 297,
       "title": "PUMA彪马童装春夏新款儿童长袖T恤圆领上衣透气吸湿速干运动内搭",
       "price": "129",
       "predict_price": "78.99",
@@ -6216,7 +7086,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 262,
+      "id": 298,
       "title": "【重磅新品】全新海蓝之谜浓修瓶精华密集修护舒缓保湿精华液礼物",
       "price": "1760",
       "predict_price": "1560.0",
@@ -6241,7 +7111,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 263,
+      "id": 299,
       "title": "【享370元券】海蓝之谜全新奇迹日夜体验礼盒 日夜新生",
       "price": "250",
       "predict_price": "225.0",
@@ -6266,7 +7136,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 264,
+      "id": 300,
       "title": "雅诗兰黛白胶原霜/乳液 祛斑美白修护保湿抗皱紧致淡纹 官方正品",
       "price": "975",
       "predict_price": "865.0",
@@ -6291,7 +7161,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 265,
+      "id": 301,
       "title": "芙清白膜械号医用促愈功能性敷料医美术后修复非面膜冷敷贴",
       "price": "158",
       "predict_price": "112.1",
@@ -6312,7 +7182,30 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 266,
+      "id": 302,
+      "title": "欧舒丹甜扁桃沐浴油清洁保湿滋润留香紧致舒缓洗卸合一沐浴露洗澡",
+      "price": "260",
+      "predict_price": "235",
+      "coupon_price": "235",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "沐浴油",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01jkTRQfulOyD2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DMJDz7tOmQLBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZZkLgViU9zgZCgbtzsfaFIO2JgnXa5t0bhv7XkSvN7ksxXUtQH7UT0kXVsUyD9x5dcfm37xb4PJbPEAWc4PHA8ah3Ny7%2BzX5BncX%2B83MKUGHEqY%2Bakgpmw&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.6元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "7000+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 303,
       "title": "babycare宝宝手摇铃新生婴儿玩具出生见面礼物益智抓握训练牙胶",
       "price": "79",
       "predict_price": "39.9",
@@ -6333,7 +7226,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 267,
+      "id": 304,
       "title": "奥克斯除螨仪紫外线杀菌机家用床上去螨虫神器吸尘器床铺除吸小型",
       "price": "644.46",
       "predict_price": "128.9",
@@ -6354,7 +7247,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 268,
+      "id": 305,
       "title": "【大牌日】海蓝之谜碧玺面膜 细腻通透柔润清洁去油",
       "price": "900",
       "predict_price": "790.0",
@@ -6378,7 +7271,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 269,
+      "id": 306,
       "title": "【教师节礼物】肌肤之钥CPB光缎粉霜防晒贵妇粉底液养肤持妆礼盒",
       "price": "1080",
       "predict_price": "970",
@@ -6401,7 +7294,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 270,
+      "id": 307,
       "title": "【享400元券】海蓝之谜全新奇迹眼霜体验礼盒 眶周重塑",
       "price": "250",
       "predict_price": "225.0",
@@ -6426,7 +7319,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 271,
+      "id": 308,
       "title": "绿伞柠檬酸除垢剂280g家用热水器水壶除垢剂",
       "price": "29.9",
       "predict_price": "18.9",
@@ -6447,7 +7340,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 272,
+      "id": 309,
       "title": "【新华文轩】2026秋新版黄冈小状元作业本一二年级三五六四年级上册下册语文数学英语全套人教版专版教材同步黄岗达标卷状元笔",
       "price": "26.8",
       "predict_price": "19.8",
@@ -6471,7 +7364,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 273,
+      "id": 310,
       "title": "晨光直液式中性笔黑色走珠笔【12支】速干学生用水笔0.5考试专用水性直液笔签字笔红笔刷题作业神器碳素黑笔",
       "price": "6.6",
       "predict_price": "5.6",
@@ -6495,7 +7388,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 274,
+      "id": 311,
       "title": "JanSport双肩女大初高中小学生经典黑复古酒红CP书包红茶风电脑包",
       "price": "302",
       "predict_price": "196.0",
@@ -6516,7 +7409,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 275,
+      "id": 312,
       "title": "一叶子黑茶洁面膏控油清爽细密泡沫去角质洁面乳洗面奶官方旗舰店",
       "price": "46.9",
       "predict_price": "29.8",
@@ -6540,7 +7433,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 276,
+      "id": 313,
       "title": "【教师节礼物】肌肤之钥CPB光透白妆前乳防晒短管白隔离美容修饰",
       "price": "540",
       "predict_price": "430",
@@ -6563,7 +7456,32 @@
       "tk_total_sales": ""
     },
     {
-      "id": 277,
+      "id": 314,
+      "title": "晨光丙烯马克笔防水不透色咕卡彩笔学生儿童美术专用可水洗小学生笔芯水性比心水彩笔绘画本手绘画笔DIY",
+      "price": "14.75",
+      "predict_price": "11.21",
+      "coupon_price": "11.21",
+      "gov_subsidy": "",
+      "discount": 24,
+      "category": "文具办公",
+      "sub_category": "马克笔",
+      "shop": "晨光学习用品旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2200773078708/O1CN01c4JWTK2ECJqsjKGzX_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DDeazMBrPWqVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0oQ6fPR8Xw%2FvT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA%2FB0OZnibL2sqciuOAUD5ifcfbUSjimDNIgJl9mN5amMzs21ArRK9oE%2FWaF7rc8VpiHyVz4bHw91zypxBpbOTw%2F7m84DphC46xIjP5Uhv22UYOO9dABpkJ%2FuiM9ULs1IkhBCKx1ASPeixgxdTc00KD8%3D&union_lens=lensId%3AMAPI%401788840177%40210740ac_1f38_1a07f2ef07e_ba16%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.15元",
+        "直降2.95元",
+        "包邮",
+        "秒杀直降:直降2.95元, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "5000+",
+      "tk_total_sales": "50"
+    },
+    {
+      "id": 315,
       "title": "Skechers斯凯奇儿童夏季新款轻质泡泡鞋时尚一脚蹬中大童涉水凉鞋",
       "price": "299",
       "predict_price": "199.0",
@@ -6588,7 +7506,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 278,
+      "id": 316,
       "title": "白云山维一植物精油身体按摩喷雾按摩油精华油舒缓官方正品",
       "price": "234",
       "predict_price": "198.0",
@@ -6609,7 +7527,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 279,
+      "id": 317,
       "title": "麦富迪鱼油鲜肉夹心全价猫粮10kg成猫幼猫通用舒然平价猫粮4斤2kg",
       "price": "48",
       "predict_price": "36.0",
@@ -6630,7 +7548,55 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 280,
+      "id": 318,
+      "title": "【新品上市】欧舒丹香氛沐浴露白色薰衣草沐浴啫喱清洁留香洗澡",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01zeBysR6MExL2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DbzihMLakc9Jw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0FZXPm4I7DbHT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZE3%2BBm7WWxoq6YuUZRybqSWWjoShgxpG%2BDZzzYAewjRHfH%2BqY0Yyhom%2FF8xwnW1UrItwv4kaRBz2sqknP6rK1ZIRb4eE6%2FF5HsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840404%400b51539e_14a4_1a07f326668_7f18%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "4000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 319,
+      "title": "欧舒丹南法枕梦助眠喷雾草本平衡洗发水套装薰衣草精油喷雾男女士",
+      "price": "220",
+      "predict_price": "195.0",
+      "coupon_price": "195",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "身体护理套装/礼盒",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01M5BzaEgfcsD2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DAfT4Vm5sLu1w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0NL%2BT7Bx1dzrT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoa8wxyx69VZrSY44UplWGIJX93TYZLWfwss3xmAPN%2BKY6wyZSZS%2BX26XNBg7YxFNZe4%2FApvI96NZhkTtRQ1kY4QwLG5ZI29%2F7lncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840491%400b521574_0fae_1a07f33b940_9ca8%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.2元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "4000+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 320,
       "title": "小皮欧洲原装进口初尝蔬菜水果泥 婴幼儿宝宝辅食玉米泥",
       "price": "140",
       "predict_price": "106.0",
@@ -6651,7 +7617,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 281,
+      "id": 321,
       "title": "JanSport新潮百搭ins迷你双肩包mini时尚女经典黑蜜蜡粉雾霾蓝",
       "price": "175",
       "predict_price": "126.0",
@@ -6672,7 +7638,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 282,
+      "id": 322,
       "title": "波司登轻薄羽绒服男士新品连帽短款轻便时尚保暖冬装鹅绒羽绒外套",
       "price": "499",
       "predict_price": "309.0",
@@ -6701,7 +7667,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 283,
+      "id": 323,
       "title": "万和家用电热水器洗澡50升卫生间40l出租房Q1小型正品官方旗舰店",
       "price": "398",
       "predict_price": "333.0",
@@ -6722,7 +7688,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 284,
+      "id": 324,
       "title": "闪魔适用苹果17康宁钢化膜iPhone16Pro手机膜16Promax全屏覆盖15Pro贴膜神器14Promax高清防尘",
       "price": "36.2",
       "predict_price": "8.96",
@@ -6746,7 +7712,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 285,
+      "id": 325,
       "title": "当当网旗舰店】2026秋新版53天天练人教版一二三四五六年级上册下语文数学英语全套苏教北师大版北京同步练习册小学5.3五",
       "price": "15.8",
       "predict_price": "5.8",
@@ -6771,7 +7737,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 286,
+      "id": 326,
       "title": "雅诗兰黛全新「光电防晒霜」隔离敏感肌防晒乳抗氧抗光老养肤温润",
       "price": "490",
       "predict_price": "430.0",
@@ -6796,7 +7762,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 287,
+      "id": 327,
       "title": "【教师节礼物】肌肤之钥CPB口红#218气血漾红琉金唇膏正红送礼",
       "price": "480",
       "predict_price": "420",
@@ -6818,7 +7784,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 288,
+      "id": 328,
       "title": "得力文件夹a4单双强力夹子分类资料夹试卷夹合同夹资料册插袋桌面收纳55mm文件夹架档案夹板夹资料夹办公用品",
       "price": "30.4",
       "predict_price": "25.8",
@@ -6842,7 +7808,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 289,
+      "id": 329,
       "title": "【教师节礼物】派克PARKER IM系列神兽墨水笔礼盒成人高档男士生日礼物伴手礼定制刻字钢笔套装",
       "price": "645",
       "predict_price": "429.1",
@@ -6866,7 +7832,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 290,
+      "id": 330,
       "title": "【第七版 团购优惠】日有所诵一二三四五六年级亲近母语注音全国通用学校力荐儿童诵读系列123456年级小学生课外阅读读物每",
       "price": "25.33",
       "predict_price": "22.73",
@@ -6889,7 +7855,151 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 291,
+      "id": 331,
+      "title": "【新品上市】欧舒丹瑰香之心身体乳玫瑰保湿留香滋润男女士润肤露",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "身体乳/霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN016h1jzy0QtUK2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DrjiWAuYCnrBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w06g%2Bn2P61JT3T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqob2D4aPE0ObQP%2ByuFdm4mLmso9yM5yZ9VzLbq%2BsRJE5nnkdjVufsGoTEvNs4%2FLYz5B9vJQ9Q5d6JaVEWinVTS01PQyIkfvA6kj3nECpsulAKqJn5AyUbPoV&union_lens=lensId%3AMAPI%401788840313%402107db02_1fa9_1a07f310321_e4c2%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.9元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "3000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 332,
+      "title": "欧舒丹沐浴露合集马鞭草甜扁桃沐浴油清洁沐浴啫喱清洁留香男女士",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN017ITzQii9XFD2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DUf76qMipl5Nw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0mCBgKg63Ff%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoa3N7d9SrMMn2qmiLPV5A4HYTdeOGepc%2F5sW%2FhaOXkhG902Tid6xclBIbkqsv3lOsRcfm37xb4PJZSxIzvdSyNxf86cxXcEmL9ncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840322%40213f2ae4_14ed_1a07f31266f_dad7%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "3000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 333,
+      "title": "欧舒丹沐浴露格拉斯橙花香香氛清洁沐浴液夏季洗澡沐浴啫喱男女士",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN013uhiFefJO6F2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DLWvv%2FHVYxdVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0by7YxASu8uLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoY5ayPbg5anVcBnyfLd6IydgmdDyhUDOG%2FBYk6Hr3TvNAg%2BiMpbHaj%2FS3i%2BPK9zKum76hlQsRla5dSR8QUycRlByYZ2S3SfheXsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840367%402107413a_1fd3_1a07f31d3ea_0fc8%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "3000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 334,
+      "title": "【新品上市】欧舒丹瑰香之心香氛沐浴露玫瑰香留香男女士洗澡礼物",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01fcPg0yGYk6I2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D0xAR8FS3mupw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w02m%2FiezqxRxnT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoa3mNri9i9YHlnVTMsrf6O1TQC8zG9PBxnc%2BZmIPisuOBl81%2FJb%2BoCql9XtMvcQiy94BIWfh%2FYxuogOY6kdqRO4inINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&union_lens=lensId%3AMAPI%401788840368%40213293a5_1fc6_1a07f31d957_8b74%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "3000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 335,
+      "title": "欧舒丹草本菁纯平衡护发素蓬松舒缓保湿留香护发防断发发部护理",
+      "price": "235",
+      "predict_price": "210.0",
+      "coupon_price": "210",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "护发素",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN016ptgJi25gvJ2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DkCsMnmiTQBlw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0UnkorgY6vsDT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoYIRJjDiFTcnCoyIhxFPFacsxX2Np1CbAFJKpgnZbEpapCiUSQekMO5h8LW0MNu7ocLc3GhVPXNIg89B%2Brl4iMofBi9lLAlWx6Dk0MtctszAcYOae24fhW0&union_lens=lensId%3AMAPI%401788840379%400bbb64d3_1ff0_1a07f3202fa_0558%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣7.05元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "3000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 336,
+      "title": "欧舒丹洗发水合集草本香菁纯平衡洗发露清洁蓬松留香控油发部护理",
+      "price": "235",
+      "predict_price": "210.0",
+      "coupon_price": "210",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "洗发水",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01AzlkEEgy4bG2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D9KP8zCZd5DVw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0y5FKfPLabPLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoY6xFVU1gZZ%2FgUGdS5JRw74QuPf4t5cRcAPCz2Ky6S1EafU2kYXLcABs4h77jrcfaN4BIWfh%2FYxus0MpvwicykdinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&union_lens=lensId%3AMAPI%401788840454%40213c65dc_204f_1a07f3328ab_9960%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.35元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "3000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 337,
       "title": "十月结晶孕产妇女性私处冲洗器屁股肛门外会阴洗屁屁便携清洗器瓶",
       "price": "41.2",
       "predict_price": "29.9",
@@ -6914,7 +8024,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 292,
+      "id": 338,
       "title": "波司登羽绒服26男士冬季中长款经典商务休闲青年加厚保暖品牌外套",
       "price": "798",
       "predict_price": "539.0",
@@ -6942,7 +8052,7 @@
       "tk_total_sales": "6"
     },
     {
-      "id": 293,
+      "id": 339,
       "title": "东菱便携式烧水壶保温杯全自动小型迷你旅行加热家用电热水杯水壶",
       "price": "349",
       "predict_price": "169.0",
@@ -6963,7 +8073,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 294,
+      "id": 340,
       "title": "【1盒2芯】MAC/魅可全新24H卷王气垫粉底液套装油皮遮瑕持久服帖",
       "price": "480",
       "predict_price": "420.0",
@@ -6988,7 +8098,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 295,
+      "id": 341,
       "title": "【1盒2芯】MAC/魅可24H卷王气垫替换芯套装油皮遮瑕持久不脱妆",
       "price": "480",
       "predict_price": "420.0",
@@ -7013,7 +8123,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 296,
+      "id": 342,
       "title": "雅诗兰黛红石榴精华水 修护保湿舒缓控油补水温和护肤 官方正品",
       "price": "485",
       "predict_price": "425.0",
@@ -7037,7 +8147,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 297,
+      "id": 343,
       "title": "雅诗兰黛蓝水 爽肤水化妆水湿敷水 混油皮保湿舒缓控油官方正品",
       "price": "495",
       "predict_price": "435.0",
@@ -7061,7 +8171,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 298,
+      "id": 344,
       "title": "【顺丰速达】肌肤之钥CPB粉底光润柔亮粉底液防晒保湿",
       "price": "1080",
       "predict_price": "970",
@@ -7085,7 +8195,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 299,
+      "id": 345,
       "title": "雅诗兰黛持妆云烟蜜粉 定妆粉散粉油皮亲妈 持久控油 轻透无瑕",
       "price": "530",
       "predict_price": "420",
@@ -7108,7 +8218,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 300,
+      "id": 346,
       "title": "GNC健安喜 蛋白粉增强免疫力成人营养品 临期【效期至2026.12",
       "price": "135",
       "predict_price": "85.0",
@@ -7132,7 +8242,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 301,
+      "id": 347,
       "title": "ABC丝享棉日用夜用卫生巾蚕丝蛋白精华丝滑亲肤透气姨妈全周期",
       "price": "99",
       "predict_price": "12.5",
@@ -7153,7 +8263,7 @@
       "tk_total_sales": "100"
     },
     {
-      "id": 302,
+      "id": 348,
       "title": "绿伞衣领净3瓶衣领袖口白衬衫T恤去污除渍去黄喷洁净干洗店专用",
       "price": "38.8",
       "predict_price": "27.9",
@@ -7174,7 +8284,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 303,
+      "id": 349,
       "title": "曼秀雷敦肌研舒润专方十字霜脸部护理面霜保湿霜舒缓修护女",
       "price": "211",
       "predict_price": "69.0",
@@ -7198,7 +8308,152 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 304,
+      "id": 350,
+      "title": "德国辉柏嘉100色72色水溶性彩铅36色48色60色彩铅铁盒专业油性彩色铅笔画笔手绘套装学生用初学者辉伯嘉",
+      "price": "23.8",
+      "predict_price": "20.9",
+      "coupon_price": "20.9",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "文具办公",
+      "sub_category": "彩铅",
+      "shop": "辉柏嘉新隆盛专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/3070923900/O1CN01h9oXD31egFHZwG8dX_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DnyvBSxrIAM5w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0plS%2F86OljIbT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgYYd2UT3lPTsrqehlgRhqlLjQMkixa4Nt4ZZZNQUto1LG5SiIma0xa%2F8OMKJN7cLMtHAA%2BL2HVl2GVt02Fnow%2BT%2BKBx1cvIkz3oqZEjeQ4bb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840146%400b1a73dc_1fa0_1a07f2e7500_865a%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.24元",
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "2000+",
+      "tk_total_sales": "7"
+    },
+    {
+      "id": 351,
+      "title": "晨光儿童旋转蜡笔48色不脏手油画棒可水洗不粘手安全小学生腊笔套装幼儿园宝宝专用24色婴儿炫彩棒软性笔正品",
+      "price": "12.82",
+      "predict_price": "10.89",
+      "coupon_price": "10.89",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "文具办公",
+      "sub_category": "蜡笔",
+      "shop": "晨光文具专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2385422703/O1CN011bwAw57lw8F1chua_!!4611686018427382127-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DV9eec5qh26pw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0YK4FTlhdvmfT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FlgPc5OpwcfM00go2C7by4FmKq3CT2PlA%2FB0OZnibL2spIPU6WBfrTFH8hjJEag%2ByoD80ZBALclofB31fxPFo%2BdgBIMvwIXSFNlHMh8KvyCJUrL0yIELX4R29moaAOJh3PFzJ%2BREo83dRcjC2Lt%2F3LM%2BoyRPRr%2FZSoOTQy1y2zMBxg5p7bh%2BFbQ%3D&union_lens=lensId%3AMAPI%401788840154%402132dbb3_1511_1a07f2e9412_9191%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.13元",
+        "直降1.93元",
+        "秒杀直降:直降1.93元"
+      ],
+      "source": "天猫",
+      "annual_vol": "2000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 352,
+      "title": "晨光可擦笔小学生专用按动热可擦中性笔三年级可擦水笔蓝色可擦笔黑色热敏热可擦摩易摩擦魔力擦复写笔笔芯",
+      "price": "28.2",
+      "predict_price": "24.8",
+      "coupon_price": "24.8",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "文具办公",
+      "sub_category": "中性笔",
+      "shop": "晨光学习用品旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2200773078708/O1CN01BoeLi62ECJwxZmxaS_!!4611686018427383476-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DRgIl3wX39ahw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0WPyDNVUZX5TT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOhORMWoTj3IhUCXU1dH1UeT1u9vU1419mKEMeYbyictYax9oDalfDE%2B8fpPsREdwiILiYxHg1jHE2FLkN2XAX5WHX5%2FXfxG1uKogXBVMtSG20TcVOraLfk9vzeVbgA%2FRCQyW7mQwqx7e&union_lens=lensId%3AMAPI%401788840169%400b0b74ed_1fb3_1a07f2ecf86_8f25%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.09元",
+        "1元",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "2000+",
+      "tk_total_sales": "4"
+    },
+    {
+      "id": 353,
+      "title": "【田英章楷书字帖】楷书字帖成人练字硬笔正楷一本通华夏万卷字帖楷书技法入门基础控笔训练教程初学者钢笔临摹练字帖初高中生男女",
+      "price": "12.33",
+      "predict_price": "8.99",
+      "coupon_price": "8.99",
+      "gov_subsidy": "",
+      "discount": 27,
+      "category": "图书音像",
+      "sub_category": "练字本/练字板",
+      "shop": "四川万卷图书专营店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/1645967110/O1CN01kpbbxb22OQzpQRTKf_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DTHyKu%2B0dACZw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0Q6pBfQSmcQDT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOqqPMxuxmlamm40tSYrkbaYc42FbN8bbW8jwcdWLETkUvrkrbBZ9irGQFd0k4dpKWl5dFR8Gnn%2Fko6Ypi2os3Uy4%2FApvI96NZoNKykH1sJXvPNL1Xc3kGcpncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840187%40213e9543_1497_1a07f2f168c_69fc%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.12元",
+        "满1件8.5折",
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折, 限时优惠:满1件8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "2000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 354,
+      "title": "【新品上市】欧舒丹活力香橼沐浴露清洁留香洗澡男女士正品官方",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01MQy5eNI4UrJ2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DguKdGKW1dK9w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0Aja3PVxte0PT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZBPsaskyBVjlBrnk1lvmoMXbmAZXHBtJX2oSX6jXqrOdW76WPEyPzJNYhwRzLIkii6b4DhSVQ9N9kR3yDmNzIcEEIrHUBI96LGDF1NzTQoPw%3D%3D&union_lens=lensId%3AMAPI%401788840321%40210740c0_1fad_1a07f3123b9_aa9c%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "2000+",
+      "tk_total_sales": "8"
+    },
+    {
+      "id": 355,
+      "title": "欧舒丹草本菁纯纯净免洗干发喷雾免洗蓬蓬水控油防塌夏季清洁留香",
+      "price": "220",
+      "predict_price": "195.0",
+      "coupon_price": "195",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "免洗头发清洁用品",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN01I3LJfmQeD4K2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Doz33a5LOh71w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0lCnp0VPQiKXT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobrueInSTnS%2B4a8QcOfkZEJP9a6CTDFY2hZBOH9dgbHLiXGXz%2Bf%2BuDwSW0C9EzxfH9deEqtwEl0zKR9MD4Wge0yoxgJxkblQ3pncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840332%4021052303_14f7_1a07f314bfa_728a%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣6.6元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "2000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 356,
       "title": "小骆驼儿童外套三合一防风户外夹克软壳中大童保暖男女童加绒童装",
       "price": "430",
       "predict_price": "259.05",
@@ -7219,7 +8474,7 @@
       "tk_total_sales": "4"
     },
     {
-      "id": 305,
+      "id": 357,
       "title": "【商场同款】361度童装儿童针织长裤裤2026春秋新款亲肤运动裤子",
       "price": "139",
       "predict_price": "35.0",
@@ -7245,7 +8500,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 306,
+      "id": 358,
       "title": "周大生蝴蝶结项链银女款轻奢小众锁骨链设计高级感生日礼物送女友",
       "price": "349",
       "predict_price": "221.05",
@@ -7266,7 +8521,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 307,
+      "id": 359,
       "title": "潮宏基环环相扣肖邦链足金黄金项链配链素链百搭经典送礼 计价 H",
       "price": "6477",
       "predict_price": "5623.0",
@@ -7287,7 +8542,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 308,
+      "id": 360,
       "title": "潮宏基水波纹黄金项链足金配链单链送礼素链百搭经典女 计价 H",
       "price": "4202",
       "predict_price": "3461.0",
@@ -7308,7 +8563,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 309,
+      "id": 361,
       "title": "长虹7号电池5号五号七号小号粒玩具手表闹钟遥控器智能锁指纹锁碱性空调电池剃须刀鼠标小风扇耐用性正品1.5V",
       "price": "21",
       "predict_price": "13.8",
@@ -7329,7 +8584,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 310,
+      "id": 362,
       "title": "迪卡侬大人小孩儿童蹦蹦床健身房专用蹦床室内家用可折叠跳床RFD1",
       "price": "299.9",
       "predict_price": "264.9",
@@ -7350,7 +8605,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 311,
+      "id": 363,
       "title": "迪卡侬儿童蹦床男家用室内跳跳床小型宝宝运动小孩蹦蹦床减肥KIDO",
       "price": "269.9",
       "predict_price": "234.9",
@@ -7371,7 +8626,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 312,
+      "id": 364,
       "title": "养生堂桦树汁补水保湿面膜女提亮紧致水润呵护脆弱肌可用白膜5片",
       "price": "129",
       "predict_price": "99.0",
@@ -7392,7 +8647,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 313,
+      "id": 365,
       "title": "曼秀雷敦爽肤水男士专用补水保湿护肤品润肤水水乳二合一脸部乳液",
       "price": "69.9",
       "predict_price": "51.9",
@@ -7413,7 +8668,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 314,
+      "id": 366,
       "title": "片仔癀皇后烟酰胺眼霜淡化细纹抗皱抗老提拉紧致淡黑眼圈补水保湿",
       "price": "129.9",
       "predict_price": "49.9",
@@ -7436,7 +8691,7 @@
       "tk_total_sales": "1000"
     },
     {
-      "id": 315,
+      "id": 367,
       "title": "【惊喜新势力周】肌肤之钥CPB净采洁面膏清爽湿润",
       "price": "480",
       "predict_price": "420.0",
@@ -7459,7 +8714,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 316,
+      "id": 368,
       "title": "【胡可直播间】 肌肤之钥CPB净采洁面膏清爽湿润",
       "price": "540",
       "predict_price": "430.0",
@@ -7482,7 +8737,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 317,
+      "id": 369,
       "title": "【大牌日】海蓝之谜浓修膏修护祛痘保湿舒缓精华15ml50ml礼盒",
       "price": "1790",
       "predict_price": "1590.0",
@@ -7506,7 +8761,7 @@
       "tk_total_sales": "6"
     },
     {
-      "id": 318,
+      "id": 370,
       "title": "【官方正品】肌肤之钥CPB钻光精华水护肤滋养紧致保湿滋润抗老",
       "price": "860",
       "predict_price": "750",
@@ -7530,7 +8785,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 319,
+      "id": 371,
       "title": "【官方正品】肌肤之钥CPB御龄防晒霜养肤防晒SPF50+紧致抗皱",
       "price": "800",
       "predict_price": "690",
@@ -7553,7 +8808,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 320,
+      "id": 372,
       "title": "【公益联名】MAC/魅可VIVA GLAM哑光大子弹头口红唇膏反光镜唇蜜",
       "price": "200",
       "predict_price": "175.0",
@@ -7577,7 +8832,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 321,
+      "id": 373,
       "title": "【胡可直播间】CPB肌肤之钥光柔水凝气垫精华粉底钻光方气垫",
       "price": "750",
       "predict_price": "640",
@@ -7600,7 +8855,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 322,
+      "id": 374,
       "title": "康恩贝褪黑素维生素b6片改善睡眠退黑素片非gaba120片",
       "price": "10.5",
       "predict_price": "8.4",
@@ -7623,7 +8878,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 323,
+      "id": 375,
       "title": "麦富迪猫咪零食湿粮亲嘴鱼猫条50支三文鱼油鸽子鸡肉猫草营养补水",
       "price": "27.1",
       "predict_price": "18.0",
@@ -7644,7 +8899,7 @@
       "tk_total_sales": "6"
     },
     {
-      "id": 324,
+      "id": 376,
       "title": "得力中性笔按动笔0.5mm黑色签字笔圆珠笔水笔黑笔红色水性笔学生考试碳素按压式子弹头文具办公用品商务专用",
       "price": "2.6",
       "predict_price": "2.29",
@@ -7667,7 +8922,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 325,
+      "id": 377,
       "title": "教师节礼物德国进口施耐德海豚学生用办公专用撞色中性笔0.5+mm可换G2笔芯学生正姿水笔高颜值女生黑笔送礼",
       "price": "45",
       "predict_price": "34.6",
@@ -7691,7 +8946,177 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 326,
+      "id": 378,
+      "title": "福克纳经典作品4册 我弥留之际+喧哗与骚动+去吧摩西+押沙龙押沙龙 马尔克斯余华的文学导师 1949年诺奖得主代表作 中",
+      "price": "38.3",
+      "predict_price": "32.68",
+      "coupon_price": "32.68",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "图书音像",
+      "sub_category": "外国小说",
+      "shop": "中信出版社官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/832978172/O1CN01uL9u4Q2AEpUzBCkTh_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DIUvHngexnx9w4vFB6t2Z2ueEDrYVVa64K7Vc7tFgwiGx5e2f4Vr4dSbDA8t5fnVgDOz%2BQ0BmwbzJ9IZPvyayMtgEfNdfhSU0GmRIpC9xniK9WyRVplZS9ezBXD%2BSe4CZLqRDcCRFj%2BYbCzGmyZMGoogp6G72nkJwxLD2JUeMELn4m2HcE9CpmjDB6K%2F0aBaJBVgeuEBVHeXxySHzuyU%2FKEp5kErrf4wzXH5t%2B8W%2BDyU1g9pTqI7QM21g8%2F2yYZuUZ3F%2FvNzClBhxKmPmpIKZsA%3D%3D&scm=1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940&pvid=99e5fb33-5751-41fa-b171-6bfbe9c55940&app_pvid=59590_33.80.35.201_1658_1788836846970&ptl=floorId:84225;originalFloorId:84225;pvid:99e5fb33-5751-41fa-b171-6bfbe9c55940;app_pvid:59590_33.80.35.201_1658_1788836846970&union_lens=lensId%3AMAPI%401788836847%400_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940%401%40eyJmbG9vcklkIjo4NDIyNX0ie%3Bscm%3A1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.38元",
+        "满1件9折",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 379,
+      "title": "德国辉柏嘉8K素描纸4K速写绘画美术生专用160g专业画纸炭笔联考考试专用180克四开八开加厚素写画画纸",
+      "price": "17",
+      "predict_price": "14.9",
+      "coupon_price": "14.9",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "文具办公",
+      "sub_category": "素描/速写本",
+      "shop": "辉柏嘉易优专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/3115007398/O1CN01Wy8fhV24WKso1Pwfy_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DdG7tzW76Jl1w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w053a6BxlBj1DT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOk2AjDSFt%2BYeBLZ1UwckAI6C9PDp6oT3z2gCnLiPn4fhaatjayZGu4mAL%2FoQbQ6BEAgUxI%2BaBZOACAsLzB1aDm%2FHTmyVjyxWeh7Mn%2BW73%2FtgU8FLjpfdZDbsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840158%40213346a9_1fcc_1a07f2ea701_5de2%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣1.19元",
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": "1"
+    },
+    {
+      "id": 380,
+      "title": "雅鹿男士冰丝2026新款四角短裤薄款透气内裤男生平角裤头夏季LM",
+      "price": "34",
+      "predict_price": "29.9",
+      "coupon_price": "29.9",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "服饰鞋包",
+      "sub_category": "男平角内裤",
+      "shop": "雅鹿漫索其专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2895255993/O1CN01bcYTUq1u8qkVnGjHG_!!4611686018427386297-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DtbceSRswEpBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0mfXUunRn0PDT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOmMQcU7SforDPFfizknPuMnad%2F5UAY5LKiLyEE5wLm%2FfnIESRcQkec1%2Fcg2PA77EKjQRESAzTXJfSW4NgXcI2cV0%2BUW1830SAz%2F0Va788KQzBEZiMqg4TAjsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840196%402106d71d_14af_1a07f2f37b3_5f6a%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.34元",
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": "6"
+    },
+    {
+      "id": 381,
+      "title": "欧舒丹颈部精华霜腊菊颈霜留香紧致抚纹颈部护理男女官方正品旗舰",
+      "price": "590",
+      "predict_price": "530.0",
+      "coupon_price": "530",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "颈霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN01G1diDEjXFdC2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DfZEXjROgxwlw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0aSFbOJbYh6zT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobVjecU1zvFtT99akYQurbKBDtUuOflDuotPUrwxP7xtrXnKH86hT29aXUbOuBl23VYgi3RPmhc8K1g5RasmbD5NnarkTY1lfPsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840431%402107a67d_13e1_1a07f32cde0_53bd%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣5.9元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": "9"
+    },
+    {
+      "id": 382,
+      "title": "欧舒丹沐浴露身体乳套装清新马鞭草身体护理套组清洁留香保湿滋润",
+      "price": "500",
+      "predict_price": "440.0",
+      "coupon_price": "440",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "身体护理套装/礼盒",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01qkGWH5ScXEG2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DxscWT7NBbOBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0PhnZriqYkOPT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoYJFZRnDQo1SzM7wwQlCL5cXgP%2BmNowCs2yJcNaqse9K1F4lmrNWZLL2fS9s2DfHSohxHVAXAnYFjaipIFcQ6XHU8FLjpfdZDbsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840440%402132d123_1fc1_1a07f32f3b8_724b%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "加补50元",
+        "淘金币频道抵扣5元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": "50"
+    },
+    {
+      "id": 383,
+      "title": "欧舒丹香氛沐浴露云中月桂花香香氛清洁留香洗澡沐浴啫喱官方正品",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01siE8W1SA2wK2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DqbtVAgPJ%2FvJw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w06MPAY8zOrLbT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobwJQXmF0wlps3ZoXm%2FxsANTrnm6Rr9aKEZ3%2BhcBNGQAkxCQxvpopDnSO5jqbsY2919enbmrELr%2B3QH40BLpyxnItk0VYWk2I%2BDk0MtctszAcYOae24fhW0&union_lens=lensId%3AMAPI%401788840453%40213139e0_140e_1a07f3325e7_c360%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 384,
+      "title": "欧舒丹赋颜精华霜黄腊菊大金罐精华面霜抗皱紧致面部护理官方正品",
+      "price": "1000",
+      "predict_price": "890",
+      "coupon_price": "890",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "乳液/面霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01QXUG7LNi2NI2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DhMjbQfj7PN1w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqob3eoyJAG3ScVCv3jHtB9qDbK%2B7mNaLM8Jd0iHZ%2FJvBNJXf17ch%2BJygVrqdOQLG9r1cfm37xb4PJcpw76CJErp0posli%2B6XBLNncX%2B83MKUGHEqY%2Bakgpmw&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣10元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "1000+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 385,
       "title": "【渠道】PUMA彪马童装新儿童长袖T恤运动风拼接插肩袖打底衫圆领",
       "price": "169",
       "predict_price": "98.99",
@@ -7715,7 +9140,7 @@
       "tk_total_sales": "500"
     },
     {
-      "id": 327,
+      "id": 386,
       "title": "南极人男士纯棉内裤中老年爸爸高腰加大码舒适爷爷老式三角短裤头",
       "price": "45",
       "predict_price": "39.0",
@@ -7738,7 +9163,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 328,
+      "id": 387,
       "title": "IAM长效空气净化器M8 Pro分解除甲醛数显负离子家用去细菌消毒机",
       "price": "6499",
       "predict_price": "4299.3",
@@ -7760,7 +9185,7 @@
       "tk_total_sales": "7"
     },
     {
-      "id": 329,
+      "id": 388,
       "title": "自然堂凝时小紫瓶精华液紧致抗皱修护面部补水保湿官方旗舰店正品",
       "price": "257",
       "predict_price": "132.8",
@@ -7781,7 +9206,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 330,
+      "id": 389,
       "title": "【官方正品】肌肤之钥CPB水磨精华沁肌调理精华",
       "price": "760",
       "predict_price": "650",
@@ -7804,7 +9229,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 331,
+      "id": 390,
       "title": "萤石云C6C监控摄像头2026新款家用远程手机语音无线高清夜视莹石",
       "price": "199",
       "predict_price": "175.0",
@@ -7825,7 +9250,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 332,
+      "id": 391,
       "title": "欧莱雅男士专用水能爽肤水须后水脸部护肤品补水保湿清爽润肤水",
       "price": "128",
       "predict_price": "89.0",
@@ -7846,7 +9271,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 333,
+      "id": 392,
       "title": "【顺丰速达】肌肤之钥CPB面膜 光透白密集奢护面膜补水保湿",
       "price": "1900",
       "predict_price": "1700",
@@ -7870,7 +9295,53 @@
       "tk_total_sales": ""
     },
     {
-      "id": 334,
+      "id": 393,
+      "title": "施耐德钢笔BK406德国进口学生专用小学生三年级可换墨囊男孩女生练字EF细尖0.35二升三初学者儿童入门刚笔",
+      "price": "48",
+      "predict_price": "37.2",
+      "coupon_price": "37.2",
+      "gov_subsidy": "",
+      "discount": 22,
+      "category": "家用电器",
+      "sub_category": "马克笔",
+      "shop": "施耐德文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2207822398874/O1CN01Jn2UZO2FQLmxUMKix_!!4611686018427381146-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DejLmCrooOChw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0QYW%2Bf1F0knDT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOsAPYBslPiB8hshCT2a0eBdk%2BcIfB7OuQdkIzaHiT86Iygati6miJLz%2Fr4%2B%2BxLN4K1KTOHJN89Khx%2Bl2KIR32Lmv7i%2B5uI1Z7JHfKXtpo5uhoE0GtMrNEFlvzeVbgA%2FRCQyW7mQwqx7e&union_lens=lensId%3AMAPI%401788840144%40210740c0_1fad_1a07f2e6d31_0b08%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "5元",
+        "官方8.8折",
+        "店铺券:满30减5, 官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "800+",
+      "tk_total_sales": "4"
+    },
+    {
+      "id": 394,
+      "title": "欧舒丹草本菁纯强韧丰盈洗发露洗发水清洁留香防断发男女士洗头水",
+      "price": "235",
+      "predict_price": "210",
+      "coupon_price": "210",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "洗发水",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01VLx0ObSnyYK2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DfzwIzVVp0N1w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobdB7xnHsLmy62BbubS9UEoe3M5qffNJCHvAiA3p5%2FTZx5qE520A0dVUGFeByCLddPeGc%2BpZVOlMn4wRkqg9pzaIRb4eE6%2FF5HsIkysm5Xa6iGFCzYOOqAQ&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣7.05元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "800+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 395,
       "title": "【商场同款】Asics/亚瑟士童装春季新款儿童运动打底裤磨毛",
       "price": "119",
       "predict_price": "89.0",
@@ -7894,7 +9365,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 335,
+      "id": 396,
       "title": "PUMA彪马官方童鞋新款鞋子男女童德训鞋儿童大童休闲板鞋T头鞋",
       "price": "179",
       "predict_price": "149.0",
@@ -7917,7 +9388,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 336,
+      "id": 397,
       "title": "鸭鸭中老年轻薄羽绒服男2026年秋冬短款立领修身短外套商务爸爸装",
       "price": "219",
       "predict_price": "179",
@@ -7940,7 +9411,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 337,
+      "id": 398,
       "title": "悍途沙滩鞋女夏季包头透气软底运动凉鞋户外两栖速干涉水溯溪鞋女",
       "price": "280",
       "predict_price": "178.0",
@@ -7964,7 +9435,7 @@
       "tk_total_sales": "8"
     },
     {
-      "id": 338,
+      "id": 399,
       "title": "【烈儿宝贝直播间】肌肤之钥CPB净采洁面膏清爽湿润",
       "price": "480",
       "predict_price": "420",
@@ -7986,7 +9457,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 339,
+      "id": 400,
       "title": "【大牌日】海蓝之谜防晒隔离霜焕光奢润保湿防晒妆前乳礼盒",
       "price": "970",
       "predict_price": "860",
@@ -8009,7 +9480,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 340,
+      "id": 401,
       "title": "【专享】绽妍小水库面膜贴片 混干补水保湿干皮敏感护肤品TK1",
       "price": "28.5",
       "predict_price": "17.58",
@@ -8030,7 +9501,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 341,
+      "id": 402,
       "title": "晨光推动橡皮彩色推拉橡皮擦小学生专用无屑不留痕超干净一年级幼儿园无毒安全高颜值象皮擦少屑冰淇淋像皮擦",
       "price": "5.57",
       "predict_price": "4.91",
@@ -8055,7 +9526,54 @@
       "tk_total_sales": "6"
     },
     {
-      "id": 342,
+      "id": 403,
+      "title": "李碧华作品集5册 霸王别姬 青蛇 饺子 胭脂扣 生死桥 吃卤水鹅的女人 张国荣张曼玉杨千嬅同名电影原著小说图书文学经典精",
+      "price": "142.5",
+      "predict_price": "105.5",
+      "coupon_price": "105.5",
+      "gov_subsidy": "",
+      "discount": 26,
+      "category": "图书音像",
+      "sub_category": "自由组合套装",
+      "shop": "新经典旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/3968989056/O1CN010bBCTg2GlhgzO6QVY_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DMKMs6pjCoERw4vFB6t2Z2ueEDrYVVa64K7Vc7tFgwiGx5e2f4Vr4dSbDA8t5fnVgDOz%2BQ0BmwbzJ9IZPvyayMtgEfNdfhSU0GmRIpC9xniK9WyRVplZS9ezBXD%2BSe4CZLqRDcCRFj%2BbVqus0FQ22tX14W23EnWvAkVxuZVX3z7AQCK7Kf9%2FpdQJphUr669F3UV7lla0h%2B8GIxn2Ord2bHuTbIYD9hm6h9I451pCuhOLB1zUmy6xcFjqz%2B8qu9q4ab83lW4AP0QkMlu5kMKse3g%3D%3D&scm=1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940&pvid=99e5fb33-5751-41fa-b171-6bfbe9c55940&app_pvid=59590_33.80.35.201_1658_1788836846970&ptl=floorId:84225;originalFloorId:84225;pvid:99e5fb33-5751-41fa-b171-6bfbe9c55940;app_pvid:59590_33.80.35.201_1658_1788836846970&union_lens=lensId%3AMAPI%401788836847%400_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940%401%40eyJmbG9vcklkIjo4NDIyNX0ie%3Bscm%3A1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣9.98元",
+        "15元",
+        "官方8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "700+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 404,
+      "title": "【新品上市】欧舒丹香氛身体乳美肤乳格拉斯橙花保湿留香男女士",
+      "price": "49.9",
+      "predict_price": "28.41",
+      "coupon_price": "28.41",
+      "gov_subsidy": "",
+      "discount": 43,
+      "category": "美妆护肤",
+      "sub_category": "身体乳/霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN01rGk7X6ndkUK2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DXyIV3vT7AZpw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0%2FW6n8yEiTPXT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOpXuk30qqPUfzJ%2BQUROo5hFUabwWrzUgLdwRtKgTkj9%2Bh44PDclxpcn6%2FT1SxCXrt5xdOZOv1rukwBvjE08msJnuQ0NvuDhXHGx8y59zBwEEEEIrHUBI96LGDF1NzTQoPw%3D%3D&union_lens=lensId%3AMAPI%401788840472%400b0b3226_1474_1a07f336f5a_55c6%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.9元",
+        "包邮",
+        "限时补贴:补贴20元, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "700+",
+      "tk_total_sales": "100"
+    },
+    {
+      "id": 405,
       "title": "波司登羽绒服男26情侣款立领短款宽松时尚冬装青年本命年红色外套",
       "price": "2199",
       "predict_price": "699.0",
@@ -8083,7 +9601,7 @@
       "tk_total_sales": "4"
     },
     {
-      "id": 343,
+      "id": 406,
       "title": "【大牌日】海蓝之谜奢润身体乳液补水保湿护肤身体护理礼盒",
       "price": "1580",
       "predict_price": "1380.0",
@@ -8107,7 +9625,56 @@
       "tk_total_sales": "4"
     },
     {
-      "id": 344,
+      "id": 407,
+      "title": "【左手专区】stabilo思笔乐德国进口左手专用水笔铅笔儿童改善握姿小学生写不断幼儿园练字一二年级",
+      "price": "129",
+      "predict_price": "69.3",
+      "coupon_price": "69.3",
+      "gov_subsidy": "",
+      "discount": 46,
+      "category": "文具办公",
+      "sub_category": "铅笔/自动铅笔",
+      "shop": "stabilo思笔乐旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2986895310/O1CN01AAufeP1p61theVDOi_!!2-item_pic.png",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Db8o0HfmDDChw4vFB6t2Z2ueEDrYVVa64K7Vc7tFgwiGx5e2f4Vr4dSbDA8t5fnVgDOz%2BQ0BmwbzJ9IZPvyayMtgEfNdfhSU0GmRIpC9xniK9WyRVplZS9ezBXD%2BSe4CZLqRDcCRFj%2BYUR0j63MJvWr4oLTa5dJr%2FIo8t1CsvkNDzS%2BTnvChH50JJSOt1EuEv09souU02GK4pTTGy9EvZz4xj6Mkm5Voy9%2BMo%2BX%2BWDg1V3dDMYqFY13TNFgpfVCdAb83lW4AP0QkMlu5kMKse3g%3D%3D&scm=1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940&pvid=99e5fb33-5751-41fa-b171-6bfbe9c55940&app_pvid=59590_33.80.35.201_1658_1788836846970&ptl=floorId:84225;originalFloorId:84225;pvid:99e5fb33-5751-41fa-b171-6bfbe9c55940;app_pvid:59590_33.80.35.201_1658_1788836846970&union_lens=lensId%3AMAPI%401788836847%400_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940%401%40eyJmbG9vcklkIjo4NDIyNX0ie%3Bscm%3A1007.15348.115058.0_84225_99e5fb33-5751-41fa-b171-6bfbe9c55940",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣7.74元",
+        "5元",
+        "满1件7折",
+        "官方8.8折",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "600+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 408,
+      "title": "欧舒丹身体乳樱花香氛替换装补充装保湿留香滋润官方正品旗舰店",
+      "price": "255",
+      "predict_price": "230.0",
+      "coupon_price": "230",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "身体乳/霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN01oMApo91kNNAoAMwne_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DBj0J%2FGCnUO5w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w05xkTHBCEje3T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobzijz05CFLc6AjAx1r7Up4FB2eePf%2BGHbIhYzOy7425vDj%2BLKGysoK0sExJIgNm50zPxbrDgD3UW6gINeLbDiEEEIrHUBI96LGDF1NzTQoPw%3D%3D&union_lens=lensId%3AMAPI%401788840394%400b084831_144e_1a07f323ffa_6eb8%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.55元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "600+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 409,
       "title": "绿联HDMI一分二分配器1进2出切换器视频4k投影仪带音频高清一拖二电脑显示器1分2/4一进二出四屏扩展器分屏器",
       "price": "152",
       "predict_price": "126.0",
@@ -8128,7 +9695,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 345,
+      "id": 410,
       "title": "闪魔 适用iPhone14钢化膜15promax苹果13全屏12覆盖14plus+保护XR蓝光iP防爆16ProMax手",
       "price": "24.9",
       "predict_price": "19.9",
@@ -8153,7 +9720,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 346,
+      "id": 411,
       "title": "olayks立时即热式饮水机家用小型台式速热饮水器纯净水加热直饮机",
       "price": "363",
       "predict_price": "204.0",
@@ -8178,7 +9745,7 @@
       "tk_total_sales": "6"
     },
     {
-      "id": 347,
+      "id": 412,
       "title": "乔丹小白鞋女板鞋白色运动鞋子学生秋季新款百搭厚底爆款女鞋官方",
       "price": "159",
       "predict_price": "129.0",
@@ -8199,7 +9766,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 348,
+      "id": 413,
       "title": "乔丹男鞋气垫鞋男士红色爸爸父亲运动鞋2026秋季新款跑步鞋男复古",
       "price": "249.99",
       "predict_price": "189.99",
@@ -8220,7 +9787,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 349,
+      "id": 414,
       "title": "施耐德钢笔德国进口绣色学生专用小学生三年级女生练字F尖0.5二升三可换墨囊可擦男孩四年级中国风生日送礼物",
       "price": "67",
       "predict_price": "53.9",
@@ -8243,7 +9810,101 @@
       "tk_total_sales": ""
     },
     {
-      "id": 350,
+      "id": 415,
+      "title": "雅鹿男士隐形袜子男船袜秋款不掉跟短袜薄款纯棉男袜防臭夏季JN",
+      "price": "19.9",
+      "predict_price": "17.5",
+      "coupon_price": "17.5",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "服饰鞋包",
+      "sub_category": "船袜",
+      "shop": "雅鹿漫索其专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2895255993/O1CN01MCIfPs1u8qmNGkHVo_!!2895255993.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DKFtaxHtKVvBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0z2FKliICAgbT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOmMQcU7SforDPFfizknPuMmDiTyN9wT92me7O%2Baze1ZKHMYWo5uC82l1WfqzQ4mfdLPrSok3fkAqX43%2BlKlmWipcfm37xb4PJSE%2FvhxL880%2FZW3th11ZiWtncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840195%40213c8295_14f8_1a07f2f351d_4fa9%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "500+",
+      "tk_total_sales": "3"
+    },
+    {
+      "id": 416,
+      "title": "欧舒丹活力男士洁面啫喱夏季清洁控油去角质洗面奶官方正品旗舰店",
+      "price": "220",
+      "predict_price": "195.0",
+      "coupon_price": "195",
+      "gov_subsidy": "",
+      "discount": 11,
+      "category": "美妆护肤",
+      "sub_category": "男士洁面",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01WgmueA1kNN7RCyEpl_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DK3afLlF855Zw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0n7AyY1XWk1vT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqobRLQv8%2FwwHATgTQ2oRwCKk0KBOBIWKpQOlfEc0n4Aq2JRTLIWIjqPQdpTgwJ6UNOCQCSJjuXFY7WBEWDcjvwCXb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840296%402132da66_202e_1a07f30c189_4284%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "500+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 417,
+      "title": "欧舒丹甜扁桃沐浴油套装家庭装沐浴露清洁紧致留香夏季洗澡清洁",
+      "price": "755",
+      "predict_price": "645",
+      "coupon_price": "645",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "美妆护肤",
+      "sub_category": "沐浴油",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2248304671/O1CN01v89BEMvSTPG2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DfQv2%2FM5OKXxw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZWruwc3DGWneLl6M%2BEMCbpIDi2lBpI%2FOS%2FZ1MhCGjt32U91n33MseCqZEzd%2F2WOy6gy697aSx6%2F%2Fgkd5ef69UHb83lW4AP0QkMlu5kMKse3g%3D%3D&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣7.55元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "500+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 418,
+      "title": "欧舒丹沐浴露绿野奇境香氛清洁留香洗澡男女士沐浴啫喱官方正品",
+      "price": "210",
+      "predict_price": "185.0",
+      "coupon_price": "185",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "沐浴露",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2248304671/O1CN01yKtjoaUmXRK2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DnnQa7Aj0wP5w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0csZy3%2F0IXGDT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoY8BJ8xLiwUIK40WdhGrQR3v%2BwUyhb0Cj7Kmy8PZkYr8GJ%2Bsa4QIqLubOIOsg8UkHVVJQp6GbdAqVWcjNkLZo4Vb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840403%40212c09d1_13ff_1a07f3263c5_68be%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "淘金币频道抵扣2.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满200减25"
+      ],
+      "source": "天猫",
+      "annual_vol": "500+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 419,
       "title": "爆款推荐｜雀巢超启能恩3段适度水解奶粉850g*6超级能恩雀巢奶粉",
       "price": "900",
       "predict_price": "690.0",
@@ -8264,7 +9925,7 @@
       "tk_total_sales": "50"
     },
     {
-      "id": 351,
+      "id": 420,
       "title": "十月结晶婴儿乳霜棉柔巾洗脸巾超柔100%纯棉加厚宝宝一次性洁面巾",
       "price": "38",
       "predict_price": "5.9",
@@ -8287,7 +9948,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 352,
+      "id": 421,
       "title": "绿联typec扩展坞拓展macbookpro转换器网线hdmi投屏转接头口雷电4适用ipad平板手机mac笔记本电脑us",
       "price": "161.25",
       "predict_price": "119.7",
@@ -8309,7 +9970,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 353,
+      "id": 422,
       "title": "迪卡侬踏步机家用健身登山机家用脚踏健身器减肥室内运动器材RFJ8",
       "price": "349.9",
       "predict_price": "304.9",
@@ -8330,7 +9991,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 354,
+      "id": 423,
       "title": "自然堂凝时水乳套装官方旗舰店正品抗皱紧致补水保湿护肤品化妆品",
       "price": "85",
       "predict_price": "74.8",
@@ -8351,7 +10012,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 355,
+      "id": 424,
       "title": "自然堂弹嫩紧致抗皱水乳套装官方旗舰店正品化妆品护肤品中年妈妈",
       "price": "363",
       "predict_price": "193.0",
@@ -8372,7 +10033,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 356,
+      "id": 425,
       "title": "自然堂弹嫩紧致抗皱精华液面部提拉中年妈妈官方旗舰店正品官网女",
       "price": "350",
       "predict_price": "166.0",
@@ -8393,7 +10054,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 357,
+      "id": 426,
       "title": "【烈儿宝贝直播间】CPB肌肤之钥光柔水凝气垫精华粉底",
       "price": "750",
       "predict_price": "640.0",
@@ -8417,7 +10078,7 @@
       "tk_total_sales": "4"
     },
     {
-      "id": 358,
+      "id": 427,
       "title": "【大牌日】海蓝之谜碧玺洁肤露洁面泡沫温和清洁礼盒",
       "price": "900",
       "predict_price": "790.0",
@@ -8441,7 +10102,82 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 359,
+      "id": 428,
+      "title": "【儿童礼盒】思笔乐扭扭乐钢笔圣诞礼盒小学生专用三年级正姿练字高档男生女生送人硬笔书法可替换笔尖墨囊",
+      "price": "238",
+      "predict_price": "154.2",
+      "coupon_price": "154.2",
+      "gov_subsidy": "",
+      "discount": 35,
+      "category": "文具办公",
+      "sub_category": "钢笔",
+      "shop": "stabilo思笔乐旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2986895310/O1CN01cdKVCf1p62FXGY23r_!!4611686018427381710-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DbEkWzlC7fdpw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0rX3XyXOAkefT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgEDZKe%2Fkl1Km40tSYrkbaZxyhYZss%2FP1RD5fXidSkyucsN7FIsB%2B2zTba88c3S%2FiYE99uATtS0PUvNfmSyb5sFcfm37xb4PJY1Jzgz1z1KSPUh7XgCvRF9ncX%2B83MKUGHEqY%2Bakgpmw&union_lens=lensId%3AMAPI%401788840178%4021677ec5_1f92_1a07f2ef320_b02e%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP立减25.8元",
+        "淘金币频道抵扣14.28元",
+        "10元",
+        "官方8折",
+        "包邮",
+        "店铺券:满149减10, 88VIP专享立减:88VIP立减25.8元, 官方立减:官方8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "400+",
+      "tk_total_sales": "10"
+    },
+    {
+      "id": 429,
+      "title": "欧舒丹赋颜御龄抗皱眼霜黄腊菊保湿紧致眼部护理男女官方正品旗舰",
+      "price": "610",
+      "predict_price": "550.0",
+      "coupon_price": "550",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "眼霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN016owZZ36SXIG2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Dl7hRiV1DpzNw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0YQlBwUQC%2FHvT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoY6LH4YGJTFhdjtz%2Fxka3DgU0rQanvbMaJHoK9qIDyGWlkUpiA2o%2B3qj0yOkJh7gK698u4RXvi0Ykj4fpWN4CIIEEIrHUBI96LGDF1NzTQoPw%3D%3D&union_lens=lensId%3AMAPI%401788840462%4021079ef1_151b_1a07f3346b7_0a45%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣6.1元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "400+",
+      "tk_total_sales": "4"
+    },
+    {
+      "id": 430,
+      "title": "欧舒丹身体乳沐浴露套装云中月桂花香保湿滋润身体护理男女礼物",
+      "price": "500",
+      "predict_price": "440.0",
+      "coupon_price": "440",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "身体护理套装/礼盒",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN01kkaGC3Pb20B2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DKgXudGvjbn1w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0mtR8T0FF2G%2FT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZ1nT%2FxGKUrDJgoNdbga5fKel7L0C3kFgSpUX2WZWUcC%2FIza40JSP716br321Pa0S3eGc%2BpZVOlMg0bp5kVu8Ztn1l%2Fv3juDa3sIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840490%4021662f2f_201f_1a07f33b67f_c071%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "加补50元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "400+",
+      "tk_total_sales": "9"
+    },
+    {
+      "id": 431,
       "title": "摩飞车载吸尘器便携家用迷你小型充电手持式大吸力汽车用臭氧清洁",
       "price": "329",
       "predict_price": "194",
@@ -8467,7 +10203,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 360,
+      "id": 432,
       "title": "飞利浦净水龙头滤芯AWP302 净水滤芯 滤水器 AWP3600龙头通用",
       "price": "139",
       "predict_price": "99.0",
@@ -8490,7 +10226,7 @@
       "tk_total_sales": "5"
     },
     {
-      "id": 361,
+      "id": 433,
       "title": "olayks立时一人食迷你破壁豆浆机免洗轻音家用小型全自动免过滤",
       "price": "297",
       "predict_price": "186",
@@ -8514,7 +10250,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 362,
+      "id": 434,
       "title": "【烈儿宝贝直播间】肌肤之钥CPB散粉光纱蜜粉持妆控油",
       "price": "950",
       "predict_price": "840",
@@ -8537,7 +10273,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 363,
+      "id": 435,
       "title": "【陈洁99大促】肌肤之钥CPB钻光精华水清爽湿润型",
       "price": "540",
       "predict_price": "430.0",
@@ -8561,7 +10297,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 364,
+      "id": 436,
       "title": "康恩贝B族维生素片多种维生素b复合b1b6B2b12男女性vb",
       "price": "23.9",
       "predict_price": "7.39",
@@ -8584,7 +10320,80 @@
       "tk_total_sales": "6"
     },
     {
-      "id": 365,
+      "id": 437,
+      "title": "辉柏嘉粘土蓝免钉胶照片墙专用墙胶相框丁海报泥贴胶强力双面胶不粘墙面固定粘气球胶点贴自粘",
+      "price": "4.65",
+      "predict_price": "4.1",
+      "coupon_price": "4.1",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "文具办公",
+      "sub_category": "胶带/胶纸/胶条",
+      "shop": "辉柏嘉易优专卖店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/3115007398/O1CN01QEivnj24WLBvz3u26_!!4611686018427387302-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DEF%2FdWcYBkCNw4vFB6t2Z2ueEDrYVVa64juWlisr3dOdyINtkUhsv0AyMm%2BGI90w0VZeBRzKHyOzT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp4VoBSPeaLCcaDlzeXEp6SwUXM2ciOEu4uGH%2BQq5V8zyZq5VKoEK1xnhYbyRMR1g6LzL4sUEzgIDZvTOOTrBsUEzvz8NTjxGZ%2FYijm6EWNgb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840167%40213350f6_1491_1a07f2eca3b_0da4%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.76元",
+        "官方8.8折",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "300+",
+      "tk_total_sales": "4"
+    },
+    {
+      "id": 438,
+      "title": "欧舒丹草本菁纯洗发水平衡套装洗发露控油清洁蓬松官方正品男女",
+      "price": "620",
+      "predict_price": "560.0",
+      "coupon_price": "560",
+      "gov_subsidy": "",
+      "discount": 10,
+      "category": "美妆护肤",
+      "sub_category": "洗发水",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01g1sq01mlvWC2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DhoqkPV%2Ba%2BsZw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w05Gp%2F5itIOIrT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZl5O4z841YONcfrL2hrbxQWeJAn4aCU4VWr%2B4yaXNsM6ejf3poCSApJP1lSjV4aMB1MUzCpkc0qiOuF2bWpEb7EEIrHUBI96LGDF1NzTQoPw%3D%3D&union_lens=lensId%3AMAPI%401788840370%402106d71d_14af_1a07f31e19c_1304%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣6.2元",
+        "包邮",
+        "88VIP专享消费券:消费券满480减60"
+      ],
+      "source": "天猫",
+      "annual_vol": "300+",
+      "tk_total_sales": "1"
+    },
+    {
+      "id": 439,
+      "title": "欧舒丹身体精华霜腊菊味保湿留香紧致身体官方正品旗舰店男女士",
+      "price": "690",
+      "predict_price": "580",
+      "coupon_price": "580",
+      "gov_subsidy": "",
+      "discount": 16,
+      "category": "美妆护肤",
+      "sub_category": "身体乳/霜",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2248304671/O1CN01Wr2cW3mSyfK2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DDpLCETX1gphw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoYMiy2eNm4vKnTaG14YphHGmbl3U22lvKtiIJwIutfdKJgwmidNzJORlZ3qapJ01kxDWxFBTlhCsPMA8Y6NCnBXQgd93jZzZBPsIkysm5Xa6iGFCzYOOqAQ&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "淘金币频道抵扣6.9元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "300+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 440,
       "title": "恒源祥100%羊毛衫男童高领毛衣中大童装加厚无羊绒儿童针织打底衫",
       "price": "198",
       "predict_price": "144.2",
@@ -8605,7 +10414,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 366,
+      "id": 441,
       "title": "【商场同款】361童装男童女童两面穿外套2026中大童新款小童上衣",
       "price": "239",
       "predict_price": "79.0",
@@ -8631,7 +10440,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 367,
+      "id": 442,
       "title": "ASICS/亚瑟士童装25年秋季女童打底裤吸湿速干亲肤舒适弹力运动裤",
       "price": "169",
       "predict_price": "128.0",
@@ -8655,7 +10464,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 368,
+      "id": 443,
       "title": "ASICS/亚瑟士童装2024春季女儿童柔软舒适打底裤云感高弹legging",
       "price": "169",
       "predict_price": "128.0",
@@ -8679,7 +10488,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 369,
+      "id": 444,
       "title": "李宁儿童短袖翻领POLO衫男女小大童T恤 2026新款夏季宽松针织童装",
       "price": "158",
       "predict_price": "102.6",
@@ -8703,7 +10512,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 370,
+      "id": 445,
       "title": "商场同款|李宁儿童小白鞋循迹板鞋2026新款夏季男童鞋白色运动鞋",
       "price": "298",
       "predict_price": "170.05",
@@ -8727,7 +10536,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 371,
+      "id": 446,
       "title": "【大牌日】海蓝之谜紧塑焕采眼霜抗皱保湿紧致眼周礼盒",
       "price": "2030",
       "predict_price": "1830",
@@ -8750,7 +10559,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 372,
+      "id": 447,
       "title": "【官方正品】肌肤之钥CPB匀净柔嫩套组通勤礼盒钻光精华水洁面",
       "price": "1360",
       "predict_price": "1210",
@@ -8772,7 +10581,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 373,
+      "id": 448,
       "title": "AERIN/雅芮明星沙龙香氛 牡丹云裳/地中海水蔓持久淡香留香香水",
       "price": "1110",
       "predict_price": "1000.0",
@@ -8796,7 +10605,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 374,
+      "id": 449,
       "title": "【官方正品】肌肤之钥CPB钻光修护日霜抗皱紧致美白抗老滋养",
       "price": "950",
       "predict_price": "840",
@@ -8819,7 +10628,53 @@
       "tk_total_sales": ""
     },
     {
-      "id": 375,
+      "id": 450,
+      "title": "欧舒丹精萃活颜精华乳蓝腊菊保湿紧致抗皱面部护理官方正品男女士",
+      "price": "620",
+      "predict_price": "510",
+      "coupon_price": "510",
+      "gov_subsidy": "",
+      "discount": 18,
+      "category": "美妆护肤",
+      "sub_category": "液态精华",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/2248304671/O1CN01IAMowF0YxGI2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DNjmeOxzCYfxw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZWk2KmyFgskv6GKzvfcgRIvg60troomAmU74a54uepaaNTEZEQWcxop98%2BMTngY1lEwbjCZuGS5%2FIVB2sBlfgMunKMSSEtZsrsIkysm5Xa6iGFCzYOOqAQ&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "200+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 451,
+      "title": "欧舒丹赋颜御龄精华水黄腊菊保湿爽肤水润肤水官方正品旗舰男女士",
+      "price": "510",
+      "predict_price": "435",
+      "coupon_price": "435",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "美妆护肤",
+      "sub_category": "液态精华",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2248304671/O1CN014dnGgyodVDG2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DmlsFBRMd4CBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2BdLztEBlmupLT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOp9W4%2BpfkRfIcRKwMCpIqoZXZmu4woTOVT1SdULxmxptWN2U%2B%2FYreadmTbcVApbW1N4dkEbA1ZfnOMCjmx%2BYOyJ4BIWfh%2FYxusbbbR2P%2B50uinINPZzZIflNrhBHxaZAzsYl7w3%2FA2kb&scm=1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5&pvid=9c3333aa-04a6-47ef-85e7-8be1979afaa5&app_pvid=59590_33.4.83.221_1427_1788836849820&ptl=floorId:91356;originalFloorId:91356;pvid:9c3333aa-04a6-47ef-85e7-8be1979afaa5;app_pvid:59590_33.4.83.221_1427_1788836849820&union_lens=lensId%3AMAPI%401788836849%400_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5%401%40eyJmbG9vcklkIjo5MTM1Nn0ie%3Bscm%3A1007.15348.115058.0_91356_9c3333aa-04a6-47ef-85e7-8be1979afaa5",
+      "taokouling": "",
+      "tags": [
+        "消费券满200减25",
+        "加补50元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "200+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 452,
       "title": "【官方正品】合生元派星4段儿童配方成长奶粉四段奶粉800g  顺丰",
       "price": "1400",
       "predict_price": "1072.0",
@@ -8840,7 +10695,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 376,
+      "id": 453,
       "title": "【官方正品】合生元派星4段儿童配方成长奶粉四段奶粉800g",
       "price": "1400",
       "predict_price": "1072.0",
@@ -8864,7 +10719,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 377,
+      "id": 454,
       "title": "波司登羽绒服男经典男款超轻便短款立领轻薄羽绒服短款品牌外套",
       "price": "399",
       "predict_price": "274.0",
@@ -8892,7 +10747,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 378,
+      "id": 455,
       "title": "飞利浦蓝牙耳机挂脖挂颈式运动降噪超长续航挂耳式高音质TAN1120",
       "price": "109",
       "predict_price": "79.0",
@@ -8915,7 +10770,7 @@
       "tk_total_sales": "8"
     },
     {
-      "id": 379,
+      "id": 456,
       "title": "绿联适用iwatch S11保护膜SE3苹果手表膜applewatch S10膜S9贴膜serieS8水凝S7膜ultr",
       "price": "57.37",
       "predict_price": "42.9",
@@ -8940,7 +10795,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 380,
+      "id": 457,
       "title": "飞利浦家用水龙头自来水净化厨房过滤器滤芯AWP300适用AWP3608WH",
       "price": "110",
       "predict_price": "70.0",
@@ -8963,7 +10818,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 381,
+      "id": 458,
       "title": "骆驼健身运动文胸女防震跑步内衣中高强度支撑前拉链瑜伽美背背心",
       "price": "109",
       "predict_price": "56.05",
@@ -8988,7 +10843,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 382,
+      "id": 459,
       "title": "【香菇来了】肌肤之钥CPB长管短管哑光白隔离光凝润采妆前霜",
       "price": "540",
       "predict_price": "430",
@@ -9011,7 +10866,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 383,
+      "id": 460,
       "title": "【大牌日】海蓝之谜净透洁肤水温和卸妆保湿清洁大牌日礼盒",
       "price": "900",
       "predict_price": "790.0",
@@ -9035,7 +10890,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 384,
+      "id": 461,
       "title": "【教师节礼物】肌肤之钥CPB防晒身体乳 御龄防晒身体乳保湿滋润",
       "price": "800",
       "predict_price": "690",
@@ -9058,7 +10913,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 385,
+      "id": 462,
       "title": "德国进口施耐德钢笔BK406向日葵学生专用多巴胺小学生三年级男孩女生练字EF细尖0.35可换墨囊儿童可擦二升三",
       "price": "48",
       "predict_price": "37.2",
@@ -9080,7 +10935,77 @@
       "tk_total_sales": ""
     },
     {
-      "id": 386,
+      "id": 463,
+      "title": "德国施德楼771粗杆三角杆自动铅笔不易断芯1.3小学生专用写字绘画自动笔儿童一年级初学者二年级握姿",
+      "price": "45",
+      "predict_price": "39.6",
+      "coupon_price": "39.6",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "文具办公",
+      "sub_category": "铅笔/自动铅笔",
+      "shop": "staedtler施德楼旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/3082993238/O1CN01oF8uqF1Zn3TeBdGEa_!!4611686018427387478-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3Dv2MFsllfxvJw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0m%2BVTB9%2BEa0LT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOmRilJ5SHGb7uDlDMnMGppfsj9qzdh3Wog72Fc8pGSIleHF6joIRdVAjMdSnQ1NDbCLEWIOaShL%2FVJ1xmLF2JLtX2WiWrW25%2BQ8JSsD2ng83b83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840156%402166c1c4_1fe8_1a07f2e9c54_4024%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "官方8.8折",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "100+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 464,
+      "title": "晨光单头丙烯马克笔儿童学生美术专用防水不透色笔芯彩笔可水洗小学生比心24色学生彩笔手绘画彩色画笔DIY",
+      "price": "30.4",
+      "predict_price": "25.8",
+      "coupon_price": "25.8",
+      "gov_subsidy": "",
+      "discount": 15,
+      "category": "文具办公",
+      "sub_category": "马克笔",
+      "shop": "M&G晨光文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/3337113620/O1CN01d4NTwpgoNWB2vH2e_!!4611686018427383828-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DwmVUQFvc9FJw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0xam4y5RH0%2B7T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOgkt1YvnuMLnaIoS8XCfJ99Vr%2BKF06bM7bMwCKJLRP%2Fhcxl0CblwNt32oSX6jXqrOefng0FBh27PR6OaqCVW%2Bz%2B4WZpNJH%2BPnHUgbeThovVlb83lW4AP0QkMlu5kMKse3g%3D%3D&union_lens=lensId%3AMAPI%401788840186%400b51d895_1470_1a07f2f13fd_4f4f%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "淘金币频道抵扣0.31元",
+        "1元",
+        "包邮",
+        "官方立减:官方8.5折"
+      ],
+      "source": "天猫",
+      "annual_vol": "100+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 465,
+      "title": "大东法式芭蕾玛丽珍鞋女2026新款秋季配裙子女鞋平底软底浅口单鞋",
+      "price": "129",
+      "predict_price": "84.55",
+      "coupon_price": "84.55",
+      "gov_subsidy": "",
+      "discount": 34,
+      "category": "服饰鞋包",
+      "sub_category": "时尚芭蕾鞋",
+      "shop": "DUSTO大东女鞋旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i3/2217326709450/O1CN01hfJrPt2Jg9wtDJtVT_!!4611686018427382474-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DIemTDOoOiHBw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0Ad3q%2FbPRRG%2B8nGtf4wca03T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOmzBbviXmSU3cw0QU6rnIocZLngfoba7R79UArHmEaBS%2BB%2FhclaJL3Q%2Boy67CeOZMxat8%2BIFhFUzyk9lOh%2FeMv3gWdjXEqcn2QGDDWQ5aT1J5mIow%2F%2BA9Rc9DIiR%2B8DqSPecQKmy6UAqomfkDJRs%2BhU%3D&scm=1007.15348.115058.0_117935_7522d381-d420-4d4e-b2a3-16022365eb41&pvid=7522d381-d420-4d4e-b2a3-16022365eb41&app_pvid=59590_11.180.8.216_1811_1788836848823&ptl=floorId:117935;originalFloorId:117935;pvid:7522d381-d420-4d4e-b2a3-16022365eb41;app_pvid:59590_11.180.8.216_1811_1788836848823&union_lens=lensId%3AMAPI%401788836848%400_117935_7522d381-d420-4d4e-b2a3-16022365eb41%401%40eyJmbG9vcklkIjoxMTc5MzV9%3Bscm%3A1007.15348.115058.0_117935_7522d381-d420-4d4e-b2a3-16022365eb41",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "限时优惠15元",
+        "官方立减25元",
+        "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "100+",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 466,
       "title": "绿联vga转hdmi高清线接口台式电脑转接头笔记本连接显示屏转换器",
       "price": "62.38",
       "predict_price": "46.9",
@@ -9105,7 +11030,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 387,
+      "id": 467,
       "title": "ASICS亚瑟士童鞋新款春季男女童休闲板鞋哆啦A梦联名",
       "price": "489",
       "predict_price": "374.0",
@@ -9129,7 +11054,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 388,
+      "id": 468,
       "title": "摩飞保鲜真空机小型家用食品包装抽真空封口压缩机自动迷你密封机",
       "price": "399",
       "predict_price": "232.9",
@@ -9157,7 +11082,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 389,
+      "id": 469,
       "title": "曼秀雷敦肌研极润氨基酸洗面奶女深层清洁毛孔保湿泡沫洁面乳",
       "price": "66",
       "predict_price": "50.35",
@@ -9182,7 +11107,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 390,
+      "id": 470,
       "title": "薇诺娜宝贝舒润倍安心高保湿油霜宝宝婴儿秋冬保湿面霜派样",
       "price": "24.8",
       "predict_price": "19.8",
@@ -9204,7 +11129,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 391,
+      "id": 471,
       "title": "【官方直供】森海塞尔HD599 头戴式有线耳机电脑手机游戏耳机耳麦",
       "price": "3149",
       "predict_price": "1449.0",
@@ -9231,7 +11156,7 @@
       "tk_total_sales": "3"
     },
     {
-      "id": 392,
+      "id": 472,
       "title": "波司登新品极寒羽绒服男冬季户外鹅绒服短款连帽零下30度北方外套",
       "price": "2299",
       "predict_price": "1425.0",
@@ -9257,7 +11182,7 @@
       "tk_total_sales": "10"
     },
     {
-      "id": 393,
+      "id": 473,
       "title": "【烈儿宝贝直播间】肌肤之钥CPB钻光精华水清爽湿润型",
       "price": "980",
       "predict_price": "870",
@@ -9280,7 +11205,32 @@
       "tk_total_sales": ""
     },
     {
-      "id": 394,
+      "id": 474,
+      "title": "妇炎洁私处清洗液女私密护理液外阴清洁益生菌洗液女性日常洗护液",
+      "price": "147",
+      "predict_price": "122.55",
+      "coupon_price": "122.55",
+      "gov_subsidy": "",
+      "discount": 17,
+      "category": "个人护理/洗护",
+      "sub_category": "私处洗液",
+      "shop": "妇炎洁官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i1/1633803546/O1CN01yJfxEy1c47b98Nbfp_!!4611686018427387162-2-item_pic.png",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DkbH6tWzzdcRw4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0McIayu1B3iTT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOmArE%2BzmjaBPzN4g4d76slpwS9C6Qb2ruHyeGQ9%2FERVnPiMjS5DzkUbstuPll2FMmx0YaBUa7G%2F4yWT3XP1w4tX%2BxHkmT2HuNek0CjuzalOtIH%2FEdJ0ditDsIkysm5Xa6iGFCzYOOqAQ&union_lens=lensId%3AMAPI%401788840224%4021677ead_2019_1a07f2fa8b7_b278%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "88VIP专享95折",
+        "淘金币频道抵扣0.5元",
+        "补贴5元",
+        "包邮",
+        "官方立减:官方8.8折, 88VIP9.5折:88VIP专享95折"
+      ],
+      "source": "天猫",
+      "annual_vol": "56",
+      "tk_total_sales": "1"
+    },
+    {
+      "id": 475,
       "title": "品胜适用小米10电池9 红米note7手机note3官方k20电芯8大容量k30pro正品mix2s电板note8pro",
       "price": "75",
       "predict_price": "56.0",
@@ -9301,7 +11251,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 395,
+      "id": 476,
       "title": "达芙妮小香风法式玛丽珍女鞋2026新款浅口单鞋女粗跟气质高跟鞋女",
       "price": "399",
       "predict_price": "303.45",
@@ -9327,7 +11277,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 396,
+      "id": 477,
       "title": "妇炎洁医用妇科凝胶抑菌正品宫颈糜烂阴道炎白带异味瘙痒私处护理",
       "price": "49",
       "predict_price": "43.1",
@@ -9350,7 +11300,7 @@
       "tk_total_sales": "2"
     },
     {
-      "id": 397,
+      "id": 478,
       "title": "【达人直播】肌肤之钥CPB 4D精雕眼霜精雕紧致抗老滋养抗皱",
       "price": "1980",
       "predict_price": "1780",
@@ -9373,7 +11323,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 398,
+      "id": 479,
       "title": "达芙妮厚底德训鞋女2025新款秋季复古百搭透气软底女鞋休闲运动鞋",
       "price": "266.9",
       "predict_price": "202.21",
@@ -9398,7 +11348,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 399,
+      "id": 480,
       "title": "飞利浦净饮复合原装正品滤芯ADD550适用ADD6800/ADD6811/ADD6830",
       "price": "539",
       "predict_price": "439.0",
@@ -9421,7 +11371,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 400,
+      "id": 481,
       "title": "蒙牛多维高钙中老年奶粉800g*2富硒0蔗糖营养中秋送礼官方旗舰店",
       "price": "139",
       "predict_price": "99.0",
@@ -9442,7 +11392,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 401,
+      "id": 482,
       "title": "diplomat外交官行李箱流光拉杆箱登机箱旅行箱女铝框款20/28英寸",
       "price": "92",
       "predict_price": "62.0",
@@ -9463,7 +11413,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 402,
+      "id": 483,
       "title": "diplomat外交官行李箱男生商务新款旅行箱拉杆箱密码箱官方旗舰店",
       "price": "92",
       "predict_price": "62.0",
@@ -9484,7 +11434,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 403,
+      "id": 484,
       "title": "diplomat外交官行李箱大容量旅行拉杆箱登机20/26英寸官方旗舰店",
       "price": "92",
       "predict_price": "62.0",
@@ -9505,7 +11455,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 404,
+      "id": 485,
       "title": "361运动鞋男款夏季男鞋薄款网面透气网鞋男灰色休闲跑步鞋子男士",
       "price": "139",
       "predict_price": "99.0",
@@ -9526,7 +11476,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 405,
+      "id": 486,
       "title": "晨光印泥秒干红色按手印快干印台盖章用蓝色小号印台硬泥便携式印泥盒速干美术印泥签约合同用红泥盖章红印泥",
       "price": "5.9",
       "predict_price": "5.2",
@@ -9550,7 +11500,30 @@
       "tk_total_sales": ""
     },
     {
-      "id": 406,
+      "id": 487,
+      "title": "施耐德钢笔跃感系列多巴胺色德国进口学生专用练字可替换墨囊EF细尖0.35女生三年级小学生儿童糖果色男士女士",
+      "price": "72",
+      "predict_price": "58.3",
+      "coupon_price": "58.3",
+      "gov_subsidy": "",
+      "discount": 19,
+      "category": "家用电器",
+      "sub_category": "钢笔",
+      "shop": "施耐德文具旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/2207822398874/O1CN01DzOxom2FQLmR6LOnW_!!4611686018427381146-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DAfhF5msQkF5w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w0al0LvVs%2B9A7T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOsAPYBslPiB8hshCT2a0eBcOkpuTPVV8%2BYf5IFUErB0dwSEIPZPvRKwYU2PKsLvlYmMaHo3%2FNfOgAWSxIgjMZwuv7i%2B5uI1Z7MzDONyEJeHnsGSFPzvKWTxvzeVbgA%2FRCQyW7mQwqx7e&union_lens=lensId%3AMAPI%401788840179%400b51e555_20e0_1a07f2ef5e1_da3c%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "5元",
+        "官方8.8折",
+        "店铺券:满30减5, 官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "19",
+      "tk_total_sales": "1"
+    },
+    {
+      "id": 488,
       "title": "【商场同款】Asics童装26年秋季新款女童弹力吸湿速干喇叭打底裤",
       "price": "299",
       "predict_price": "238.0",
@@ -9574,7 +11547,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 407,
+      "id": 489,
       "title": "【商场同款】Asics童装26年秋季新款男女童大容量防泼水书包",
       "price": "299",
       "predict_price": "238.0",
@@ -9598,7 +11571,7 @@
       "tk_total_sales": "1"
     },
     {
-      "id": 408,
+      "id": 490,
       "title": "波司登新品轻薄羽绒服女春季款休闲连帽拉链短款纯色百搭外套",
       "price": "359",
       "predict_price": "290.0",
@@ -9625,7 +11598,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 409,
+      "id": 491,
       "title": "骆驼山药运动鞋女款2026秋季慢跑鞋女休闲鞋子透气厚底老爹鞋女鞋",
       "price": "357",
       "predict_price": "160.05",
@@ -9650,7 +11623,31 @@
       "tk_total_sales": ""
     },
     {
-      "id": 410,
+      "id": 492,
+      "title": "欧舒丹腊菊赋颜御龄紧致精华乳抗皱紧致面部护理男女官方正品旗舰",
+      "price": "32",
+      "predict_price": "28.1",
+      "coupon_price": "28.1",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "美妆护肤",
+      "sub_category": "液态精华",
+      "shop": "L’OCCITANE欧舒丹官方旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i4/2248304671/O1CN01BfVbIjaGE1I2R3rs_!!4611686018427381791-0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3D4MYh4CZxWtlw4vFB6t2Z2ueEDrYVVa64juWlisr3dOdyINtkUhsv0AyMm%2BGI90w0h6beNxfNz%2B3T3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOuuohusUxQdt62P9BBERjYuc2q4yUL8gApuIad2znP5bD1c32tozS0ql0anZ%2BH1%2BD7ukCx%2BcqIDGNoXnvPzjQil655QMF%2F%2BJelRU2KubuCbWS%2B7db59tdKb4JizjNWEBHA%3D%3D&union_lens=lensId%3AMAPI%401788840492%402104d4f1_1503_1a07f33bebb_0f35%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "消费券满480减60",
+        "加补50元",
+        "包邮",
+        "官方立减:官方8.8折"
+      ],
+      "source": "天猫",
+      "annual_vol": "1",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 493,
       "title": "Skechers斯凯奇2026凌跃儿童鞋男童网面透气跑步减震轻便运动鞋",
       "price": "37",
       "predict_price": "31.4",
@@ -9677,7 +11674,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 411,
+      "id": 494,
       "title": "SENNHEISER/森海塞尔IE100PRO入耳式有线专业监听耳机挂耳式颈挂",
       "price": "38",
       "predict_price": "33.4",
@@ -9705,7 +11702,7 @@
       "tk_total_sales": ""
     },
     {
-      "id": 412,
+      "id": 495,
       "title": "【达人直播】肌肤之钥CPB散粉定妆粉光纱蜜粉细腻持妆控油经典",
       "price": "950",
       "predict_price": "840",
@@ -9722,6 +11719,29 @@
         "消费券满480减60",
         "加补50元",
         "包邮"
+      ],
+      "source": "天猫",
+      "annual_vol": "0",
+      "tk_total_sales": ""
+    },
+    {
+      "id": 496,
+      "title": "casio旗舰店BA-110XCR冰韧透明运动学生手表女士卡西欧BABY-G官方",
+      "price": "970",
+      "predict_price": "853.0",
+      "coupon_price": "853",
+      "gov_subsidy": "",
+      "discount": 12,
+      "category": "数码3C",
+      "sub_category": "日韩腕表",
+      "shop": "casio旗舰店",
+      "img_url": "https://img.alicdn.com/bao/uploaded/i2/749901026/O1CN0129epgz1JRx6NKZ5JM_!!0-item_pic.jpg",
+      "url": "https://s.click.taobao.com/t?e=m%3D2%26s%3DNLNkyyXow81w4vFB6t2Z2ueEDrYVVa64Dne87AjQPk9yINtkUhsv0AyMm%2BGI90w07li5%2BwaNkRPT3BufV7p%2Fw6lwHcTJvoZzWBbPRbWkHte0U8hx67J0%2FmJvAs7Kn9jdFBoMXOGuG5DkaqczTKGnOn4hVWoZ4OO%2BQRP6NwDRdKQMC4EaInGYW3mW16MDKhZ4so8uIhHtKHmyjPsM5RfVVZIH8kegpbP%2BF%2Fb1Ak8ccSnOx9jrBOwcU5r4mG1EzMGVItk0VYWk2I%2BDk0MtctszAcYOae24fhW0&union_lens=lensId%3AMAPI%401788840241%40213139ae_1fc7_1a07f2fe782_c254%4001%40eyJmbG9vcklkIjo4MDMwOX0ie",
+      "taokouling": "",
+      "tags": [
+        "分期免息3期",
+        "包邮",
+        "官方立减:官方8.8折"
       ],
       "source": "天猫",
       "annual_vol": "0",
