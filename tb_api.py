@@ -25,6 +25,7 @@ import json
 import time
 import hashlib
 import requests
+import concurrent.futures
 from datetime import datetime
 
 # 加载 .env 文件
@@ -765,14 +766,15 @@ def collect_recommend_then_filter():
     return filtered_deals
 
 
-def enrich_deals_batch(deals, batch_size=200, start_index=0):
+def enrich_deals_batch(deals, batch_size=200, start_index=0, max_workers=5):
     """
-    Workflow 2: 对商品列表调用 optional.upgrade 补充价格（串行处理）
+    Workflow 2: 对商品列表调用 optional.upgrade 补充价格（多线程并行处理）
 
     Args:
         deals: 待处理的商品列表
         batch_size: 本次处理的商品数量
         start_index: 从第几个商品开始处理
+        max_workers: 并行线程数（默认5）
 
     Returns:
         tuple: (enriched_deals, end_index, total)
@@ -788,36 +790,30 @@ def enrich_deals_batch(deals, batch_size=200, start_index=0):
         return [], end_index, total
 
     batch = deals[start_index:end_index]
-    print(f"[enrich] 处理第 {start_index+1}-{end_index} 条（共 {total} 条）")
+    print(f"[enrich] 处理第 {start_index+1}-{end_index} 条（共 {total} 条，{max_workers}线程并行）")
 
     enriched_deals = []
-    consecutive_failures = 0
-    MAX_CONSECUTIVE_FAILURES = 20  # 连续失败20次则跳过剩余
+    processed = 0
 
-    for i, deal in enumerate(batch):
-        if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
-            # 熔断：剩余商品直接用recommend价格
-            print(f"  [enrich] 触发熔断（连续失败{consecutive_failures}次），剩余{len(batch)-i}条用recommend价格")
-            enriched_deals.extend(batch[i:])
-            break
+    def _process_one(deal):
+        """处理单个商品，返回 enriched_deal 或 None"""
+        return _enrich_price_info(deal)
 
-        enriched = _enrich_price_info(deal)
-        if enriched is None:
-            # item_id 无结果，丢弃该商品
-            continue
-        # 判断是否enrichment成功
-        if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
-            consecutive_failures = 0
-        else:
-            consecutive_failures += 1
-        enriched_deals.append(enriched)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(_process_one, deal): i for i, deal in enumerate(batch)}
+        for future in concurrent.futures.as_completed(futures):
+            processed += 1
+            try:
+                enriched = future.result()
+                if enriched is not None:
+                    enriched_deals.append(enriched)
+            except Exception as e:
+                print(f"  [enrich] 处理异常: {e}")
 
-        # 每条间隔1秒避免限流
-        time.sleep(1)
-        if (i + 1) % 20 == 0:
-            print(f"  [enrich] 进度: {start_index+i+1}/{total} (连续失败:{consecutive_failures})")
+            if processed % 20 == 0:
+                print(f"  [enrich] 进度: {start_index+processed}/{total}")
 
-    print(f"[enrich] 完成: 处理 {len(enriched_deals)} 条，下次从 {end_index} 开始")
+    print(f"[enrich] 完成: 成功 {len(enriched_deals)}/{len(batch)} 条，下次从 {end_index} 开始")
     return enriched_deals, end_index, total
 
 

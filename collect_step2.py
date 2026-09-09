@@ -17,6 +17,7 @@ import sys
 import json
 import time
 import argparse
+import concurrent.futures
 from datetime import datetime
 from collections import defaultdict
 
@@ -489,21 +490,29 @@ def main():
         print("⚠️ 本批无商品需要处理")
         sys.exit(0)
 
-    # 为每个商品生成淘口令（串行）
-    print(f"\n🔗 生成淘口令（{len(enriched_batch)} 条）...")
+    # 为每个商品生成淘口令（多线程并行）
+    print(f"\n🔗 生成淘口令（{len(enriched_batch)} 条，5线程并行）...")
     taokouling_count = 0
-    for i, deal in enumerate(enriched_batch):
+
+    def _gen_tk(deal):
         title = deal.get("title", "")
         url = deal.get("url", "")
         if title and url:
-            tk = generate_taokouling(title, url)
-            if tk:
-                deal["taokouling"] = tk
-                taokouling_count += 1
-        # 每条约0.5秒间隔避免限流
-        time.sleep(0.5)
-        if (i + 1) % 50 == 0:
-            print(f"  淘口令进度: {i+1}/{len(enriched_batch)}")
+            return generate_taokouling(title, url)
+        return None
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        futures = {executor.submit(_gen_tk, deal): i for i, deal in enumerate(enriched_batch)}
+        for future in concurrent.futures.as_completed(futures):
+            i = futures[future]
+            try:
+                tk = future.result()
+                if tk:
+                    enriched_batch[i]["taokouling"] = tk
+                    taokouling_count += 1
+            except Exception as e:
+                print(f"  [淘口令] 第{i+1}条异常: {e}")
+
     print(f"  淘口令生成: {taokouling_count}/{len(enriched_batch)} 条")
 
     # 保存（从头开始则覆盖，否则追加）
