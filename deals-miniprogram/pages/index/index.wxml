@@ -94,11 +94,11 @@
         </view>
         <view class="guide-step">
           <view class="step-num">2</view>
-          <view class="step-text">长按搜索框，点击粘贴</view>
+          <view class="step-text">选择允许粘贴</view>
         </view>
         <view class="guide-step">
           <view class="step-num">3</view>
-          <view class="step-text">点击搜索即可跳转商品</view>
+          <view class="step-text">查看详情</view>
         </view>
       </view>
       <view class="guide-btn" bindtap="closeGuide">我知道了</view>
