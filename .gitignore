@@ -1,3 +1,8 @@
+# 中间文件（collect_step1/2.py 生成的临时数据）
+docs/raw_deals.json
+docs/enriched_deals.json
+docs/enrich_progress.json
+
 # 环境配置
 .env
 
