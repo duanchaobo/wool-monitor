@@ -299,13 +299,37 @@ def _extract_price_from_optional(price_info):
 def _enrich_price_info(deal):
     """
     对单个商品调用 optional.upgrade API 补充完整价格信息
-    使用商品标题作为搜索关键词
+    优先用 item_id 精确匹配（通过 ucrowd_rank_items），找不到则回退到关键词搜索
     """
     title = deal.get("title", "")
-    if not title:
+    item_id = deal.get("item_id", "")
+    if not title and not item_id:
         return deal
 
-    # 用标题前12字作为搜索关键词
+    # 优先用 item_id 精确匹配
+    if item_id:
+        keyword = title[:12] if title else ""
+        ucrowd = json.dumps([{"item_id": item_id}])
+        biz_params = {
+            "adzone_id": int(TB_ADZONE_ID),
+            "q": keyword,
+            "page_no": 1,
+            "page_size": 3,
+            "platform": 2,
+            "ucrowd_rank_items": ucrowd,
+        }
+        result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
+        if result and "error_response" not in result:
+            # 检查是否有结果
+            resp_key = "tbk_dg_material_optional_upgrade_response"
+            items = result.get(resp_key, {}).get("result_list", {}).get("map_data", [])
+            if items:
+                # item_id 匹配成功，解析结果
+                return _parse_optional_result(deal, items[0])
+        # item_id 搜不到，回退到关键词搜索
+        print(f"  [enrich] item_id 无结果，回退关键词搜索: {title[:30]}")
+
+    # 关键词搜索
     keyword = title[:12]
     biz_params = {
         "adzone_id": int(TB_ADZONE_ID),
@@ -327,17 +351,24 @@ def _enrich_price_info(deal):
             return deal
 
         resp_key = "tbk_dg_material_optional_upgrade_response"
-        inner = result.get(resp_key, {})
-        result_list = inner.get("result_list", {})
-        items = result_list.get("map_data", [])
+        items = result.get(resp_key, {}).get("result_list", {}).get("map_data", [])
 
         if not items:
             return deal
 
         # 取第一条匹配结果
-        first = items[0]
-        price_info = first.get("price_promotion_info", {})
-        publish_info = first.get("publish_info", {})
+        return _parse_optional_result(deal, items[0])
+    except Exception:
+        pass  # 价格补充失败不影响主流程
+
+    return deal
+
+
+def _parse_optional_result(deal, item):
+    """解析 optional.upgrade API 返回的单个商品结果，更新 deal 的价格信息"""
+    try:
+        price_info = item.get("price_promotion_info", {})
+        publish_info = item.get("publish_info", {})
 
         # 提取完整价格
         price_data = _extract_price_from_optional(price_info)
@@ -379,7 +410,7 @@ def _enrich_price_info(deal):
             deal["commission_rate"] = f"{float(commission_rate_raw)/100:.1f}%"
 
         # 提取销量数据（用于排序）
-        basic_info = first.get("item_basic_info", {})
+        basic_info = item.get("item_basic_info", {})
         annual_vol = basic_info.get("annual_vol", "")
         tk_total_sales = basic_info.get("tk_total_sales", "")
         if annual_vol:
@@ -503,11 +534,15 @@ def collect_tb_material_recommend(material_id, page_size=100, sub_name=None, fet
                 tag_list = promo_tags.get("promotion_tag_map_data", [])
                 tags = [t.get("tag_name", "") for t in tag_list if t.get("tag_name")]
 
+                # 提取 item_id（用于 enrichment 时精确匹配）
+                item_id = item.get("item_id", "")
+
                 # 用recommend API的价格初始化（后续enrichment会覆盖为更准确的价格）
                 init_discount = discount_pct
                 deal = {
                     "source": "天猫" if user_type == 1 else "淘宝",
                     "user_type": user_type,
+                    "item_id": item_id,
                     "title": title[:60],
                     "price": f"¥{show_price}" if show_price else "",
                     "old_price": f"¥{reserve_price}" if reserve_price and reserve_price != show_price else "",
