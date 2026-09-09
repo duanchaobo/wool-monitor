@@ -166,10 +166,19 @@ Page({
     wx.setClipboardData({
       data: copyData,
       success: () => {
-        wx.showToast({
-          title: taokouling ? '淘口令已复制' : '链接已复制',
-          icon: 'success'
-        });
+        if (taokouling) {
+          wx.showModal({
+            title: '淘口令已复制',
+            content: '请打开淘宝App，长按搜索框粘贴即可跳转购买',
+            showCancel: false,
+            confirmText: '我知道了'
+          });
+        } else {
+          wx.showToast({
+            title: '链接已复制',
+            icon: 'success'
+          });
+        }
       }
     });
   }
