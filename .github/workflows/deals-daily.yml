@@ -172,20 +172,20 @@ jobs:
             echo "=========================================="
             echo "阶段3: 采集商品名单 (recommend API)"
             echo "=========================================="
-            PYTHONUNBUFFERED=1 python3 collect_step1.py --output docs
+            PYTHONUNBUFFERED=1 python3 collect_step1.py
 
             # ===== 阶段4: 补充价格 + 淘口令 + 生成JSON =====
             echo ""
             echo "=========================================="
             echo "阶段4: 补充价格 + 淘口令 + 生成JSON"
             echo "=========================================="
-            PYTHONUNBUFFERED=1 python3 collect_step2.py --output docs --reset
+            PYTHONUNBUFFERED=1 python3 collect_step2.py --output docs
 
-            # ===== 阶段5: git push（开启加速） =====
+            # ===== 阶段5: git push（只提交最终结果） =====
             enable_turbo
             git config user.name "github-actions"
             git config user.email "actions@github.com"
-            git add docs/
+            git add docs/deals.json docs/categories.json
             git commit -m "每日数据更新 $(date '+%Y-%m-%d %H:%M')" || echo "无数据变化"
             git push https://${{ secrets.PAT_TOKEN }}@github.com/duanchaobo/wool-monitor.git main || echo "推送失败"
 

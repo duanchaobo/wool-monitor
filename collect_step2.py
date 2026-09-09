@@ -1,14 +1,11 @@
 """
-collect_step2.py - Workflow 2: 读取原始名单 → 分批补充价格 → 折扣过滤 → 生成小程序JSON
+collect_step2.py - 每日处理: 补充价格 → 淘口令 → 折扣过滤 → 生成小程序JSON
 
-每小时执行一次（从北京时间 7:00 开始），每次处理 200 条商品。
-读取 raw_deals.json → 调用 optional.upgrade 补充价格 → 保存到 enriched_deals.json
-处理完毕后生成最终的 deals.json 和 categories.json 供小程序使用。
-
-进度记录在 docs/enrich_progress.json 中，确保每次接着上次处理。
+读取 /tmp/raw_deals.json → 调用 optional.upgrade 补充价格 → 生成淘口令
+→ 折扣过滤 → 输出最终 deals.json 和 categories.json 到 docs 目录。
 
 用法:
-  python3 collect_step2.py --output docs [--batch-size 200] [--reset]
+  python3 collect_step2.py --output docs
 """
 
 import os
@@ -26,55 +23,16 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tb_api import enrich_deals_batch, filter_by_discount, generate_taokouling
 
 
-def load_progress(output_dir):
-    """加载处理进度"""
-    progress_file = os.path.join(output_dir, "enrich_progress.json")
-    if os.path.exists(progress_file):
-        with open(progress_file, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {"start_index": 0, "total": 0, "last_run": None, "completed": False}
-
-
-def save_progress(output_dir, progress):
-    """保存处理进度"""
-    progress_file = os.path.join(output_dir, "enrich_progress.json")
-    progress["last_run"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(progress_file, "w", encoding="utf-8") as f:
-        json.dump(progress, f, ensure_ascii=False, indent=2)
-
-
-def load_raw_deals(output_dir):
-    """加载原始商品名单"""
-    raw_file = os.path.join(output_dir, "raw_deals.json")
+def load_raw_deals():
+    """从 /tmp 加载原始商品名单"""
+    raw_file = "/tmp/raw_deals.json"
     if not os.path.exists(raw_file):
         print(f"❌ 原始商品名单不存在: {raw_file}")
-        print("   请先运行 Workflow 1 (collect_step1.py)")
+        print("   请先运行 collect_step1.py")
         return None
     with open(raw_file, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data.get("deals", [])
-
-
-def load_enriched_deals(output_dir):
-    """加载已处理的商品列表"""
-    enriched_file = os.path.join(output_dir, "enriched_deals.json")
-    if os.path.exists(enriched_file):
-        with open(enriched_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return data.get("deals", [])
-    return []
-
-
-def save_enriched_deals(output_dir, deals):
-    """保存已处理的商品列表"""
-    enriched_file = os.path.join(output_dir, "enriched_deals.json")
-    data = {
-        "updateTime": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "total": len(deals),
-        "deals": deals
-    }
-    with open(enriched_file, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
 # ========== 小程序 JSON 生成（从 generate_deals_json.py 提取） ==========
@@ -347,10 +305,8 @@ def format_deal(deal, index):
     }
 
 
-def generate_mini_program_json(output_dir):
+def generate_mini_program_json(enriched_deals, output_dir):
     """生成小程序用的 deals.json 和 categories.json"""
-    # 加载已enrichment的商品
-    enriched_deals = load_enriched_deals(output_dir)
     if not enriched_deals:
         print("⚠️ 暂无已处理的商品数据")
         return
@@ -437,60 +393,37 @@ def generate_mini_program_json(output_dir):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Workflow 2: 补充价格 → 折扣过滤 → 生成小程序JSON")
+    parser = argparse.ArgumentParser(description="每日处理: 补充价格 → 淘口令 → 生成小程序JSON")
     parser.add_argument("--output", default="docs", help="输出目录")
-    parser.add_argument("--reset", action="store_true", help="重置进度，从头开始处理")
-    parser.add_argument("--skip-enrich", action="store_true", help="跳过enrichment，直接生成JSON")
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)
 
     print("=" * 60)
-    print("Workflow 2: 补充价格 → 折扣过滤 → 生成小程序JSON")
+    print("阶段2: 补充价格 → 淘口令 → 折扣过滤 → 生成小程序JSON")
     print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
     # 加载原始商品名单
-    raw_deals = load_raw_deals(args.output)
+    raw_deals = load_raw_deals()
     if raw_deals is None:
         sys.exit(1)
 
     print(f"原始商品名单: {len(raw_deals)} 条")
 
-    # 加载进度
-    progress = load_progress(args.output)
-    if args.reset:
-        progress = {"start_index": 0, "total": len(raw_deals), "last_run": None, "completed": False}
-        print("🔄 重置进度，从头开始处理")
-
-    # 检查是否已完成
-    if progress.get("completed"):
-        print("✅ 所有商品已处理完毕，直接生成小程序JSON")
-        generate_mini_program_json(args.output)
-        sys.exit(0)
-
-    # 检查是否有需要处理的商品
-    start_index = progress.get("start_index", 0)
-    if start_index >= len(raw_deals):
-        print(f"✅ 所有商品已处理完毕（{start_index}/{len(raw_deals)}）")
-        progress["completed"] = True
-        save_progress(args.output, progress)
-        generate_mini_program_json(args.output)
-        sys.exit(0)
-
-    # 执行enrichment（全量处理剩余商品）
-    print(f"\n📦 开始处理: 从第 {start_index+1} 条开始，共 {len(raw_deals) - start_index} 条")
-    enriched_batch, end_index, total = enrich_deals_batch(
+    # 全量补充价格
+    print(f"\n📦 开始补充价格...")
+    enriched_batch, _, _ = enrich_deals_batch(
         raw_deals,
-        batch_size=len(raw_deals),  # 一次处理全部
-        start_index=start_index
+        batch_size=len(raw_deals),
+        start_index=0
     )
 
     if not enriched_batch:
-        print("⚠️ 本批无商品需要处理")
+        print("⚠️ 无商品需要处理")
         sys.exit(0)
 
-    # 为每个商品生成淘口令（多线程并行）
+    # 生成淘口令（多线程并行）
     print(f"\n🔗 生成淘口令（{len(enriched_batch)} 条，5线程并行）...")
     taokouling_count = 0
 
@@ -515,28 +448,8 @@ def main():
 
     print(f"  淘口令生成: {taokouling_count}/{len(enriched_batch)} 条")
 
-    # 保存（从头开始则覆盖，否则追加）
-    if args.reset or start_index == 0:
-        all_enriched = enriched_batch
-    else:
-        existing_enriched = load_enriched_deals(args.output)
-        all_enriched = existing_enriched + enriched_batch
-
-    save_enriched_deals(args.output, all_enriched)
-
-    # 更新进度
-    progress["start_index"] = end_index
-    progress["total"] = total
-    if end_index >= total:
-        progress["completed"] = True
-        print(f"\n🎉 所有商品处理完毕！（{total}/{total}）")
-    save_progress(args.output, progress)
-
-    print(f"\n进度: {end_index}/{total} ({end_index/total*100:.1f}%)")
-    print(f"已处理商品: {len(all_enriched)} 条")
-
     # 生成小程序JSON
-    generate_mini_program_json(args.output)
+    generate_mini_program_json(enriched_batch, args.output)
 
     print(f"\n完成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
