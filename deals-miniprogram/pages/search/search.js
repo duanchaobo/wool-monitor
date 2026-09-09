@@ -9,7 +9,8 @@ Page({
     loading: false,
     searched: false,
     message: '',
-    allDeals: []  // 全量数据（从首页缓存读取）
+    allDeals: [], // 全量数据（从首页缓存读取）
+    showGuide: false // 是否显示打开淘宝引导
   },
 
   onLoad() {
@@ -133,26 +134,8 @@ Page({
       data: copyData,
       success: () => {
         if (taokouling) {
-          wx.showModal({
-            title: '淘口令已复制',
-            content: '是否打开淘宝App粘贴访问？',
-            confirmText: '打开淘宝',
-            cancelText: '取消',
-            success: (res) => {
-              if (res.confirm) {
-                wx.openURL({
-                  url: 'taobao://',
-                  success: () => {},
-                  fail: () => {
-                    wx.showToast({
-                      title: '请手动打开淘宝App粘贴',
-                      icon: 'none'
-                    });
-                  }
-                });
-              }
-            }
-          });
+          // 显示引导页面
+          this.setData({ showGuide: true });
         } else {
           wx.showToast({
             title: '链接已复制',
@@ -161,5 +144,9 @@ Page({
         }
       }
     });
+  },
+
+  closeGuide() {
+    this.setData({ showGuide: false });
   }
 });

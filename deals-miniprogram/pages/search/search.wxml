@@ -71,4 +71,26 @@
       </view>
     </view>
   </view>
+
+  <!-- 打开淘宝引导层 -->
+  <view wx:if="{{showGuide}}" class="guide-mask" bindtap="closeGuide">
+    <view class="guide-content" catchtap="">
+      <view class="guide-title">淘口令已复制</view>
+      <view class="guide-steps">
+        <view class="guide-step">
+          <view class="step-num">1</view>
+          <view class="step-text">返回手机桌面，打开淘宝App</view>
+        </view>
+        <view class="guide-step">
+          <view class="step-num">2</view>
+          <view class="step-text">长按搜索框，点击粘贴</view>
+        </view>
+        <view class="guide-step">
+          <view class="step-num">3</view>
+          <view class="step-text">点击搜索即可跳转商品</view>
+        </view>
+      </view>
+      <view class="guide-btn" bindtap="closeGuide">我知道了</view>
+    </view>
+  </view>
 </view>
