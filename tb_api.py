@@ -299,69 +299,38 @@ def _extract_price_from_optional(price_info):
 def _enrich_price_info(deal):
     """
     对单个商品调用 optional.upgrade API 补充完整价格信息
-    优先用 item_id 精确匹配（通过 ucrowd_rank_items），找不到则回退到关键词搜索
+    用 item_id 精确匹配（通过 ucrowd_rank_items），无结果则返回 None（丢弃该商品）
     """
     title = deal.get("title", "")
     item_id = deal.get("item_id", "")
     if not title and not item_id:
-        return deal
+        return None
 
-    # 优先用 item_id 精确匹配
-    if item_id:
-        keyword = title[:12] if title else ""
-        ucrowd = json.dumps([{"item_id": item_id}])
-        biz_params = {
-            "adzone_id": int(TB_ADZONE_ID),
-            "q": keyword,
-            "page_no": 1,
-            "page_size": 3,
-            "platform": 2,
-            "ucrowd_rank_items": ucrowd,
-        }
-        result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
-        if result and "error_response" not in result:
-            # 检查是否有结果
-            resp_key = "tbk_dg_material_optional_upgrade_response"
-            items = result.get(resp_key, {}).get("result_list", {}).get("map_data", [])
-            if items:
-                # item_id 匹配成功，解析结果
-                return _parse_optional_result(deal, items[0])
-        # item_id 搜不到，回退到关键词搜索
-        print(f"  [enrich] item_id 无结果，回退关键词搜索: {title[:30]}")
+    if not item_id:
+        # 没有 item_id 的商品无法精确匹配，丢弃
+        return None
 
-    # 关键词搜索
-    keyword = title[:12]
+    # item_id 精确匹配
+    keyword = title[:12] if title else ""
+    ucrowd = json.dumps([{"item_id": item_id}])
     biz_params = {
         "adzone_id": int(TB_ADZONE_ID),
         "q": keyword,
         "page_no": 1,
         "page_size": 3,
         "platform": 2,
+        "ucrowd_rank_items": ucrowd,
     }
-
-    try:
-        result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
-    except Exception:
-        return deal
-    if not result:
-        return deal
-
-    try:
-        if "error_response" in result:
-            return deal
-
+    result = _call_tb_api("taobao.tbk.dg.material.optional.upgrade", **biz_params)
+    if result and "error_response" not in result:
         resp_key = "tbk_dg_material_optional_upgrade_response"
         items = result.get(resp_key, {}).get("result_list", {}).get("map_data", [])
+        if items:
+            return _parse_optional_result(deal, items[0])
 
-        if not items:
-            return deal
-
-        # 取第一条匹配结果
-        return _parse_optional_result(deal, items[0])
-    except Exception:
-        pass  # 价格补充失败不影响主流程
-
-    return deal
+    # item_id 无结果，丢弃该商品
+    print(f"  [enrich] item_id 无结果，丢弃: {title[:30]}")
+    return None
 
 
 def _parse_optional_result(deal, item):
@@ -830,6 +799,9 @@ def enrich_deals_batch(deals, batch_size=200, start_index=0):
             break
 
         enriched = _enrich_price_info(deal)
+        if enriched is None:
+            # item_id 无结果，丢弃该商品
+            continue
         # 判断是否enrichment成功
         if enriched.get("predict_price") and enriched.get("discount", 0) > 0:
             consecutive_failures = 0
