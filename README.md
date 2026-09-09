@@ -44,7 +44,7 @@ cd wool-monitor
 | `TB_ADZONE_ID` | 淘宝联盟 推广位ID |
 | `AUTODL_SESSION_TOKEN` | AutoDL 会话令牌 |
 | `AUTODL_INSTANCE_UUID` | AutoDL 实例 UUID |
-| `AUTODL_SSH_USER` | AutoDL SSH 用户名（通常为 root） |
+| `AUTODL_SSH_USER` | AutoDL SSH 用户名 |
 | `AUTODL_SSH_KEY` | AutoDL SSH 私钥 |
 | `PAT_TOKEN` | GitHub Personal Access Token |
 
