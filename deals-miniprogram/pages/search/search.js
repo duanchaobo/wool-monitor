@@ -135,9 +135,23 @@ Page({
         if (taokouling) {
           wx.showModal({
             title: '淘口令已复制',
-            content: '请打开淘宝App，长按搜索框粘贴即可跳转购买',
-            showCancel: false,
-            confirmText: '我知道了'
+            content: '是否打开淘宝App粘贴访问？',
+            confirmText: '打开淘宝',
+            cancelText: '取消',
+            success: (res) => {
+              if (res.confirm) {
+                wx.openURL({
+                  url: 'taobao://',
+                  success: () => {},
+                  fail: () => {
+                    wx.showToast({
+                      title: '请手动打开淘宝App粘贴',
+                      icon: 'none'
+                    });
+                  }
+                });
+              }
+            }
           });
         } else {
           wx.showToast({
