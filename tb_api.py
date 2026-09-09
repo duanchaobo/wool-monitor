@@ -118,7 +118,10 @@ def _call_tb_api(method, **biz_params):
                 sub_code = err.get("sub_code", "")
                 sub_msg = err.get("sub_msg", "")
                 print(f"[淘宝联盟] API错误: code={code}, msg={msg}, sub_code={sub_code}, sub_msg={sub_msg}")
-                # 立即重试一次，不等待
+                # 50001=无结果，直接返回不重试
+                if sub_code == "50001":
+                    return None
+                # 其他错误立即重试一次，不等待
                 if attempt < max_retries:
                     continue
                 return None
