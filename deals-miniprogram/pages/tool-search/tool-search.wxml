@@ -1,0 +1,81 @@
+<!-- pages/tool-search/tool-search.wxml -->
+<view class="search-container">
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索AI工具"
+        value="{{keyword}}"
+        bindinput="onInputChange"
+        bindconfirm="doSearch"
+        confirm-type="search"
+        focus="{{true}}"
+      />
+      <text wx:if="{{keyword}}" class="clear-btn" bindtap="clearKeyword">✕</text>
+    </view>
+  </view>
+
+  <!-- 热门推荐（无输入时显示） -->
+  <view wx:if="{{!keyword && hotTools.length > 0}}" class="hot-section">
+    <view class="section-title">🔥 热门工具</view>
+    <view class="hot-tags">
+      <text
+        wx:for="{{hotTools}}"
+        wx:key="name"
+        class="hot-tag"
+        data-keyword="{{item.name}}"
+        bindtap="quickSearch"
+      >{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 全部工具（无输入时显示） -->
+  <view wx:if="{{!keyword}}" class="all-section">
+    <view class="section-title">🛠️ 全部工具</view>
+    <view class="tool-list">
+      <view
+        wx:for="{{allTools}}"
+        wx:key="name"
+        class="tool-item"
+        data-url="{{item.url}}"
+        bindtap="goToTool"
+      >
+        <view class="tool-item-icon" style="background: {{item.color}};">{{item.icon}}</view>
+        <view class="tool-item-info">
+          <view class="tool-item-name">{{item.name}}</view>
+          <view class="tool-item-desc">{{item.desc}}</view>
+        </view>
+        <view class="tool-item-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view wx:if="{{keyword && searchResults.length > 0}}" class="result-section">
+    <view class="section-title">搜索结果 ({{searchResults.length}})</view>
+    <view class="tool-list">
+      <view
+        wx:for="{{searchResults}}"
+        wx:key="name"
+        class="tool-item"
+        data-url="{{item.url}}"
+        bindtap="goToTool"
+      >
+        <view class="tool-item-icon" style="background: {{item.color}};">{{item.icon}}</view>
+        <view class="tool-item-info">
+          <view class="tool-item-name">{{item.name}}</view>
+          <view class="tool-item-desc">{{item.desc}}</view>
+        </view>
+        <view class="tool-item-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无搜索结果 -->
+  <view wx:if="{{keyword && searchResults.length === 0}}" class="empty-result">
+    <view class="empty-icon">😅</view>
+    <view class="empty-text">没有找到"{{keyword}}"相关工具</view>
+  </view>
+</view>
