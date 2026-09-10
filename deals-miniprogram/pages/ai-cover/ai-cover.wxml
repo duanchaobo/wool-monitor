@@ -5,3 +5,8 @@
   <view class="placeholder-desc">用AI声音翻唱任意歌曲</view>
   <view class="placeholder-tip">功能开发中，敬请期待...</view>
 </view>
+
+<!-- 悬浮返回首页按钮 -->
+<view class="float-ball" bindtap="goHome">
+  <text class="float-ball-icon">🏠</text>
+</view>

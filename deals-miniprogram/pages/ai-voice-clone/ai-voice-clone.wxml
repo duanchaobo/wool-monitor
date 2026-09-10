@@ -5,3 +5,8 @@
   <view class="placeholder-desc">复刻你的声音，生成专属语音</view>
   <view class="placeholder-tip">功能开发中，敬请期待...</view>
 </view>
+
+<!-- 悬浮返回首页按钮 -->
+<view class="float-ball" bindtap="goHome">
+  <text class="float-ball-icon">🏠</text>
+</view>

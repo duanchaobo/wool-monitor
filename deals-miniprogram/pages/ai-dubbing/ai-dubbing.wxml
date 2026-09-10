@@ -5,3 +5,8 @@
   <view class="placeholder-desc">文字转语音，多种音色可选</view>
   <view class="placeholder-tip">功能开发中，敬请期待...</view>
 </view>
+
+<!-- 悬浮返回首页按钮 -->
+<view class="float-ball" bindtap="goHome">
+  <text class="float-ball-icon">🏠</text>
+</view>

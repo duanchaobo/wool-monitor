@@ -6,7 +6,7 @@ Page({
    * 跳转到每日优惠页
    */
   goToDeals() {
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/index/index'
     });
   },
