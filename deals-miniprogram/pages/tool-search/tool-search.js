@@ -52,11 +52,6 @@ Page({
 
   goToTool(e) {
     const url = e.currentTarget.dataset.url;
-    // tabBar页面用switchTab，其他用navigateTo
-    if (url === '/pages/index/index') {
-      wx.switchTab({ url });
-    } else {
-      wx.navigateTo({ url });
-    }
+    wx.navigateTo({ url });
   }
 });
