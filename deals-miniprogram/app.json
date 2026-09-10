@@ -3,6 +3,7 @@
     "pages/home/home",
     "pages/index/index",
     "pages/search/search",
+    "pages/profile/profile",
     "pages/ai-dubbing/ai-dubbing",
     "pages/ai-voice-clone/ai-voice-clone",
     "pages/ai-novel/ai-novel",
@@ -23,6 +24,10 @@
       {
         "pagePath": "pages/home/home",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
       }
     ]
   },

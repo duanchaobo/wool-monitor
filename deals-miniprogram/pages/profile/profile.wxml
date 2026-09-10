@@ -1,0 +1,10 @@
+<!-- pages/profile/profile.wxml -->
+<view class="profile-container">
+  <view class="profile-header">
+    <view class="avatar">👤</view>
+    <view class="nickname">微信用户</view>
+  </view>
+  <view class="profile-tip">
+    <text>个人中心功能开发中...</text>
+  </view>
+</view>
