@@ -23,14 +23,6 @@
       {
         "pagePath": "pages/home/home",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "每日优惠"
-      },
-      {
-        "pagePath": "pages/search/search",
-        "text": "搜索"
       }
     ]
   },
