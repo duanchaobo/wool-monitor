@@ -270,6 +270,31 @@ page {
   padding: 30rpx;
 }
 
+/* 悬浮返回首页按钮 */
+.float-ball {
+  position: fixed;
+  right: 30rpx;
+  bottom: 160rpx;
+  width: 88rpx;
+  height: 88rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  backdrop-filter: blur(10rpx);
+}
+
+.float-ball:active {
+  transform: scale(0.9);
+}
+
+.float-ball-icon {
+  font-size: 40rpx;
+}
+
 /* 打开淘宝引导层 */
 .guide-mask {
   position: fixed;

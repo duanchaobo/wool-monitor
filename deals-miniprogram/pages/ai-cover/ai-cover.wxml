@@ -1,0 +1,7 @@
+<!-- pages/ai-cover/ai-cover.wxml -->
+<view class="placeholder-container">
+  <view class="placeholder-icon">🎵</view>
+  <view class="placeholder-title">AI翻唱</view>
+  <view class="placeholder-desc">用AI声音翻唱任意歌曲</view>
+  <view class="placeholder-tip">功能开发中，敬请期待...</view>
+</view>

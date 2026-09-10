@@ -72,6 +72,11 @@
     </view>
   </view>
 
+  <!-- 悬浮返回首页按钮 -->
+  <view class="float-ball" bindtap="goHome">
+    <text class="float-ball-icon">🏠</text>
+  </view>
+
   <!-- 打开淘宝引导层 -->
   <view wx:if="{{showGuide}}" class="guide-mask" bindtap="closeGuide">
     <view class="guide-content" catchtap="">

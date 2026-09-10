@@ -1,0 +1,7 @@
+<!-- pages/ai-voice-clone/ai-voice-clone.wxml -->
+<view class="placeholder-container">
+  <view class="placeholder-icon">🎤</view>
+  <view class="placeholder-title">AI声音克隆</view>
+  <view class="placeholder-desc">复刻你的声音，生成专属语音</view>
+  <view class="placeholder-tip">功能开发中，敬请期待...</view>
+</view>

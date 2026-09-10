@@ -1,0 +1,52 @@
+<!-- pages/home/home.wxml -->
+<view class="home-container">
+  <!-- 顶部欢迎区 -->
+  <view class="header">
+    <view class="app-name">AI工具箱</view>
+    <view class="app-slogan">让AI为你的生活赋能</view>
+  </view>
+
+  <!-- 工具分类 -->
+  <view class="category-section">
+    <view class="category-title">🎯 热门工具</view>
+    <view class="tools-grid">
+      <view class="tool-card" bindtap="goToDeals">
+        <view class="tool-icon" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">🎁</view>
+        <view class="tool-name">AI每日优惠</view>
+        <view class="tool-desc">淘宝天猫优惠券</view>
+        <view class="tool-tag hot">热门</view>
+      </view>
+      <view class="tool-card" bindtap="goToAiPage" data-url="/pages/ai-dubbing/ai-dubbing">
+        <view class="tool-icon" style="background: linear-gradient(135deg, #a29bfe, #6c5ce7);">🎙️</view>
+        <view class="tool-name">AI配音</view>
+        <view class="tool-desc">文字转语音</view>
+      </view>
+      <view class="tool-card" bindtap="goToAiPage" data-url="/pages/ai-voice-clone/ai-voice-clone">
+        <view class="tool-icon" style="background: linear-gradient(135deg, #fd79a8, #e84393);">🎤</view>
+        <view class="tool-name">AI声音克隆</view>
+        <view class="tool-desc">复刻你的声音</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="category-section">
+    <view class="category-title">🎨 创作工具</view>
+    <view class="tools-grid">
+      <view class="tool-card" bindtap="goToAiPage" data-url="/pages/ai-novel/ai-novel">
+        <view class="tool-icon" style="background: linear-gradient(135deg, #00b894, #00cec9);">📖</view>
+        <view class="tool-name">AI小说剧本化</view>
+        <view class="tool-desc">一键生成剧本</view>
+      </view>
+      <view class="tool-card" bindtap="goToAiPage" data-url="/pages/ai-cover/ai-cover">
+        <view class="tool-icon" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">🎵</view>
+        <view class="tool-name">AI翻唱</view>
+        <view class="tool-desc">秒变歌王</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <view class="footer-text">更多AI工具，敬请期待...</view>
+  </view>
+</view>

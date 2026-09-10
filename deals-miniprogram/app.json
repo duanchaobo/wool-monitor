@@ -1,12 +1,17 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/index/index",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/ai-dubbing/ai-dubbing",
+    "pages/ai-voice-clone/ai-voice-clone",
+    "pages/ai-novel/ai-novel",
+    "pages/ai-cover/ai-cover"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ff4d4f",
-    "navigationBarTitleText": "每日优惠精选",
+    "navigationBarTitleText": "AI工具箱",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -16,8 +21,12 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/home",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "每日优惠"
       },
       {
         "pagePath": "pages/search/search",

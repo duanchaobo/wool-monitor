@@ -1,0 +1,7 @@
+<!-- pages/ai-novel/ai-novel.wxml -->
+<view class="placeholder-container">
+  <view class="placeholder-icon">📖</view>
+  <view class="placeholder-title">AI小说剧本化</view>
+  <view class="placeholder-desc">一键将小说转化为剧本格式</view>
+  <view class="placeholder-tip">功能开发中，敬请期待...</view>
+</view>

@@ -182,5 +182,14 @@ Page({
 
   closeGuide() {
     this.setData({ showGuide: false });
+  },
+
+  /**
+   * 返回首页
+   */
+  goHome() {
+    wx.switchTab({
+      url: '/pages/home/home'
+    });
   }
 });
